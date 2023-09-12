@@ -1,6 +1,16 @@
+use salsa::DebugWithDb;
+
+use crate::Db;
+
 #[salsa::interned]
-#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, PartialEq, Eq, Hash)]
 pub struct Word {
     #[return_ref]
     pub string: String,
+}
+
+impl Word {
+    pub fn intern(db: &dyn Db, string: impl ToString) -> Word {
+        Word::new(db, string.to_string())
+    }
 }

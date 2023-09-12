@@ -5,7 +5,7 @@ use crate::word::Word;
 pub struct InputFile {
     name: Word,
 
-    // the raw contents of the input file, as a string.
+    // the raw contents of the input file, as a string
     #[return_ref]
-    source_text: String
+    pub source_text: String
 }

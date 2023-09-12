@@ -216,6 +216,10 @@ dependencies = [
 [[package]]
 name = "lox-lex"
 version = "0.1.0"
+dependencies = [
+ "lox-ir",
+ "salsa",
+]
 
 [[package]]
 name = "memoffset"

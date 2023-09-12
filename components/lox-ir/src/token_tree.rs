@@ -9,5 +9,5 @@ pub struct TokenTree {
     // FIX salsa: if we don't use #[return_ref] here, we get a compile error:
     // expected `Vec<Token>`, found `&Vec<Token>`
     #[return_ref]
-    tokens: Vec<Token>,
+    pub tokens: Vec<Token>,
 }
