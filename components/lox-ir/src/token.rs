@@ -1,4 +1,4 @@
-use crate::word::Word;
+use crate::{word::Word, token_tree::TokenTree};
 
 
 
@@ -16,6 +16,10 @@ pub enum Token {
     // `(`, `)`, `[`, `]`, `{`, `}`
     Delimiter(char),
 
-    /// Some whitespace (` `, `\n`, etc)
+    // Some whitespace (` `, `\n`, etc)
     Whitespace(char),
+
+    // When we encounter an opening delimiter, all the contents up to (but not including)
+    // the closing delimiter are read into a Tree.
+    Tree(TokenTree),
 }
