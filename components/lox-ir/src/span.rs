@@ -13,11 +13,31 @@ impl Span {
         assert!(this.start <= this.end);
         this
     }
+
+    pub fn span_at_start(&self) -> Self {
+        Self {
+            start: self.start,
+            end: self.start,
+        }
+    }
+
+    pub fn len(&self) -> u32 {
+        self.end.0 - self.start.0
+    }
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 /// 0-based byte offset within a file.
 pub struct Offset(u32);
+
+
+impl std::ops::Add<u32> for Offset {
+    type Output = Offset;
+
+    fn add(self, rhs: u32) -> Self::Output {
+        Self(self.0 + rhs)
+    }
+}
 
 
 impl From<usize> for Offset {

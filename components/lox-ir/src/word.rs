@@ -1,5 +1,3 @@
-use salsa::DebugWithDb;
-
 use crate::Db;
 
 #[salsa::interned]
@@ -12,5 +10,9 @@ pub struct Word {
 impl Word {
     pub fn intern(db: &dyn Db, string: impl ToString) -> Word {
         Word::new(db, string.to_string())
+    }
+
+    pub fn as_str(self, db: &dyn Db) -> &str {
+        &self.string(db)
     }
 }

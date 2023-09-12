@@ -224,6 +224,11 @@ dependencies = [
 [[package]]
 name = "lox-parse"
 version = "0.1.0"
+dependencies = [
+ "lox-ir",
+ "lox-lex",
+ "salsa",
+]
 
 [[package]]
 name = "memoffset"
