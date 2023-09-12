@@ -1,14 +1,11 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+pub mod input_file;
+pub mod word;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+#[salsa::jar(db = Db)]
+pub struct Jar(
+    word::Word,
+    input_file::InputFile,
+);
+
+pub trait Db: salsa::DbWithJar<Jar> {}
