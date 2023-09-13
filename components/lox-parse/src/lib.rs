@@ -2,6 +2,7 @@
 
 mod parser;
 mod tokens;
+mod token_test;
 
 
 

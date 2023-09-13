@@ -1,3 +1,5 @@
+use crate::input_file::InputFile;
+
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub struct Span {
     pub start: Offset,
@@ -12,6 +14,14 @@ impl Span {
         };
         assert!(this.start <= this.end);
         this
+    }
+
+    pub fn anchor_to(self, db: &dyn crate::Db, anchored: InputFile) -> FileSpan {
+        FileSpan {
+            input_file: anchored,
+            start: self.start,
+            end: self.end,
+        }
     }
 
     pub fn span_at_start(&self) -> Self {
@@ -50,5 +60,35 @@ impl From<usize> for Offset {
 impl From<u32> for Offset {
     fn from(value: u32) -> Offset {
         Offset(value)
+    }
+}
+
+impl From<Offset> for u32 {
+    fn from(offset: Offset) -> Self {
+        offset.0
+    }
+}
+
+impl From<Offset> for usize {
+    fn from(offset: Offset) -> Self {
+        offset.0 as usize
+    }
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
+pub struct FileSpan {
+    pub input_file: InputFile,
+    pub start: Offset,
+    pub end: Offset,
+}
+
+impl FileSpan {
+    pub fn snippet<'db>(&self, db: &'db dyn crate::Db) -> &'db str {
+        &self.input_file.source_text(db)[usize::from(self.start)..usize::from(self.end)]
+    }
+
+    /// True if the given character falls within this span.
+    pub fn contains(&self, offset: Offset) -> bool {
+        self.start <= offset && offset < self.end
     }
 }
