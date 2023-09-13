@@ -1,6 +1,6 @@
-use lox_ir::{input_file::InputFile, span::Span};
+use lox_ir::{input_file::InputFile, span::Span, syntax::Expr, kw::Keyword};
 
-use crate::{tokens::Tokens, token_test::TokenTest};
+use crate::{tokens::Tokens, token_test::{TokenTest, Number}};
 
 
 pub(crate) struct Parser<'me> {
@@ -11,8 +11,19 @@ pub(crate) struct Parser<'me> {
 
 impl<'me> Parser<'me> {
     
-    fn primary(&mut self) {
-        todo!()
+    fn primary(&mut self) -> Option<Expr> {
+        if let Some(_) = self.eat(Keyword::True) {
+            Some(Expr::BooleanLiteral(true))
+        } else if let Some(_) = self.eat(Keyword::False) {
+            Some(Expr::BooleanLiteral(false))
+        } else if let Some(_) = self.eat(Keyword::Nil) {
+            Some(Expr::NilLiteral)
+        } else if let Some((_, word)) = self.eat(Number) {
+            Some(Expr::NumberLiteral(word))
+        } else {
+            None
+        }
+
     }
 
     /// Returns `Some` if the next pending token matches `is`, along

@@ -1,4 +1,4 @@
-use lox_ir::{token::Token, span::FileSpan, kw::Keyword};
+use lox_ir::{token::Token, span::FileSpan, kw::Keyword, word::Word};
 use std::fmt::Debug;
 
 
@@ -27,6 +27,23 @@ impl TokenTest for Keyword {
             Some(self)
         } else {
             None
+        }
+    }
+}
+
+/// A number like `22`.
+///
+/// Note that `.` is not accepted.
+/// Floating point literals can be parsed by combining multiple tokens.
+#[derive(Debug)]
+pub(crate) struct Number;
+impl TokenTest for Number {
+    type Narrow = Word;
+
+    fn test(self, _db: &dyn crate::Db, token: Token, _span: FileSpan) -> Option<Word> {
+        match token {
+            Token::Number(w) => Some(w),
+            _ => None,
         }
     }
 }
