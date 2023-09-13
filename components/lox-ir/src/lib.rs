@@ -4,6 +4,7 @@ pub mod span;
 pub mod token;
 pub mod token_tree;
 pub mod syntax;
+pub mod kw;
 
 
 #[salsa::jar(db = Db)]

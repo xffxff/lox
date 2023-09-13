@@ -38,4 +38,15 @@ impl Token {
             Token::Tree(tree) => tree.span(db).len(),
         }
     }
+
+    pub fn alphabetic(self) -> Option<Word> {
+        match self {
+            Token::Alphabetic(word) => Some(word),
+            _ => None,
+        }
+    }
+
+    pub fn alphabetic_str(self, db: &dyn crate::Db) -> Option<&str> {
+        self.alphabetic().map(|i| i.as_str(db))
+    }
 }
