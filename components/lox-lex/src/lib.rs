@@ -1,9 +1,9 @@
 #![feature(trait_upcasting)]
 
-use lex::lex_file;
 
 pub mod lex;
 
+pub use lex::lex_file;
 
 #[salsa::jar(db = Db)]
 pub struct Jar(

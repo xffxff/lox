@@ -1,6 +1,7 @@
 use crate::word::Word;
 
 
+#[derive(Debug, PartialEq, Eq)]
 pub enum Expr {
     // `22`
     NumberLiteral(Word),
@@ -24,6 +25,7 @@ pub enum Expr {
     Parenthesized(Box<Expr>),
 }
 
+#[derive(Debug, PartialEq, Eq)]
 pub enum Op {
     // 2-character ops
     EqualEqual,

@@ -2,8 +2,8 @@ use std::{path::{PathBuf, Path}, fs};
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug)]
 struct TestCase {
-    rs: PathBuf,
-    rast: PathBuf,
+    lox: PathBuf,
+    syntax: PathBuf,
     text: String,
 }
 
@@ -23,7 +23,7 @@ impl TestCase {
                 let rs = path;
                 let rast = rs.with_extension("syntax");
                 let text = fs::read_to_string(&rs).unwrap();
-                res.push(TestCase { rs, rast, text });
+                res.push(TestCase { lox: rs, syntax: rast, text });
             }
         }
         res.sort();
@@ -31,9 +31,34 @@ impl TestCase {
     }
 }
 
-#[test]
-fn parse() {
-    for case in TestCase::list("") {
-        dbg!(case);
+#[cfg(test)]
+mod tests {
+    use lox_ir::{word::Word, input_file::InputFile};
+
+    use crate::file_parser::parse_file;
+
+    use super::TestCase;
+
+    #[salsa::db(crate::Jar, lox_ir::Jar, lox_lex::Jar)]
+    #[derive(Default)]
+    struct Database {
+        storage: salsa::Storage<Self>,
+    }
+
+    impl salsa::Database for Database {}
+
+    impl lox_ir::Db for Database {}
+
+    impl lox_lex::Db for Database {}
+
+
+    #[test]
+    fn parse() {
+        let db = Database::default();
+        for case in TestCase::list("") {
+            let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
+            dbg!(parse_file(&db, input_file));
+        }
     }
 }
+

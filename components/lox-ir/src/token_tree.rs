@@ -3,7 +3,7 @@ use crate::{input_file::InputFile, span::Span, token::Token};
 
 #[salsa::tracked]
 pub struct TokenTree {
-    input_file: InputFile,
+    pub input_file: InputFile,
     pub span: Span,
 
     // FIX salsa: if we don't use #[return_ref] here, we get a compile error:

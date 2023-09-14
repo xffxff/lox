@@ -1,4 +1,4 @@
-use lox_ir::{input_file::InputFile, span::Span, syntax::Expr, kw::Keyword};
+use lox_ir::{input_file::InputFile, span::Span, syntax::Expr, kw::Keyword, token_tree::TokenTree};
 
 use crate::{tokens::Tokens, token_test::{TokenTest, Number}};
 
@@ -10,6 +10,14 @@ pub(crate) struct Parser<'me> {
 }
 
 impl<'me> Parser<'me> {
+    pub(crate) fn new(db: &'me dyn crate::Db, token_tree: TokenTree) -> Self {
+        let tokens = Tokens::new(db, token_tree);
+        Self { db, input_file: token_tree.input_file(db), tokens }
+    }
+
+    pub(crate) fn parse_expr(&mut self) -> Option<Expr> {
+        self.primary()
+    }
     
     fn primary(&mut self) -> Option<Expr> {
         if let Some(_) = self.eat(Keyword::True) {
