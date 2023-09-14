@@ -33,6 +33,7 @@ impl TestCase {
 
 #[cfg(test)]
 mod tests {
+    use expect_test::expect_file;
     use lox_ir::{word::Word, input_file::InputFile};
     use salsa::DebugWithDb;
 
@@ -60,7 +61,7 @@ mod tests {
             let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
             let expr = parse_file(&db, input_file);
             if let Some(expr) = expr {
-                dbg!(expr.debug(&db));
+                expect_file![case.syntax].assert_eq(&format!("{:?}", expr.debug(&db)));
             } else {
                 panic!("failed to parse {:?}", case.lox);
             }

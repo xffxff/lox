@@ -6,6 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+expect-test = "1.4.1"
 lox-ir = { path = "../lox-ir" }
 lox-lex = { path = "../lox-lex" }
 salsa = { path = "../salsa" }
