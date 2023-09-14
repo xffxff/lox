@@ -1,1 +1,1 @@
-NumberLiteral(1)
+UnaryOp(Minus, NumberLiteral(1))

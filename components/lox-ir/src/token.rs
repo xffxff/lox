@@ -27,13 +27,16 @@ pub enum Token {
     // When we encounter an opening delimiter, all the contents up to (but not including)
     // the closing delimiter are read into a Tree.
     Tree(TokenTree),
+
+    // Unkown token
+    Unknown(char),
 }
 
 impl Token {
     pub fn span_len(&self, db: &dyn crate::Db) -> u32 {
         match self {
             Token::Alphabetic(word) | Token::Number(word) => word.as_str(db).len() as u32,
-            Token::Op(ch) | Token::Delimiter(ch) | Token::Whitespace(ch) => ch.len_utf8() as u32,
+            Token::Op(ch) | Token::Delimiter(ch) | Token::Whitespace(ch) | Token::Unknown(ch) => ch.len_utf8() as u32,
             Token::Comment(s) => *s,
             Token::Tree(tree) => tree.span(db).len(),
         }

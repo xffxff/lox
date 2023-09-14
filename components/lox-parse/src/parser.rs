@@ -16,11 +16,17 @@ impl<'me> Parser<'me> {
     }
 
     pub(crate) fn parse_expr(&mut self) -> Option<Expr> {
-        self.primary()
+        self.unary()
     }
 
     fn unary(&mut self) -> Option<Expr> {
-        todo!()
+        for op in &[Op::Minus, Op::Bang] {
+            if let Some(_) = self.eat_op(*op) {
+                let expr = self.unary()?;
+                return Some(Expr::UnaryOp(*op, Box::new(expr)));
+            }
+        }
+        self.primary()
     }
     
     fn primary(&mut self) -> Option<Expr> {
