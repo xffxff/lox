@@ -34,6 +34,14 @@ impl Span {
     pub fn len(&self) -> u32 {
         self.end.0 - self.start.0
     }
+
+    pub fn to(self, other: Span) -> Span {
+        assert!(self.start <= other.start && other.end >= self.end);
+        Span {
+            start: self.start,
+            end: other.end,
+        }
+    }
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]

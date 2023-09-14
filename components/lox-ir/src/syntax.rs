@@ -1,5 +1,8 @@
 use crate::word::Word;
 
+mod op;
+pub use op::Op;
+
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum Expr {
@@ -25,23 +28,7 @@ pub enum Expr {
     Parenthesized(Box<Expr>),
 }
 
-#[derive(Debug, PartialEq, Eq)]
-pub enum Op {
-    // 2-character ops
-    EqualEqual,
-    NotEqual,
-    LessEqual,
-    GreaterEqual,
 
-    // 1-character ops
-    Minus,
-    Plus,
-    Slash,
-    Star,
-    Less,
-    Greater,
-    Not,
-}
 
 impl salsa::DebugWithDb<dyn crate::Db> for Expr {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>, db: &dyn crate::Db, include_all_fields: bool) -> std::fmt::Result {

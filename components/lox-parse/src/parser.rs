@@ -1,4 +1,4 @@
-use lox_ir::{input_file::InputFile, span::Span, syntax::Expr, kw::Keyword, token_tree::TokenTree};
+use lox_ir::{input_file::InputFile, span::Span, syntax::{Expr, Op}, kw::Keyword, token_tree::TokenTree, token::Token};
 
 use crate::{tokens::Tokens, token_test::{TokenTest, Number}};
 
@@ -17,6 +17,10 @@ impl<'me> Parser<'me> {
 
     pub(crate) fn parse_expr(&mut self) -> Option<Expr> {
         self.primary()
+    }
+
+    fn unary(&mut self) -> Option<Expr> {
+        todo!()
     }
     
     fn primary(&mut self) -> Option<Expr> {
@@ -54,6 +58,60 @@ impl<'me> Parser<'me> {
         let narrow = self.peek(test)?;
         self.tokens.consume();
         Some((span, narrow))
+    }
+
+    /// Peek ahead to see if `op` matches the next set of tokens;
+    /// if so, return the span and the tokens after skipping the operator.
+    fn test_op(&self, op: Op) -> Option<(Span, Tokens<'me>)> {
+        let mut tokens = self.tokens;
+        let span0 = tokens.peek_span();
+
+        let mut chars = op.str().chars();
+
+        let ch0 = chars.next().unwrap();
+        match tokens.consume() {
+            Some(Token::Op(ch1)) if ch0 == ch1 => (),
+            _ => return None,
+        }
+
+        for ch in chars {
+            if tokens.skipped_any() {
+                return None;
+            }
+
+            match tokens.consume() {
+                Some(Token::Op(ch1)) if ch == ch1 => continue,
+                _ => return None,
+            }
+        }
+
+        let span = span0.to(tokens.last_span());
+
+        // Careful: for most operators, if we are looking for `+`
+        // and we see `++` or `+-` or something like that,
+        // we don't want that to match!
+
+        // If we skipped whitespace, then the token was on its own.
+        if tokens.skipped_any() {
+            return Some((span, tokens));
+        }
+
+        // Only return Some if this is the complete operator
+        // (i.e., the operator `=` cannot match against a prefix of the input `==`)
+        if let Some(Token::Op(_)) = tokens.peek() {
+            return None;
+        }
+
+        // ...if not, we've got a match!
+        Some((span, tokens))
+    }
+
+    /// If the next tokens match the given operator, consume it and
+    /// return.
+    fn eat_op(&mut self, op: Op) -> Option<Span> {
+        let (span, tokens) = self.test_op(op)?;
+        self.tokens = tokens;
+        Some(span)
     }
 }
 
