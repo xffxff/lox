@@ -42,3 +42,12 @@ pub enum Op {
     Greater,
     Not,
 }
+
+impl salsa::DebugWithDb<dyn crate::Db> for Expr {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>, db: &dyn crate::Db, include_all_fields: bool) -> std::fmt::Result {
+        match self {
+            Expr::NumberLiteral(word) => write!(f, "NumberLiteral({})", word.as_str(db)),
+            _ => todo!()
+        }
+    }
+}

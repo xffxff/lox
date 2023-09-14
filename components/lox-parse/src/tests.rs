@@ -34,6 +34,7 @@ impl TestCase {
 #[cfg(test)]
 mod tests {
     use lox_ir::{word::Word, input_file::InputFile};
+    use salsa::DebugWithDb;
 
     use crate::file_parser::parse_file;
 
@@ -57,7 +58,12 @@ mod tests {
         let db = Database::default();
         for case in TestCase::list("") {
             let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
-            dbg!(parse_file(&db, input_file));
+            let expr = parse_file(&db, input_file);
+            if let Some(expr) = expr {
+                dbg!(expr.debug(&db));
+            } else {
+                panic!("failed to parse {:?}", case.lox);
+            }
         }
     }
 }
