@@ -44,7 +44,7 @@ where I: Iterator<Item = (usize, char)>
                     tokens.push(Token::Whitespace(ch));
                 }
                 _ => {
-                    if !ch.is_whitespace() {
+                    if ch.is_whitespace() {
                         tokens.push(Token::Whitespace(ch))
                     } else {
                         tokens.push(Token::Unknown(ch))

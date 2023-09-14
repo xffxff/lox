@@ -1,1 +1,2 @@
 UnaryOp(Minus, NumberLiteral(1))
+UnaryOp(Bang, NumberLiteral(1))

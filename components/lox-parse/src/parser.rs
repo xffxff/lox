@@ -15,7 +15,15 @@ impl<'me> Parser<'me> {
         Self { db, input_file: token_tree.input_file(db), tokens }
     }
 
-    pub(crate) fn parse_expr(&mut self) -> Option<Expr> {
+    pub(crate) fn parse_exprs(&mut self) -> Vec<Expr> {
+        let mut exprs = vec![];
+        while let Some(expr) = self.parse_expr() {
+            exprs.push(expr);
+        }
+        exprs
+    }
+
+    fn parse_expr(&mut self) -> Option<Expr> {
         self.unary()
     }
 

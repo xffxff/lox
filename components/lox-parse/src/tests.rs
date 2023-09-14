@@ -59,12 +59,13 @@ mod tests {
         let db = Database::default();
         for case in TestCase::list("") {
             let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
-            let expr = parse_file(&db, input_file);
-            if let Some(expr) = expr {
-                expect_file![case.syntax].assert_eq(&format!("{:?}", expr.debug(&db)));
-            } else {
-                panic!("failed to parse {:?}", case.lox);
+            let exprs = parse_file(&db, input_file);
+
+            let mut buf = String::new();
+            for expr in exprs.iter() {
+                buf.push_str(&format!("{:#?}\n", expr.debug(&db)));
             }
+            expect_file![case.syntax].assert_eq(&buf);
         }
     }
 }
