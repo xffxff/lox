@@ -4,7 +4,7 @@ mod op;
 pub use op::Op;
 
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Expr {
     // `22`
     NumberLiteral(Word),
@@ -35,6 +35,7 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
         match self {
             Expr::NumberLiteral(word) => write!(f, "NumberLiteral({})", word.as_str(db)),
             Expr::UnaryOp(op, expr) => write!(f, "UnaryOp({:?}, {:?})", op, expr.debug(db)),
+            Expr::BinaryOp(left, op, right) => write!(f, "BinaryOp({:?}, {:?}, {:?})", left.debug(db), op, right.debug(db)),
             _ => todo!()
         }
     }

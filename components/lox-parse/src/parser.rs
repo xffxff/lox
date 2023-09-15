@@ -24,7 +24,31 @@ impl<'me> Parser<'me> {
     }
 
     fn parse_expr(&mut self) -> Option<Expr> {
-        self.unary()
+        self.factor()
+    }
+
+    fn factor(&mut self) -> Option<Expr> {
+        let mut left = self.unary()?;
+
+        loop {
+            if let Some(right) = self.parse_binary(left.clone(), &[Op::Star, Op::Slash], |p| p.unary()) {
+                left = right;
+                continue;
+            }
+            break;
+        }
+        Some(left)
+    }
+
+    fn parse_binary(&mut self, left: Expr, ops: &[Op], parse_rhs: impl Fn(&mut Self) -> Option<Expr>) -> Option<Expr> {
+        for op in ops {
+            if let Some(_) = self.eat_op(*op) {
+                let right = parse_rhs(self)?;
+                let left = Expr::BinaryOp(Box::new(left), *op, Box::new(right));
+                return Some(left);
+            }
+        }
+        None
     }
 
     fn unary(&mut self) -> Option<Expr> {

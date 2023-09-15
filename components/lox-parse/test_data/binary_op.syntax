@@ -1,0 +1,2 @@
+BinaryOp(NumberLiteral(1), Star, NumberLiteral(2))
+BinaryOp(NumberLiteral(1), Slash, NumberLiteral(2))
