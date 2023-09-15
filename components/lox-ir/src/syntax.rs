@@ -34,8 +34,8 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>, db: &dyn crate::Db, include_all_fields: bool) -> std::fmt::Result {
         match self {
             Expr::NumberLiteral(word) => write!(f, "NumberLiteral({})", word.as_str(db)),
-            Expr::UnaryOp(op, expr) => write!(f, "UnaryOp({:?}, {:?})", op, expr.debug(db)),
-            Expr::BinaryOp(left, op, right) => write!(f, "BinaryOp({:?}, {:?}, {:?})", left.debug(db), op, right.debug(db)),
+            Expr::UnaryOp(op, expr) => f.debug_struct("UnaryOp").field("op", op).field("expr", &expr.debug(db)).finish(),
+            Expr::BinaryOp(left, op, right) => f.debug_struct("BinaryOp").field("left", &left.debug(db)).field("op", op).field("right", &right.debug(db)).finish(),
             _ => todo!()
         }
     }

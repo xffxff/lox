@@ -1,6 +1,46 @@
-BinaryOp(NumberLiteral(1), Star, NumberLiteral(2))
-BinaryOp(NumberLiteral(1), Slash, NumberLiteral(2))
-BinaryOp(NumberLiteral(1), Star, NumberLiteral(2))
-BinaryOp(NumberLiteral(1), Star, UnaryOp(Minus, NumberLiteral(2)))
-BinaryOp(UnaryOp(Minus, NumberLiteral(1)), Star, NumberLiteral(2))
-BinaryOp(BinaryOp(NumberLiteral(1), Star, UnaryOp(Minus, NumberLiteral(2))), Slash, UnaryOp(Minus, NumberLiteral(3)))
+BinaryOp {
+    left: NumberLiteral(1),
+    op: Star,
+    right: NumberLiteral(2),
+}
+BinaryOp {
+    left: NumberLiteral(1),
+    op: Slash,
+    right: NumberLiteral(2),
+}
+BinaryOp {
+    left: NumberLiteral(1),
+    op: Star,
+    right: NumberLiteral(2),
+}
+BinaryOp {
+    left: NumberLiteral(1),
+    op: Star,
+    right: UnaryOp {
+        op: Minus,
+        expr: NumberLiteral(2),
+    },
+}
+BinaryOp {
+    left: UnaryOp {
+        op: Minus,
+        expr: NumberLiteral(1),
+    },
+    op: Star,
+    right: NumberLiteral(2),
+}
+BinaryOp {
+    left: BinaryOp {
+        left: NumberLiteral(1),
+        op: Star,
+        right: UnaryOp {
+            op: Minus,
+            expr: NumberLiteral(2),
+        },
+    },
+    op: Slash,
+    right: UnaryOp {
+        op: Minus,
+        expr: NumberLiteral(3),
+    },
+}
