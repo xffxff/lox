@@ -10,3 +10,7 @@ expect-test = "1.4.1"
 lox-ir = { path = "../lox-ir" }
 lox-lex = { path = "../lox-lex" }
 salsa = { path = "../salsa" }
+tracing = "0.1.37"
+
+[dev-dependencies]
+tracing-subscriber = "0.3.17"

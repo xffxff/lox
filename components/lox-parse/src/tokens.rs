@@ -95,6 +95,7 @@ impl<'me> Tokens<'me> {
 
         self.skip_tokens();
 
+        tracing::debug!("consumed {token:?}, lookahead={:?}", self.peek());
         Some(token)
     }
 

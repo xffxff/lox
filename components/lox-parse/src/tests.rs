@@ -56,8 +56,12 @@ mod tests {
 
     #[test]
     fn parse() {
+        // install global collector configured based on RUST_LOG env var.
+        tracing_subscriber::fmt::init();
+
         let db = Database::default();
         for case in TestCase::list("") {
+            tracing::debug!("test case: {:?}", case.lox);
             let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
             let exprs = parse_file(&db, input_file);
 
