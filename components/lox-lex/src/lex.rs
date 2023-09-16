@@ -14,6 +14,14 @@ pub fn lex_file(db: &dyn Db, input_file: InputFile) -> TokenTree {
     lexer.lex_tokens(None)
 }
 
+pub fn closing_delimiter(ch: char) -> char {
+    match ch {
+        '(' => ')',
+        '[' => ']',
+        '{' => '}',
+        _ => panic!("not a delimiter: {ch:?}"),
+    }
+}
 
 struct Lexer<'me, I> 
 where I: Iterator<Item = (usize, char)> {
@@ -27,27 +35,49 @@ where I: Iterator<Item = (usize, char)>
 {
     fn lex_tokens(&mut self, end_ch: Option<char>) -> TokenTree {
         let mut tokens = vec![];
+        let mut push_token = |t: Token| {
+            tracing::debug!("push token: {:?}", t);
+            tokens.push(t);
+        };
 
         let mut end_pos = 0;
         while let Some((pos, ch)) = self.chars.peek().cloned() {
             end_pos = end_pos.max(pos);
+
+            if Some(ch) == end_ch {
+                break;
+            }
+
             self.chars.next();
             match ch {
+                '(' | '[' | '{' => {
+                    push_token(Token::Delimiter(ch));
+                    let closing_ch = closing_delimiter(ch);
+                    let tree = self.lex_tokens(Some(closing_ch));
+                    push_token(Token::Tree(tree));
+
+                    if let Some((_, next_ch)) = self.chars.peek() {
+                        if *next_ch == closing_ch {
+                            self.chars.next();
+                            push_token(Token::Delimiter(closing_ch));
+                        }
+                    }
+                },
                 '0'..='9' => {
                     let text = self.accumulate(ch, |c| matches!(c, '0'..='9'));
-                    tokens.push(Token::Number(text));
+                    push_token(Token::Number(text));
                 },
                 '+' | '-' | '*' | '/' | '!' | '<' | '>' | '=' => {
-                    tokens.push(Token::Op(ch));
+                    push_token(Token::Op(ch));
                 },
                 ' ' => {
-                    tokens.push(Token::Whitespace(ch));
+                    push_token(Token::Whitespace(ch));
                 }
                 _ => {
                     if ch.is_whitespace() {
-                        tokens.push(Token::Whitespace(ch))
+                        push_token(Token::Whitespace(ch))
                     } else {
-                        tokens.push(Token::Unknown(ch))
+                        push_token(Token::Unknown(ch))
                     }
                 }
             }

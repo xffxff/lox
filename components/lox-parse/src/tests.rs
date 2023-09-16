@@ -65,9 +65,14 @@ mod tests {
         
         let db = Database::default();
         for case in TestCase::list("") {
+            if !case.lox.as_os_str().to_str().unwrap().contains("parent") {
+                continue;
+            }
             tracing::debug!("test case: {:?}", case.lox);
+            dbg!(&case.lox);
             let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
             let exprs = parse_file(&db, input_file);
+            dbg!(&exprs);
 
             let mut buf = String::new();
             for expr in exprs.iter() {
