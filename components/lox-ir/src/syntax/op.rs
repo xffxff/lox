@@ -38,6 +38,7 @@ impl std::fmt::Display for Op {
 define_operators! {
     // 2-character ops (must come first!)
     EqualEqual => "==",
+    NotEqual => "!=",
     GreaterEqual => ">=",
     LessEqual => "<=",
 

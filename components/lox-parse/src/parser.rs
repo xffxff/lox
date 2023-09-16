@@ -24,7 +24,20 @@ impl<'me> Parser<'me> {
     }
 
     fn parse_expr(&mut self) -> Option<Expr> {
-        self.comparison()
+        self.equality()
+    }
+
+    fn equality(&mut self) -> Option<Expr> {
+        let mut left = self.comparison()?;
+
+        loop {
+            if let Some(right) = self.parse_binary(left.clone(), &[Op::NotEqual, Op::EqualEqual], |p| p.comparison()) {
+                left = right;
+                continue;
+            }
+            break;
+        }
+        Some(left)
     }
 
     fn comparison(&mut self) -> Option<Expr> {
