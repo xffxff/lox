@@ -1,1 +1,29 @@
-NumberLiteral(1)
+BinaryOp {
+    left: NumberLiteral(1),
+    op: Less,
+    right: NumberLiteral(2),
+}
+BinaryOp {
+    left: NumberLiteral(1),
+    op: LessEqual,
+    right: NumberLiteral(2),
+}
+BinaryOp {
+    left: NumberLiteral(1),
+    op: Greater,
+    right: NumberLiteral(2),
+}
+BinaryOp {
+    left: NumberLiteral(1),
+    op: GreaterEqual,
+    right: NumberLiteral(2),
+}
+BinaryOp {
+    left: BinaryOp {
+        left: NumberLiteral(1),
+        op: Less,
+        right: NumberLiteral(2),
+    },
+    op: Less,
+    right: NumberLiteral(3),
+}

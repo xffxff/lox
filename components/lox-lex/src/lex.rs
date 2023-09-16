@@ -37,7 +37,7 @@ where I: Iterator<Item = (usize, char)>
                     let text = self.accumulate(ch, |c| matches!(c, '0'..='9'));
                     tokens.push(Token::Number(text));
                 },
-                '+' | '-' | '*' | '/' | '!' => {
+                '+' | '-' | '*' | '/' | '!' | '<' | '>' | '=' => {
                     tokens.push(Token::Op(ch));
                 },
                 ' ' => {
