@@ -24,7 +24,20 @@ impl<'me> Parser<'me> {
     }
 
     fn parse_expr(&mut self) -> Option<Expr> {
-        self.factor()
+        self.term()
+    }
+
+    fn term(&mut self) -> Option<Expr> {
+        let mut left = self.factor()?;
+
+        loop {
+            if let Some(right) = self.parse_binary(left.clone(), &[Op::Minus, Op::Plus], |p| p.factor()) {
+                left = right;
+                continue;
+            }
+            break;
+        }
+        Some(left)
     }
 
     fn factor(&mut self) -> Option<Expr> {
