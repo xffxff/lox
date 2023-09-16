@@ -36,6 +36,7 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
             Expr::NumberLiteral(word) => write!(f, "NumberLiteral({})", word.as_str(db)),
             Expr::UnaryOp(op, expr) => f.debug_struct("UnaryOp").field("op", op).field("expr", &expr.debug(db)).finish(),
             Expr::BinaryOp(left, op, right) => f.debug_struct("BinaryOp").field("left", &left.debug(db)).field("op", op).field("right", &right.debug(db)).finish(),
+            Expr::Parenthesized(expr) => f.debug_struct("Parenthesized").field("expr", &expr.debug(db)).finish(),
             _ => todo!()
         }
     }

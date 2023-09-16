@@ -52,4 +52,12 @@ impl Token {
     pub fn alphabetic_str(self, db: &dyn crate::Db) -> Option<&str> {
         self.alphabetic().map(|i| i.as_str(db))
     }
+
+    /// Returns `Some` if this is a [`Token::Tree`] variant.
+    pub fn tree(self) -> Option<TokenTree> {
+        match self {
+            Token::Tree(tree) => Some(tree),
+            _ => None,
+        }
+    }
 }

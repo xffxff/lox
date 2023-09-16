@@ -1,0 +1,21 @@
+Parenthesized {
+    expr: NumberLiteral(1),
+}
+Parenthesized {
+    expr: BinaryOp {
+        left: NumberLiteral(1),
+        op: Plus,
+        right: NumberLiteral(2),
+    },
+}
+BinaryOp {
+    left: NumberLiteral(1),
+    op: Plus,
+    right: Parenthesized {
+        expr: BinaryOp {
+            left: NumberLiteral(2),
+            op: Plus,
+            right: NumberLiteral(3),
+        },
+    },
+}

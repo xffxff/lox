@@ -1,6 +1,6 @@
 use lox_ir::{input_file::InputFile, span::Span, syntax::{Expr, Op}, kw::Keyword, token_tree::TokenTree, token::Token};
 
-use crate::{tokens::Tokens, token_test::{TokenTest, Number}};
+use crate::{tokens::Tokens, token_test::{TokenTest, Number, AnyTree}};
 
 
 pub(crate) struct Parser<'me> {
@@ -118,6 +118,10 @@ impl<'me> Parser<'me> {
             Some(Expr::NilLiteral)
         } else if let Some((_, word)) = self.eat(Number) {
             Some(Expr::NumberLiteral(word))
+        } else if let Some((_, token_tree)) = self.delimited('(') {
+            let expr = Parser::new(self.db, token_tree).parse_expr()?;
+            self.eat(Token::Delimiter(')'));
+            Some(Expr::Parenthesized(Box::new(expr)))
         } else {
             None
         }
@@ -198,6 +202,24 @@ impl<'me> Parser<'me> {
         let (span, tokens) = self.test_op(op)?;
         self.tokens = tokens;
         Some(span)
+    }
+
+    /// If the next token is an opening delimiter, like `(` or `{`,
+    /// then consumes it, the token-tree that follows, and the closing delimiter (if present).
+    /// Returns the token tree + the span including delimiters.
+    /// Reports an error if there is no closing delimiter.
+    fn delimited(&mut self, delimiter: char) -> Option<(Span, TokenTree)> {
+        let (open_span, _) = self.eat(Token::Delimiter(delimiter))?;
+
+        // Lexer always produces a token tree as the next token after a delimiter:
+        let (_, token_tree) = self.eat(AnyTree).unwrap();
+
+        // Consume closing delimiter (if present)
+        let closing_delimiter = lox_lex::closing_delimiter(delimiter);
+        self.eat(Token::Delimiter(closing_delimiter));
+
+        let span = open_span.to(self.tokens.last_span());
+        Some((span, token_tree))
     }
 }
 

@@ -1,4 +1,4 @@
-use lox_ir::{token::Token, span::FileSpan, kw::Keyword, word::Word};
+use lox_ir::{token::Token, span::FileSpan, kw::Keyword, word::Word, token_tree::TokenTree};
 use std::fmt::Debug;
 
 
@@ -45,6 +45,29 @@ impl TokenTest for Number {
             Token::Number(w) => Some(w),
             _ => None,
         }
+    }
+}
+
+impl TokenTest for Token {
+    type Narrow = Token;
+
+    fn test(self, _: &dyn crate::Db, token: Token, _span: FileSpan) -> Option<Token> {
+        if self == token {
+            Some(token)
+        } else {
+            None
+        }
+    }
+}
+
+/// Any token at all
+#[derive(Debug)]
+pub(crate) struct AnyTree;
+impl TokenTest for AnyTree {
+    type Narrow = TokenTree;
+
+    fn test(self, _: &dyn crate::Db, token: Token, _span: FileSpan) -> Option<TokenTree> {
+        token.tree()
     }
 }
 

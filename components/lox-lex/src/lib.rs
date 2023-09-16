@@ -4,6 +4,7 @@
 pub mod lex;
 
 pub use lex::lex_file;
+pub use lex::closing_delimiter;
 
 #[salsa::jar(db = Db)]
 pub struct Jar(
