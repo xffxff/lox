@@ -23,6 +23,15 @@ impl<'me> Parser<'me> {
         exprs
     }
 
+    // expression     → equality ;
+    // equality       → comparison ( ( "!=" | "==" ) comparison )* ;
+    // comparison     → term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+    // term           → factor ( ( "-" | "+" ) factor )* ;
+    // factor         → unary ( ( "/" | "*" ) unary )* ;
+    // unary          → ( "!" | "-" ) unary
+    //             | primary ;
+    // primary        → NUMBER | STRING | "true" | "false" | "nil"
+    //             | "(" expression ")" ;
     fn parse_expr(&mut self) -> Option<Expr> {
         self.equality()
     }
