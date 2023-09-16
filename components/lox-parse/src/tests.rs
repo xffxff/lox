@@ -64,15 +64,20 @@ mod tests {
             .init();
         
         let db = Database::default();
+
+        // use env var to filter test cases
+        let filter = std::env::var("TEST_FILTER").unwrap_or_default();
+
+
         for case in TestCase::list("") {
-            if !case.lox.as_os_str().to_str().unwrap().contains("parent") {
+
+            if !filter.is_empty() && !case.lox.to_str().unwrap().contains(&filter) {
                 continue;
             }
-            tracing::debug!("test case: {:?}", case.lox);
-            dbg!(&case.lox);
+            
+            tracing::info!("test case: {:?}", case.lox);
             let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
             let exprs = parse_file(&db, input_file);
-            dbg!(&exprs);
 
             let mut buf = String::new();
             for expr in exprs.iter() {
