@@ -53,12 +53,16 @@ mod tests {
 
     impl lox_lex::Db for Database {}
 
+    use tracing_subscriber::{EnvFilter, fmt, prelude::*};
+
 
     #[test]
     fn parse() {
-        // install global collector configured based on RUST_LOG env var.
-        tracing_subscriber::fmt::init();
-
+        tracing_subscriber::registry()
+            .with(fmt::layer())
+            .with(EnvFilter::from_default_env())
+            .init();
+        
         let db = Database::default();
         for case in TestCase::list("") {
             tracing::debug!("test case: {:?}", case.lox);
