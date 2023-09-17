@@ -31,7 +31,7 @@ pub enum Expr {
 
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>, db: &dyn crate::Db, include_all_fields: bool) -> std::fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>, db: &dyn crate::Db, _include_all_fields: bool) -> std::fmt::Result {
         match self {
             Expr::NumberLiteral(word) => write!(f, "NumberLiteral({})", word.as_str(db)),
             Expr::UnaryOp(op, expr) => f.debug_struct("UnaryOp").field("op", op).field("expr", &expr.debug(db)).finish(),
