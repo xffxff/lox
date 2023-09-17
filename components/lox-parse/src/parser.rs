@@ -131,7 +131,7 @@ impl<'me> Parser<'me> {
     /// Returns `Some` if the next pending token matches `is`, along
     /// with the narrowed view of the next token.
     fn peek<TT: TokenTest>(&mut self, test: TT) -> Option<TT::Narrow> {
-        let span = self.tokens.peek_span().anchor_to(self.db, self.input_file);
+        let span = self.tokens.peek_span().anchor_to(self.input_file);
         test.test(self.db, self.tokens.peek()?, span)
     }
 
@@ -229,7 +229,7 @@ impl<'me> Parser<'me> {
 
     fn error(&self, span: Span, message: impl ToString) -> DiagnosticBuilder {
         lox_ir::error!(
-            span.anchor_to(self.db, self.input_file),
+            span.anchor_to(self.input_file),
             "{}",
             message.to_string()
         )

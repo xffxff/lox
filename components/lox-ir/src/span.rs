@@ -16,7 +16,7 @@ impl Span {
         this
     }
 
-    pub fn anchor_to(self, db: &dyn crate::Db, anchored: InputFile) -> FileSpan {
+    pub fn anchor_to(self, anchored: InputFile) -> FileSpan {
         FileSpan {
             input_file: anchored,
             start: self.start,
