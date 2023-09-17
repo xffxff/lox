@@ -1,4 +1,4 @@
-use lox_ir::{input_file::InputFile, span::Span, syntax::{Expr, Op}, kw::Keyword, token_tree::TokenTree, token::Token};
+use lox_ir::{input_file::InputFile, span::Span, syntax::{Expr, Op}, kw::Keyword, token_tree::TokenTree, token::Token, diagnostic::DiagnosticBuilder};
 
 use crate::{tokens::Tokens, token_test::{TokenTest, Number, AnyTree}};
 
@@ -216,10 +216,23 @@ impl<'me> Parser<'me> {
 
         // Consume closing delimiter (if present)
         let closing_delimiter = lox_lex::closing_delimiter(delimiter);
-        self.eat(Token::Delimiter(closing_delimiter));
+        self.eat(Token::Delimiter(closing_delimiter)).or_else(|| {
+            let span = self.tokens.peek_span();
+            let message = format!("expected `{}`", closing_delimiter);
+            self.error(span, message).emit(self.db);
+            None
+        });
 
         let span = open_span.to(self.tokens.last_span());
         Some((span, token_tree))
+    }
+
+    fn error(&self, span: Span, message: impl ToString) -> DiagnosticBuilder {
+        lox_ir::error!(
+            span.anchor_to(self.db, self.input_file),
+            "{}",
+            message.to_string()
+        )
     }
 }
 

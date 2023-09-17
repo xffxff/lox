@@ -19,3 +19,46 @@ BinaryOp {
         },
     },
 }
+Parenthesized {
+    expr: BinaryOp {
+        left: NumberLiteral(1),
+        op: Plus,
+        right: NumberLiteral(2),
+    },
+}
+Diagnostic {
+    severity: Error,
+    span: FileSpan {
+        input_file: InputFile(
+            Id {
+                value: 5,
+            },
+        ),
+        start: Offset(
+            48,
+        ),
+        end: Offset(
+            77,
+        ),
+    },
+    message: "expected `)`",
+    labels: [
+        Label {
+            span: FileSpan {
+                input_file: InputFile(
+                    Id {
+                        value: 5,
+                    },
+                ),
+                start: Offset(
+                    48,
+                ),
+                end: Offset(
+                    77,
+                ),
+            },
+            message: "here",
+        },
+    ],
+    children: [],
+}

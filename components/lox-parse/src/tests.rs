@@ -34,7 +34,7 @@ impl TestCase {
 #[cfg(test)]
 mod tests {
     use expect_test::expect_file;
-    use lox_ir::{word::Word, input_file::InputFile};
+    use lox_ir::{word::Word, input_file::InputFile, diagnostic::Diagnostics};
     use salsa::DebugWithDb;
 
     use crate::file_parser::parse_file;
@@ -82,6 +82,11 @@ mod tests {
             let mut buf = String::new();
             for expr in exprs.iter() {
                 buf.push_str(&format!("{:#?}\n", expr.debug(&db)));
+            }
+
+            let diagnostics = parse_file::accumulated::<Diagnostics>(&db, input_file);
+            for diagnostic in diagnostics.iter() {
+                buf.push_str(&format!("{:#?}\n", diagnostic));
             }
             expect_file![case.syntax].assert_eq(&buf);
         }
