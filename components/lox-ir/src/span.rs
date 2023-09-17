@@ -83,7 +83,7 @@ impl From<Offset> for usize {
     }
 }
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
+#[derive(Copy, Clone, PartialEq, Eq, Hash)]
 pub struct FileSpan {
     pub input_file: InputFile,
     pub start: Offset,
@@ -100,3 +100,10 @@ impl FileSpan {
         self.start <= offset && offset < self.end
     }
 }
+
+impl std::fmt::Debug for FileSpan {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "@{}..@{}", self.start.0, self.end.0)
+    }
+}
+

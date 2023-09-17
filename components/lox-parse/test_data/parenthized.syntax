@@ -28,35 +28,11 @@ Parenthesized {
 }
 Diagnostic {
     severity: Error,
-    span: FileSpan {
-        input_file: InputFile(
-            Id {
-                value: 5,
-            },
-        ),
-        start: Offset(
-            48,
-        ),
-        end: Offset(
-            77,
-        ),
-    },
+    span: @48..@77,
     message: "expected `)`",
     labels: [
         Label {
-            span: FileSpan {
-                input_file: InputFile(
-                    Id {
-                        value: 5,
-                    },
-                ),
-                start: Offset(
-                    48,
-                ),
-                end: Offset(
-                    77,
-                ),
-            },
+            span: @48..@77,
             message: "here",
         },
     ],
