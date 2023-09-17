@@ -240,6 +240,10 @@ version = "0.1.0"
 [[package]]
 name = "lox-compile"
 version = "0.1.0"
+dependencies = [
+ "lox-ir",
+ "salsa",
+]
 
 [[package]]
 name = "lox-ir"

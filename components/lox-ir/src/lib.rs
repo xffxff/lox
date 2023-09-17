@@ -6,6 +6,7 @@ pub mod token_tree;
 pub mod syntax;
 pub mod kw;
 pub mod diagnostic;
+pub mod bytecode;
 
 
 #[salsa::jar(db = Db)]

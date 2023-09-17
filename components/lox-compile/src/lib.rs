@@ -1,14 +1,5 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+#[salsa::jar(db = Db)]
+pub struct Jar();
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub trait Db: salsa::DbWithJar<Jar> + lox_ir::Db {}
+impl<T> Db for T where T: salsa::DbWithJar<Jar> + lox_ir::Db {}
