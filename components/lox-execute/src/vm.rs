@@ -10,11 +10,20 @@ pub struct VM {
 }
 
 impl VM {
-    pub fn interpret(&mut self) {
+    pub fn new(chunk: bytecode::Chunk) -> Self { Self { chunk, ip: 0, stack: Vec::new() } }
+
+    // FIXME: `interpret` should not return a `f64`, but for now it's convenient as
+    //  our compiler is more or less a calculator.
+    pub fn interpret(&mut self) -> f64 {
         loop {
+            if self.chunk.len() <= self.ip {
+                break;
+            }
+            tracing::debug!("ip: {}", self.ip);
+            tracing::debug!("stack: {:?}", self.stack);
             let instruction = self.read_byte();
             match instruction {
-                bytecode::Code::Return => return,
+                bytecode::Code::Return => break,
                 bytecode::Code::Constant(value) => {
                     self.push(value.into())
                 },
@@ -40,6 +49,7 @@ impl VM {
                 },
             }
         }
+        self.stack.pop().unwrap()
     }
 
     fn read_byte(&mut self) -> bytecode::Code {

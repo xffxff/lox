@@ -5,6 +5,7 @@ struct TestCase {
     lox: PathBuf,
     syntax: PathBuf,
     bytecode: PathBuf,
+    output: PathBuf,
     text: String,
 }
 
@@ -27,8 +28,9 @@ impl TestCase {
                 let lox = path;
                 let syntax = lox.with_extension("syntax");
                 let bytecode = lox.with_extension("bytecode");
+                let output = lox.with_extension("output");
                 let text = fs::read_to_string(&lox).unwrap();
-                res.push(TestCase { lox, syntax, bytecode, text });
+                res.push(TestCase { lox, syntax, bytecode, output, text });
             }
         }
         res.sort();
@@ -39,7 +41,7 @@ impl TestCase {
 use expect_test::expect_file;
 use lox_ir::{word::Word, input_file::InputFile, diagnostic::Diagnostics};
 
-#[salsa::db(lox_parse::Jar, lox_ir::Jar, lox_lex::Jar, lox_compile::Jar)]
+#[salsa::db(lox_parse::Jar, lox_ir::Jar, lox_lex::Jar, lox_compile::Jar, lox_execute::Jar)]
 #[derive(Default)]
 struct Database {
     storage: salsa::Storage<Self>,
@@ -93,5 +95,10 @@ fn main() {
         // test bytecode
         let chunk = lox_compile::compile_file(&db, input_file);
         expect_file![case.bytecode].assert_eq(&format!("{:#?}", chunk));
+
+        // test execute
+        let output = lox_execute::execute_file(&db, input_file);
+        expect_file![case.output].assert_eq(&format!("{:#?}", output));
+
     }
 }

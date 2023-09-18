@@ -245,6 +245,7 @@ version = "0.1.0"
 dependencies = [
  "expect-test",
  "lox-compile",
+ "lox-execute",
  "lox-ir",
  "lox-lex",
  "lox-parse",
@@ -269,6 +270,7 @@ dependencies = [
  "lox-compile",
  "lox-ir",
  "salsa",
+ "tracing",
 ]
 
 [[package]]

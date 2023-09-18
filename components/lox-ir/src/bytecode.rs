@@ -22,4 +22,8 @@ impl Chunk {
     pub fn read_byte(&self, ip: usize) -> Code {
         self.code[ip].clone()
     }
+
+    pub fn len(&self) -> usize {
+        self.code.len()
+    }
 }

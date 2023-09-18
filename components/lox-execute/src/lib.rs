@@ -1,6 +1,9 @@
 #![feature(trait_upcasting)]
 
 pub mod vm;
+pub mod execute;
+
+pub use execute::execute_file;
 
 
 #[salsa::jar(db = Db)]
