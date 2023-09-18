@@ -1,14 +1,8 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+#![feature(trait_upcasting)]
 
-#[cfg(test)]
-mod tests {
-    use super::*;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+#[salsa::jar(db = Db)]
+pub struct Jar();
+
+pub trait Db: salsa::DbWithJar<Jar> + lox_ir::Db + lox_compile::Db {}
+impl<T> Db for T where T: salsa::DbWithJar<Jar> + lox_ir::Db + lox_compile::Db {}

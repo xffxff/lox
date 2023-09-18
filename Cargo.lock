@@ -255,6 +255,11 @@ dependencies = [
 [[package]]
 name = "lox-execute"
 version = "0.1.0"
+dependencies = [
+ "lox-compile",
+ "lox-ir",
+ "salsa",
+]
 
 [[package]]
 name = "lox-ir"

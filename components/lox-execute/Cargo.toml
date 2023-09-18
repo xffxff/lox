@@ -6,3 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+salsa = { path="../salsa" }
+lox-ir = { path="../lox-ir" }
+lox-compile = { path="../lox-compile" }
