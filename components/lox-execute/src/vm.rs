@@ -16,7 +16,7 @@ impl VM {
             match instruction {
                 bytecode::Code::Return => return,
                 bytecode::Code::Constant(value) => {
-                    println!("{}", value);
+                    self.push(value.into())
                 },
                 bytecode::Code::Add => {
                     let b = self.pop();
