@@ -1,6 +1,9 @@
 #[cfg(test)]
 mod tests {
-    use std::{path::{PathBuf, Path}, fs};
+    use std::{
+        fs,
+        path::{Path, PathBuf},
+    };
 
     use expect_test::expect_file;
     use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word};
@@ -42,8 +45,6 @@ mod tests {
             res
         }
     }
-
-
 
     #[salsa::db(crate::Jar, lox_ir::Jar, lox_lex::Jar)]
     #[derive(Default)]
