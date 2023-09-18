@@ -78,6 +78,7 @@ fn main() {
         let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
         let exprs = parse_file(&db, input_file);
 
+        // test syntax
         let mut buf = String::new();
         for expr in exprs.iter() {
             buf.push_str(&format!("{:#?}\n", expr.debug(&db)));
@@ -89,6 +90,7 @@ fn main() {
         }
         expect_file![case.syntax].assert_eq(&buf);
 
+        // test bytecode
         let chunk = lox_compile::compile_file(&db, input_file);
         expect_file![case.bytecode].assert_eq(&format!("{:#?}", chunk));
     }
