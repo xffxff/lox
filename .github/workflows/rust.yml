@@ -25,6 +25,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: dtolnay/rust-toolchain@nightly
+      with:
+        components: rustfmt
     - name: Format
       run: cargo fmt -- --check
     
@@ -34,6 +36,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: dtolnay/rust-toolchain@nightly
+      with:
+        components: clippy
     - name: Clippy
       run: cargo clippy -- -D warnings
     
