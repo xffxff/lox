@@ -1,4 +1,3 @@
-
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub enum Code {
     Return,

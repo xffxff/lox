@@ -1,4 +1,8 @@
-use lox_ir::{input_file::InputFile, bytecode::{Chunk, Code}, syntax};
+use lox_ir::{
+    bytecode::{Chunk, Code},
+    input_file::InputFile,
+    syntax,
+};
 
 #[salsa::tracked]
 pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
@@ -16,7 +20,7 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
             let word_str = word.as_str(db);
             let value = word_str.parse::<f64>().unwrap();
             chunk.emit_byte(Code::Constant(value.into()))
-        },
+        }
         syntax::Expr::StringLiteral(_) => todo!(),
         syntax::Expr::BooleanLiteral(_) => todo!(),
         syntax::Expr::NilLiteral => todo!(),
@@ -30,7 +34,7 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
                 syntax::Op::Star => chunk.emit_byte(Code::Multiply),
                 _ => todo!(),
             }
-        },
+        }
         syntax::Expr::UnaryOp(_, _) => todo!(),
         syntax::Expr::Parenthesized(_) => todo!(),
     }

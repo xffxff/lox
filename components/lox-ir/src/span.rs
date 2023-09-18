@@ -48,7 +48,6 @@ impl Span {
 /// 0-based byte offset within a file.
 pub struct Offset(u32);
 
-
 impl std::ops::Add<u32> for Offset {
     type Output = Offset;
 
@@ -56,7 +55,6 @@ impl std::ops::Add<u32> for Offset {
         Self(self.0 + rhs)
     }
 }
-
 
 impl From<usize> for Offset {
     fn from(value: usize) -> Offset {
@@ -106,4 +104,3 @@ impl std::fmt::Debug for FileSpan {
         write!(f, "@{}..@{}", self.start.0, self.end.0)
     }
 }
-

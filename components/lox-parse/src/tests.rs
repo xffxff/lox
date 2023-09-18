@@ -1,4 +1,7 @@
-use std::{path::{PathBuf, Path}, fs};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+};
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug)]
 struct TestCase {
@@ -23,7 +26,11 @@ impl TestCase {
                 let rs = path;
                 let rast = rs.with_extension("syntax");
                 let text = fs::read_to_string(&rs).unwrap();
-                res.push(TestCase { lox: rs, syntax: rast, text });
+                res.push(TestCase {
+                    lox: rs,
+                    syntax: rast,
+                    text,
+                });
             }
         }
         res.sort();
@@ -34,7 +41,7 @@ impl TestCase {
 #[cfg(test)]
 mod tests {
     use expect_test::expect_file;
-    use lox_ir::{word::Word, input_file::InputFile, diagnostic::Diagnostics};
+    use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word};
     use salsa::DebugWithDb;
 
     use crate::file_parser::parse_file;
@@ -53,8 +60,7 @@ mod tests {
 
     impl lox_lex::Db for Database {}
 
-    use tracing_subscriber::{EnvFilter, fmt, prelude::*};
-
+    use tracing_subscriber::{fmt, prelude::*, EnvFilter};
 
     #[test]
     fn parse() {
@@ -62,21 +68,23 @@ mod tests {
             .with(fmt::layer())
             .with(EnvFilter::from_default_env())
             .init();
-        
+
         let db = Database::default();
 
         // use env var to filter test cases
         let filter = std::env::var("TEST_FILTER").unwrap_or_default();
 
-
         for case in TestCase::list("") {
-
             if !filter.is_empty() && !case.lox.to_str().unwrap().contains(&filter) {
                 continue;
             }
-            
+
             tracing::info!("test case: {:?}", case.lox);
-            let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
+            let input_file = InputFile::new(
+                &db,
+                Word::intern(&db, case.lox.to_str().unwrap()),
+                case.text.clone(),
+            );
             let exprs = parse_file(&db, input_file);
 
             let mut buf = String::new();
@@ -92,4 +100,3 @@ mod tests {
         }
     }
 }
-

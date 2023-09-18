@@ -1,16 +1,18 @@
 use std::iter::Peekable;
 
-use lox_ir::{input_file::InputFile, token_tree::TokenTree, word::Word, token::Token, span::Span};
+use lox_ir::{input_file::InputFile, span::Span, token::Token, token_tree::TokenTree, word::Word};
 
 use crate::Db;
-
-
 
 #[salsa::tracked]
 pub fn lex_file(db: &dyn Db, input_file: InputFile) -> TokenTree {
     let source_text = input_file.source_text(db);
     let chars = &mut source_text.chars().enumerate().peekable();
-    let mut lexer = Lexer { db, input_file, chars };
+    let mut lexer = Lexer {
+        db,
+        input_file,
+        chars,
+    };
     lexer.lex_tokens(None)
 }
 
@@ -23,15 +25,18 @@ pub fn closing_delimiter(ch: char) -> char {
     }
 }
 
-struct Lexer<'me, I> 
-where I: Iterator<Item = (usize, char)> {
+struct Lexer<'me, I>
+where
+    I: Iterator<Item = (usize, char)>,
+{
     db: &'me dyn Db,
     input_file: InputFile,
-    chars: &'me mut Peekable<I>
+    chars: &'me mut Peekable<I>,
 }
 
 impl<'me, I> Lexer<'me, I>
-where I: Iterator<Item = (usize, char)>
+where
+    I: Iterator<Item = (usize, char)>,
 {
     fn lex_tokens(&mut self, end_ch: Option<char>) -> TokenTree {
         let mut tokens = vec![];
@@ -62,7 +67,7 @@ where I: Iterator<Item = (usize, char)>
                             push_token(Token::Delimiter(closing_ch));
                         }
                     }
-                },
+                }
                 'a'..='z' | 'A'..='Z' | '_' => {
                     let text = self
                         .accumulate(ch, |c| matches!(c, 'a'..='z' | 'A'..='Z' | '_' | '0'..='9'));
@@ -72,10 +77,10 @@ where I: Iterator<Item = (usize, char)>
                 '0'..='9' => {
                     let text = self.accumulate(ch, |c| matches!(c, '0'..='9'));
                     push_token(Token::Number(text));
-                },
+                }
                 '+' | '-' | '*' | '/' | '!' | '<' | '>' | '=' => {
                     push_token(Token::Op(ch));
-                },
+                }
                 ' ' => {
                     push_token(Token::Whitespace(ch));
                 }
@@ -90,7 +95,7 @@ where I: Iterator<Item = (usize, char)>
         }
 
         TokenTree::new(self.db, self.input_file, Span::from(0u32, end_pos), tokens)
-    }    
+    }
 
     /// Accumulate `ch0` and following characters while `matches` returns true
     /// into a string.
@@ -115,14 +120,13 @@ where I: Iterator<Item = (usize, char)>
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use lox_ir::input_file::InputFile;
     use lox_ir::word::Word;
 
-    use crate::Jar;
     use crate::Db;
+    use crate::Jar;
 
     use super::lex_file;
 
@@ -131,13 +135,12 @@ mod tests {
     struct Database {
         storage: salsa::Storage<Self>,
     }
-    
+
     impl salsa::Database for Database {}
 
     impl lox_ir::Db for Database {}
-    
-    impl Db for Database {}
 
+    impl Db for Database {}
 
     #[test]
     fn smoke() {

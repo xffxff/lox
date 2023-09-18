@@ -1,13 +1,12 @@
+pub mod bytecode;
+pub mod diagnostic;
 pub mod input_file;
-pub mod word;
+pub mod kw;
 pub mod span;
+pub mod syntax;
 pub mod token;
 pub mod token_tree;
-pub mod syntax;
-pub mod kw;
-pub mod diagnostic;
-pub mod bytecode;
-
+pub mod word;
 
 #[salsa::jar(db = Db)]
 pub struct Jar(

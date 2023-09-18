@@ -1,14 +1,11 @@
 #![feature(trait_upcasting)]
 
-
-mod parser;
-mod tokens;
-mod token_test;
-mod tests;
 pub mod file_parser;
+mod parser;
+mod tests;
+mod token_test;
+mod tokens;
 pub use file_parser::parse_file;
-
-
 
 #[salsa::jar(db = Db)]
 pub struct Jar(parse_file);

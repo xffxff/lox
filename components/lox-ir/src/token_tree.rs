@@ -1,6 +1,5 @@
 use crate::{input_file::InputFile, span::Span, token::Token};
 
-
 #[salsa::tracked]
 pub struct TokenTree {
     pub input_file: InputFile,

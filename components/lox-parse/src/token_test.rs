@@ -1,7 +1,5 @@
-use lox_ir::{token::Token, span::FileSpan, kw::Keyword, word::Word, token_tree::TokenTree};
+use lox_ir::{kw::Keyword, span::FileSpan, token::Token, token_tree::TokenTree, word::Word};
 use std::fmt::Debug;
-
-
 
 /// Represents some kind of "condition test" that can be applied to a single token
 /// (e.g., is an identifier or is a keyword).
@@ -73,10 +71,9 @@ impl TokenTest for AnyTree {
 
 #[cfg(test)]
 mod tests {
-    use lox_ir::{word::Word, token::Token, span::FileSpan, input_file::InputFile, kw::Keyword};
+    use lox_ir::{input_file::InputFile, kw::Keyword, span::FileSpan, token::Token, word::Word};
 
     use crate::token_test::TokenTest;
-
 
     #[salsa::db(crate::Jar, lox_ir::Jar, lox_lex::Jar)]
     #[derive(Default)]
@@ -92,7 +89,11 @@ mod tests {
 
     fn fake_file_span(db: &dyn crate::Db) -> FileSpan {
         let fake_file = InputFile::new(db, Word::intern(db, "foo"), "foo".to_string());
-        FileSpan { input_file: fake_file, start: 0u32.into(), end: 3u32.into() }
+        FileSpan {
+            input_file: fake_file,
+            start: 0u32.into(),
+            end: 3u32.into(),
+        }
     }
 
     #[test]

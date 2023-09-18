@@ -1,7 +1,17 @@
-use lox_ir::{input_file::InputFile, span::Span, syntax::{Expr, Op}, kw::Keyword, token_tree::TokenTree, token::Token, diagnostic::DiagnosticBuilder};
+use lox_ir::{
+    diagnostic::DiagnosticBuilder,
+    input_file::InputFile,
+    kw::Keyword,
+    span::Span,
+    syntax::{Expr, Op},
+    token::Token,
+    token_tree::TokenTree,
+};
 
-use crate::{tokens::Tokens, token_test::{TokenTest, Number, AnyTree}};
-
+use crate::{
+    token_test::{AnyTree, Number, TokenTest},
+    tokens::Tokens,
+};
 
 pub(crate) struct Parser<'me> {
     db: &'me dyn crate::Db,
@@ -12,7 +22,11 @@ pub(crate) struct Parser<'me> {
 impl<'me> Parser<'me> {
     pub(crate) fn new(db: &'me dyn crate::Db, token_tree: TokenTree) -> Self {
         let tokens = Tokens::new(db, token_tree);
-        Self { db, input_file: token_tree.input_file(db), tokens }
+        Self {
+            db,
+            input_file: token_tree.input_file(db),
+            tokens,
+        }
     }
 
     pub(crate) fn parse_exprs(&mut self) -> Vec<Expr> {
@@ -40,7 +54,11 @@ impl<'me> Parser<'me> {
         let mut left = self.comparison()?;
 
         loop {
-            if let Some(right) = self.parse_binary(left.clone(), &[Op::NotEqual, Op::EqualEqual], |p| p.comparison()) {
+            if let Some(right) =
+                self.parse_binary(left.clone(), &[Op::NotEqual, Op::EqualEqual], |p| {
+                    p.comparison()
+                })
+            {
                 left = right;
                 continue;
             }
@@ -53,7 +71,11 @@ impl<'me> Parser<'me> {
         let mut left = self.term()?;
 
         loop {
-            if let Some(right) = self.parse_binary(left.clone(), &[Op::Greater, Op::GreaterEqual, Op::Less, Op::LessEqual], |p| p.term()) {
+            if let Some(right) = self.parse_binary(
+                left.clone(),
+                &[Op::Greater, Op::GreaterEqual, Op::Less, Op::LessEqual],
+                |p| p.term(),
+            ) {
                 left = right;
                 continue;
             }
@@ -66,7 +88,9 @@ impl<'me> Parser<'me> {
         let mut left = self.factor()?;
 
         loop {
-            if let Some(right) = self.parse_binary(left.clone(), &[Op::Minus, Op::Plus], |p| p.factor()) {
+            if let Some(right) =
+                self.parse_binary(left.clone(), &[Op::Minus, Op::Plus], |p| p.factor())
+            {
                 left = right;
                 continue;
             }
@@ -79,7 +103,9 @@ impl<'me> Parser<'me> {
         let mut left = self.unary()?;
 
         loop {
-            if let Some(right) = self.parse_binary(left.clone(), &[Op::Star, Op::Slash], |p| p.unary()) {
+            if let Some(right) =
+                self.parse_binary(left.clone(), &[Op::Star, Op::Slash], |p| p.unary())
+            {
                 left = right;
                 continue;
             }
@@ -88,7 +114,12 @@ impl<'me> Parser<'me> {
         Some(left)
     }
 
-    fn parse_binary(&mut self, left: Expr, ops: &[Op], parse_rhs: impl Fn(&mut Self) -> Option<Expr>) -> Option<Expr> {
+    fn parse_binary(
+        &mut self,
+        left: Expr,
+        ops: &[Op],
+        parse_rhs: impl Fn(&mut Self) -> Option<Expr>,
+    ) -> Option<Expr> {
         for op in ops {
             if let Some(_) = self.eat_op(*op) {
                 let right = parse_rhs(self)?;
@@ -108,7 +139,7 @@ impl<'me> Parser<'me> {
         }
         self.primary()
     }
-    
+
     fn primary(&mut self) -> Option<Expr> {
         if let Some(_) = self.eat(Keyword::True) {
             Some(Expr::BooleanLiteral(true))
@@ -125,7 +156,6 @@ impl<'me> Parser<'me> {
         } else {
             None
         }
-
     }
 
     /// Returns `Some` if the next pending token matches `is`, along
@@ -228,11 +258,6 @@ impl<'me> Parser<'me> {
     }
 
     fn error(&self, span: Span, message: impl ToString) -> DiagnosticBuilder {
-        lox_ir::error!(
-            span.anchor_to(self.input_file),
-            "{}",
-            message.to_string()
-        )
+        lox_ir::error!(span.anchor_to(self.input_file), "{}", message.to_string())
     }
 }
-

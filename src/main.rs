@@ -1,4 +1,7 @@
-use std::{path::{PathBuf, Path}, fs};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+};
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug)]
 struct TestCase {
@@ -30,7 +33,13 @@ impl TestCase {
                 let bytecode = lox.with_extension("bytecode");
                 let output = lox.with_extension("output");
                 let text = fs::read_to_string(&lox).unwrap();
-                res.push(TestCase { lox, syntax, bytecode, output, text });
+                res.push(TestCase {
+                    lox,
+                    syntax,
+                    bytecode,
+                    output,
+                    text,
+                });
             }
         }
         res.sort();
@@ -39,9 +48,15 @@ impl TestCase {
 }
 
 use expect_test::expect_file;
-use lox_ir::{word::Word, input_file::InputFile, diagnostic::Diagnostics};
+use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word};
 
-#[salsa::db(lox_parse::Jar, lox_ir::Jar, lox_lex::Jar, lox_compile::Jar, lox_execute::Jar)]
+#[salsa::db(
+    lox_parse::Jar,
+    lox_ir::Jar,
+    lox_lex::Jar,
+    lox_compile::Jar,
+    lox_execute::Jar
+)]
 #[derive(Default)]
 struct Database {
     storage: salsa::Storage<Self>,
@@ -55,29 +70,30 @@ impl lox_lex::Db for Database {}
 
 use lox_parse::parse_file;
 use salsa::DebugWithDb;
-use tracing_subscriber::{EnvFilter, fmt, prelude::*};
-
+use tracing_subscriber::{fmt, prelude::*, EnvFilter};
 
 fn main() {
     tracing_subscriber::registry()
         .with(fmt::layer())
         .with(EnvFilter::from_default_env())
         .init();
-    
+
     let db = Database::default();
 
     // use env var to filter test cases
     let filter = std::env::var("TEST_FILTER").unwrap_or_default();
 
-
     for case in TestCase::list("") {
-
         if !filter.is_empty() && !case.lox.to_str().unwrap().contains(&filter) {
             continue;
         }
-        
+
         tracing::info!("test case: {:?}", case.lox);
-        let input_file = InputFile::new(&db, Word::intern(&db, case.lox.to_str().unwrap()), case.text.clone());
+        let input_file = InputFile::new(
+            &db,
+            Word::intern(&db, case.lox.to_str().unwrap()),
+            case.text.clone(),
+        );
         let exprs = parse_file(&db, input_file);
 
         // test syntax
@@ -99,6 +115,5 @@ fn main() {
         // test execute
         let output = lox_execute::execute_file(&db, input_file);
         expect_file![case.output].assert_eq(&format!("{:#?}", output));
-
     }
 }

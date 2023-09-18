@@ -1,6 +1,4 @@
-use crate::{word::Word, token_tree::TokenTree};
-
-
+use crate::{token_tree::TokenTree, word::Word};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Token {
@@ -36,7 +34,9 @@ impl Token {
     pub fn span_len(&self, db: &dyn crate::Db) -> u32 {
         match self {
             Token::Alphabetic(word) | Token::Number(word) => word.as_str(db).len() as u32,
-            Token::Op(ch) | Token::Delimiter(ch) | Token::Whitespace(ch) | Token::Unknown(ch) => ch.len_utf8() as u32,
+            Token::Op(ch) | Token::Delimiter(ch) | Token::Whitespace(ch) | Token::Unknown(ch) => {
+                ch.len_utf8() as u32
+            }
             Token::Comment(s) => *s,
             Token::Tree(tree) => tree.span(db).len(),
         }

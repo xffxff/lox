@@ -1,16 +1,21 @@
 use lox_ir::bytecode;
 
-
 pub struct VM {
     chunk: bytecode::Chunk,
     ip: usize,
 
     // FIXME: This should be a stack of values, not a stack of f64s.
-    stack: Vec<f64>, 
+    stack: Vec<f64>,
 }
 
 impl VM {
-    pub fn new(chunk: bytecode::Chunk) -> Self { Self { chunk, ip: 0, stack: Vec::new() } }
+    pub fn new(chunk: bytecode::Chunk) -> Self {
+        Self {
+            chunk,
+            ip: 0,
+            stack: Vec::new(),
+        }
+    }
 
     // FIXME: `interpret` should not return a `f64`, but for now it's convenient as
     //  our compiler is more or less a calculator.
@@ -24,29 +29,27 @@ impl VM {
             let instruction = self.read_byte();
             match instruction {
                 bytecode::Code::Return => break,
-                bytecode::Code::Constant(value) => {
-                    self.push(value.into())
-                },
+                bytecode::Code::Constant(value) => self.push(value.into()),
                 bytecode::Code::Add => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a + b);
-                },
+                }
                 bytecode::Code::Subtract => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a - b);
-                },
+                }
                 bytecode::Code::Multiply => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a * b);
-                },
+                }
                 bytecode::Code::Divide => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a / b);
-                },
+                }
             }
         }
         self.stack.pop().unwrap()
@@ -66,4 +69,3 @@ impl VM {
         self.stack.push(value);
     }
 }
-
