@@ -63,6 +63,12 @@ where I: Iterator<Item = (usize, char)>
                         }
                     }
                 },
+                'a'..='z' | 'A'..='Z' | '_' => {
+                    let text = self
+                        .accumulate(ch, |c| matches!(c, 'a'..='z' | 'A'..='Z' | '_' | '0'..='9'));
+
+                    push_token(Token::Alphabetic(text));
+                }
                 '0'..='9' => {
                     let text = self.accumulate(ch, |c| matches!(c, '0'..='9'));
                     push_token(Token::Number(text));
