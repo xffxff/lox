@@ -25,8 +25,8 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
         syntax::Expr::BooleanLiteral(_) => todo!(),
         syntax::Expr::NilLiteral => todo!(),
         syntax::Expr::BinaryOp(left, op, right) => {
-            compile_expr(db, &left, chunk);
-            compile_expr(db, &right, chunk);
+            compile_expr(db, left, chunk);
+            compile_expr(db, right, chunk);
             match op {
                 syntax::Op::Plus => chunk.emit_byte(Code::Add),
                 syntax::Op::Minus => chunk.emit_byte(Code::Subtract),

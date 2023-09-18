@@ -13,6 +13,6 @@ impl Word {
     }
 
     pub fn as_str(self, db: &dyn Db) -> &str {
-        &self.string(db)
+        self.string(db)
     }
 }

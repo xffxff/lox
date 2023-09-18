@@ -121,7 +121,7 @@ impl<'me> Parser<'me> {
         parse_rhs: impl Fn(&mut Self) -> Option<Expr>,
     ) -> Option<Expr> {
         for op in ops {
-            if let Some(_) = self.eat_op(*op) {
+            if self.eat_op(*op).is_some() {
                 let right = parse_rhs(self)?;
                 let left = Expr::BinaryOp(Box::new(left), *op, Box::new(right));
                 return Some(left);
@@ -132,7 +132,7 @@ impl<'me> Parser<'me> {
 
     fn unary(&mut self) -> Option<Expr> {
         for op in &[Op::Minus, Op::Bang] {
-            if let Some(_) = self.eat_op(*op) {
+            if self.eat_op(*op).is_some() {
                 let expr = self.unary()?;
                 return Some(Expr::UnaryOp(*op, Box::new(expr)));
             }
@@ -141,11 +141,11 @@ impl<'me> Parser<'me> {
     }
 
     fn primary(&mut self) -> Option<Expr> {
-        if let Some(_) = self.eat(Keyword::True) {
+        if self.eat(Keyword::True).is_some() {
             Some(Expr::BooleanLiteral(true))
-        } else if let Some(_) = self.eat(Keyword::False) {
+        } else if self.eat(Keyword::False).is_some() {
             Some(Expr::BooleanLiteral(false))
-        } else if let Some(_) = self.eat(Keyword::Nil) {
+        } else if self.eat(Keyword::Nil).is_some() {
             Some(Expr::NilLiteral)
         } else if let Some((_, word)) = self.eat(Number) {
             Some(Expr::NumberLiteral(word))
@@ -163,11 +163,6 @@ impl<'me> Parser<'me> {
     fn peek<TT: TokenTest>(&mut self, test: TT) -> Option<TT::Narrow> {
         let span = self.tokens.peek_span().anchor_to(self.input_file);
         test.test(self.db, self.tokens.peek()?, span)
-    }
-
-    /// Span of the next pending token, or the span of EOF if there is no next token.
-    fn peek_span(&mut self) -> Span {
-        self.tokens.peek_span()
     }
 
     /// If the next pending token matches `test`, consumes it and

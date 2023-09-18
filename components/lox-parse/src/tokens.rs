@@ -52,12 +52,6 @@ impl<'me> Tokens<'me> {
         }
     }
 
-    /// True if we skipped a newline after consuming
-    /// the last token.
-    pub(crate) fn skipped_newline(&self) -> bool {
-        self.skipped >= Skipped::Newline
-    }
-
     /// True if we skipped whitespace after consuming
     /// the last token.
     pub(crate) fn skipped_any(&self) -> bool {

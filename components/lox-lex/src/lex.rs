@@ -75,7 +75,7 @@ where
                     push_token(Token::Alphabetic(text));
                 }
                 '0'..='9' => {
-                    let text = self.accumulate(ch, |c| matches!(c, '0'..='9'));
+                    let text = self.accumulate(ch, |c| c.is_ascii_digit());
                     push_token(Token::Number(text));
                 }
                 '+' | '-' | '*' | '/' | '!' | '<' | '>' | '=' => {

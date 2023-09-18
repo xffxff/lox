@@ -35,6 +35,10 @@ impl Span {
         self.end.0 - self.start.0
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.start == self.end
+    }
+
     pub fn to(self, other: Span) -> Span {
         assert!(self.start <= other.start && other.end >= self.end);
         Span {
