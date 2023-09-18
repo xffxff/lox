@@ -18,4 +18,8 @@ impl Chunk {
     pub fn emit_byte(&mut self, byte: Code) {
         self.code.push(byte);
     }
+
+    pub fn read_byte(&self, ip: usize) -> Code {
+        self.code[ip].clone()
+    }
 }

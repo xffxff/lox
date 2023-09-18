@@ -1,5 +1,7 @@
 #![feature(trait_upcasting)]
 
+pub mod vm;
+
 
 #[salsa::jar(db = Db)]
 pub struct Jar();
