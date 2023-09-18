@@ -1,12 +1,12 @@
 #![feature(trait_upcasting)]
 
-use file_parser::parse_file;
 
 mod parser;
 mod tokens;
 mod token_test;
 mod tests;
 pub mod file_parser;
+pub use file_parser::parse_file;
 
 
 
