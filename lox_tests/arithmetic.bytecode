@@ -1,0 +1,15 @@
+Chunk {
+    code: [
+        Constant(
+            F64(
+                1.0,
+            ),
+        ),
+        Constant(
+            F64(
+                2.0,
+            ),
+        ),
+        Add,
+    ],
+}

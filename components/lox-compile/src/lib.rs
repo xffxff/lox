@@ -1,6 +1,7 @@
 #![feature(trait_upcasting)]
 
 pub mod compile;
+pub use compile::compile_file;
 
 
 #[salsa::jar(db = Db)]
