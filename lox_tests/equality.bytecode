@@ -11,5 +11,16 @@ Chunk {
             ),
         ),
         Equal,
+        Constant(
+            F64(
+                1.0,
+            ),
+        ),
+        Constant(
+            F64(
+                2.0,
+            ),
+        ),
+        NotEqual,
     ],
 }

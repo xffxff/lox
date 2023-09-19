@@ -167,6 +167,11 @@ impl VM {
                     let a = self.pop();
                     self.push(a == b);
                 },
+                bytecode::Code::NotEqual => {
+                    let b = self.pop();
+                    let a = self.pop();
+                    self.push(a != b);
+                },
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);
