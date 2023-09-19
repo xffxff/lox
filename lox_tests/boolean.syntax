@@ -4,3 +4,15 @@ UnaryOp {
     op: Bang,
     expr: BooleanLiteral(true),
 }
+Diagnostic {
+    severity: Error,
+    span: @17..@18,
+    message: "extra tokens after expression",
+    labels: [
+        Label {
+            span: @17..@18,
+            message: "here",
+        },
+    ],
+    children: [],
+}

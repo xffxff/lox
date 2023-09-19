@@ -34,6 +34,10 @@ impl<'me> Parser<'me> {
         while let Some(expr) = self.parse_expr() {
             exprs.push(expr);
         }
+        if self.tokens.peek().is_some() {
+            let span = self.tokens.peek_span();
+            self.error(span, "extra tokens after expression").emit(self.db);
+        }
         exprs
     }
 
