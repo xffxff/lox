@@ -10,6 +10,7 @@ pub enum Code {
     Divide,
     Negate,
     Not,
+    Equal
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]

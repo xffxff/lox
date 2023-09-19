@@ -63,6 +63,39 @@ impl std::ops::Div for Value {
     }
 }
 
+impl std::ops::Neg for Value {
+    type Output = Self;
+
+    fn neg(self) -> Self::Output {
+        match self {
+            Value::Number(a) => Value::Number(-a),
+            _ => panic!("Cannot negate {:?}", self),
+        }
+    }
+}
+
+impl std::ops::Not for Value {
+    type Output = Self;
+
+    fn not(self) -> Self::Output {
+        match self {
+            Value::Boolean(a) => Value::Boolean(!a),
+            _ => panic!("Cannot negate {:?}", self),
+        }
+    }
+}
+
+impl std::cmp::PartialEq for Value {
+    fn eq(&self, other: &Self) -> bool {
+        match (self, other) {
+            (Value::Number(a), Value::Number(b)) => a == b,
+            (Value::Boolean(a), Value::Boolean(b)) => a == b,
+            (Value::Nil, Value::Nil) => true,
+            _ => false,
+        }
+    }
+}
+
 pub struct VM {
     chunk: bytecode::Chunk,
     ip: usize,
@@ -123,19 +156,16 @@ impl VM {
                 }
                 bytecode::Code::Negate => {
                     let a = self.pop();
-                    if let Value::Number(a) = a {
-                        self.push(-a);
-                    } else {
-                        panic!("Cannot negate {:?}", a);
-                    }
+                    self.push(-a);
                 },
                 bytecode::Code::Not => {
                     let a = self.pop();
-                    if let Value::Boolean(a) = a {
-                        self.push(!a);
-                    } else {
-                        panic!("Cannot negate {:?}", a);
-                    }
+                    self.push(!a);
+                },
+                bytecode::Code::Equal => {
+                    let b = self.pop();
+                    let a = self.pop();
+                    self.push(a == b);
                 },
             }
             if let Some(step_inspect) = &mut step_inspect {

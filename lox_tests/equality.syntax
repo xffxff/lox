@@ -1,0 +1,5 @@
+BinaryOp {
+    left: NumberLiteral(1),
+    op: EqualEqual,
+    right: NumberLiteral(2),
+}

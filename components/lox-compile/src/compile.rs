@@ -38,6 +38,7 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
                 syntax::Op::Minus => chunk.emit_byte(Code::Subtract),
                 syntax::Op::Slash => chunk.emit_byte(Code::Divide),
                 syntax::Op::Star => chunk.emit_byte(Code::Multiply),
+                syntax::Op::EqualEqual => chunk.emit_byte(Code::Equal),
                 _ => todo!(),
             }
         }
