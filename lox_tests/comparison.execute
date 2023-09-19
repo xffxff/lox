@@ -1,0 +1,182 @@
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        2.0,
+    ),
+)
+stack: [
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Boolean(
+        true,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Boolean(
+        true,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: LessEqual
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        true,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        true,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        2.0,
+    ),
+)
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        true,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+
+execute: Greater
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        true,
+    ),
+    Boolean(
+        false,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        true,
+    ),
+    Boolean(
+        false,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        true,
+    ),
+    Boolean(
+        false,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: GreaterEqual
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        true,
+    ),
+    Boolean(
+        false,
+    ),
+    Boolean(
+        true,
+    ),
+]
+

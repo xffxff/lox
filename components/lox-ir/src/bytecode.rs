@@ -11,7 +11,11 @@ pub enum Code {
     Negate,
     Not,
     Equal,
-    NotEqual
+    NotEqual,
+    Greater,
+    GreaterEqual,
+    Less,
+    LessEqual,
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]

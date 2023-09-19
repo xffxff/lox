@@ -40,6 +40,10 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
                 syntax::Op::Star => chunk.emit_byte(Code::Multiply),
                 syntax::Op::EqualEqual => chunk.emit_byte(Code::Equal),
                 syntax::Op::NotEqual => chunk.emit_byte(Code::NotEqual),
+                syntax::Op::Greater => chunk.emit_byte(Code::Greater),
+                syntax::Op::GreaterEqual => chunk.emit_byte(Code::GreaterEqual),
+                syntax::Op::Less => chunk.emit_byte(Code::Less),
+                syntax::Op::LessEqual => chunk.emit_byte(Code::LessEqual),
                 _ => todo!(),
             }
         }

@@ -96,6 +96,15 @@ impl std::cmp::PartialEq for Value {
     }
 }
 
+impl std::cmp::PartialOrd for Value {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        match (self, other) {
+            (Value::Number(a), Value::Number(b)) => a.partial_cmp(b),
+            _ => None,
+        }
+    }
+}
+
 pub struct VM {
     chunk: bytecode::Chunk,
     ip: usize,
@@ -171,6 +180,26 @@ impl VM {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a != b);
+                },
+                bytecode::Code::Greater => {
+                    let b = self.pop();
+                    let a = self.pop();
+                    self.push(a > b);
+                },
+                bytecode::Code::GreaterEqual => {
+                    let b = self.pop();
+                    let a = self.pop();
+                    self.push(a >= b);
+                },
+                bytecode::Code::Less => {
+                    let b = self.pop();
+                    let a = self.pop();
+                    self.push(a < b);
+                },
+                bytecode::Code::LessEqual => {
+                    let b = self.pop();
+                    let a = self.pop();
+                    self.push(a <= b);
                 },
             }
             if let Some(step_inspect) = &mut step_inspect {
