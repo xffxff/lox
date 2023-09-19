@@ -6,6 +6,7 @@ use std::{
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug)]
 struct TestCase {
     lox: PathBuf,
+    token: PathBuf,
     syntax: PathBuf,
     bytecode: PathBuf,
     execute: PathBuf,
@@ -29,12 +30,14 @@ impl TestCase {
             let path = file.path();
             if path.extension().unwrap_or_default() == "lox" {
                 let lox = path;
+                let token = lox.with_extension("token");
                 let syntax = lox.with_extension("syntax");
                 let bytecode = lox.with_extension("bytecode");
                 let execute = lox.with_extension("execute");
                 let text = fs::read_to_string(&lox).unwrap();
                 res.push(TestCase {
                     lox,
+                    token,
                     syntax,
                     bytecode,
                     execute,
@@ -94,9 +97,15 @@ fn main() {
             Word::intern(&db, case.lox.to_str().unwrap()),
             case.text.clone(),
         );
-        let exprs = parse_file(&db, input_file);
+
+        // test lex
+        let token_tree = lox_lex::lex_file(&db, input_file);
+        expect_file![case.token].assert_eq(&format!("{:#?}", token_tree.tokens(&db)));
+
 
         // test syntax
+        let exprs = parse_file(&db, input_file);
+
         let mut buf = String::new();
         for expr in exprs.iter() {
             buf.push_str(&format!("{:#?}\n", expr.debug(&db)));
