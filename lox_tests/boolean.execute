@@ -15,3 +15,29 @@ stack: [
     ),
 ]
 
+execute: True
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        false,
+    ),
+    Boolean(
+        true,
+    ),
+]
+
+execute: Not
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        false,
+    ),
+    Boolean(
+        false,
+    ),
+]
+

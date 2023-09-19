@@ -1,2 +1,6 @@
 BooleanLiteral(true)
 BooleanLiteral(false)
+UnaryOp {
+    op: Bang,
+    expr: BooleanLiteral(true),
+}

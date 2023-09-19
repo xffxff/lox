@@ -129,7 +129,14 @@ impl VM {
                         panic!("Cannot negate {:?}", a);
                     }
                 },
-                bytecode::Code::Not => todo!(),
+                bytecode::Code::Not => {
+                    let a = self.pop();
+                    if let Value::Boolean(a) = a {
+                        self.push(!a);
+                    } else {
+                        panic!("Cannot negate {:?}", a);
+                    }
+                },
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);

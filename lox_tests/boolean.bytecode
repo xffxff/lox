@@ -2,5 +2,7 @@ Chunk {
     code: [
         True,
         False,
+        True,
+        Not,
     ],
 }
