@@ -41,3 +41,35 @@ stack: [
     ),
 ]
 
+execute: False
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        false,
+    ),
+    Boolean(
+        false,
+    ),
+    Boolean(
+        false,
+    ),
+]
+
+execute: Not
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        false,
+    ),
+    Boolean(
+        false,
+    ),
+    Boolean(
+        true,
+    ),
+]
+
