@@ -15,6 +15,3 @@ stack: [
     ),
 ]
 
-output: Boolean(
-    false,
-)

@@ -81,7 +81,7 @@ impl VM {
 
     // `step_inspect` is a callback that is called after each instruction is executed.
     //  It is useful for debugging.
-    pub fn interpret<F>(&mut self, mut step_inspect: Option<F>) -> Value
+    pub fn interpret<F>(&mut self, mut step_inspect: Option<F>)
         where F: FnMut(bytecode::Code, &VM) {
         loop {
             if self.chunk.len() <= self.ip {
@@ -124,7 +124,6 @@ impl VM {
                 step_inspect(instruction, self);
             }
         }
-        self.stack.pop().unwrap()
     }
 
     fn read_byte(&mut self) -> bytecode::Code {

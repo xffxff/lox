@@ -119,8 +119,7 @@ fn main() {
             buf.push_str(&format!("stack: {:#?}\n", vm.stack));
             buf.push('\n');
         };
-        let output = lox_execute::execute_file(&db, input_file, Some(step_inspect));
-        buf.push_str(&format!("output: {:#?}\n", output));
+        lox_execute::execute_file(&db, input_file, Some(step_inspect));
         expect_file![case.output].assert_eq(&buf);
     }
 }
