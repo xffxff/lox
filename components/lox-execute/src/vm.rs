@@ -82,7 +82,9 @@ impl VM {
     // `step_inspect` is a callback that is called after each instruction is executed.
     //  It is useful for debugging.
     pub fn interpret<F>(&mut self, mut step_inspect: Option<F>)
-        where F: FnMut(bytecode::Code, &VM) {
+    where
+        F: FnMut(bytecode::Code, &VM),
+    {
         loop {
             if self.chunk.len() <= self.ip {
                 break;
@@ -115,10 +117,10 @@ impl VM {
                 }
                 bytecode::Code::True => {
                     self.push(true);
-                },
+                }
                 bytecode::Code::False => {
                     self.push(false);
-                },
+                }
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);
@@ -136,7 +138,10 @@ impl VM {
         self.stack.pop().unwrap()
     }
 
-    fn push<T>(&mut self, value: T) where T: Into<Value> {
+    fn push<T>(&mut self, value: T)
+    where
+        T: Into<Value>,
+    {
         self.stack.push(value.into());
     }
 }

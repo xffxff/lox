@@ -48,7 +48,7 @@ impl TestCase {
 }
 
 use expect_test::expect_file;
-use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word, bytecode};
+use lox_ir::{bytecode, diagnostic::Diagnostics, input_file::InputFile, word::Word};
 
 #[salsa::db(
     lox_parse::Jar,

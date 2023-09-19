@@ -28,7 +28,7 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
             } else {
                 chunk.emit_byte(Code::False)
             }
-        },
+        }
         syntax::Expr::NilLiteral => todo!(),
         syntax::Expr::BinaryOp(left, op, right) => {
             compile_expr(db, left, chunk);
