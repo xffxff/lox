@@ -67,7 +67,6 @@ pub struct VM {
     chunk: bytecode::Chunk,
     ip: usize,
 
-    // FIXME: This should be a stack of values, not a stack of f64s.
     stack: Vec<Value>,
 }
 
@@ -80,8 +79,6 @@ impl VM {
         }
     }
 
-    // FIXME: `interpret` should not return a `f64`, but for now it's convenient as
-    //  our compiler is more or less a calculator.
     pub fn interpret(&mut self) -> Value {
         loop {
             if self.chunk.len() <= self.ip {
