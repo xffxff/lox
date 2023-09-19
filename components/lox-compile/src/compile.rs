@@ -22,7 +22,13 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
             chunk.emit_byte(Code::Constant(value.into()))
         }
         syntax::Expr::StringLiteral(_) => todo!(),
-        syntax::Expr::BooleanLiteral(_) => todo!(),
+        syntax::Expr::BooleanLiteral(value) => {
+            if *value {
+                chunk.emit_byte(Code::True)
+            } else {
+                chunk.emit_byte(Code::False)
+            }
+        },
         syntax::Expr::NilLiteral => todo!(),
         syntax::Expr::BinaryOp(left, op, right) => {
             compile_expr(db, left, chunk);

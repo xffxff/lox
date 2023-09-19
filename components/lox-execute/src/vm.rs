@@ -50,6 +50,14 @@ impl VM {
                     let a = self.pop();
                     self.push(a / b);
                 }
+                bytecode::Code::True => {
+                    // FIXME: This should be a boolean, not a float.
+                    self.push(1.0);
+                },
+                bytecode::Code::False => {
+                    // FIXME: This should be a boolean, not a float.
+                    self.push(0.0);
+                },
             }
         }
         self.stack.pop().unwrap()

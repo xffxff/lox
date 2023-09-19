@@ -2,6 +2,8 @@
 pub enum Code {
     Return,
     Constant(eq_float::F64),
+    True,
+    False,
     Add,
     Subtract,
     Multiply,
