@@ -67,7 +67,7 @@ pub struct VM {
     chunk: bytecode::Chunk,
     ip: usize,
 
-    stack: Vec<Value>,
+    pub stack: Vec<Value>,
 }
 
 impl VM {
@@ -79,7 +79,10 @@ impl VM {
         }
     }
 
-    pub fn interpret(&mut self) -> Value {
+    // `step_inspect` is a callback that is called after each instruction is executed.
+    //  It is useful for debugging.
+    pub fn interpret<F>(&mut self, mut step_inspect: Option<F>) -> Value
+        where F: FnMut(bytecode::Code, &VM) {
         loop {
             if self.chunk.len() <= self.ip {
                 break;
@@ -116,6 +119,9 @@ impl VM {
                 bytecode::Code::False => {
                     self.push(false);
                 },
+            }
+            if let Some(step_inspect) = &mut step_inspect {
+                step_inspect(instruction, self);
             }
         }
         self.stack.pop().unwrap()

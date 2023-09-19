@@ -48,7 +48,7 @@ impl TestCase {
 }
 
 use expect_test::expect_file;
-use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word};
+use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word, bytecode};
 
 #[salsa::db(
     lox_parse::Jar,
@@ -113,7 +113,14 @@ fn main() {
         expect_file![case.bytecode].assert_eq(&format!("{:#?}", chunk));
 
         // test execute
-        let output = lox_execute::execute_file(&db, input_file);
-        expect_file![case.output].assert_eq(&format!("{:#?}", output));
+        let mut buf = String::new();
+        let step_inspect = |code: bytecode::Code, vm: &lox_execute::VM| {
+            buf.push_str(&format!("execute: {:#?}\n", code));
+            buf.push_str(&format!("stack: {:#?}\n", vm.stack));
+            buf.push('\n');
+        };
+        let output = lox_execute::execute_file(&db, input_file, Some(step_inspect));
+        buf.push_str(&format!("output: {:#?}\n", output));
+        expect_file![case.output].assert_eq(&buf);
     }
 }

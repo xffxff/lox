@@ -4,6 +4,7 @@ pub mod execute;
 pub mod vm;
 
 pub use execute::execute_file;
+pub use vm::VM;
 
 #[salsa::jar(db = Db)]
 pub struct Jar();

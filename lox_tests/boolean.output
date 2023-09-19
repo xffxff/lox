@@ -1,3 +1,10 @@
-Boolean(
+execute: True
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+output: Boolean(
     true,
 )
