@@ -14,7 +14,12 @@ pub struct TokenTree {
 }
 
 impl DebugWithDb<dyn crate::Db> for TokenTree {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>, db: &dyn crate::Db, _include_all_fields: bool) -> std::fmt::Result {
+    fn fmt(
+        &self,
+        f: &mut std::fmt::Formatter<'_>,
+        db: &dyn crate::Db,
+        _include_all_fields: bool,
+    ) -> std::fmt::Result {
         f.debug_struct("TokenTree")
             .field("source text", &self.input_file(db).source_text(db))
             .field("tokens", &self.tokens(db).debug(db))
