@@ -1,3 +1,5 @@
+use salsa::DebugWithDb;
+
 use crate::{input_file::InputFile, span::Span, token::Token};
 
 #[salsa::tracked]
@@ -9,4 +11,12 @@ pub struct TokenTree {
     // expected `Vec<Token>`, found `&Vec<Token>`
     #[return_ref]
     pub tokens: Vec<Token>,
+}
+
+impl DebugWithDb<dyn crate::Db> for TokenTree {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>, db: &dyn crate::Db, _include_all_fields: bool) -> std::fmt::Result {
+        f.debug_struct("TokenTree")
+            .field("tokens", &self.tokens(db).debug(db))
+            .finish()
+    }
 }

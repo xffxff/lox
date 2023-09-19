@@ -469,7 +469,7 @@ dependencies = [
 [[package]]
 name = "salsa-2022"
 version = "0.1.0"
-source = "git+https://github.com/salsa-rs/salsa/?branch=master#d4a94fbf07bb837f3d9d0a4caa5db4d5db29243f"
+source = "git+https://github.com/xffxff/salsa/?branch=debug_option#2c38d23e3fedb9b3897292ef17af0f58d64b8470"
 dependencies = [
  "arc-swap",
  "crossbeam",
@@ -487,7 +487,7 @@ dependencies = [
 [[package]]
 name = "salsa-2022-macros"
 version = "0.1.0"
-source = "git+https://github.com/salsa-rs/salsa/?branch=master#d4a94fbf07bb837f3d9d0a4caa5db4d5db29243f"
+source = "git+https://github.com/xffxff/salsa/?branch=debug_option#2c38d23e3fedb9b3897292ef17af0f58d64b8470"
 dependencies = [
  "eyre",
  "heck",

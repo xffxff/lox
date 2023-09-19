@@ -100,7 +100,7 @@ fn main() {
 
         // test lex
         let token_tree = lox_lex::lex_file(&db, input_file);
-        expect_file![case.token].assert_eq(&format!("{:#?}", token_tree.debug_all(&db)));
+        expect_file![case.token].assert_eq(&format!("{:#?}", token_tree.debug(&db)));
 
         // test syntax
         let exprs = parse_file(&db, input_file);
