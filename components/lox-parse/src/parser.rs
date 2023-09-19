@@ -9,7 +9,7 @@ use lox_ir::{
 };
 
 use crate::{
-    token_test::{AnyTree, Number, TokenTest, StringLiteral},
+    token_test::{AnyTree, Number, StringLiteral, TokenTest},
     tokens::Tokens,
 };
 
@@ -36,7 +36,8 @@ impl<'me> Parser<'me> {
         }
         if self.tokens.peek().is_some() {
             let span = self.tokens.peek_span();
-            self.error(span, "extra tokens after expression").emit(self.db);
+            self.error(span, "extra tokens after expression")
+                .emit(self.db);
         }
         exprs
     }

@@ -25,7 +25,7 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
             let word_str = word.as_str(db);
             let value = word_str.to_string();
             chunk.emit_byte(Code::String(value))
-        },
+        }
         syntax::Expr::BooleanLiteral(value) => {
             if *value {
                 chunk.emit_byte(Code::True)
@@ -58,7 +58,7 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
                 syntax::Op::Bang => chunk.emit_byte(Code::Not),
                 _ => todo!(),
             }
-        },
+        }
         syntax::Expr::Parenthesized(_) => todo!(),
     }
 }

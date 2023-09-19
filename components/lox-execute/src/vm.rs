@@ -173,44 +173,44 @@ impl VM {
                 bytecode::Code::Negate => {
                     let a = self.pop();
                     self.push(-a);
-                },
+                }
                 bytecode::Code::Not => {
                     let a = self.pop();
                     self.push(!a);
-                },
+                }
                 bytecode::Code::Equal => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a == b);
-                },
+                }
                 bytecode::Code::NotEqual => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a != b);
-                },
+                }
                 bytecode::Code::Greater => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a > b);
-                },
+                }
                 bytecode::Code::GreaterEqual => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a >= b);
-                },
+                }
                 bytecode::Code::Less => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a < b);
-                },
+                }
                 bytecode::Code::LessEqual => {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a <= b);
-                },
+                }
                 bytecode::Code::String(s) => {
                     self.push(s);
-                },
+                }
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);
