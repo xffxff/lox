@@ -2,7 +2,6 @@
 
 pub mod file_parser;
 mod parser;
-mod tests;
 mod token_test;
 mod tokens;
 pub use file_parser::parse_file;

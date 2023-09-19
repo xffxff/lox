@@ -1,8 +1,0 @@
-UnaryOp {
-    op: Minus,
-    expr: NumberLiteral(1),
-}
-UnaryOp {
-    op: Bang,
-    expr: NumberLiteral(1),
-}
