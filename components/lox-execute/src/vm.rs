@@ -121,6 +121,15 @@ impl VM {
                 bytecode::Code::False => {
                     self.push(false);
                 }
+                bytecode::Code::Negate => {
+                    let a = self.pop();
+                    if let Value::Number(a) = a {
+                        self.push(-a);
+                    } else {
+                        panic!("Cannot negate {:?}", a);
+                    }
+                },
+                bytecode::Code::Not => todo!(),
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);

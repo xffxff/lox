@@ -45,5 +45,23 @@ Chunk {
         ),
         Divide,
         Subtract,
+        Constant(
+            F64(
+                1.0,
+            ),
+        ),
+        Constant(
+            F64(
+                2.0,
+            ),
+        ),
+        Constant(
+            F64(
+                3.0,
+            ),
+        ),
+        Negate,
+        Multiply,
+        Add,
     ],
 }

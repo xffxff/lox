@@ -41,7 +41,14 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
                 _ => todo!(),
             }
         }
-        syntax::Expr::UnaryOp(_, _) => todo!(),
+        syntax::Expr::UnaryOp(op, expr) => {
+            compile_expr(db, expr, chunk);
+            match op {
+                syntax::Op::Minus => chunk.emit_byte(Code::Negate),
+                syntax::Op::Bang => chunk.emit_byte(Code::Not),
+                _ => todo!(),
+            }
+        },
         syntax::Expr::Parenthesized(_) => todo!(),
     }
 }

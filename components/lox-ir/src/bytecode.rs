@@ -8,6 +8,8 @@ pub enum Code {
     Subtract,
     Multiply,
     Divide,
+    Negate,
+    Not,
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]

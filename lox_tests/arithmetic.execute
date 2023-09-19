@@ -193,3 +193,129 @@ stack: [
     ),
 ]
 
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        0.33333333333333337,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        2.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        0.33333333333333337,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        3.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        0.33333333333333337,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+
+execute: Negate
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        0.33333333333333337,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        -3.0,
+    ),
+]
+
+execute: Multiply
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        0.33333333333333337,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        -6.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        0.33333333333333337,
+    ),
+    Number(
+        -5.0,
+    ),
+]
+
