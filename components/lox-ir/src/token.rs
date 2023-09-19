@@ -26,6 +26,9 @@ pub enum Token {
     // the closing delimiter are read into a Tree.
     Tree(TokenTree),
 
+    // String
+    String(Word),
+
     // Unkown token
     Unknown(char),
 }
@@ -39,6 +42,7 @@ impl Token {
             }
             Token::Comment(s) => *s,
             Token::Tree(tree) => tree.span(db).len(),
+            Token::String(s) => s.as_str(db).len() as u32,
         }
     }
 

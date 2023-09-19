@@ -1,10 +1,10 @@
 Diagnostic {
     severity: Error,
-    span: @0..@1,
+    span: @0..@6,
     message: "extra tokens after expression",
     labels: [
         Label {
-            span: @0..@1,
+            span: @0..@6,
             message: "here",
         },
     ],

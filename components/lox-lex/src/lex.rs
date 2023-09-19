@@ -81,6 +81,13 @@ where
                 '+' | '-' | '*' | '/' | '!' | '<' | '>' | '=' => {
                     push_token(Token::Op(ch));
                 }
+                '"' => {
+                    // FIXME: handle escape sequences
+                    let text = self.accumulate_string(ch, |c| c != '"');
+                    push_token(Token::String(Word::intern(self.db, text)));
+                    // consume the closing quote \"
+                    self.chars.next();
+                }
                 ' ' => {
                     push_token(Token::Whitespace(ch));
                 }
