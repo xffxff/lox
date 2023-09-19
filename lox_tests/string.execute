@@ -7,3 +7,22 @@ stack: [
     ),
 ]
 
+execute: String(
+    "\" world\"",
+)
+stack: [
+    String(
+        "\"hello\"",
+    ),
+    String(
+        "\" world\"",
+    ),
+]
+
+execute: Add
+stack: [
+    String(
+        "\"hello\"\" world\"",
+    ),
+]
+

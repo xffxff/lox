@@ -1,1 +1,5 @@
-StringLiteral("hello")
+BinaryOp {
+    left: StringLiteral("hello"),
+    op: Plus,
+    right: StringLiteral(" world"),
+}

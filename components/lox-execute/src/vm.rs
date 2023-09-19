@@ -32,6 +32,7 @@ impl std::ops::Add for Value {
     fn add(self, rhs: Self) -> Self::Output {
         match (&self, &rhs) {
             (Value::Number(a), Value::Number(b)) => Value::Number(a + b),
+            (Value::String(a), Value::String(b)) => Value::String(a.clone() + b),
             _ => panic!("Cannot add {:?} and {:?}", self, rhs),
         }
     }

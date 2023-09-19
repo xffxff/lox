@@ -3,5 +3,9 @@ Chunk {
         String(
             "\"hello\"",
         ),
+        String(
+            "\" world\"",
+        ),
+        Add,
     ],
 }
