@@ -114,12 +114,10 @@ impl VM {
                     self.push(a / b);
                 }
                 bytecode::Code::True => {
-                    // FIXME: This should be a boolean, not a float.
-                    self.push(1.0);
+                    self.push(true);
                 },
                 bytecode::Code::False => {
-                    // FIXME: This should be a boolean, not a float.
-                    self.push(0.0);
+                    self.push(false);
                 },
             }
         }
