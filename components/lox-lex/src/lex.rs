@@ -83,10 +83,11 @@ where
                 }
                 '"' => {
                     // FIXME: handle escape sequences
-                    let text = self.accumulate_string(ch, |c| c != '"');
-                    push_token(Token::String(Word::intern(self.db, text)));
+                    let mut text = self.accumulate_string(ch, |c| c != '"');
                     // consume the closing quote \"
                     self.chars.next();
+                    text.push('"');
+                    push_token(Token::String(Word::intern(self.db, text)));
                 }
                 ' ' => {
                     push_token(Token::Whitespace(ch));

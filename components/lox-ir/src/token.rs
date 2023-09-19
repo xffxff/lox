@@ -1,3 +1,5 @@
+use salsa::DebugWithDb;
+
 use crate::{token_tree::TokenTree, word::Word};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -31,6 +33,27 @@ pub enum Token {
 
     // Unkown token
     Unknown(char),
+}
+
+impl<'db> DebugWithDb<dyn crate::Db + 'db> for Token {
+    fn fmt(
+        &self,
+        f: &mut std::fmt::Formatter<'_>,
+        db: &dyn crate::Db,
+        _include_all_fields: bool,
+    ) -> std::fmt::Result {
+        match self {
+            Token::Alphabetic(word) => write!(f, "Alphabetic({})", word.as_str(db)),
+            Token::Number(word) => write!(f, "Number({})", word.as_str(db)),
+            Token::Op(ch) => write!(f, "Op({})", ch),
+            Token::Delimiter(ch) => write!(f, "Delimiter({})", ch),
+            Token::Whitespace(ch) => write!(f, "Whitespace({})", ch),
+            Token::Comment(len) => write!(f, "Comment({})", len),
+            Token::Tree(tree) => f.debug_tuple("Tree").field(tree).finish(),
+            Token::String(word) => write!(f, "String({})", word.as_str(db)),
+            Token::Unknown(ch) => write!(f, "Unknown({})", ch),
+        }
+    }
 }
 
 impl Token {

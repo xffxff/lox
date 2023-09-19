@@ -1,9 +1,9 @@
 execute: String(
-    "\"hello",
+    "\"hello\"",
 )
 stack: [
     String(
-        "\"hello",
+        "\"hello\"",
     ),
 ]
 

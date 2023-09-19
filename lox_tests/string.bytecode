@@ -1,7 +1,7 @@
 Chunk {
     code: [
         String(
-            "\"hello",
+            "\"hello\"",
         ),
     ],
 }
