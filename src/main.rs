@@ -8,7 +8,7 @@ struct TestCase {
     lox: PathBuf,
     syntax: PathBuf,
     bytecode: PathBuf,
-    output: PathBuf,
+    execute: PathBuf,
     text: String,
 }
 
@@ -31,13 +31,13 @@ impl TestCase {
                 let lox = path;
                 let syntax = lox.with_extension("syntax");
                 let bytecode = lox.with_extension("bytecode");
-                let output = lox.with_extension("output");
+                let execute = lox.with_extension("execute");
                 let text = fs::read_to_string(&lox).unwrap();
                 res.push(TestCase {
                     lox,
                     syntax,
                     bytecode,
-                    output,
+                    execute,
                     text,
                 });
             }
@@ -120,6 +120,6 @@ fn main() {
             buf.push('\n');
         };
         lox_execute::execute_file(&db, input_file, Some(step_inspect));
-        expect_file![case.output].assert_eq(&buf);
+        expect_file![case.execute].assert_eq(&buf);
     }
 }
