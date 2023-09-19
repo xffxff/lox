@@ -52,6 +52,7 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
                 .field("expr", &expr.debug(db))
                 .finish(),
             Expr::BooleanLiteral(value) => write!(f, "BooleanLiteral({})", value),
+            Expr::StringLiteral(word) => write!(f, "StringLiteral({})", word.as_str(db)),
             _ => todo!(),
         }
     }

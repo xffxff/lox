@@ -1,3 +1,7 @@
 Chunk {
-    code: [],
+    code: [
+        String(
+            "\"hello",
+        ),
+    ],
 }

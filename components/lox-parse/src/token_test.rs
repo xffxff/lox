@@ -58,6 +58,19 @@ impl TokenTest for Token {
     }
 }
 
+#[derive(Debug)]
+pub(crate) struct StringLiteral;
+impl TokenTest for StringLiteral {
+    type Narrow = Word;
+
+    fn test(self, _db: &dyn crate::Db, token: Token, _span: FileSpan) -> Option<Word> {
+        match token {
+            Token::String(w) => Some(w),
+            _ => None,
+        }
+    }
+}
+
 /// Any token at all
 #[derive(Debug)]
 pub(crate) struct AnyTree;

@@ -16,6 +16,7 @@ pub enum Code {
     GreaterEqual,
     Less,
     LessEqual,
+    String(String),
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]

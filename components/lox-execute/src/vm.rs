@@ -1,10 +1,11 @@
 use lox_ir::bytecode;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub enum Value {
     Number(f64),
     Boolean(bool),
     Nil,
+    String(String),
 }
 
 impl From<f64> for Value {
@@ -19,11 +20,17 @@ impl From<bool> for Value {
     }
 }
 
+impl From<String> for Value {
+    fn from(s: String) -> Self {
+        Value::String(s)
+    }
+}
+
 impl std::ops::Add for Value {
     type Output = Self;
 
     fn add(self, rhs: Self) -> Self::Output {
-        match (self, rhs) {
+        match (&self, &rhs) {
             (Value::Number(a), Value::Number(b)) => Value::Number(a + b),
             _ => panic!("Cannot add {:?} and {:?}", self, rhs),
         }
@@ -34,7 +41,7 @@ impl std::ops::Sub for Value {
     type Output = Self;
 
     fn sub(self, rhs: Self) -> Self::Output {
-        match (self, rhs) {
+        match (&self, &rhs) {
             (Value::Number(a), Value::Number(b)) => Value::Number(a - b),
             _ => panic!("Cannot subtract {:?} and {:?}", self, rhs),
         }
@@ -45,7 +52,7 @@ impl std::ops::Mul for Value {
     type Output = Self;
 
     fn mul(self, rhs: Self) -> Self::Output {
-        match (self, rhs) {
+        match (&self, &rhs) {
             (Value::Number(a), Value::Number(b)) => Value::Number(a * b),
             _ => panic!("Cannot multiply {:?} and {:?}", self, rhs),
         }
@@ -56,7 +63,7 @@ impl std::ops::Div for Value {
     type Output = Self;
 
     fn div(self, rhs: Self) -> Self::Output {
-        match (self, rhs) {
+        match (&self, &rhs) {
             (Value::Number(a), Value::Number(b)) => Value::Number(a / b),
             _ => panic!("Cannot divide {:?} and {:?}", self, rhs),
         }
@@ -134,7 +141,7 @@ impl VM {
             tracing::debug!("ip: {}", self.ip);
             tracing::debug!("stack: {:?}", self.stack);
             let instruction = self.read_byte();
-            match instruction {
+            match instruction.clone() {
                 bytecode::Code::Return => break,
                 bytecode::Code::Constant(value) => self.push(value.0),
                 bytecode::Code::Add => {
@@ -200,6 +207,9 @@ impl VM {
                     let b = self.pop();
                     let a = self.pop();
                     self.push(a <= b);
+                },
+                bytecode::Code::String(s) => {
+                    self.push(s);
                 },
             }
             if let Some(step_inspect) = &mut step_inspect {

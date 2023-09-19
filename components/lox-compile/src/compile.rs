@@ -21,7 +21,11 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
             let value = word_str.parse::<f64>().unwrap();
             chunk.emit_byte(Code::Constant(value.into()))
         }
-        syntax::Expr::StringLiteral(_) => todo!(),
+        syntax::Expr::StringLiteral(word) => {
+            let word_str = word.as_str(db);
+            let value = word_str.to_string();
+            chunk.emit_byte(Code::String(value))
+        },
         syntax::Expr::BooleanLiteral(value) => {
             if *value {
                 chunk.emit_byte(Code::True)

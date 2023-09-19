@@ -1,0 +1,9 @@
+execute: String(
+    "\"hello",
+)
+stack: [
+    String(
+        "\"hello",
+    ),
+]
+

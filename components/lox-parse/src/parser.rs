@@ -9,7 +9,7 @@ use lox_ir::{
 };
 
 use crate::{
-    token_test::{AnyTree, Number, TokenTest},
+    token_test::{AnyTree, Number, TokenTest, StringLiteral},
     tokens::Tokens,
 };
 
@@ -153,6 +153,8 @@ impl<'me> Parser<'me> {
             Some(Expr::NilLiteral)
         } else if let Some((_, word)) = self.eat(Number) {
             Some(Expr::NumberLiteral(word))
+        } else if let Some((_, word)) = self.eat(StringLiteral) {
+            Some(Expr::StringLiteral(word))
         } else if let Some((_, token_tree)) = self.delimited('(') {
             let expr = Parser::new(self.db, token_tree).parse_expr()?;
             self.eat(Token::Delimiter(')'));
