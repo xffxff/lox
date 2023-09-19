@@ -5,6 +5,16 @@ stack: [
     ),
 ]
 
+execute: False
+stack: [
+    Boolean(
+        true,
+    ),
+    Boolean(
+        false,
+    ),
+]
+
 output: Boolean(
-    true,
+    false,
 )

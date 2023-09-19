@@ -30,6 +30,169 @@ stack: [
     ),
 ]
 
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        2.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        3.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+
+execute: Multiply
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        6.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        2.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        3.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+
+execute: Divide
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        0.6666666666666666,
+    ),
+]
+
+execute: Subtract
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        7.0,
+    ),
+    Number(
+        0.33333333333333337,
+    ),
+]
+
 output: Number(
-    3.0,
+    0.33333333333333337,
 )

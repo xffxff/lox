@@ -11,5 +11,39 @@ Chunk {
             ),
         ),
         Add,
+        Constant(
+            F64(
+                1.0,
+            ),
+        ),
+        Constant(
+            F64(
+                2.0,
+            ),
+        ),
+        Constant(
+            F64(
+                3.0,
+            ),
+        ),
+        Multiply,
+        Add,
+        Constant(
+            F64(
+                1.0,
+            ),
+        ),
+        Constant(
+            F64(
+                2.0,
+            ),
+        ),
+        Constant(
+            F64(
+                3.0,
+            ),
+        ),
+        Divide,
+        Subtract,
     ],
 }

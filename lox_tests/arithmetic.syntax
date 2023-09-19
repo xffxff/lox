@@ -3,3 +3,21 @@ BinaryOp {
     op: Plus,
     right: NumberLiteral(2),
 }
+BinaryOp {
+    left: NumberLiteral(1),
+    op: Plus,
+    right: BinaryOp {
+        left: NumberLiteral(2),
+        op: Star,
+        right: NumberLiteral(3),
+    },
+}
+BinaryOp {
+    left: NumberLiteral(1),
+    op: Minus,
+    right: BinaryOp {
+        left: NumberLiteral(2),
+        op: Slash,
+        right: NumberLiteral(3),
+    },
+}
