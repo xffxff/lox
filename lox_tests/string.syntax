@@ -1,5 +1,5 @@
 BinaryOp {
-    left: StringLiteral("hello"),
+    left: StringLiteral(hello),
     op: Plus,
-    right: StringLiteral(" world"),
+    right: StringLiteral( world),
 }

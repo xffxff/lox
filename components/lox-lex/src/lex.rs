@@ -82,12 +82,8 @@ where
                     push_token(Token::Op(ch));
                 }
                 '"' => {
-                    // FIXME: handle escape sequences
-                    let mut text = self.accumulate_string(ch, |c| c != '"');
-                    // consume the closing quote \"
-                    self.chars.next();
-                    text.push('"');
-                    push_token(Token::String(Word::intern(self.db, text)));
+                    let word = self.string_literal();
+                    push_token(Token::String(word));
                 }
                 ' ' => {
                     push_token(Token::Whitespace(ch));
@@ -124,6 +120,22 @@ where
     /// Like [`Self::accumulate_string`], but interns the result.
     fn accumulate(&mut self, ch0: char, matches: impl Fn(char) -> bool) -> Word {
         let string = self.accumulate_string(ch0, matches);
+        Word::intern(self.db, string)
+    }
+
+    // Invoke after consuming the opening quote `"`
+    fn string_literal(&mut self) -> Word {
+        // FIXME: handle escape sequences
+        let mut string = String::new();
+        while let Some(&(_, ch)) = self.chars.peek() {
+            if ch == '"' {
+                self.chars.next();
+                break;
+            }
+
+            string.push(ch);
+            self.chars.next();
+        }
         Word::intern(self.db, string)
     }
 }

@@ -1,10 +1,10 @@
 Chunk {
     code: [
         String(
-            "\"hello\"",
+            "hello",
         ),
         String(
-            "\" world\"",
+            " world",
         ),
         Add,
     ],

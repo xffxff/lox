@@ -1,28 +1,28 @@
 execute: String(
-    "\"hello\"",
+    "hello",
 )
 stack: [
     String(
-        "\"hello\"",
+        "hello",
     ),
 ]
 
 execute: String(
-    "\" world\"",
+    " world",
 )
 stack: [
     String(
-        "\"hello\"",
+        "hello",
     ),
     String(
-        "\" world\"",
+        " world",
     ),
 ]
 
 execute: Add
 stack: [
     String(
-        "\"hello\"\" world\"",
+        "hello world",
     ),
 ]
 
