@@ -140,7 +140,7 @@ enum Commands {
     /// does testing things
     Test {
         /// path to test file or directory
-        #[arg(short, long, default_value = "lox_tests")]
+        #[arg(default_value = "lox_tests")]
         path: PathBuf,
     },
 }
