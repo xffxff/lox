@@ -6,10 +6,12 @@ use lox_ir::{
 
 #[salsa::tracked]
 pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
-    let exprs = lox_parse::parse_file(db, input_file);
+    let stmts = lox_parse::parse_file(db, input_file);
     let mut chunk = Chunk::default();
-    for expr in exprs {
-        compile_expr(db, expr, &mut chunk);
+    for stmt in stmts {
+        match stmt {
+            syntax::Stmt::Expr(expr) => compile_expr(db, expr, &mut chunk),
+        }
     }
     chunk
 }

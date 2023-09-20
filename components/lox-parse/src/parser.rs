@@ -29,24 +29,24 @@ impl<'me> Parser<'me> {
         }
     }
 
-    pub(crate) fn parse_exprs(&mut self) -> Vec<Expr> {
-        let mut exprs = vec![];
-        while let Some(expr) = self.parse_expr() {
-            exprs.push(expr);
+    pub(crate) fn parse(&mut self) -> Vec<Stmt> {
+        let mut stmts = vec![];
+        while let Some(stmt) = self.expr_stmt() {
+            stmts.push(stmt);
         }
         if self.tokens.peek().is_some() {
             let span = self.tokens.peek_span();
-            self.error(span, "extra tokens after expression")
+            self.error(span, "extra tokens after statement")
                 .emit(self.db);
         }
-        exprs
+        stmts
     }
 
-    // fn expr_stmt(&mut self) -> Option<Stmt> {
-    //     let expr = self.parse_expr()?;
-    //     self.eat(Token::Semicolon);
-    //     Some(Stmt::Expr(expr))
-    // }
+    fn expr_stmt(&mut self) -> Option<Stmt> {
+        let expr = self.parse_expr()?;
+        self.eat(Token::Semicolon);
+        Some(Stmt::Expr(expr))
+    }
 
     // expression     → equality ;
     // equality       → comparison ( ( "!=" | "==" ) comparison )* ;

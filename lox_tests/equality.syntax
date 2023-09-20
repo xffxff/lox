@@ -1,10 +1,14 @@
-BinaryOp {
-    left: NumberLiteral(1),
-    op: EqualEqual,
-    right: NumberLiteral(2),
+Expr {
+    expr: BinaryOp {
+        left: NumberLiteral(1),
+        op: EqualEqual,
+        right: NumberLiteral(2),
+    },
 }
-BinaryOp {
-    left: NumberLiteral(1),
-    op: NotEqual,
-    right: NumberLiteral(2),
+Expr {
+    expr: BinaryOp {
+        left: NumberLiteral(1),
+        op: NotEqual,
+        right: NumberLiteral(2),
+    },
 }

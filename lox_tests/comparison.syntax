@@ -1,20 +1,28 @@
-BinaryOp {
-    left: NumberLiteral(1),
-    op: Less,
-    right: NumberLiteral(2),
+Expr {
+    expr: BinaryOp {
+        left: NumberLiteral(1),
+        op: Less,
+        right: NumberLiteral(2),
+    },
 }
-BinaryOp {
-    left: NumberLiteral(1),
-    op: LessEqual,
-    right: NumberLiteral(1),
+Expr {
+    expr: BinaryOp {
+        left: NumberLiteral(1),
+        op: LessEqual,
+        right: NumberLiteral(1),
+    },
 }
-BinaryOp {
-    left: NumberLiteral(1),
-    op: Greater,
-    right: NumberLiteral(2),
+Expr {
+    expr: BinaryOp {
+        left: NumberLiteral(1),
+        op: Greater,
+        right: NumberLiteral(2),
+    },
 }
-BinaryOp {
-    left: NumberLiteral(1),
-    op: GreaterEqual,
-    right: NumberLiteral(1),
+Expr {
+    expr: BinaryOp {
+        left: NumberLiteral(1),
+        op: GreaterEqual,
+        right: NumberLiteral(1),
+    },
 }

@@ -1,10 +1,18 @@
-BooleanLiteral(true)
-BooleanLiteral(false)
-UnaryOp {
-    op: Bang,
+Expr {
     expr: BooleanLiteral(true),
 }
-UnaryOp {
-    op: Bang,
+Expr {
     expr: BooleanLiteral(false),
+}
+Expr {
+    expr: UnaryOp {
+        op: Bang,
+        expr: BooleanLiteral(true),
+    },
+}
+Expr {
+    expr: UnaryOp {
+        op: Bang,
+        expr: BooleanLiteral(false),
+    },
 }
