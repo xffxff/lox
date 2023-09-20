@@ -44,10 +44,15 @@ impl TestCase {
         if lox.extension().unwrap_or_default() != "lox" {
             panic!("expected lox file, got {}", lox.display());
         }        
-        let token = lox.with_extension("token");
-        let syntax = lox.with_extension("syntax");
-        let bytecode = lox.with_extension("bytecode");
-        let execute = lox.with_extension("execute");
+
+        // if the lox file is `foo/bar.lox`, then the generated files will be
+        // `foo/bar/{token,syntax,bytecode,execute}`
+        let parent = lox.parent().unwrap();
+        let lox_dir = parent.join(lox.file_stem().unwrap());
+        let token = lox_dir.join("token");
+        let syntax = lox_dir.join("syntax");
+        let bytecode = lox_dir.join("bytecode");
+        let execute = lox_dir.join("execute");
         let text = fs::read_to_string(&lox).unwrap();
         TestCase {
             lox: lox.to_owned(),
