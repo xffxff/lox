@@ -63,12 +63,16 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
 pub enum Stmt {
     // expression statement, like `1 + 2;`
     Expr(Expr),
+
+    // print statement, like `print 1 + 2;`
+    Print(Expr)
 }
 
 impl salsa::DebugWithDb<dyn crate::Db> for Stmt {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>, db: &dyn crate::Db, _include_all_fields: bool) -> std::fmt::Result {
         match self {
             Stmt::Expr(expr) => f.debug_struct("Expr").field("expr", &expr.debug(db)).finish(),
+            Stmt::Print(expr) => f.debug_struct("Print").field("expr", &expr.debug(db)).finish(),
         }
     }
 }

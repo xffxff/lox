@@ -1,0 +1,7 @@
+Print {
+    expr: BinaryOp {
+        left: NumberLiteral(1),
+        op: Plus,
+        right: NumberLiteral(2),
+    },
+}

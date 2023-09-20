@@ -31,7 +31,7 @@ impl<'me> Parser<'me> {
 
     pub(crate) fn parse(&mut self) -> Vec<Stmt> {
         let mut stmts = vec![];
-        while let Some(stmt) = self.expr_stmt() {
+        while let Some(stmt) = self.stmt() {
             stmts.push(stmt);
         }
         if self.tokens.peek().is_some() {
@@ -40,6 +40,19 @@ impl<'me> Parser<'me> {
                 .emit(self.db);
         }
         stmts
+    }
+
+    fn stmt(&mut self) -> Option<Stmt> {
+        if self.eat(Keyword::Print).is_some() {
+            return self.print_stmt();
+        }
+        self.expr_stmt()
+    }
+
+    fn print_stmt(&mut self) -> Option<Stmt> {
+        let expr = self.parse_expr()?;
+        self.eat(Token::Semicolon);
+        Some(Stmt::Print(expr))
     }
 
     fn expr_stmt(&mut self) -> Option<Stmt> {

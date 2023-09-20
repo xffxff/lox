@@ -212,6 +212,11 @@ impl VM {
                 bytecode::Code::String(s) => {
                     self.push(s);
                 }
+                bytecode::Code::Print => {
+                    let value = self.pop();
+                    // FIXME: This should be a call to a intrinsic function.
+                    println!("{:?}", value);
+                },
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);

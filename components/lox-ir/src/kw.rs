@@ -45,4 +45,5 @@ define_keywords! {
     True => "true",
     False => "false",
     Nil => "nil",
+    Print => "print",
 }

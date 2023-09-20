@@ -11,6 +11,10 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
     for stmt in stmts {
         match stmt {
             syntax::Stmt::Expr(expr) => compile_expr(db, expr, &mut chunk),
+            syntax::Stmt::Print(expr) => {
+                compile_expr(db, expr, &mut chunk);
+                chunk.emit_byte(Code::Print)
+            }
         }
     }
     chunk

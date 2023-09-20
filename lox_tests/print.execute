@@ -1,0 +1,35 @@
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        2.0,
+    ),
+)
+stack: [
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        3.0,
+    ),
+]
+
+execute: Print
+stack: []
+
