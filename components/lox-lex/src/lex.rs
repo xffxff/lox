@@ -88,6 +88,9 @@ where
                 ' ' => {
                     push_token(Token::Whitespace(ch));
                 }
+                ';' => {
+                    push_token(Token::Semicolon);
+                }
                 _ => {
                     if ch.is_whitespace() {
                         push_token(Token::Whitespace(ch))

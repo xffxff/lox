@@ -3,7 +3,7 @@ use lox_ir::{
     input_file::InputFile,
     kw::Keyword,
     span::Span,
-    syntax::{Expr, Op},
+    syntax::{Expr, Op, Stmt},
     token::Token,
     token_tree::TokenTree,
 };
@@ -41,6 +41,12 @@ impl<'me> Parser<'me> {
         }
         exprs
     }
+
+    // fn expr_stmt(&mut self) -> Option<Stmt> {
+    //     let expr = self.parse_expr()?;
+    //     self.eat(Token::Semicolon);
+    //     Some(Stmt::Expr(expr))
+    // }
 
     // expression     → equality ;
     // equality       → comparison ( ( "!=" | "==" ) comparison )* ;

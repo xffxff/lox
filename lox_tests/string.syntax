@@ -3,3 +3,15 @@ BinaryOp {
     op: Plus,
     right: StringLiteral( world),
 }
+Diagnostic {
+    severity: Error,
+    span: @14..@15,
+    message: "extra tokens after expression",
+    labels: [
+        Label {
+            span: @14..@15,
+            message: "here",
+        },
+    ],
+    children: [],
+}

@@ -57,3 +57,9 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
         }
     }
 }
+
+
+pub enum Stmt {
+    // expression statement, like `1 + 2;`
+    Expr(Expr),
+}
