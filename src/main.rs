@@ -142,6 +142,10 @@ enum Commands {
         /// path to test file or directory
         #[arg(default_value = "lox_tests")]
         path: PathBuf,
+
+        /// instead of validating the output, generate or update it
+        #[arg(long)]
+        bless: bool,
     },
 }
 
@@ -157,7 +161,11 @@ fn main() {
     let db = Database::default();
 
     match cli.command {
-        Commands::Test { path } => {
+        Commands::Test { path, bless } => {
+            if bless {
+                // add `UPDATE_EXPECT` to the environment to update the expected output
+                std::env::set_var("UPDATE_EXPECT", "1");
+            }
             if path.is_dir() {
                 let test_cases = TestCase::list(&path);
                 for test_case in test_cases {
