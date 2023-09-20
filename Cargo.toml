@@ -18,3 +18,4 @@ lox-compile = { path="components/lox-compile" }
 lox-execute = { path="components/lox-execute" }
 tracing = "0.1.37"
 tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
+clap = { version = "4.4.4", features = ["derive"] }
