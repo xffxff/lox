@@ -49,6 +49,10 @@ impl TestCase {
         // `foo/bar/{token,syntax,bytecode,execute}`
         let parent = lox.parent().unwrap();
         let lox_dir = parent.join(lox.file_stem().unwrap());
+        if !lox_dir.exists() {
+            fs::create_dir(&lox_dir).unwrap();
+        }
+
         let token = lox_dir.join("token");
         let syntax = lox_dir.join("syntax");
         let bytecode = lox_dir.join("bytecode");

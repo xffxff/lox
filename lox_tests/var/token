@@ -1,0 +1,13 @@
+TokenTree {
+    source text: "var a = 1;",
+    tokens: [
+        Alphabetic(var),
+        Whitespace(' '),
+        Alphabetic(a),
+        Whitespace(' '),
+        Op(=),
+        Whitespace(' '),
+        Number(1),
+        Semicolon,
+    ],
+}
