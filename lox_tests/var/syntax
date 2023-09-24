@@ -8,3 +8,6 @@ Var {
     name: "b",
     initializer: None,
 }
+Print {
+    expr: Variable(a),
+}

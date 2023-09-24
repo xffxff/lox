@@ -76,5 +76,9 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
             }
         }
         syntax::Expr::Parenthesized(_) => todo!(),
+        syntax::Expr::Variable(word) => {
+            let word_str = word.as_str(db);
+            chunk.emit_byte(Code::Variable(word_str.to_string()))
+        },
     }
 }

@@ -25,6 +25,9 @@ pub enum Expr {
 
     // `(expr)`
     Parenthesized(Box<Expr>),
+
+    // `foo`
+    Variable(Word),
 }
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
@@ -53,6 +56,7 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
                 .finish(),
             Expr::BooleanLiteral(value) => write!(f, "BooleanLiteral({})", value),
             Expr::StringLiteral(word) => write!(f, "StringLiteral({})", word.as_str(db)),
+            Expr::Variable(word) => write!(f, "Variable({})", word.as_str(db)),
             _ => todo!(),
         }
     }

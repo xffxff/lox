@@ -12,5 +12,9 @@ Chunk {
         VarDeclaration(
             "b",
         ),
+        Variable(
+            "a",
+        ),
+        Print,
     ],
 }

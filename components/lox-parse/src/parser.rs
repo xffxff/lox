@@ -199,6 +199,8 @@ impl<'me> Parser<'me> {
             Some(Expr::BooleanLiteral(false))
         } else if self.eat(Keyword::Nil).is_some() {
             Some(Expr::NilLiteral)
+        } else if let Some((_, word)) = self.eat(Identifier) {
+            Some(Expr::Variable(word))
         } else if let Some((_, word)) = self.eat(Number) {
             Some(Expr::NumberLiteral(word))
         } else if let Some((_, word)) = self.eat(StringLiteral) {

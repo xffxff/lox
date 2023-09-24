@@ -230,6 +230,10 @@ impl VM {
                 bytecode::Code::Nil => {
                     self.push(Value::Nil);
                 },
+                bytecode::Code::Variable(name) => {
+                    let value = self.globals.get(&name).expect("variable not found");
+                    self.push(value.clone());
+                },
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);

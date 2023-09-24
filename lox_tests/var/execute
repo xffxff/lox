@@ -24,3 +24,15 @@ execute: VarDeclaration(
 )
 stack: []
 
+execute: Variable(
+    "a",
+)
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
+execute: Print
+stack: []
+
