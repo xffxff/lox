@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use lox_ir::bytecode;
 
 #[derive(Debug, Clone)]
@@ -118,6 +120,9 @@ pub struct VM {
     ip: usize,
 
     pub stack: Vec<Value>,
+
+    // global variables
+    globals: HashMap<String, Value>,
 }
 
 impl VM {
@@ -126,6 +131,7 @@ impl VM {
             chunk,
             ip: 0,
             stack: Vec::new(),
+            globals: HashMap::new(),
         }
     }
 
@@ -217,8 +223,13 @@ impl VM {
                     // FIXME: This should be a call to a intrinsic function.
                     println!("{:?}", value);
                 },
-                bytecode::Code::VarDeclaration(_) => todo!(),
-                bytecode::Code::Nil => todo!(),
+                bytecode::Code::VarDeclaration(name) => {
+                    let value = self.pop();
+                    self.globals.insert(name, value);
+                },
+                bytecode::Code::Nil => {
+                    self.push(Value::Nil);
+                },
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);

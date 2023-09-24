@@ -4,3 +4,7 @@ Var {
         NumberLiteral(1),
     ),
 }
+Var {
+    name: "b",
+    initializer: None,
+}

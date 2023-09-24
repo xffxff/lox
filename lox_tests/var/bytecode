@@ -8,5 +8,9 @@ Chunk {
         VarDeclaration(
             "a",
         ),
+        Nil,
+        VarDeclaration(
+            "b",
+        ),
     ],
 }
