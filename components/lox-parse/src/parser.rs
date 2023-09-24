@@ -9,7 +9,7 @@ use lox_ir::{
 };
 
 use crate::{
-    token_test::{AnyTree, Number, StringLiteral, TokenTest},
+    token_test::{AnyTree, Number, StringLiteral, TokenTest, Identifier},
     tokens::Tokens,
 };
 
@@ -31,7 +31,7 @@ impl<'me> Parser<'me> {
 
     pub(crate) fn parse(&mut self) -> Vec<Stmt> {
         let mut stmts = vec![];
-        while let Some(stmt) = self.stmt() {
+        while let Some(stmt) = self.declaration() {
             stmts.push(stmt);
         }
         if self.tokens.peek().is_some() {
@@ -42,6 +42,33 @@ impl<'me> Parser<'me> {
         stmts
     }
 
+    fn declaration(&mut self) -> Option<Stmt> {
+        if self.eat(Keyword::Var).is_some() {
+            self.var_declaration()
+        } else {
+            self.stmt()
+        }
+    }
+
+    // "var" IDENTIFIER ( "=" expression )? ";" ;
+    fn var_declaration(&mut self) -> Option<Stmt> {
+        if let Some((_, id)) = self.eat(Identifier) {
+            let initializer = if self.eat_op(Op::Equal).is_some() {
+                let expr = self.parse_expr()?;
+                Some(expr)
+            } else {
+                None
+            };
+            self.eat(Token::Semicolon).unwrap();
+            Some(Stmt::Var {
+                name: id,
+                initializer,
+            })
+        } else {
+            None
+        }
+    }
+
     fn stmt(&mut self) -> Option<Stmt> {
         if self.eat(Keyword::Print).is_some() {
             return self.print_stmt();
@@ -49,6 +76,7 @@ impl<'me> Parser<'me> {
         self.expr_stmt()
     }
 
+    //  "print" expression ";" ;
     fn print_stmt(&mut self) -> Option<Stmt> {
         let expr = self.parse_expr()?;
         self.eat(Token::Semicolon);

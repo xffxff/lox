@@ -82,6 +82,22 @@ impl TokenTest for AnyTree {
     }
 }
 
+/// An `Alphabetic` that is not a keyword
+#[derive(Debug)]
+pub(crate) struct Identifier;
+impl TokenTest for Identifier {
+    type Narrow = Word;
+
+    fn test(self, db: &dyn crate::Db, token: Token, _span: FileSpan) -> Option<Word> {
+        let word = token.alphabetic()?;
+        if lox_ir::kw::keywords(db).contains_key(&word) {
+            None
+        } else {
+            Some(word)
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use lox_ir::{input_file::InputFile, kw::Keyword, span::FileSpan, token::Token, word::Word};

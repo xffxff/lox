@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use crate::word::Word;
 
 macro_rules! define_keywords {
@@ -46,4 +48,18 @@ define_keywords! {
     False => "false",
     Nil => "nil",
     Print => "print",
+    Var => "var",
+}
+
+pub fn keywords(db: &dyn crate::Db) -> &HashMap<Word, Keyword> {
+    keywords_map(db, Keywords::new(db))
+}
+
+// Hack to make a global constant
+#[salsa::interned]
+pub struct Keywords {}
+
+#[salsa::tracked(return_ref)]
+pub(crate) fn keywords_map(db: &dyn crate::Db, _k: Keywords) -> HashMap<Word, Keyword> {
+    Keyword::all().map(|kw| (kw.word(db), kw)).collect()
 }

@@ -14,7 +14,8 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
             syntax::Stmt::Print(expr) => {
                 compile_expr(db, expr, &mut chunk);
                 chunk.emit_byte(Code::Print)
-            }
+            },
+            syntax::Stmt::Var { name, initializer } => todo!()
         }
     }
     chunk

@@ -1,12 +1,6 @@
-Diagnostic {
-    severity: Error,
-    span: @0..@3,
-    message: "extra tokens after statement",
-    labels: [
-        Label {
-            span: @0..@3,
-            message: "here",
-        },
-    ],
-    children: [],
+Var {
+    name: "a",
+    initializer: Some(
+        NumberLiteral(1),
+    ),
 }

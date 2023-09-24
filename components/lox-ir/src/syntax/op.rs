@@ -50,6 +50,7 @@ define_operators! {
     Less => "<",
     Greater => ">",
     Bang => "!",
+    Equal => "=",
 }
 
 /// Check that the operator strings have the longest strings first.
