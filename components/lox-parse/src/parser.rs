@@ -9,7 +9,7 @@ use lox_ir::{
 };
 
 use crate::{
-    token_test::{AnyTree, Number, StringLiteral, TokenTest, Identifier},
+    token_test::{AnyTree, Identifier, Number, StringLiteral, TokenTest},
     tokens::Tokens,
 };
 

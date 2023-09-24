@@ -15,7 +15,7 @@ pub struct Jar(
     token_tree::TokenTree,
     diagnostic::Diagnostics,
     kw::Keywords,
-    kw::keywords_map
+    kw::keywords_map,
 );
 
 pub trait Db: salsa::DbWithJar<Jar> {}

@@ -18,8 +18,8 @@ pub enum Code {
     LessEqual,
     String(String),
     Print,
-    VarDeclaration(String), 
-    Variable(String),       
+    VarDeclaration(String),
+    Variable(String),
     Nil,
 }
 

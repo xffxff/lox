@@ -14,7 +14,7 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
             syntax::Stmt::Print(expr) => {
                 compile_expr(db, expr, &mut chunk);
                 chunk.emit_byte(Code::Print)
-            },
+            }
             syntax::Stmt::Var { name, initializer } => {
                 if let Some(initializer) = initializer {
                     compile_expr(db, initializer, &mut chunk);
@@ -79,6 +79,6 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
         syntax::Expr::Variable(word) => {
             let word_str = word.as_str(db);
             chunk.emit_byte(Code::Variable(word_str.to_string()))
-        },
+        }
     }
 }

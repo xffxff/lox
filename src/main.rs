@@ -3,12 +3,11 @@ use std::{
     path::{Path, PathBuf},
 };
 
+use clap::{Parser, Subcommand};
 use expect_test::expect_file;
 use lox_ir::{bytecode, diagnostic::Diagnostics, input_file::InputFile, word::Word};
 use salsa::DebugWithDb;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
-use clap::{Parser, Subcommand};
-
 
 #[salsa::db(
     lox_parse::Jar,
@@ -43,7 +42,7 @@ impl TestCase {
         let lox = TestCase::absolute_path(lox);
         if lox.extension().unwrap_or_default() != "lox" {
             panic!("expected lox file, got {}", lox.display());
-        }        
+        }
 
         // if the lox file is `foo/bar.lox`, then the generated files will be
         // `foo/bar/{token,syntax,bytecode,execute}`
@@ -164,7 +163,6 @@ fn main() {
         .with(EnvFilter::from_default_env())
         .init();
 
-
     let cli = Cli::parse();
 
     let db = Database::default();
@@ -184,6 +182,6 @@ fn main() {
                 let test_case = TestCase::new(&path);
                 test_case.test(&db);
             }
-        },
+        }
     }
 }
