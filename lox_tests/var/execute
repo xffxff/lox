@@ -36,3 +36,62 @@ stack: [
 execute: Print
 stack: []
 
+execute: String(
+    "hello",
+)
+stack: [
+    String(
+        "hello",
+    ),
+]
+
+execute: VarDeclaration(
+    "str1",
+)
+stack: []
+
+execute: String(
+    "world",
+)
+stack: [
+    String(
+        "world",
+    ),
+]
+
+execute: VarDeclaration(
+    "str2",
+)
+stack: []
+
+execute: Variable(
+    "str1",
+)
+stack: [
+    String(
+        "hello",
+    ),
+]
+
+execute: Variable(
+    "str2",
+)
+stack: [
+    String(
+        "hello",
+    ),
+    String(
+        "world",
+    ),
+]
+
+execute: Add
+stack: [
+    String(
+        "helloworld",
+    ),
+]
+
+execute: Print
+stack: []
+

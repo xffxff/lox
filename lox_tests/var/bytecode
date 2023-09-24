@@ -16,5 +16,25 @@ Chunk {
             "a",
         ),
         Print,
+        String(
+            "hello",
+        ),
+        VarDeclaration(
+            "str1",
+        ),
+        String(
+            "world",
+        ),
+        VarDeclaration(
+            "str2",
+        ),
+        Variable(
+            "str1",
+        ),
+        Variable(
+            "str2",
+        ),
+        Add,
+        Print,
     ],
 }

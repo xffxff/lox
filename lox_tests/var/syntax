@@ -11,3 +11,22 @@ Var {
 Print {
     expr: Variable(a),
 }
+Var {
+    name: "str1",
+    initializer: Some(
+        StringLiteral(hello),
+    ),
+}
+Var {
+    name: "str2",
+    initializer: Some(
+        StringLiteral(world),
+    ),
+}
+Print {
+    expr: BinaryOp {
+        left: Variable(str1),
+        op: Plus,
+        right: Variable(str2),
+    },
+}
