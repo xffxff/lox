@@ -217,6 +217,8 @@ impl VM {
                     // FIXME: This should be a call to a intrinsic function.
                     println!("{:?}", value);
                 },
+                bytecode::Code::VarDeclaration(_) => todo!(),
+                bytecode::Code::Nil => todo!(),
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);

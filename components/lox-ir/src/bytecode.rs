@@ -17,7 +17,9 @@ pub enum Code {
     Less,
     LessEqual,
     String(String),
-    Print
+    Print,
+    VarDeclaration(String), // name of the variable
+    Nil,
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]
