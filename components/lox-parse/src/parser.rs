@@ -60,7 +60,7 @@ impl<'me> Parser<'me> {
                 None
             };
             self.eat(Token::Semicolon).unwrap();
-            Some(Stmt::Var {
+            Some(Stmt::VariableDeclaration {
                 name: id,
                 initializer,
             })

@@ -79,7 +79,7 @@ pub enum Stmt {
     Print(Expr),
 
     // variable declaration, like `var foo = 1 + 2;`
-    Var {
+    VariableDeclaration {
         name: Word,
         initializer: Option<Expr>,
     },
@@ -104,7 +104,7 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
                 .debug_struct("Print")
                 .field("expr", &expr.debug(db))
                 .finish(),
-            Stmt::Var { name, initializer } => f
+            Stmt::VariableDeclaration { name, initializer } => f
                 .debug_struct("Var")
                 .field("name", &name.as_str(db))
                 .field("initializer", &initializer.debug(db))

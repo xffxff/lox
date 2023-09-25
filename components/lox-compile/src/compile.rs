@@ -15,7 +15,7 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
                 compile_expr(db, expr, &mut chunk);
                 chunk.emit_byte(Code::Print)
             }
-            syntax::Stmt::Var { name, initializer } => {
+            syntax::Stmt::VariableDeclaration { name, initializer } => {
                 if let Some(initializer) = initializer {
                     compile_expr(db, initializer, &mut chunk);
                 } else {
