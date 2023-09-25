@@ -34,6 +34,9 @@ stack: [
     ),
 ]
 
+execute: Pop
+stack: []
+
 execute: ReadGlobalVariable {
     name: "a",
 }
@@ -41,17 +44,10 @@ stack: [
     Number(
         2.0,
     ),
-    Number(
-        2.0,
-    ),
 ]
 
 execute: Print
-stack: [
-    Number(
-        2.0,
-    ),
-]
+stack: []
 
 execute: Constant(
     F64(
@@ -59,9 +55,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Number(
-        2.0,
-    ),
     Number(
         3.0,
     ),
@@ -72,28 +65,18 @@ execute: Assign(
 )
 stack: [
     Number(
-        2.0,
-    ),
-    Number(
         3.0,
     ),
 ]
 
 execute: Print
-stack: [
-    Number(
-        2.0,
-    ),
-]
+stack: []
 
 execute: ReadGlobalVariable {
     name: "a",
 }
 stack: [
     Number(
-        2.0,
-    ),
-    Number(
         3.0,
     ),
 ]
@@ -101,36 +84,22 @@ stack: [
 execute: GlobalVarDeclaration {
     name: "b",
 }
-stack: [
-    Number(
-        2.0,
-    ),
-]
+stack: []
 
 execute: Nil
 stack: [
-    Number(
-        2.0,
-    ),
     Nil,
 ]
 
 execute: GlobalVarDeclaration {
     name: "c",
 }
-stack: [
-    Number(
-        2.0,
-    ),
-]
+stack: []
 
 execute: ReadGlobalVariable {
     name: "b",
 }
 stack: [
-    Number(
-        2.0,
-    ),
     Number(
         3.0,
     ),
@@ -141,35 +110,22 @@ execute: Assign(
 )
 stack: [
     Number(
-        2.0,
-    ),
-    Number(
         3.0,
     ),
 ]
+
+execute: Pop
+stack: []
 
 execute: ReadGlobalVariable {
     name: "c",
 }
 stack: [
     Number(
-        2.0,
-    ),
-    Number(
-        3.0,
-    ),
-    Number(
         3.0,
     ),
 ]
 
 execute: Print
-stack: [
-    Number(
-        2.0,
-    ),
-    Number(
-        3.0,
-    ),
-]
+stack: []
 

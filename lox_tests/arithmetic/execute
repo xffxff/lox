@@ -30,15 +30,15 @@ stack: [
     ),
 ]
 
+execute: Pop
+stack: []
+
 execute: Constant(
     F64(
         1.0,
     ),
 )
 stack: [
-    Number(
-        3.0,
-    ),
     Number(
         1.0,
     ),
@@ -50,9 +50,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Number(
-        3.0,
-    ),
     Number(
         1.0,
     ),
@@ -67,9 +64,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Number(
-        3.0,
-    ),
     Number(
         1.0,
     ),
@@ -84,9 +78,6 @@ stack: [
 execute: Multiply
 stack: [
     Number(
-        3.0,
-    ),
-    Number(
         1.0,
     ),
     Number(
@@ -97,12 +88,12 @@ stack: [
 execute: Add
 stack: [
     Number(
-        3.0,
-    ),
-    Number(
         7.0,
     ),
 ]
+
+execute: Pop
+stack: []
 
 execute: Constant(
     F64(
@@ -110,12 +101,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
     Number(
         1.0,
     ),
@@ -127,12 +112,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
     Number(
         1.0,
     ),
@@ -147,12 +126,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
     Number(
         1.0,
     ),
@@ -167,12 +140,6 @@ stack: [
 execute: Divide
 stack: [
     Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
-    Number(
         1.0,
     ),
     Number(
@@ -183,15 +150,12 @@ stack: [
 execute: Subtract
 stack: [
     Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
-    Number(
         0.33333333333333337,
     ),
 ]
+
+execute: Pop
+stack: []
 
 execute: Constant(
     F64(
@@ -199,15 +163,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
-    Number(
-        0.33333333333333337,
-    ),
     Number(
         1.0,
     ),
@@ -219,15 +174,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
-    Number(
-        0.33333333333333337,
-    ),
     Number(
         1.0,
     ),
@@ -242,15 +188,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
-    Number(
-        0.33333333333333337,
-    ),
     Number(
         1.0,
     ),
@@ -265,15 +202,6 @@ stack: [
 execute: Negate
 stack: [
     Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
-    Number(
-        0.33333333333333337,
-    ),
-    Number(
         1.0,
     ),
     Number(
@@ -287,15 +215,6 @@ stack: [
 execute: Multiply
 stack: [
     Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
-    Number(
-        0.33333333333333337,
-    ),
-    Number(
         1.0,
     ),
     Number(
@@ -306,16 +225,10 @@ stack: [
 execute: Add
 stack: [
     Number(
-        3.0,
-    ),
-    Number(
-        7.0,
-    ),
-    Number(
-        0.33333333333333337,
-    ),
-    Number(
         -5.0,
     ),
 ]
+
+execute: Pop
+stack: []
 

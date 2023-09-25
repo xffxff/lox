@@ -11,6 +11,7 @@ Chunk {
             ),
         ),
         Equal,
+        Pop,
         Constant(
             F64(
                 1.0,
@@ -22,5 +23,6 @@ Chunk {
             ),
         ),
         NotEqual,
+        Pop,
     ],
 }

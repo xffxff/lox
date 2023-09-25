@@ -5,54 +5,39 @@ stack: [
     ),
 ]
 
+execute: Pop
+stack: []
+
 execute: False
 stack: [
-    Boolean(
-        true,
-    ),
     Boolean(
         false,
     ),
 ]
+
+execute: Pop
+stack: []
 
 execute: True
 stack: [
     Boolean(
         true,
     ),
-    Boolean(
-        false,
-    ),
-    Boolean(
-        true,
-    ),
 ]
 
 execute: Not
 stack: [
     Boolean(
-        true,
-    ),
-    Boolean(
-        false,
-    ),
-    Boolean(
         false,
     ),
 ]
+
+execute: Pop
+stack: []
 
 execute: False
 stack: [
     Boolean(
-        true,
-    ),
-    Boolean(
-        false,
-    ),
-    Boolean(
-        false,
-    ),
-    Boolean(
         false,
     ),
 ]
@@ -62,14 +47,8 @@ stack: [
     Boolean(
         true,
     ),
-    Boolean(
-        false,
-    ),
-    Boolean(
-        false,
-    ),
-    Boolean(
-        true,
-    ),
 ]
+
+execute: Pop
+stack: []
 

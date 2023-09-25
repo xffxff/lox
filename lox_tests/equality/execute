@@ -30,15 +30,15 @@ stack: [
     ),
 ]
 
+execute: Pop
+stack: []
+
 execute: Constant(
     F64(
         1.0,
     ),
 )
 stack: [
-    Boolean(
-        false,
-    ),
     Number(
         1.0,
     ),
@@ -50,9 +50,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Boolean(
-        false,
-    ),
     Number(
         1.0,
     ),
@@ -64,10 +61,10 @@ stack: [
 execute: NotEqual
 stack: [
     Boolean(
-        false,
-    ),
-    Boolean(
         true,
     ),
 ]
+
+execute: Pop
+stack: []
 

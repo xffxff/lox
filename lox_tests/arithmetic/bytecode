@@ -11,6 +11,7 @@ Chunk {
             ),
         ),
         Add,
+        Pop,
         Constant(
             F64(
                 1.0,
@@ -28,6 +29,7 @@ Chunk {
         ),
         Multiply,
         Add,
+        Pop,
         Constant(
             F64(
                 1.0,
@@ -45,6 +47,7 @@ Chunk {
         ),
         Divide,
         Subtract,
+        Pop,
         Constant(
             F64(
                 1.0,
@@ -63,5 +66,6 @@ Chunk {
         Negate,
         Multiply,
         Add,
+        Pop,
     ],
 }

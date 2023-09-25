@@ -30,15 +30,15 @@ stack: [
     ),
 ]
 
+execute: Pop
+stack: []
+
 execute: Constant(
     F64(
         1.0,
     ),
 )
 stack: [
-    Boolean(
-        true,
-    ),
     Number(
         1.0,
     ),
@@ -50,9 +50,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Boolean(
-        true,
-    ),
     Number(
         1.0,
     ),
@@ -66,10 +63,10 @@ stack: [
     Boolean(
         true,
     ),
-    Boolean(
-        true,
-    ),
 ]
+
+execute: Pop
+stack: []
 
 execute: Constant(
     F64(
@@ -77,12 +74,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Boolean(
-        true,
-    ),
-    Boolean(
-        true,
-    ),
     Number(
         1.0,
     ),
@@ -94,12 +85,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Boolean(
-        true,
-    ),
-    Boolean(
-        true,
-    ),
     Number(
         1.0,
     ),
@@ -111,15 +96,12 @@ stack: [
 execute: Greater
 stack: [
     Boolean(
-        true,
-    ),
-    Boolean(
-        true,
-    ),
-    Boolean(
         false,
     ),
 ]
+
+execute: Pop
+stack: []
 
 execute: Constant(
     F64(
@@ -127,15 +109,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Boolean(
-        true,
-    ),
-    Boolean(
-        true,
-    ),
-    Boolean(
-        false,
-    ),
     Number(
         1.0,
     ),
@@ -147,15 +120,6 @@ execute: Constant(
     ),
 )
 stack: [
-    Boolean(
-        true,
-    ),
-    Boolean(
-        true,
-    ),
-    Boolean(
-        false,
-    ),
     Number(
         1.0,
     ),
@@ -169,14 +133,8 @@ stack: [
     Boolean(
         true,
     ),
-    Boolean(
-        true,
-    ),
-    Boolean(
-        false,
-    ),
-    Boolean(
-        true,
-    ),
 ]
+
+execute: Pop
+stack: []
 

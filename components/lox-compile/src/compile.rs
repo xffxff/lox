@@ -38,7 +38,10 @@ struct Compiler {
 impl Compiler {
     fn compile_stmt(&mut self, db: &dyn crate::Db, stmt: &syntax::Stmt, chunk: &mut Chunk) {
         match stmt {
-            syntax::Stmt::Expr(expr) => self.compile_expr(db, expr, chunk),
+            syntax::Stmt::Expr(expr) => {
+                self.compile_expr(db, expr, chunk);
+                chunk.emit_byte(Code::Pop);
+            }
             syntax::Stmt::Print(expr) => {
                 self.compile_expr(db, expr, chunk);
                 chunk.emit_byte(Code::Print)

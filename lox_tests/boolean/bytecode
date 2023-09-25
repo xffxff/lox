@@ -1,10 +1,14 @@
 Chunk {
     code: [
         True,
+        Pop,
         False,
+        Pop,
         True,
         Not,
+        Pop,
         False,
         Not,
+        Pop,
     ],
 }
