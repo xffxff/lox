@@ -1,0 +1,14 @@
+TokenTree {
+    source text: "{\n    var a = 1;\n}",
+    tokens: [
+        Delimiter({),
+        Tree(
+            TokenTree(
+                Id {
+                    value: 1,
+                },
+            ),
+        ),
+        Delimiter(}),
+    ],
+}

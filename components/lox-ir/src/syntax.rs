@@ -83,9 +83,12 @@ pub enum Stmt {
         name: Word,
         initializer: Option<Expr>,
     },
+
+    // block statement, like `{ 1 + 2; }`
+    Block(Vec<Stmt>),
 }
 
-impl salsa::DebugWithDb<dyn crate::Db> for Stmt {
+impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
     fn fmt(
         &self,
         f: &mut std::fmt::Formatter<'_>,
@@ -106,6 +109,13 @@ impl salsa::DebugWithDb<dyn crate::Db> for Stmt {
                 .field("name", &name.as_str(db))
                 .field("initializer", &initializer.debug(db))
                 .finish(),
+            Stmt::Block(stmts) => {
+                let mut builder = f.debug_struct("Block");
+                for stmt in stmts {
+                    builder.field("stmt", &stmt.debug(db));
+                }
+                builder.finish()
+            }
         }
     }
 }

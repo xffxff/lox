@@ -72,6 +72,10 @@ impl<'me> Parser<'me> {
     fn stmt(&mut self) -> Option<Stmt> {
         if self.eat(Keyword::Print).is_some() {
             return self.print_stmt();
+        } else if let Some((_, token_tree)) = self.delimited('{') {
+            let mut parser = Parser::new(self.db, token_tree);
+            let stmts = parser.parse();
+            return Some(Stmt::Block(stmts));
         }
         self.expr_stmt()
     }

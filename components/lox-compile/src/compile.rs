@@ -25,6 +25,7 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
                 let name_str = name.as_str(db);
                 chunk.emit_byte(Code::VarDeclaration(name_str.to_string()))
             }
+            syntax::Stmt::Block(stmts) => todo!(),
         }
     }
     chunk
