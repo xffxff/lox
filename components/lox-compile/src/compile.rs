@@ -66,7 +66,7 @@ impl Compiler {
                 for stmt in stmts {
                     self.compile_stmt(db, stmt, chunk);
                 }
-                self.after_scope();
+                self.after_scope(chunk);
             }
         }
     }
@@ -137,10 +137,11 @@ impl Compiler {
         self.scope_depth += 1;
     }
 
-    fn after_scope(&mut self) {
+    fn after_scope(&mut self, chunk: &mut Chunk) {
         self.scope_depth -= 1;
         while !self.locals.is_empty() && self.locals.last().unwrap().depth > self.scope_depth {
             self.locals.pop();
+            chunk.emit_byte(Code::Pop)
         }
     }
 

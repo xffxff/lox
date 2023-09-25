@@ -23,6 +23,7 @@ pub enum Code {
     LocalVariable(usize),         // index of the variable in the stack
     Nil,
     Assign(String),
+    Pop,
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]

@@ -242,6 +242,9 @@ impl VM {
                     let value = self.stack[index].clone();
                     self.push(value);
                 }
+                bytecode::Code::Pop => {
+                    self.pop();
+                }
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);

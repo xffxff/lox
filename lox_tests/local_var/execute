@@ -28,3 +28,6 @@ stack: [
     ),
 ]
 
+execute: Pop
+stack: []
+
