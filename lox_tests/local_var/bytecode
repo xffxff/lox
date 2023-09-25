@@ -10,14 +10,14 @@ Chunk {
                 2.0,
             ),
         ),
-        ReadLocalVariable(
-            1,
-        ),
+        ReadLocalVariable {
+            index_in_stack: 1,
+        },
         Print,
         Pop,
-        ReadLocalVariable(
-            0,
-        ),
+        ReadLocalVariable {
+            index_in_stack: 0,
+        },
         Print,
         Pop,
     ],

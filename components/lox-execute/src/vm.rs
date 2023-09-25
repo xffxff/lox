@@ -223,14 +223,14 @@ impl VM {
                     // FIXME: This should be a call to a intrinsic function.
                     println!("{:?}", value);
                 }
-                bytecode::Code::GlobalVarDeclaration(name) => {
+                bytecode::Code::GlobalVarDeclaration { name } => {
                     let value = self.pop();
                     self.globals.insert(name, value);
                 }
                 bytecode::Code::Nil => {
                     self.push(Value::Nil);
                 }
-                bytecode::Code::GlobalVariable(name) => {
+                bytecode::Code::ReadGlobalVariable { name } => {
                     let value = self.globals.get(&name).expect("variable not found");
                     self.push(value.clone());
                 }
@@ -238,8 +238,8 @@ impl VM {
                     let value = self.peek();
                     self.globals.insert(name, value.clone());
                 }
-                bytecode::Code::ReadLocalVariable(index) => {
-                    let value = self.stack[index].clone();
+                bytecode::Code::ReadLocalVariable { index_in_stack } => {
+                    let value = self.stack[index_in_stack].clone();
                     self.push(value);
                 }
                 bytecode::Code::Pop => {

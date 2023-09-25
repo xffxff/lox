@@ -5,35 +5,35 @@ Chunk {
                 1.0,
             ),
         ),
-        GlobalVarDeclaration(
-            "a",
-        ),
+        GlobalVarDeclaration {
+            name: "a",
+        },
         Nil,
-        GlobalVarDeclaration(
-            "b",
-        ),
-        GlobalVariable(
-            "a",
-        ),
+        GlobalVarDeclaration {
+            name: "b",
+        },
+        ReadGlobalVariable {
+            name: "a",
+        },
         Print,
         String(
             "hello",
         ),
-        GlobalVarDeclaration(
-            "str1",
-        ),
+        GlobalVarDeclaration {
+            name: "str1",
+        },
         String(
             "world",
         ),
-        GlobalVarDeclaration(
-            "str2",
-        ),
-        GlobalVariable(
-            "str1",
-        ),
-        GlobalVariable(
-            "str2",
-        ),
+        GlobalVarDeclaration {
+            name: "str2",
+        },
+        ReadGlobalVariable {
+            name: "str1",
+        },
+        ReadGlobalVariable {
+            name: "str2",
+        },
         Add,
         Print,
     ],

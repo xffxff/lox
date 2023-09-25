@@ -5,9 +5,9 @@ Chunk {
                 1.0,
             ),
         ),
-        GlobalVarDeclaration(
-            "a",
-        ),
+        GlobalVarDeclaration {
+            name: "a",
+        },
         Constant(
             F64(
                 2.0,
@@ -16,9 +16,9 @@ Chunk {
         Assign(
             "a",
         ),
-        GlobalVariable(
-            "a",
-        ),
+        ReadGlobalVariable {
+            name: "a",
+        },
         Print,
         Constant(
             F64(
@@ -29,25 +29,25 @@ Chunk {
             "a",
         ),
         Print,
-        GlobalVariable(
-            "a",
-        ),
-        GlobalVarDeclaration(
-            "b",
-        ),
+        ReadGlobalVariable {
+            name: "a",
+        },
+        GlobalVarDeclaration {
+            name: "b",
+        },
         Nil,
-        GlobalVarDeclaration(
-            "c",
-        ),
-        GlobalVariable(
-            "b",
-        ),
+        GlobalVarDeclaration {
+            name: "c",
+        },
+        ReadGlobalVariable {
+            name: "b",
+        },
         Assign(
             "c",
         ),
-        GlobalVariable(
-            "c",
-        ),
+        ReadGlobalVariable {
+            name: "c",
+        },
         Print,
     ],
 }

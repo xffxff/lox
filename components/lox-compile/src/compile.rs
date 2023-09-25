@@ -55,7 +55,9 @@ impl Compiler {
                 // there are two types of variables: global and local, they are compiled differently
                 // they are distinguished by the lexical scope depth
                 if self.scope_depth == 0 {
-                    chunk.emit_byte(Code::GlobalVarDeclaration(name_str.to_string()))
+                    chunk.emit_byte(Code::GlobalVarDeclaration {
+                        name: name_str.to_string(),
+                    })
                 } else {
                     let local = Local::new(name_str, self.scope_depth);
                     self.locals.push(local)
@@ -120,9 +122,13 @@ impl Compiler {
             syntax::Expr::Variable(word) => {
                 let name = word.as_str(db);
                 if let Some(index) = self.resolve_local(name) {
-                    chunk.emit_byte(Code::ReadLocalVariable(index))
+                    chunk.emit_byte(Code::ReadLocalVariable {
+                        index_in_stack: index,
+                    })
                 } else {
-                    chunk.emit_byte(Code::GlobalVariable(name.to_string()))
+                    chunk.emit_byte(Code::ReadGlobalVariable {
+                        name: name.to_string(),
+                    })
                 }
             }
             syntax::Expr::Assign { name, value } => {

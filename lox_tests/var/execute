@@ -9,9 +9,9 @@ stack: [
     ),
 ]
 
-execute: GlobalVarDeclaration(
-    "a",
-)
+execute: GlobalVarDeclaration {
+    name: "a",
+}
 stack: []
 
 execute: Nil
@@ -19,14 +19,14 @@ stack: [
     Nil,
 ]
 
-execute: GlobalVarDeclaration(
-    "b",
-)
+execute: GlobalVarDeclaration {
+    name: "b",
+}
 stack: []
 
-execute: GlobalVariable(
-    "a",
-)
+execute: ReadGlobalVariable {
+    name: "a",
+}
 stack: [
     Number(
         1.0,
@@ -45,9 +45,9 @@ stack: [
     ),
 ]
 
-execute: GlobalVarDeclaration(
-    "str1",
-)
+execute: GlobalVarDeclaration {
+    name: "str1",
+}
 stack: []
 
 execute: String(
@@ -59,23 +59,23 @@ stack: [
     ),
 ]
 
-execute: GlobalVarDeclaration(
-    "str2",
-)
+execute: GlobalVarDeclaration {
+    name: "str2",
+}
 stack: []
 
-execute: GlobalVariable(
-    "str1",
-)
+execute: ReadGlobalVariable {
+    name: "str1",
+}
 stack: [
     String(
         "hello",
     ),
 ]
 
-execute: GlobalVariable(
-    "str2",
-)
+execute: ReadGlobalVariable {
+    name: "str2",
+}
 stack: [
     String(
         "hello",

@@ -9,9 +9,9 @@ stack: [
     ),
 ]
 
-execute: GlobalVarDeclaration(
-    "a",
-)
+execute: GlobalVarDeclaration {
+    name: "a",
+}
 stack: []
 
 execute: Constant(
@@ -34,9 +34,9 @@ stack: [
     ),
 ]
 
-execute: GlobalVariable(
-    "a",
-)
+execute: ReadGlobalVariable {
+    name: "a",
+}
 stack: [
     Number(
         2.0,
@@ -86,9 +86,9 @@ stack: [
     ),
 ]
 
-execute: GlobalVariable(
-    "a",
-)
+execute: ReadGlobalVariable {
+    name: "a",
+}
 stack: [
     Number(
         2.0,
@@ -98,9 +98,9 @@ stack: [
     ),
 ]
 
-execute: GlobalVarDeclaration(
-    "b",
-)
+execute: GlobalVarDeclaration {
+    name: "b",
+}
 stack: [
     Number(
         2.0,
@@ -115,18 +115,18 @@ stack: [
     Nil,
 ]
 
-execute: GlobalVarDeclaration(
-    "c",
-)
+execute: GlobalVarDeclaration {
+    name: "c",
+}
 stack: [
     Number(
         2.0,
     ),
 ]
 
-execute: GlobalVariable(
-    "b",
-)
+execute: ReadGlobalVariable {
+    name: "b",
+}
 stack: [
     Number(
         2.0,
@@ -148,9 +148,9 @@ stack: [
     ),
 ]
 
-execute: GlobalVariable(
-    "c",
-)
+execute: ReadGlobalVariable {
+    name: "c",
+}
 stack: [
     Number(
         2.0,

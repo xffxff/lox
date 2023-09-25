@@ -18,9 +18,15 @@ pub enum Code {
     LessEqual,
     String(String),
     Print,
-    GlobalVarDeclaration(String), // name of the variable
-    GlobalVariable(String),       // name of the variable
-    ReadLocalVariable(usize),     // index of the variable in the stack
+    GlobalVarDeclaration {
+        name: String, // name of the variable
+    },
+    ReadGlobalVariable {
+        name: String, // name of the variable
+    },
+    ReadLocalVariable {
+        index_in_stack: usize, // index of the variable in the stack
+    },
     Nil,
     Assign(String),
     Pop,

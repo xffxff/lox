@@ -23,9 +23,9 @@ stack: [
     ),
 ]
 
-execute: ReadLocalVariable(
-    1,
-)
+execute: ReadLocalVariable {
+    index_in_stack: 1,
+}
 stack: [
     Number(
         1.0,
@@ -55,9 +55,9 @@ stack: [
     ),
 ]
 
-execute: ReadLocalVariable(
-    0,
-)
+execute: ReadLocalVariable {
+    index_in_stack: 0,
+}
 stack: [
     Number(
         1.0,
