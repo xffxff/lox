@@ -9,7 +9,7 @@ stack: [
     ),
 ]
 
-execute: VarDeclaration(
+execute: GlobalVarDeclaration(
     "a",
 )
 stack: []
@@ -19,7 +19,7 @@ stack: [
     Nil,
 ]
 
-execute: VarDeclaration(
+execute: GlobalVarDeclaration(
     "b",
 )
 stack: []
@@ -45,7 +45,7 @@ stack: [
     ),
 ]
 
-execute: VarDeclaration(
+execute: GlobalVarDeclaration(
     "str1",
 )
 stack: []
@@ -59,7 +59,7 @@ stack: [
     ),
 ]
 
-execute: VarDeclaration(
+execute: GlobalVarDeclaration(
     "str2",
 )
 stack: []

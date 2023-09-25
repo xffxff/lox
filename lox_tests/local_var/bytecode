@@ -1,3 +1,9 @@
 Chunk {
-    code: [],
+    code: [
+        Constant(
+            F64(
+                1.0,
+            ),
+        ),
+    ],
 }

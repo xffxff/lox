@@ -5,11 +5,11 @@ Chunk {
                 1.0,
             ),
         ),
-        VarDeclaration(
+        GlobalVarDeclaration(
             "a",
         ),
         Nil,
-        VarDeclaration(
+        GlobalVarDeclaration(
             "b",
         ),
         Variable(
@@ -19,13 +19,13 @@ Chunk {
         String(
             "hello",
         ),
-        VarDeclaration(
+        GlobalVarDeclaration(
             "str1",
         ),
         String(
             "world",
         ),
-        VarDeclaration(
+        GlobalVarDeclaration(
             "str2",
         ),
         Variable(

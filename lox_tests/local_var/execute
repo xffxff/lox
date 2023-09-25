@@ -1,0 +1,11 @@
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        1.0,
+    ),
+]
+

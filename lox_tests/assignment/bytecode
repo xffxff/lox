@@ -5,7 +5,7 @@ Chunk {
                 1.0,
             ),
         ),
-        VarDeclaration(
+        GlobalVarDeclaration(
             "a",
         ),
         Constant(
@@ -32,11 +32,11 @@ Chunk {
         Variable(
             "a",
         ),
-        VarDeclaration(
+        GlobalVarDeclaration(
             "b",
         ),
         Nil,
-        VarDeclaration(
+        GlobalVarDeclaration(
             "c",
         ),
         Variable(

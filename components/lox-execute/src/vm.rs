@@ -223,7 +223,7 @@ impl VM {
                     // FIXME: This should be a call to a intrinsic function.
                     println!("{:?}", value);
                 }
-                bytecode::Code::VarDeclaration(name) => {
+                bytecode::Code::GlobalVarDeclaration(name) => {
                     let value = self.pop();
                     self.globals.insert(name, value);
                 }

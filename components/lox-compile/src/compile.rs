@@ -8,27 +8,79 @@ use lox_ir::{
 pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
     let stmts = lox_parse::parse_file(db, input_file);
     let mut chunk = Chunk::default();
+    let mut compiler = Compiler::default();
     for stmt in stmts {
+        compiler.compile_stmt(db, &stmt, &mut chunk);
+    }
+    chunk
+}
+
+struct Local {
+    name: String,
+    depth: usize,
+}
+
+impl Local {
+    fn new(name: &str, depth: usize) -> Self {
+        Self {
+            name: name.to_string(),
+            depth,
+        }
+    }
+}
+
+#[derive(Default)]
+struct Compiler {
+    locals: Vec<Local>,
+    scope_depth: usize,
+}
+
+impl Compiler {
+    fn compile_stmt(&mut self, db: &dyn crate::Db, stmt: &syntax::Stmt, chunk: &mut Chunk) {
         match stmt {
-            syntax::Stmt::Expr(expr) => compile_expr(db, expr, &mut chunk),
+            syntax::Stmt::Expr(expr) => compile_expr(db, expr, chunk),
             syntax::Stmt::Print(expr) => {
-                compile_expr(db, expr, &mut chunk);
+                compile_expr(db, expr, chunk);
                 chunk.emit_byte(Code::Print)
             }
             syntax::Stmt::VariableDeclaration { name, initializer } => {
                 if let Some(initializer) = initializer {
-                    compile_expr(db, initializer, &mut chunk);
+                    compile_expr(db, initializer, chunk);
                 } else {
                     chunk.emit_byte(Code::Nil)
                 }
 
                 let name_str = name.as_str(db);
-                chunk.emit_byte(Code::VarDeclaration(name_str.to_string()))
+
+                // there are two types of variables: global and local, they are compiled differently
+                // they are distinguished by the lexical scope depth
+                if self.scope_depth == 0 {
+                    chunk.emit_byte(Code::GlobalVarDeclaration(name_str.to_string()))
+                } else {
+                    let local = Local::new(name_str, self.scope_depth);
+                    self.locals.push(local)
+                }
             }
-            syntax::Stmt::Block(stmts) => todo!(),
+            syntax::Stmt::Block(stmts) => {
+                self.before_scope();
+                for stmt in stmts {
+                    self.compile_stmt(db, stmt, chunk);
+                }
+                self.after_scope();
+            }
         }
     }
-    chunk
+
+    fn before_scope(&mut self) {
+        self.scope_depth += 1;
+    }
+
+    fn after_scope(&mut self) {
+        self.scope_depth -= 1;
+        while !self.locals.is_empty() && self.locals.last().unwrap().depth > self.scope_depth {
+            self.locals.pop();
+        }
+    }
 }
 
 fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
