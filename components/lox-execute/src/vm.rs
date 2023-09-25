@@ -235,8 +235,8 @@ impl VM {
                     self.push(value.clone());
                 }
                 bytecode::Code::Assign(name) => {
-                    let value = self.pop();
-                    self.globals.insert(name, value);
+                    let value = self.peek();
+                    self.globals.insert(name, value.clone());
                 }
             }
             if let Some(step_inspect) = &mut step_inspect {
@@ -253,6 +253,10 @@ impl VM {
 
     fn pop(&mut self) -> Value {
         self.stack.pop().unwrap()
+    }
+
+    fn peek(&self) -> &Value {
+        self.stack.last().unwrap()
     }
 
     fn push<T>(&mut self, value: T)

@@ -13,3 +13,28 @@ Expr {
 Print {
     expr: Variable(a),
 }
+Print {
+    expr: Assign {
+        name: "a",
+        value: NumberLiteral(3),
+    },
+}
+Var {
+    name: "b",
+    initializer: Some(
+        Variable(a),
+    ),
+}
+Var {
+    name: "c",
+    initializer: None,
+}
+Expr {
+    expr: Assign {
+        name: "c",
+        value: Variable(b),
+    },
+}
+Print {
+    expr: Variable(c),
+}

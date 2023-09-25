@@ -28,7 +28,11 @@ stack: [
 execute: Assign(
     "a",
 )
-stack: []
+stack: [
+    Number(
+        2.0,
+    ),
+]
 
 execute: Variable(
     "a",
@@ -37,8 +41,135 @@ stack: [
     Number(
         2.0,
     ),
+    Number(
+        2.0,
+    ),
 ]
 
 execute: Print
-stack: []
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        3.0,
+    ),
+)
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+
+execute: Assign(
+    "a",
+)
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+
+execute: Print
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Variable(
+    "a",
+)
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+
+execute: VarDeclaration(
+    "b",
+)
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Nil
+stack: [
+    Number(
+        2.0,
+    ),
+    Nil,
+]
+
+execute: VarDeclaration(
+    "c",
+)
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Variable(
+    "b",
+)
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+
+execute: Assign(
+    "c",
+)
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+
+execute: Variable(
+    "c",
+)
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+
+execute: Print
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
 

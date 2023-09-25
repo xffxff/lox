@@ -20,5 +20,34 @@ Chunk {
             "a",
         ),
         Print,
+        Constant(
+            F64(
+                3.0,
+            ),
+        ),
+        Assign(
+            "a",
+        ),
+        Print,
+        Variable(
+            "a",
+        ),
+        VarDeclaration(
+            "b",
+        ),
+        Nil,
+        VarDeclaration(
+            "c",
+        ),
+        Variable(
+            "b",
+        ),
+        Assign(
+            "c",
+        ),
+        Variable(
+            "c",
+        ),
+        Print,
     ],
 }
