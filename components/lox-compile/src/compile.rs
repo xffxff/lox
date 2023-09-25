@@ -10,7 +10,7 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
     let mut chunk = Chunk::default();
     let mut compiler = Compiler::default();
     for stmt in stmts {
-        compiler.compile_stmt(db, &stmt, &mut chunk);
+        compiler.compile_stmt(db, stmt, &mut chunk);
     }
     chunk
 }
