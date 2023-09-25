@@ -89,17 +89,38 @@ impl<'me> Parser<'me> {
         Some(Stmt::Expr(expr))
     }
 
-    // expression     → equality ;
-    // equality       → comparison ( ( "!=" | "==" ) comparison )* ;
-    // comparison     → term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
-    // term           → factor ( ( "-" | "+" ) factor )* ;
-    // factor         → unary ( ( "/" | "*" ) unary )* ;
-    // unary          → ( "!" | "-" ) unary
+    // expression     -> assignment ;
+    // assignment     -> IDENTIFIER "=" assignment | equality ;
+    // equality       -> comparison ( ( "!=" | "==" ) comparison )* ;
+    // comparison     -> term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+    // term           -> factor ( ( "-" | "+" ) factor )* ;
+    // factor         -> unary ( ( "/" | "*" ) unary )* ;
+    // unary          -> ( "!" | "-" ) unary
     //             | primary ;
     // primary        → NUMBER | STRING | "true" | "false" | "nil"
     //             | "(" expression ")" ;
     fn parse_expr(&mut self) -> Option<Expr> {
-        self.equality()
+        self.assignment()
+    }
+
+    // assignment     -> IDENTIFIER "=" assignment | equality ;
+    // assignment is not a statement, it is an expression
+    fn assignment(&mut self) -> Option<Expr> {
+        let expr = self.equality()?;
+        if self.eat_op(Op::Equal).is_some() {
+            let value = self.assignment()?;
+            if let Expr::Variable(name) = expr {
+                return Some(Expr::Assign {
+                    name,
+                    value: Box::new(value),
+                });
+            } else {
+                // FIXME: we should use the span of the `expr` here
+                let span = self.tokens.peek_span();
+                self.error(span, "invalid assignment target").emit(self.db);
+            }
+        }
+        Some(expr)
     }
 
     fn equality(&mut self) -> Option<Expr> {

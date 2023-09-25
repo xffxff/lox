@@ -1,0 +1,25 @@
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
+execute: VarDeclaration(
+    "a",
+)
+stack: []
+
+execute: Variable(
+    "a",
+)
+stack: [
+    Number(
+        1.0,
+    ),
+]
+

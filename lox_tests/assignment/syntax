@@ -1,0 +1,12 @@
+Var {
+    name: "a",
+    initializer: Some(
+        NumberLiteral(1),
+    ),
+}
+Expr {
+    expr: Assign {
+        name: "a",
+        value: NumberLiteral(2),
+    },
+}
