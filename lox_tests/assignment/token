@@ -1,5 +1,5 @@
 TokenTree {
-    source text: "var a = 1;\na = 2;",
+    source text: "var a = 1;\na = 2;\nprint a;",
     tokens: [
         Alphabetic(var),
         Whitespace(' '),
@@ -15,6 +15,11 @@ TokenTree {
         Op(=),
         Whitespace(' '),
         Number(2),
+        Semicolon,
+        Whitespace('\n'),
+        Alphabetic(print),
+        Whitespace(' '),
+        Alphabetic(a),
         Semicolon,
     ],
 }

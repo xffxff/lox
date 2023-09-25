@@ -8,8 +8,17 @@ Chunk {
         VarDeclaration(
             "a",
         ),
+        Constant(
+            F64(
+                2.0,
+            ),
+        ),
+        Assign(
+            "a",
+        ),
         Variable(
             "a",
         ),
+        Print,
     ],
 }

@@ -80,6 +80,10 @@ fn compile_expr(db: &dyn crate::Db, expr: &syntax::Expr, chunk: &mut Chunk) {
             let word_str = word.as_str(db);
             chunk.emit_byte(Code::Variable(word_str.to_string()))
         }
-        syntax::Expr::Assign { name, value } => todo!(),
+        syntax::Expr::Assign { name, value } => {
+            compile_expr(db, value, chunk);
+            let name_str = name.as_str(db);
+            chunk.emit_byte(Code::Assign(name_str.to_string()))
+        }
     }
 }

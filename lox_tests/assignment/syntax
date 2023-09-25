@@ -10,3 +10,6 @@ Expr {
         value: NumberLiteral(2),
     },
 }
+Print {
+    expr: Variable(a),
+}

@@ -14,12 +14,31 @@ execute: VarDeclaration(
 )
 stack: []
 
+execute: Constant(
+    F64(
+        2.0,
+    ),
+)
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Assign(
+    "a",
+)
+stack: []
+
 execute: Variable(
     "a",
 )
 stack: [
     Number(
-        1.0,
+        2.0,
     ),
 ]
+
+execute: Print
+stack: []
 

@@ -21,6 +21,7 @@ pub enum Code {
     VarDeclaration(String),
     Variable(String),
     Nil,
+    Assign(String),
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]
