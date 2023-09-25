@@ -12,7 +12,7 @@ Chunk {
         GlobalVarDeclaration(
             "b",
         ),
-        Variable(
+        GlobalVariable(
             "a",
         ),
         Print,
@@ -28,10 +28,10 @@ Chunk {
         GlobalVarDeclaration(
             "str2",
         ),
-        Variable(
+        GlobalVariable(
             "str1",
         ),
-        Variable(
+        GlobalVariable(
             "str2",
         ),
         Add,

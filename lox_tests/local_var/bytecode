@@ -5,5 +5,9 @@ Chunk {
                 1.0,
             ),
         ),
+        LocalVariable(
+            0,
+        ),
+        Print,
     ],
 }

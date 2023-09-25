@@ -9,3 +9,22 @@ stack: [
     ),
 ]
 
+execute: LocalVariable(
+    0,
+)
+stack: [
+    Number(
+        1.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Print
+stack: [
+    Number(
+        1.0,
+    ),
+]
+

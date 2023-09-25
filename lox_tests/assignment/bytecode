@@ -16,7 +16,7 @@ Chunk {
         Assign(
             "a",
         ),
-        Variable(
+        GlobalVariable(
             "a",
         ),
         Print,
@@ -29,7 +29,7 @@ Chunk {
             "a",
         ),
         Print,
-        Variable(
+        GlobalVariable(
             "a",
         ),
         GlobalVarDeclaration(
@@ -39,13 +39,13 @@ Chunk {
         GlobalVarDeclaration(
             "c",
         ),
-        Variable(
+        GlobalVariable(
             "b",
         ),
         Assign(
             "c",
         ),
-        Variable(
+        GlobalVariable(
             "c",
         ),
         Print,

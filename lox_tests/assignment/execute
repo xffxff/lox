@@ -34,7 +34,7 @@ stack: [
     ),
 ]
 
-execute: Variable(
+execute: GlobalVariable(
     "a",
 )
 stack: [
@@ -86,7 +86,7 @@ stack: [
     ),
 ]
 
-execute: Variable(
+execute: GlobalVariable(
     "a",
 )
 stack: [
@@ -124,7 +124,7 @@ stack: [
     ),
 ]
 
-execute: Variable(
+execute: GlobalVariable(
     "b",
 )
 stack: [
@@ -148,7 +148,7 @@ stack: [
     ),
 ]
 
-execute: Variable(
+execute: GlobalVariable(
     "c",
 )
 stack: [

@@ -230,13 +230,17 @@ impl VM {
                 bytecode::Code::Nil => {
                     self.push(Value::Nil);
                 }
-                bytecode::Code::Variable(name) => {
+                bytecode::Code::GlobalVariable(name) => {
                     let value = self.globals.get(&name).expect("variable not found");
                     self.push(value.clone());
                 }
                 bytecode::Code::Assign(name) => {
                     let value = self.peek();
                     self.globals.insert(name, value.clone());
+                }
+                bytecode::Code::LocalVariable(index) => {
+                    let value = self.stack[index].clone();
+                    self.push(value);
                 }
             }
             if let Some(step_inspect) = &mut step_inspect {

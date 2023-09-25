@@ -5,4 +5,7 @@ Block {
             NumberLiteral(1),
         ),
     },
+    stmt: Print {
+        expr: Variable(a),
+    },
 }

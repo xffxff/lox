@@ -24,7 +24,7 @@ execute: GlobalVarDeclaration(
 )
 stack: []
 
-execute: Variable(
+execute: GlobalVariable(
     "a",
 )
 stack: [
@@ -64,7 +64,7 @@ execute: GlobalVarDeclaration(
 )
 stack: []
 
-execute: Variable(
+execute: GlobalVariable(
     "str1",
 )
 stack: [
@@ -73,7 +73,7 @@ stack: [
     ),
 ]
 
-execute: Variable(
+execute: GlobalVariable(
     "str2",
 )
 stack: [

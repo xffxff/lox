@@ -1,10 +1,10 @@
 TokenTree {
-    source text: "{\n    var a = 1;\n}",
+    source text: "{\n    var a = 1;\n    print a;\n}",
     tokens: [
         Delimiter({),
         Tree(
             TokenTree {
-                source text: "{\n    var a = 1;\n}",
+                source text: "{\n    var a = 1;\n    print a;\n}",
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -18,6 +18,15 @@ TokenTree {
                     Op(=),
                     Whitespace(' '),
                     Number(1),
+                    Semicolon,
+                    Whitespace('\n'),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Alphabetic(print),
+                    Whitespace(' '),
+                    Alphabetic(a),
                     Semicolon,
                     Whitespace('\n'),
                 ],
