@@ -238,7 +238,7 @@ impl VM {
                     let value = self.peek();
                     self.globals.insert(name, value.clone());
                 }
-                bytecode::Code::LocalVariable(index) => {
+                bytecode::Code::ReadLocalVariable(index) => {
                     let value = self.stack[index].clone();
                     self.push(value);
                 }

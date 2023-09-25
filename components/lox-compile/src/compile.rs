@@ -120,7 +120,7 @@ impl Compiler {
             syntax::Expr::Variable(word) => {
                 let name = word.as_str(db);
                 if let Some(index) = self.resolve_local(name) {
-                    chunk.emit_byte(Code::LocalVariable(index))
+                    chunk.emit_byte(Code::ReadLocalVariable(index))
                 } else {
                     chunk.emit_byte(Code::GlobalVariable(name.to_string()))
                 }

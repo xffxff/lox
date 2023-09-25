@@ -23,7 +23,7 @@ stack: [
     ),
 ]
 
-execute: LocalVariable(
+execute: ReadLocalVariable(
     1,
 )
 stack: [
@@ -55,7 +55,7 @@ stack: [
     ),
 ]
 
-execute: LocalVariable(
+execute: ReadLocalVariable(
     0,
 )
 stack: [

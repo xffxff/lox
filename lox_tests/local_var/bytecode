@@ -10,12 +10,12 @@ Chunk {
                 2.0,
             ),
         ),
-        LocalVariable(
+        ReadLocalVariable(
             1,
         ),
         Print,
         Pop,
-        LocalVariable(
+        ReadLocalVariable(
             0,
         ),
         Print,

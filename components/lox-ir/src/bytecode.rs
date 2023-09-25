@@ -20,7 +20,7 @@ pub enum Code {
     Print,
     GlobalVarDeclaration(String), // name of the variable
     GlobalVariable(String),       // name of the variable
-    LocalVariable(usize),         // index of the variable in the stack
+    ReadLocalVariable(usize),     // index of the variable in the stack
     Nil,
     Assign(String),
     Pop,
