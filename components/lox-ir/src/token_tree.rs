@@ -13,7 +13,7 @@ pub struct TokenTree {
     pub tokens: Vec<Token>,
 }
 
-impl DebugWithDb<dyn crate::Db> for TokenTree {
+impl<'db> DebugWithDb<dyn crate::Db + 'db> for TokenTree {
     fn fmt(
         &self,
         f: &mut std::fmt::Formatter<'_>,

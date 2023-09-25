@@ -3,11 +3,25 @@ TokenTree {
     tokens: [
         Delimiter({),
         Tree(
-            TokenTree(
-                Id {
-                    value: 6,
-                },
-            ),
+            TokenTree {
+                source text: "{\n    var a = 1;\n}",
+                tokens: [
+                    Whitespace('\n'),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Alphabetic(var),
+                    Whitespace(' '),
+                    Alphabetic(a),
+                    Whitespace(' '),
+                    Op(=),
+                    Whitespace(' '),
+                    Number(1),
+                    Semicolon,
+                    Whitespace('\n'),
+                ],
+            },
         ),
         Delimiter(}),
     ],

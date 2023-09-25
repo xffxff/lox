@@ -52,7 +52,7 @@ impl<'db> DebugWithDb<dyn crate::Db + 'db> for Token {
             Token::Delimiter(ch) => write!(f, "Delimiter({})", ch),
             Token::Whitespace(ch) => write!(f, "Whitespace({:?})", ch),
             Token::Comment(len) => write!(f, "Comment({})", len),
-            Token::Tree(tree) => f.debug_tuple("Tree").field(tree).finish(),
+            Token::Tree(tree) => f.debug_tuple("Tree").field(&tree.debug(db)).finish(),
             Token::String(word) => write!(f, "String({})", word.as_str(db)),
             Token::Unknown(ch) => write!(f, "Unknown({})", ch),
             Token::Semicolon => write!(f, "Semicolon"),
