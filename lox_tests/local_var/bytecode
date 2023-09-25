@@ -5,6 +5,16 @@ Chunk {
                 1.0,
             ),
         ),
+        Constant(
+            F64(
+                2.0,
+            ),
+        ),
+        LocalVariable(
+            1,
+        ),
+        Print,
+        Pop,
         LocalVariable(
             0,
         ),

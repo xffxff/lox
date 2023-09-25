@@ -5,6 +5,17 @@ Block {
             NumberLiteral(1),
         ),
     },
+    stmt: Block {
+        stmt: Var {
+            name: "a",
+            initializer: Some(
+                NumberLiteral(2),
+            ),
+        },
+        stmt: Print {
+            expr: Variable(a),
+        },
+    },
     stmt: Print {
         expr: Variable(a),
     },

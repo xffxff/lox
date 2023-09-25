@@ -9,6 +9,52 @@ stack: [
     ),
 ]
 
+execute: Constant(
+    F64(
+        2.0,
+    ),
+)
+stack: [
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+
+execute: LocalVariable(
+    1,
+)
+stack: [
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+
+execute: Print
+stack: [
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+
+execute: Pop
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
 execute: LocalVariable(
     0,
 )
