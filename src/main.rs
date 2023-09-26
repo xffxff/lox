@@ -208,7 +208,7 @@ fn main() {
                 lox_compile::compile_file::accumulated::<Diagnostics>(&db, input_file);
             if !diagnostics.is_empty() {
                 for diagnostic in &diagnostics {
-                    lox_error_format::print_diagnostic(&db, &diagnostic).unwrap();
+                    lox_error_format::print_diagnostic(&db, diagnostic).unwrap();
                 }
             } else {
                 let output =
