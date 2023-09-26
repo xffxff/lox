@@ -59,7 +59,8 @@ impl<'me> Parser<'me> {
             } else {
                 None
             };
-            self.eat(Token::Semicolon).unwrap();
+            self.eat(Token::Semicolon)
+                .or_report_error(self, || "expected `;`");
             Some(Stmt::VariableDeclaration {
                 name: id,
                 initializer,

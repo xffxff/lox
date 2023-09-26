@@ -164,6 +164,11 @@ enum Commands {
         #[arg(long)]
         bless: bool,
     },
+
+    Run {
+        /// path to lox file
+        path: PathBuf,
+    },
 }
 
 fn main() {
@@ -190,6 +195,23 @@ fn main() {
             } else {
                 let test_case = TestCase::new(&path);
                 test_case.test(&db);
+            }
+        }
+        Commands::Run { path } => {
+            let input_file = InputFile::new(
+                &db,
+                Word::intern(&db, path.to_str().unwrap()),
+                fs::read_to_string(&path).unwrap(),
+            );
+            lox_compile::compile_file(&db, input_file);
+            let diagnostics =
+                lox_compile::compile_file::accumulated::<Diagnostics>(&db, input_file);
+            if !diagnostics.is_empty() {
+                for diagnostic in &diagnostics {
+                    lox_error_format::print_diagnostic(&db, &diagnostic).unwrap();
+                }
+            } else {
+                lox_execute::execute_file(&db, input_file, None::<fn(_, &lox_execute::VM)>);
             }
         }
     }
