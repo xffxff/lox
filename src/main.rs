@@ -211,7 +211,9 @@ fn main() {
                     lox_error_format::print_diagnostic(&db, &diagnostic).unwrap();
                 }
             } else {
-                lox_execute::execute_file(&db, input_file, None::<fn(_, &lox_execute::VM)>);
+                let output =
+                    lox_execute::execute_file(&db, input_file, None::<fn(_, &lox_execute::VM)>);
+                println!("{}", output);
             }
         }
     }

@@ -10,6 +10,17 @@ pub enum Value {
     String(String),
 }
 
+impl std::fmt::Display for Value {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self.clone() {
+            Value::Number(n) => write!(f, "{}", n),
+            Value::Boolean(b) => write!(f, "{}", b),
+            Value::Nil => write!(f, "nil"),
+            Value::String(s) => write!(f, "{}", s),
+        }
+    }
+}
+
 impl From<f64> for Value {
     fn from(num: f64) -> Self {
         Value::Number(num)
@@ -123,6 +134,9 @@ pub struct VM {
 
     // global variables
     globals: HashMap<String, Value>,
+
+    // output buffer
+    output: String,
 }
 
 impl VM {
@@ -132,12 +146,13 @@ impl VM {
             ip: 0,
             stack: Vec::new(),
             globals: HashMap::new(),
+            output: String::new(),
         }
     }
 
     // `step_inspect` is a callback that is called after each instruction is executed.
     //  It is useful for debugging.
-    pub fn interpret<F>(&mut self, mut step_inspect: Option<F>)
+    pub fn interpret<F>(&mut self, mut step_inspect: Option<F>) -> String
     where
         F: FnMut(bytecode::Code, &VM),
     {
@@ -220,8 +235,7 @@ impl VM {
                 }
                 bytecode::Code::Print => {
                     let value = self.pop();
-                    // FIXME: This should be a call to a intrinsic function.
-                    println!("{:?}", value);
+                    self.print(value);
                 }
                 bytecode::Code::GlobalVarDeclaration { name } => {
                     let value = self.pop();
@@ -250,6 +264,7 @@ impl VM {
                 step_inspect(instruction, self);
             }
         }
+        self.output.clone()
     }
 
     fn read_byte(&mut self) -> bytecode::Code {
@@ -271,5 +286,9 @@ impl VM {
         T: Into<Value>,
     {
         self.stack.push(value.into());
+    }
+
+    fn print(&mut self, value: Value) {
+        self.output.push_str(&format!("{}", value));
     }
 }
