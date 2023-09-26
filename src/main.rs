@@ -34,6 +34,7 @@ struct TestCase {
     syntax: PathBuf,
     bytecode: PathBuf,
     execute: PathBuf,
+    output: PathBuf,
     text: String,
 }
 
@@ -56,6 +57,7 @@ impl TestCase {
         let syntax = lox_dir.join("syntax");
         let bytecode = lox_dir.join("bytecode");
         let execute = lox_dir.join("execute");
+        let output = lox_dir.join("output");
         let text = fs::read_to_string(&lox).unwrap();
         TestCase {
             lox: lox.to_owned(),
@@ -63,6 +65,7 @@ impl TestCase {
             syntax,
             bytecode,
             execute,
+            output,
             text,
         }
     }
@@ -114,12 +117,6 @@ impl TestCase {
             buf.push_str(&format!("{:#?}\n", expr.debug(db)));
         }
 
-        let diagnostics = lox_parse::parse_file::accumulated::<Diagnostics>(db, input_file);
-        for diagnostic in diagnostics.iter() {
-            buf.push_str(&format!("{:#?}\n", diagnostic));
-        }
-        expect_file![self.syntax].assert_eq(&buf);
-
         // test bytecode
         let chunk = lox_compile::compile_file(db, input_file);
         expect_file![self.bytecode].assert_eq(&format!("{:#?}", chunk));
@@ -133,6 +130,13 @@ impl TestCase {
         };
         lox_execute::execute_file(db, input_file, Some(step_inspect));
         expect_file![self.execute].assert_eq(&buf);
+
+        let mut buf = String::new();
+        let diagnostics = lox_compile::compile_file::accumulated::<Diagnostics>(db, input_file);
+        for diagnostic in diagnostics.iter() {
+            buf.push_str(&format!("{:#?}\n", diagnostic));
+        }
+        expect_file![self.output].assert_eq(&buf);
     }
 }
 

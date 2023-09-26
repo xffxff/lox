@@ -1,0 +1,48 @@
+Diagnostic {
+    severity: Error,
+    span: @7..@8,
+    message: "expected `;`",
+    labels: [
+        Label {
+            span: @7..@8,
+            message: "here",
+        },
+    ],
+    children: [],
+}
+Diagnostic {
+    severity: Error,
+    span: @18..@19,
+    message: "expected `;`",
+    labels: [
+        Label {
+            span: @18..@19,
+            message: "here",
+        },
+    ],
+    children: [],
+}
+Diagnostic {
+    severity: Error,
+    span: @29..@30,
+    message: "expected `;`",
+    labels: [
+        Label {
+            span: @29..@30,
+            message: "here",
+        },
+    ],
+    children: [],
+}
+Diagnostic {
+    severity: Error,
+    span: @38..@39,
+    message: "expected `;`",
+    labels: [
+        Label {
+            span: @38..@39,
+            message: "here",
+        },
+    ],
+    children: [],
+}

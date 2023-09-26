@@ -89,7 +89,8 @@ impl<'me> Parser<'me> {
 
     fn expr_stmt(&mut self) -> Option<Stmt> {
         let expr = self.parse_expr()?;
-        self.eat(Token::Semicolon);
+        self.eat(Token::Semicolon)
+            .or_report_error(self, || "expected `;`");
         Some(Stmt::Expr(expr))
     }
 
@@ -335,5 +336,47 @@ impl<'me> Parser<'me> {
 
     fn error(&self, span: Span, message: impl ToString) -> DiagnosticBuilder {
         lox_ir::error!(span.anchor_to(self.input_file), "{}", message.to_string())
+    }
+}
+
+trait OrReportError {
+    fn or_report_error<S>(self, parser: &mut Parser<'_>, message: impl FnOnce() -> S) -> Self
+    where
+        S: ToString;
+
+    fn or_report_error_at<S>(
+        self,
+        parser: &mut Parser<'_>,
+        span: Span,
+        message: impl FnOnce() -> S,
+    ) -> Self
+    where
+        S: ToString;
+}
+
+impl<T> OrReportError for Option<T> {
+    fn or_report_error<S>(self, parser: &mut Parser<'_>, message: impl FnOnce() -> S) -> Self
+    where
+        S: ToString,
+    {
+        self.or_report_error_at(parser, parser.tokens.peek_span(), message)
+    }
+
+    fn or_report_error_at<S>(
+        self,
+        parser: &mut Parser<'_>,
+        span: Span,
+        message: impl FnOnce() -> S,
+    ) -> Self
+    where
+        S: ToString,
+    {
+        if self.is_some() {
+            return self;
+        }
+
+        parser.error(span, message()).emit(parser.db);
+
+        None
     }
 }
