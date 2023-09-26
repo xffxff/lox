@@ -179,15 +179,30 @@ impl Compiler {
                 chunk.emit_byte(Code::Assign(name_str.to_string()));
             }
             syntax::Expr::LogicalAnd(left, right) => {
+                //      ┌───────────────┐
+                //      │left expression│
+                //      └───────────────┘
+                // ┌──── JUMP_IF_FALSE
+                // │     POP
+                // │    ┌────────────────┐
+                // │    │right expression│
+                // │    └────────────────┘
+                // └───► continues...
                 self.compile_expr(db, left, chunk);
-                let jump_to_the_end_of_left_branch = chunk.emit_byte(Code::JumpIfFalse(0));
+
+                // if the left branch is false, jump to the end of the right branch,
+                // which means we don't execute the right branch
+                // for example, `false and 1 / 0` will not cause a division by zero error
+                let jump_to_the_end_of_right_branch = chunk.emit_byte(Code::JumpIfFalse(0));
+
+                // this `pop` is only executed if the left branch is true
                 chunk.emit_byte(Code::Pop);
+
                 self.compile_expr(db, right, chunk);
-                let current_ip = chunk.len();
-                let jump = chunk.read_byte_mut(jump_to_the_end_of_left_branch);
-                if let Code::JumpIfFalse(jump) = jump {
-                    *jump = current_ip;
-                }
+
+                // after executing the right branch, we know where the end of the right branch is,
+                // so we can fill in the placeholder
+                self.patch_jump(jump_to_the_end_of_right_branch, chunk);
             }
             syntax::Expr::LogicalOr(_, _) => todo!(),
         }
@@ -213,5 +228,14 @@ impl Compiler {
             }
         }
         None
+    }
+
+    // patch a jump instruction with the current offset
+    fn patch_jump(&mut self, jump: usize, chunk: &mut Chunk) {
+        let offset = chunk.len();
+        let jump = chunk.read_byte_mut(jump);
+        if let Code::Jump(ip) = jump {
+            *ip = offset;
+        }
     }
 }
