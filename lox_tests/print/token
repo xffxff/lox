@@ -1,5 +1,5 @@
 TokenTree {
-    source text: "print 1 + 2",
+    source text: "print 1 + 2;",
     tokens: [
         Alphabetic(print),
         Whitespace(' '),
@@ -8,5 +8,6 @@ TokenTree {
         Op(+),
         Whitespace(' '),
         Number(2),
+        Semicolon,
     ],
 }

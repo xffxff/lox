@@ -1,14 +1,18 @@
 TokenTree {
-    source text: "true\nfalse\n!true\n!false",
+    source text: "true;\nfalse;\n!true;\n!false;",
     tokens: [
         Alphabetic(true),
+        Semicolon,
         Whitespace('\n'),
         Alphabetic(false),
+        Semicolon,
         Whitespace('\n'),
         Op(!),
         Alphabetic(true),
+        Semicolon,
         Whitespace('\n'),
         Op(!),
         Alphabetic(false),
+        Semicolon,
     ],
 }

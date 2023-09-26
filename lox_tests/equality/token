@@ -1,5 +1,5 @@
 TokenTree {
-    source text: "1 == 2\n1 != 2",
+    source text: "1 == 2;\n1 != 2;",
     tokens: [
         Number(1),
         Whitespace(' '),
@@ -7,6 +7,7 @@ TokenTree {
         Op(=),
         Whitespace(' '),
         Number(2),
+        Semicolon,
         Whitespace('\n'),
         Number(1),
         Whitespace(' '),
@@ -14,5 +15,6 @@ TokenTree {
         Op(=),
         Whitespace(' '),
         Number(2),
+        Semicolon,
     ],
 }

@@ -83,7 +83,8 @@ impl<'me> Parser<'me> {
     //  "print" expression ";" ;
     fn print_stmt(&mut self) -> Option<Stmt> {
         let expr = self.parse_expr()?;
-        self.eat(Token::Semicolon);
+        self.eat(Token::Semicolon)
+            .or_report_error(self, || "expected `;`");
         Some(Stmt::Print(expr))
     }
 
