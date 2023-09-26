@@ -86,6 +86,11 @@ pub enum Stmt {
 
     // block statement, like `{ 1 + 2; }`
     Block(Vec<Stmt>),
+
+    If {
+        condition: Expr,
+        then_branch: Box<Stmt>,
+    },
 }
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
@@ -116,6 +121,14 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
                 }
                 builder.finish()
             }
+            Stmt::If {
+                condition,
+                then_branch,
+            } => f
+                .debug_struct("If")
+                .field("condition", &condition.debug(db))
+                .field("then_branch", &then_branch.debug(db))
+                .finish(),
         }
     }
 }

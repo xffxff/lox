@@ -1,0 +1,37 @@
+TokenTree {
+    source text: "if (true) {\n    print \"true\";\n}",
+    tokens: [
+        Alphabetic(if),
+        Whitespace(' '),
+        Delimiter((),
+        Tree(
+            TokenTree {
+                source text: "if (true) {\n    print \"true\";\n}",
+                tokens: [
+                    Alphabetic(true),
+                ],
+            },
+        ),
+        Delimiter()),
+        Whitespace(' '),
+        Delimiter({),
+        Tree(
+            TokenTree {
+                source text: "if (true) {\n    print \"true\";\n}",
+                tokens: [
+                    Whitespace('\n'),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Alphabetic(print),
+                    Whitespace(' '),
+                    String(true),
+                    Semicolon,
+                    Whitespace('\n'),
+                ],
+            },
+        ),
+        Delimiter(}),
+    ],
+}

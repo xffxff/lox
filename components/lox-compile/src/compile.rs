@@ -73,6 +73,10 @@ impl Compiler {
                 }
                 self.after_scope(chunk);
             }
+            syntax::Stmt::If {
+                condition,
+                then_branch,
+            } => todo!(),
         }
     }
 

@@ -118,6 +118,7 @@ impl TestCase {
         for expr in exprs.iter() {
             buf.push_str(&format!("{:#?}\n", expr.debug(db)));
         }
+        expect_file![self.syntax].assert_eq(&buf);
 
         // test bytecode
         let chunk = lox_compile::compile_file(db, input_file);

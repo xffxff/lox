@@ -1,0 +1,14 @@
+Chunk {
+    code: [
+        ReadGlobalVariable {
+            name: "if",
+        },
+        Pop,
+        True,
+        Pop,
+        String(
+            "true",
+        ),
+        Print,
+    ],
+}

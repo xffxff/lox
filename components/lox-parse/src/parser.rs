@@ -74,11 +74,24 @@ impl<'me> Parser<'me> {
         if self.eat(Keyword::Print).is_some() {
             return self.print_stmt();
         } else if let Some((_, token_tree)) = self.delimited('{') {
+            // parse a block
             let mut parser = Parser::new(self.db, token_tree);
             let stmts = parser.parse();
             return Some(Stmt::Block(stmts));
+        } else if self.eat(Keyword::If).is_some() {
+            return self.if_stmt();
         }
         self.expr_stmt()
+    }
+
+    fn if_stmt(&mut self) -> Option<Stmt> {
+        let (_, token_tree) = self.delimited('(')?;
+        let condition = Parser::new(self.db, token_tree).parse_expr()?;
+        let then_branch = self.stmt()?;
+        Some(Stmt::If {
+            condition,
+            then_branch: Box::new(then_branch),
+        })
     }
 
     //  "print" expression ";" ;

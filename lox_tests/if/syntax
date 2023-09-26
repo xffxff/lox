@@ -1,0 +1,8 @@
+If {
+    condition: BooleanLiteral(true),
+    then_branch: Block {
+        stmt: Print {
+            expr: StringLiteral(true),
+        },
+    },
+}
