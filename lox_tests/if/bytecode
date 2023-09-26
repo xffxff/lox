@@ -2,7 +2,7 @@ Chunk {
     code: [
         True,
         JumpIfFalse(
-            7,
+            6,
         ),
         Pop,
         String(

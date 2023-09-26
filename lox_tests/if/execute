@@ -6,7 +6,7 @@ stack: [
 ]
 
 execute: JumpIfFalse(
-    7,
+    6,
 )
 stack: [
     Boolean(
