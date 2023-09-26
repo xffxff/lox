@@ -36,7 +36,7 @@ struct TestCase {
     syntax: PathBuf,
     bytecode: PathBuf,
     execute: PathBuf,
-    output: PathBuf,
+    diagnostic: PathBuf,
     text: String,
 }
 
@@ -67,7 +67,7 @@ impl TestCase {
             syntax,
             bytecode,
             execute,
-            output,
+            diagnostic: output,
             text,
         }
     }
@@ -141,7 +141,7 @@ impl TestCase {
             FormatOptions::no_color(),
         );
         if let Ok(output) = output {
-            expect_file![self.output].assert_eq(&output);
+            expect_file![self.diagnostic].assert_eq(&output);
         }
     }
 }
