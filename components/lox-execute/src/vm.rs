@@ -235,7 +235,7 @@ impl VM {
                 }
                 bytecode::Code::Print => {
                     let value = self.pop();
-                    self.print(value);
+                    self.print(&format!("{}", value));
                 }
                 bytecode::Code::GlobalVarDeclaration { name } => {
                     let value = self.pop();
@@ -288,7 +288,8 @@ impl VM {
         self.stack.push(value.into());
     }
 
-    fn print(&mut self, value: Value) {
-        self.output.push_str(&format!("{}", value));
+    fn print(&mut self, s: &str) {
+        self.output.push_str(s);
+        self.output.push('\n');
     }
 }
