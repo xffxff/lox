@@ -1,12 +1,12 @@
 TokenTree {
-    source text: "if (true) {\n    print \"true\";\n}",
+    source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
     tokens: [
         Alphabetic(if),
         Whitespace(' '),
         Delimiter((),
         Tree(
             TokenTree {
-                source text: "if (true) {\n    print \"true\";\n}",
+                source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
                 tokens: [
                     Alphabetic(true),
                 ],
@@ -17,7 +17,7 @@ TokenTree {
         Delimiter({),
         Tree(
             TokenTree {
-                source text: "if (true) {\n    print \"true\";\n}",
+                source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -27,6 +27,40 @@ TokenTree {
                     Alphabetic(print),
                     Whitespace(' '),
                     String(true),
+                    Semicolon,
+                    Whitespace('\n'),
+                ],
+            },
+        ),
+        Delimiter(}),
+        Whitespace('\n'),
+        Whitespace('\n'),
+        Alphabetic(if),
+        Whitespace(' '),
+        Delimiter((),
+        Tree(
+            TokenTree {
+                source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
+                tokens: [
+                    Alphabetic(false),
+                ],
+            },
+        ),
+        Delimiter()),
+        Whitespace(' '),
+        Delimiter({),
+        Tree(
+            TokenTree {
+                source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
+                tokens: [
+                    Whitespace('\n'),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Alphabetic(print),
+                    Whitespace(' '),
+                    String(false),
                     Semicolon,
                     Whitespace('\n'),
                 ],

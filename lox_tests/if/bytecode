@@ -8,5 +8,13 @@ Chunk {
             "true",
         ),
         Print,
+        False,
+        JumpIfFalse(
+            8,
+        ),
+        String(
+            "false",
+        ),
+        Print,
     ],
 }

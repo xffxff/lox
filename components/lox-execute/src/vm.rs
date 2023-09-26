@@ -259,7 +259,12 @@ impl VM {
                 bytecode::Code::Pop => {
                     self.pop();
                 }
-                bytecode::Code::JumpIfFalse(_) => todo!(),
+                bytecode::Code::JumpIfFalse(ip) => {
+                    let value = self.pop();
+                    if value == Value::Boolean(false) {
+                        self.ip = ip;
+                    }
+                }
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);

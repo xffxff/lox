@@ -1,0 +1,36 @@
+execute: True
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    4,
+)
+stack: []
+
+execute: String(
+    "true",
+)
+stack: [
+    String(
+        "true",
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: False
+stack: [
+    Boolean(
+        false,
+    ),
+]
+
+execute: JumpIfFalse(
+    8,
+)
+stack: []
+

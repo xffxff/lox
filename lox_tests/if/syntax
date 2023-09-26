@@ -6,3 +6,11 @@ If {
         },
     },
 }
+If {
+    condition: BooleanLiteral(false),
+    then_branch: Block {
+        stmt: Print {
+            expr: StringLiteral(false),
+        },
+    },
+}
