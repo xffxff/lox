@@ -1,48 +1,28 @@
-Diagnostic {
-    severity: Error,
-    span: @6..@7,
-    message: "expected `;`",
-    labels: [
-        Label {
-            span: @6..@7,
-            message: "here",
-        },
-    ],
-    children: [],
-}
-Diagnostic {
-    severity: Error,
-    span: @13..@14,
-    message: "expected `;`",
-    labels: [
-        Label {
-            span: @13..@14,
-            message: "here",
-        },
-    ],
-    children: [],
-}
-Diagnostic {
-    severity: Error,
-    span: @19..@20,
-    message: "expected `;`",
-    labels: [
-        Label {
-            span: @19..@20,
-            message: "here",
-        },
-    ],
-    children: [],
-}
-Diagnostic {
-    severity: Error,
-    span: @24..@25,
-    message: "expected `;`",
-    labels: [
-        Label {
-            span: @24..@25,
-            message: "here",
-        },
-    ],
-    children: [],
-}
+Error: expected `;`
+   ╭─[/home/zhoufan/workspace/lox/lox_tests/comparison.lox:2:1]
+   │
+ 2 │ 1 <= 1
+   │ ┬  
+   │ ╰── here
+───╯
+Error: expected `;`
+   ╭─[/home/zhoufan/workspace/lox/lox_tests/comparison.lox:3:1]
+   │
+ 3 │ 1 > 2
+   │ ┬  
+   │ ╰── here
+───╯
+Error: expected `;`
+   ╭─[/home/zhoufan/workspace/lox/lox_tests/comparison.lox:4:1]
+   │
+ 4 │ 1 >= 1
+   │ ┬  
+   │ ╰── here
+───╯
+Error: expected `;`
+   ╭─[/home/zhoufan/workspace/lox/lox_tests/comparison.lox:4:6]
+   │
+ 4 │ 1 >= 1
+   │      ┬  
+   │      ╰── here
+───╯

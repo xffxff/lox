@@ -5,6 +5,7 @@ use std::{
 
 use clap::{Parser, Subcommand};
 use expect_test::expect_file;
+use lox_error_format::FormatOptions;
 use lox_ir::{bytecode, diagnostic::Diagnostics, input_file::InputFile, word::Word};
 use salsa::DebugWithDb;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
@@ -14,7 +15,8 @@ use tracing_subscriber::{fmt, prelude::*, EnvFilter};
     lox_ir::Jar,
     lox_lex::Jar,
     lox_compile::Jar,
-    lox_execute::Jar
+    lox_execute::Jar,
+    lox_error_format::Jar
 )]
 #[derive(Default)]
 struct Database {
@@ -131,12 +133,15 @@ impl TestCase {
         lox_execute::execute_file(db, input_file, Some(step_inspect));
         expect_file![self.execute].assert_eq(&buf);
 
-        let mut buf = String::new();
         let diagnostics = lox_compile::compile_file::accumulated::<Diagnostics>(db, input_file);
-        for diagnostic in diagnostics.iter() {
-            buf.push_str(&format!("{:#?}\n", diagnostic));
+        let output = lox_error_format::format_diagnostics_with_options(
+            db,
+            &diagnostics,
+            FormatOptions::no_color(),
+        );
+        if let Ok(output) = output {
+            expect_file![self.output].assert_eq(&output);
         }
-        expect_file![self.output].assert_eq(&buf);
     }
 }
 

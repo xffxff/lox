@@ -1,24 +1,14 @@
-Diagnostic {
-    severity: Error,
-    span: @7..@8,
-    message: "expected `;`",
-    labels: [
-        Label {
-            span: @7..@8,
-            message: "here",
-        },
-    ],
-    children: [],
-}
-Diagnostic {
-    severity: Error,
-    span: @12..@13,
-    message: "expected `;`",
-    labels: [
-        Label {
-            span: @12..@13,
-            message: "here",
-        },
-    ],
-    children: [],
-}
+Error: expected `;`
+   ╭─[/home/zhoufan/workspace/lox/lox_tests/equality.lox:2:1]
+   │
+ 2 │ 1 != 2
+   │ ┬  
+   │ ╰── here
+───╯
+Error: expected `;`
+   ╭─[/home/zhoufan/workspace/lox/lox_tests/equality.lox:2:6]
+   │
+ 2 │ 1 != 2
+   │      ┬  
+   │      ╰── here
+───╯
