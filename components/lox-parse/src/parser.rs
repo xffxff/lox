@@ -337,6 +337,7 @@ impl<'me> Parser<'me> {
     }
 
     fn error(&self, span: Span, message: impl ToString) -> DiagnosticBuilder {
+        tracing::debug!("emit error {:?}, {:?}", message.to_string(), span);
         lox_ir::error!(span.anchor_to(self.input_file), "{}", message.to_string())
     }
 }

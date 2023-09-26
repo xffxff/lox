@@ -69,7 +69,7 @@ impl Token {
             }
             Token::Comment(s) => *s,
             Token::Tree(tree) => tree.span(db).len(),
-            Token::String(s) => s.as_str(db).len() as u32,
+            Token::String(s) => s.as_str(db).len() as u32 + 2, // plus 2 for the quotes
             Token::Semicolon => 1,
         }
     }
