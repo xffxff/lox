@@ -44,13 +44,13 @@ impl Compiler {
             }
             syntax::Stmt::Print(expr) => {
                 self.compile_expr(db, expr, chunk);
-                chunk.emit_byte(Code::Print)
+                chunk.emit_byte(Code::Print);
             }
             syntax::Stmt::VariableDeclaration { name, initializer } => {
                 if let Some(initializer) = initializer {
                     self.compile_expr(db, initializer, chunk);
                 } else {
-                    chunk.emit_byte(Code::Nil)
+                    chunk.emit_byte(Code::Nil);
                 }
 
                 let name_str = name.as_str(db);
@@ -60,7 +60,7 @@ impl Compiler {
                 if self.scope_depth == 0 {
                     chunk.emit_byte(Code::GlobalVarDeclaration {
                         name: name_str.to_string(),
-                    })
+                    });
                 } else {
                     let local = Local::new(name_str, self.scope_depth);
                     self.locals.push(local)
@@ -76,7 +76,23 @@ impl Compiler {
             syntax::Stmt::If {
                 condition,
                 then_branch,
-            } => todo!(),
+            } => {
+                self.compile_expr(db, condition, chunk);
+
+                // if the condition is false, jump to the end of the then branch,
+                // but we don't know where the end of the then branch is yet, so we emit a placeholder
+                let ip = chunk.emit_byte(Code::JumpIfFalse(0));
+
+                self.compile_stmt(db, then_branch, chunk);
+
+                // after the then branch, we know where the end of the then branch is,
+                // so we can fill in the placeholder
+                let current_ip = chunk.len();
+                let jump = chunk.read_byte_mut(ip);
+                if let Code::JumpIfFalse(jump) = jump {
+                    *jump = current_ip;
+                }
+            }
         }
     }
 
@@ -85,18 +101,18 @@ impl Compiler {
             syntax::Expr::NumberLiteral(word) => {
                 let word_str = word.as_str(db);
                 let value = word_str.parse::<f64>().unwrap();
-                chunk.emit_byte(Code::Constant(value.into()))
+                chunk.emit_byte(Code::Constant(value.into()));
             }
             syntax::Expr::StringLiteral(word) => {
                 let word_str = word.as_str(db);
                 let value = word_str.to_string();
-                chunk.emit_byte(Code::String(value))
+                chunk.emit_byte(Code::String(value));
             }
             syntax::Expr::BooleanLiteral(value) => {
                 if *value {
-                    chunk.emit_byte(Code::True)
+                    chunk.emit_byte(Code::True);
                 } else {
-                    chunk.emit_byte(Code::False)
+                    chunk.emit_byte(Code::False);
                 }
             }
             syntax::Expr::NilLiteral => todo!(),
@@ -115,7 +131,7 @@ impl Compiler {
                     syntax::Op::Less => chunk.emit_byte(Code::Less),
                     syntax::Op::LessEqual => chunk.emit_byte(Code::LessEqual),
                     _ => todo!(),
-                }
+                };
             }
             syntax::Expr::UnaryOp(op, expr) => {
                 self.compile_expr(db, expr, chunk);
@@ -123,7 +139,7 @@ impl Compiler {
                     syntax::Op::Minus => chunk.emit_byte(Code::Negate),
                     syntax::Op::Bang => chunk.emit_byte(Code::Not),
                     _ => todo!(),
-                }
+                };
             }
             syntax::Expr::Parenthesized(_) => todo!(),
             syntax::Expr::Variable(word) => {
@@ -136,12 +152,12 @@ impl Compiler {
                     chunk.emit_byte(Code::ReadGlobalVariable {
                         name: name.to_string(),
                     })
-                }
+                };
             }
             syntax::Expr::Assign { name, value } => {
                 self.compile_expr(db, value, chunk);
                 let name_str = name.as_str(db);
-                chunk.emit_byte(Code::Assign(name_str.to_string()))
+                chunk.emit_byte(Code::Assign(name_str.to_string()));
             }
         }
     }
@@ -154,7 +170,7 @@ impl Compiler {
         self.scope_depth -= 1;
         while !self.locals.is_empty() && self.locals.last().unwrap().depth > self.scope_depth {
             self.locals.pop();
-            chunk.emit_byte(Code::Pop)
+            chunk.emit_byte(Code::Pop);
         }
     }
 

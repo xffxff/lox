@@ -30,6 +30,7 @@ pub enum Code {
     Nil,
     Assign(String),
     Pop,
+    JumpIfFalse(usize),
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]
@@ -38,12 +39,17 @@ pub struct Chunk {
 }
 
 impl Chunk {
-    pub fn emit_byte(&mut self, byte: Code) {
+    pub fn emit_byte(&mut self, byte: Code) -> usize {
         self.code.push(byte);
+        self.len() - 1
     }
 
     pub fn read_byte(&self, ip: usize) -> Code {
         self.code[ip].clone()
+    }
+
+    pub fn read_byte_mut(&mut self, ip: usize) -> &mut Code {
+        &mut self.code[ip]
     }
 
     pub fn len(&self) -> usize {

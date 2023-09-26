@@ -1,11 +1,9 @@
 Chunk {
     code: [
-        ReadGlobalVariable {
-            name: "if",
-        },
-        Pop,
         True,
-        Pop,
+        JumpIfFalse(
+            4,
+        ),
         String(
             "true",
         ),

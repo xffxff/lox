@@ -259,6 +259,7 @@ impl VM {
                 bytecode::Code::Pop => {
                     self.pop();
                 }
+                bytecode::Code::JumpIfFalse(_) => todo!(),
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);
