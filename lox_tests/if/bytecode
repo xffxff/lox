@@ -2,15 +2,17 @@ Chunk {
     code: [
         True,
         JumpIfFalse(
-            5,
+            7,
         ),
+        Pop,
         String(
             "true",
         ),
         Print,
         Jump(
-            7,
+            9,
         ),
+        Pop,
         String(
             "false",
         ),

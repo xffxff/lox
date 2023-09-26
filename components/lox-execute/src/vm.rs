@@ -260,8 +260,8 @@ impl VM {
                     self.pop();
                 }
                 bytecode::Code::JumpIfFalse(ip) => {
-                    let value = self.pop();
-                    if value == Value::Boolean(false) {
+                    let value = self.peek();
+                    if value == &Value::Boolean(false) {
                         self.ip = ip;
                     }
                 }

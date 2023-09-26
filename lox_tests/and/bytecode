@@ -1,12 +1,11 @@
 Chunk {
     code: [
-        True,
-        Pop,
-        ReadGlobalVariable {
-            name: "and",
-        },
-        Pop,
         False,
+        JumpIfFalse(
+            4,
+        ),
+        Pop,
+        True,
         Pop,
     ],
 }

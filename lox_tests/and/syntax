@@ -1,6 +1,6 @@
 Expr {
     expr: LogicalAnd {
-        left: BooleanLiteral(true),
-        right: BooleanLiteral(false),
+        left: BooleanLiteral(false),
+        right: BooleanLiteral(true),
     },
 }

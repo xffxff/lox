@@ -6,8 +6,15 @@ stack: [
 ]
 
 execute: JumpIfFalse(
-    5,
+    7,
 )
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
 stack: []
 
 execute: String(
@@ -23,7 +30,7 @@ execute: Print
 stack: []
 
 execute: Jump(
-    7,
+    9,
 )
 stack: []
 

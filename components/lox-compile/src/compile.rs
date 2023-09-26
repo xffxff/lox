@@ -83,12 +83,14 @@ impl Compiler {
                 // if the condition is false, jump to the end of the then branch,
                 // but we don't know where the end of the then branch is yet, so we emit a placeholder
                 let jump_to_the_end_of_then_branch = chunk.emit_byte(Code::JumpIfFalse(0));
+                chunk.emit_byte(Code::Pop);
 
                 self.compile_stmt(db, then_branch, chunk);
 
                 // after executing the then branch, we jump to the end of the else branch,
                 // but we don't know where the end of the else branch is yet, so we emit a placeholder
                 let jump_to_the_end_of_else_branch = chunk.emit_byte(Code::Jump(0));
+                chunk.emit_byte(Code::Pop);
 
                 // after the then branch, we know where the end of the then branch is,
                 // so we can fill in the placeholder
@@ -176,7 +178,17 @@ impl Compiler {
                 let name_str = name.as_str(db);
                 chunk.emit_byte(Code::Assign(name_str.to_string()));
             }
-            syntax::Expr::LogicalAnd(_, _) => todo!(),
+            syntax::Expr::LogicalAnd(left, right) => {
+                self.compile_expr(db, left, chunk);
+                let jump_to_the_end_of_left_branch = chunk.emit_byte(Code::JumpIfFalse(0));
+                chunk.emit_byte(Code::Pop);
+                self.compile_expr(db, right, chunk);
+                let current_ip = chunk.len();
+                let jump = chunk.read_byte_mut(jump_to_the_end_of_left_branch);
+                if let Code::JumpIfFalse(jump) = jump {
+                    *jump = current_ip;
+                }
+            }
             syntax::Expr::LogicalOr(_, _) => todo!(),
         }
     }

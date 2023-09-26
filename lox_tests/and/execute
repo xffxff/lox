@@ -1,0 +1,19 @@
+execute: False
+stack: [
+    Boolean(
+        false,
+    ),
+]
+
+execute: JumpIfFalse(
+    4,
+)
+stack: [
+    Boolean(
+        false,
+    ),
+]
+
+execute: Pop
+stack: []
+
