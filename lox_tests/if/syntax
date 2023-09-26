@@ -5,10 +5,7 @@ If {
             expr: StringLiteral(true),
         },
     },
-}
-If {
-    condition: BooleanLiteral(false),
-    then_branch: Block {
+    else_branch: Block {
         stmt: Print {
             expr: StringLiteral(false),
         },

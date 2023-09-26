@@ -90,6 +90,7 @@ pub enum Stmt {
     If {
         condition: Expr,
         then_branch: Box<Stmt>,
+        else_branch: Option<Box<Stmt>>,
     },
 }
 
@@ -124,11 +125,16 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
             Stmt::If {
                 condition,
                 then_branch,
-            } => f
-                .debug_struct("If")
-                .field("condition", &condition.debug(db))
-                .field("then_branch", &then_branch.debug(db))
-                .finish(),
+                else_branch,
+            } => {
+                let mut builder = f.debug_struct("If");
+                builder.field("condition", &condition.debug(db));
+                builder.field("then_branch", &then_branch.debug(db));
+                if let Some(else_branch) = else_branch {
+                    builder.field("else_branch", &else_branch.debug(db));
+                }
+                builder.finish()
+            }
         }
     }
 }

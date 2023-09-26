@@ -1,12 +1,12 @@
 TokenTree {
-    source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
+    source text: "if (true) {\n    print \"true\";\n} else {\n    print \"false\";\n}",
     tokens: [
         Alphabetic(if),
         Whitespace(' '),
         Delimiter((),
         Tree(
             TokenTree {
-                source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
+                source text: "if (true) {\n    print \"true\";\n} else {\n    print \"false\";\n}",
                 tokens: [
                     Alphabetic(true),
                 ],
@@ -17,7 +17,7 @@ TokenTree {
         Delimiter({),
         Tree(
             TokenTree {
-                source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
+                source text: "if (true) {\n    print \"true\";\n} else {\n    print \"false\";\n}",
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -33,25 +33,13 @@ TokenTree {
             },
         ),
         Delimiter(}),
-        Whitespace('\n'),
-        Whitespace('\n'),
-        Alphabetic(if),
         Whitespace(' '),
-        Delimiter((),
-        Tree(
-            TokenTree {
-                source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
-                tokens: [
-                    Alphabetic(false),
-                ],
-            },
-        ),
-        Delimiter()),
+        Alphabetic(else),
         Whitespace(' '),
         Delimiter({),
         Tree(
             TokenTree {
-                source text: "if (true) {\n    print \"true\";\n}\n\nif (false) {\n    print \"false\";\n}",
+                source text: "if (true) {\n    print \"true\";\n} else {\n    print \"false\";\n}",
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),

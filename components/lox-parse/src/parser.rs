@@ -88,9 +88,15 @@ impl<'me> Parser<'me> {
         let (_, token_tree) = self.delimited('(')?;
         let condition = Parser::new(self.db, token_tree).parse_expr()?;
         let then_branch = self.stmt()?;
+        let else_branch = if self.eat(Keyword::Else).is_some() {
+            self.stmt().map(Box::new)
+        } else {
+            None
+        };
         Some(Stmt::If {
             condition,
             then_branch: Box::new(then_branch),
+            else_branch,
         })
     }
 

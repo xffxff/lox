@@ -50,6 +50,7 @@ define_keywords! {
     Print => "print",
     Var => "var",
     If => "if",
+    Else => "else",
 }
 
 pub fn keywords(db: &dyn crate::Db) -> &HashMap<Word, Keyword> {

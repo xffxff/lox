@@ -76,20 +76,37 @@ impl Compiler {
             syntax::Stmt::If {
                 condition,
                 then_branch,
+                else_branch,
             } => {
                 self.compile_expr(db, condition, chunk);
 
                 // if the condition is false, jump to the end of the then branch,
                 // but we don't know where the end of the then branch is yet, so we emit a placeholder
-                let ip = chunk.emit_byte(Code::JumpIfFalse(0));
+                let jump_to_the_end_of_then_branch = chunk.emit_byte(Code::JumpIfFalse(0));
 
                 self.compile_stmt(db, then_branch, chunk);
+
+                // after executing the then branch, we jump to the end of the else branch,
+                // but we don't know where the end of the else branch is yet, so we emit a placeholder
+                let jump_to_the_end_of_else_branch = chunk.emit_byte(Code::Jump(0));
 
                 // after the then branch, we know where the end of the then branch is,
                 // so we can fill in the placeholder
                 let current_ip = chunk.len();
-                let jump = chunk.read_byte_mut(ip);
+                let jump = chunk.read_byte_mut(jump_to_the_end_of_then_branch);
                 if let Code::JumpIfFalse(jump) = jump {
+                    *jump = current_ip;
+                }
+
+                if let Some(else_branch) = else_branch {
+                    self.compile_stmt(db, else_branch, chunk);
+                }
+
+                // after the else branch, we know where the end of the else branch is,
+                // so we can fill in the placeholder
+                let current_ip = chunk.len();
+                let jump = chunk.read_byte_mut(jump_to_the_end_of_else_branch);
+                if let Code::Jump(jump) = jump {
                     *jump = current_ip;
                 }
             }

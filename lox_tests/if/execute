@@ -6,7 +6,7 @@ stack: [
 ]
 
 execute: JumpIfFalse(
-    4,
+    5,
 )
 stack: []
 
@@ -22,15 +22,8 @@ stack: [
 execute: Print
 stack: []
 
-execute: False
-stack: [
-    Boolean(
-        false,
-    ),
-]
-
-execute: JumpIfFalse(
-    8,
+execute: Jump(
+    7,
 )
 stack: []
 

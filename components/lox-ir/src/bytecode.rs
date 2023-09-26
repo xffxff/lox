@@ -31,6 +31,7 @@ pub enum Code {
     Assign(String),
     Pop,
     JumpIfFalse(usize),
+    Jump(usize),
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]
