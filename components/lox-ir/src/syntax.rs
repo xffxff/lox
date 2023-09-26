@@ -31,6 +31,12 @@ pub enum Expr {
 
     // assignment expression, like `foo = 1 + 2`
     Assign { name: Word, value: Box<Expr> },
+
+    // logical and
+    LogicalAnd(Box<Expr>, Box<Expr>),
+
+    // logical or
+    LogicalOr(Box<Expr>, Box<Expr>),
 }
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
@@ -64,6 +70,11 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
                 .debug_struct("Assign")
                 .field("name", &name.as_str(db))
                 .field("value", &value.debug(db))
+                .finish(),
+            Expr::LogicalAnd(left, right) => f
+                .debug_struct("LogicalAnd")
+                .field("left", &left.debug(db))
+                .field("right", &right.debug(db))
                 .finish(),
             _ => todo!(),
         }

@@ -1,0 +1,12 @@
+Chunk {
+    code: [
+        True,
+        Pop,
+        ReadGlobalVariable {
+            name: "and",
+        },
+        Pop,
+        False,
+        Pop,
+    ],
+}

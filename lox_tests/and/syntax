@@ -1,0 +1,6 @@
+Expr {
+    expr: LogicalAnd {
+        left: BooleanLiteral(true),
+        right: BooleanLiteral(false),
+    },
+}

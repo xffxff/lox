@@ -176,6 +176,8 @@ impl Compiler {
                 let name_str = name.as_str(db);
                 chunk.emit_byte(Code::Assign(name_str.to_string()));
             }
+            syntax::Expr::LogicalAnd(_, _) => todo!(),
+            syntax::Expr::LogicalOr(_, _) => todo!(),
         }
     }
 
