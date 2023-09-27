@@ -129,10 +129,10 @@ impl<'me> Parser<'me> {
         self.assignment()
     }
 
-    // assignment     -> IDENTIFIER "=" assignment | logic_and ;
+    // assignment     -> IDENTIFIER "=" assignment | logic_or ;
     // assignment is not a statement, it is an expression
     fn assignment(&mut self) -> Option<Expr> {
-        let expr = self.logic_and()?;
+        let expr = self.logic_or()?;
         if self.eat_op(Op::Equal).is_some() {
             let value = self.assignment()?;
             if let Expr::Variable(name) = expr {
@@ -147,6 +147,21 @@ impl<'me> Parser<'me> {
             }
         }
         Some(expr)
+    }
+
+    // logic_or       -> logic_and ( "or" logic_and )* ;
+    fn logic_or(&mut self) -> Option<Expr> {
+        let mut left = self.logic_and()?;
+
+        loop {
+            if self.eat(Keyword::Or).is_some() {
+                let right = self.logic_and()?;
+                left = Expr::LogicalOr(Box::new(left), Box::new(right));
+                continue;
+            }
+            break;
+        }
+        Some(left)
     }
 
     // logic_and       -> equality ( "and" equality )* ;

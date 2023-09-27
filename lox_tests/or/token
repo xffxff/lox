@@ -1,0 +1,11 @@
+TokenTree {
+    source text: "true or false;",
+    tokens: [
+        Alphabetic(true),
+        Whitespace(' '),
+        Alphabetic(or),
+        Whitespace(' '),
+        Alphabetic(false),
+        Semicolon,
+    ],
+}

@@ -1,0 +1,28 @@
+execute: True
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    3,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Jump(
+    4,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+

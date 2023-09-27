@@ -76,6 +76,11 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
                 .field("left", &left.debug(db))
                 .field("right", &right.debug(db))
                 .finish(),
+            Expr::LogicalOr(left, right) => f
+                .debug_struct("LogicalOr")
+                .field("left", &left.debug(db))
+                .field("right", &right.debug(db))
+                .finish(),
             _ => todo!(),
         }
     }

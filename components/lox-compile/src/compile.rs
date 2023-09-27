@@ -217,7 +217,26 @@ impl Compiler {
                 // so we can fill in the placeholder
                 self.patch_jump(jump_to_the_end_of_right_branch, chunk);
             }
-            syntax::Expr::LogicalOr(_, _) => todo!(),
+            syntax::Expr::LogicalOr(left, right) => {
+                //       ┌───────────────┐
+                //       │left expression│
+                //       └───────────────┘
+                //    ┌── JUMP_IF_FASLE
+                // ┌──┼── JUMP
+                // │  └─► POP
+                // │     ┌────────────────┐
+                // │     │right expression│
+                // │     └────────────────┘
+                // └────► continues...
+                self.compile_expr(db, left, chunk);
+                let jump_if_left_is_false = chunk.emit_byte(Code::JumpIfFalse(0));
+
+                // if the left branch is true, we don't need to execute the right branch
+                let jump_if_left_is_true = chunk.emit_byte(Code::Jump(0));
+                self.patch_jump(jump_if_left_is_false, chunk);
+                self.compile_expr(db, right, chunk);
+                self.patch_jump(jump_if_left_is_true, chunk);
+            }
         }
     }
 

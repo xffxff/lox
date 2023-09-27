@@ -1,0 +1,6 @@
+Expr {
+    expr: LogicalOr {
+        left: BooleanLiteral(true),
+        right: BooleanLiteral(false),
+    },
+}
