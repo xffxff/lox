@@ -1,0 +1,8 @@
+While {
+    condition: BooleanLiteral(true),
+    body: Block {
+        stmt: Print {
+            expr: StringLiteral(hello),
+        },
+    },
+}

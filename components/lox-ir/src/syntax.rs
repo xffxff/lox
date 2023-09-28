@@ -103,10 +103,17 @@ pub enum Stmt {
     // block statement, like `{ 1 + 2; }`
     Block(Vec<Stmt>),
 
+    // if statement, like `if (1 + 2) { 3 + 4; } else { 5 + 6; }`
     If {
         condition: Expr,
         then_branch: Box<Stmt>,
         else_branch: Option<Box<Stmt>>,
+    },
+
+    // while statement, like `while (1 + 2) { 3 + 4; }`
+    While {
+        condition: Expr,
+        body: Box<Stmt>,
     },
 }
 
@@ -149,6 +156,12 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
                 if let Some(else_branch) = else_branch {
                     builder.field("else_branch", &else_branch.debug(db));
                 }
+                builder.finish()
+            }
+            Stmt::While { condition, body } => {
+                let mut builder = f.debug_struct("While");
+                builder.field("condition", &condition.debug(db));
+                builder.field("body", &body.debug(db));
                 builder.finish()
             }
         }

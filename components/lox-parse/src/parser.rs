@@ -80,8 +80,20 @@ impl<'me> Parser<'me> {
             return Some(Stmt::Block(stmts));
         } else if self.eat(Keyword::If).is_some() {
             return self.if_stmt();
+        } else if self.eat(Keyword::While).is_some() {
+            return self.while_stmt();
         }
         self.expr_stmt()
+    }
+
+    fn while_stmt(&mut self) -> Option<Stmt> {
+        let (_, token_tree) = self.delimited('(')?;
+        let condition = Parser::new(self.db, token_tree).parse_expr()?;
+        let body = self.stmt()?;
+        Some(Stmt::While {
+            condition,
+            body: Box::new(body),
+        })
     }
 
     fn if_stmt(&mut self) -> Option<Stmt> {

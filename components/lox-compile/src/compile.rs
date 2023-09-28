@@ -125,6 +125,7 @@ impl Compiler {
                 // so we can fill in the placeholder
                 self.patch_jump(jump_to_the_end_of_else_branch, chunk);
             }
+            syntax::Stmt::While { condition, body } => todo!(),
         }
     }
 

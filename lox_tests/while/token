@@ -1,0 +1,37 @@
+TokenTree {
+    source text: "while (true) {\n    print \"hello\";\n}",
+    tokens: [
+        Alphabetic(while),
+        Whitespace(' '),
+        Delimiter((),
+        Tree(
+            TokenTree {
+                source text: "while (true) {\n    print \"hello\";\n}",
+                tokens: [
+                    Alphabetic(true),
+                ],
+            },
+        ),
+        Delimiter()),
+        Whitespace(' '),
+        Delimiter({),
+        Tree(
+            TokenTree {
+                source text: "while (true) {\n    print \"hello\";\n}",
+                tokens: [
+                    Whitespace('\n'),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Alphabetic(print),
+                    Whitespace(' '),
+                    String(hello),
+                    Semicolon,
+                    Whitespace('\n'),
+                ],
+            },
+        ),
+        Delimiter(}),
+    ],
+}
