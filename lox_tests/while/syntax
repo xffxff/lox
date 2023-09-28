@@ -1,8 +1,28 @@
+Var {
+    name: "a",
+    initializer: Some(
+        NumberLiteral(0),
+    ),
+}
 While {
-    condition: BooleanLiteral(true),
+    condition: BinaryOp {
+        left: Variable(a),
+        op: Less,
+        right: NumberLiteral(5),
+    },
     body: Block {
         stmt: Print {
             expr: StringLiteral(hello),
+        },
+        stmt: Expr {
+            expr: Assign {
+                name: "a",
+                value: BinaryOp {
+                    left: Variable(a),
+                    op: Plus,
+                    right: NumberLiteral(1),
+                },
+            },
         },
     },
 }

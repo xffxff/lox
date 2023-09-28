@@ -125,7 +125,45 @@ impl Compiler {
                 // so we can fill in the placeholder
                 self.patch_jump(jump_to_the_end_of_else_branch, chunk);
             }
-            syntax::Stmt::While { condition, body } => todo!(),
+            syntax::Stmt::While { condition, body } => {
+                //         ┌────────────────────┐
+                // ┌─────► │condition expression│
+                // │       └────────────────────┘
+                // │  ┌──  JUMP_IF_FALSE
+                // │  │    POP
+                // │  │    ┌───────────────────┐
+                // │  │    │body statement list│
+                // │  │    └───────────────────┘
+                // └──┼─── JUMP
+                //    └──► POP
+                //         continues...
+
+                // the offset of the beginning of the condition expression
+                let condition_offset = chunk.len();
+
+                self.compile_expr(db, condition, chunk);
+
+                // if the condition is false, jump to the end of the while loop,
+                // but we don't know where the end of the while loop is yet, so we emit a placeholder
+                let jump_to_the_end_of_while_loop = chunk.emit_byte(Code::JumpIfFalse(0));
+
+                // this `pop` is only executed if the condition is true,
+                // it pops the value of the condition expression
+                chunk.emit_byte(Code::Pop);
+
+                self.compile_stmt(db, body, chunk);
+
+                // after executing the body, we jump to the beginning of the condition expression,
+                chunk.emit_byte(Code::Jump(condition_offset));
+
+                // after compiling the body, we know where the end of the while loop is,
+                // so we can fill in the placeholder
+                self.patch_jump(jump_to_the_end_of_while_loop, chunk);
+
+                // this `pop` is only executed if the condition is false,
+                // it pops the value of the condition expression
+                chunk.emit_byte(Code::Pop);
+            }
         }
     }
 
