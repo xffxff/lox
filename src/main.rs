@@ -59,7 +59,7 @@ impl TestCase {
         let syntax = lox_dir.join("syntax");
         let bytecode = lox_dir.join("bytecode");
         let execute = lox_dir.join("execute");
-        let output = lox_dir.join("output");
+        let diagnostic = lox_dir.join("diagnostic");
         let text = fs::read_to_string(&lox).unwrap();
         TestCase {
             lox: lox.to_owned(),
@@ -67,7 +67,7 @@ impl TestCase {
             syntax,
             bytecode,
             execute,
-            diagnostic: output,
+            diagnostic,
             text,
         }
     }
@@ -120,6 +120,17 @@ impl TestCase {
         }
         expect_file![self.syntax].assert_eq(&buf);
 
+        // test diagnostics
+        let diagnostics = lox_compile::compile_file::accumulated::<Diagnostics>(db, input_file);
+        let output = lox_error_format::format_diagnostics_with_options(
+            db,
+            &diagnostics,
+            FormatOptions::no_color(),
+        );
+        if let Ok(output) = output {
+            expect_file![self.diagnostic].assert_eq(&output);
+        }
+
         // test bytecode
         let chunk = lox_compile::compile_file(db, input_file);
         expect_file![self.bytecode].assert_eq(&format!("{:#?}", chunk));
@@ -133,16 +144,6 @@ impl TestCase {
         };
         lox_execute::execute_file(db, input_file, Some(step_inspect));
         expect_file![self.execute].assert_eq(&buf);
-
-        let diagnostics = lox_compile::compile_file::accumulated::<Diagnostics>(db, input_file);
-        let output = lox_error_format::format_diagnostics_with_options(
-            db,
-            &diagnostics,
-            FormatOptions::no_color(),
-        );
-        if let Ok(output) = output {
-            expect_file![self.diagnostic].assert_eq(&output);
-        }
     }
 }
 
