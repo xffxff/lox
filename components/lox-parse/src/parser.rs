@@ -82,8 +82,56 @@ impl<'me> Parser<'me> {
             return self.if_stmt();
         } else if self.eat(Keyword::While).is_some() {
             return self.while_stmt();
+        } else if self.eat(Keyword::For).is_some() {
+            return self.for_stmt();
         }
         self.expr_stmt()
+    }
+
+    // forStmt        → "for" "(" ( varDecl | exprStmt | ";" )
+    //              expression? ";"
+    //              expression? ")" statement ;
+    fn for_stmt(&mut self) -> Option<Stmt> {
+        let (_, token_tree) = self.delimited('(')?;
+        let mut sub_parser = Parser::new(self.db, token_tree);
+        let initializer = if sub_parser.eat(Keyword::Var).is_some() {
+            sub_parser.var_declaration()
+        } else if sub_parser.peek(Token::Semicolon).is_some() {
+            None
+        } else {
+            sub_parser.expr_stmt()
+        };
+
+        sub_parser
+            .eat(Token::Semicolon)
+            .or_report_error(&mut sub_parser, || "expected `;`");
+
+        let condition = if sub_parser.peek(Token::Semicolon).is_some() {
+            None
+        } else {
+            let expr = sub_parser.parse_expr()?;
+            Some(expr)
+        };
+
+        sub_parser
+            .eat(Token::Semicolon)
+            .or_report_error(&mut sub_parser, || "expected `;`");
+
+        let increment = if sub_parser.tokens.peek().is_some() {
+            let expr = sub_parser.parse_expr()?;
+            Some(expr)
+        } else {
+            None
+        };
+
+        let body = self.stmt()?;
+
+        Some(Stmt::For {
+            initializer: initializer.map(Box::new),
+            condition,
+            increment,
+            body: Box::new(body),
+        })
     }
 
     fn while_stmt(&mut self) -> Option<Stmt> {

@@ -115,6 +115,14 @@ pub enum Stmt {
         condition: Expr,
         body: Box<Stmt>,
     },
+
+    // for statement, like `for (var i = 0; i < 10; i = i + 1) { print i; }`
+    For {
+        initializer: Option<Box<Stmt>>,
+        condition: Option<Expr>,
+        increment: Option<Expr>,
+        body: Box<Stmt>,
+    },
 }
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
@@ -161,6 +169,25 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
             Stmt::While { condition, body } => {
                 let mut builder = f.debug_struct("While");
                 builder.field("condition", &condition.debug(db));
+                builder.field("body", &body.debug(db));
+                builder.finish()
+            }
+            Stmt::For {
+                initializer,
+                condition,
+                increment,
+                body,
+            } => {
+                let mut builder = f.debug_struct("For");
+                if let Some(initializer) = initializer {
+                    builder.field("initializer", &initializer.debug(db));
+                }
+                if let Some(condition) = condition {
+                    builder.field("condition", &condition.debug(db));
+                }
+                if let Some(increment) = increment {
+                    builder.field("increment", &increment.debug(db));
+                }
                 builder.field("body", &body.debug(db));
                 builder.finish()
             }

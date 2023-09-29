@@ -164,6 +164,12 @@ impl Compiler {
                 // it pops the value of the condition expression
                 chunk.emit_byte(Code::Pop);
             }
+            syntax::Stmt::For {
+                initializer,
+                condition,
+                increment,
+                body,
+            } => todo!(),
         }
     }
 
