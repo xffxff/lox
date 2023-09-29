@@ -1,0 +1,1068 @@
+execute: Constant(
+    F64(
+        0.0,
+    ),
+)
+stack: [
+    Number(
+        0.0,
+    ),
+]
+
+execute: GlobalVarDeclaration {
+    name: "i",
+}
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        0.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        0.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        0.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        0.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        0.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        1.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        1.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        1.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        2.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        3.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        3.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        3.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        3.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        3.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        4.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        4.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        4.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        4.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        4.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        4.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        4.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        5.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        5.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        5.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        5.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        5.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        5.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        5.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        6.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        6.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        6.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        6.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        6.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        6.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        6.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        7.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        7.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        7.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        7.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        7.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        7.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        7.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        8.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        8.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        8.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        8.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        8.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        8.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        8.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        9.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        9.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        9.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        9.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        9.0,
+    ),
+]
+
+execute: Print
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        9.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Number(
+        9.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+
+execute: Add
+stack: [
+    Number(
+        10.0,
+    ),
+]
+
+execute: Assign(
+    "i",
+)
+stack: [
+    Number(
+        10.0,
+    ),
+]
+
+execute: Pop
+stack: []
+
+execute: Jump(
+    2,
+)
+stack: []
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        10.0,
+    ),
+]
+
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        10.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+
+execute: Less
+stack: [
+    Boolean(
+        false,
+    ),
+]
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        false,
+    ),
+]
+
+execute: Pop
+stack: []
+

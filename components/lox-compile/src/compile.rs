@@ -169,7 +169,46 @@ impl Compiler {
                 condition,
                 increment,
                 body,
-            } => todo!(),
+            } => {
+                if let Some(initializer) = initializer {
+                    self.compile_stmt(db, initializer, chunk);
+                }
+
+                // the offset of the beginning of the condition expression
+                let condition_offset = chunk.len();
+
+                if let Some(condition) = condition {
+                    self.compile_expr(db, condition, chunk);
+                } else {
+                    // if there is no condition, we treat it as `true`
+                    chunk.emit_byte(Code::True);
+                }
+
+                // if the condition is false, jump to the end of the for loop,
+                // but we don't know where the end of the for loop is yet, so we emit a placeholder
+                let jump_to_the_end_of_for_loop = chunk.emit_byte(Code::JumpIfFalse(0));
+
+                // this `pop` is only executed if the condition is true,
+                // it pops the value of the condition expression
+                chunk.emit_byte(Code::Pop);
+
+                self.compile_stmt(db, body, chunk);
+
+                if let Some(increment) = increment {
+                    self.compile_expr(db, increment, chunk);
+                    chunk.emit_byte(Code::Pop);
+                }
+
+                // after executing the body, we jump to the beginning of the condition expression,
+                chunk.emit_byte(Code::Jump(condition_offset));
+
+                // after compiling the body, we know where the end of the for loop is,
+                // so we can fill in the placeholder
+                self.patch_jump(jump_to_the_end_of_for_loop, chunk);
+
+                // this for loop is over, so we pop the value of the condition expression
+                chunk.emit_byte(Code::Pop);
+            }
         }
     }
 

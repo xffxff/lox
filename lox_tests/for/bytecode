@@ -1,8 +1,46 @@
 Chunk {
     code: [
-        ReadGlobalVariable {
-            name: "for",
+        Constant(
+            F64(
+                0.0,
+            ),
+        ),
+        GlobalVarDeclaration {
+            name: "i",
         },
+        ReadGlobalVariable {
+            name: "i",
+        },
+        Constant(
+            F64(
+                10.0,
+            ),
+        ),
+        Less,
+        JumpIfFalse(
+            15,
+        ),
+        Pop,
+        ReadGlobalVariable {
+            name: "i",
+        },
+        Print,
+        ReadGlobalVariable {
+            name: "i",
+        },
+        Constant(
+            F64(
+                1.0,
+            ),
+        ),
+        Add,
+        Assign(
+            "i",
+        ),
+        Pop,
+        Jump(
+            2,
+        ),
         Pop,
     ],
 }

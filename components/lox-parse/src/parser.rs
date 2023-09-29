@@ -96,15 +96,11 @@ impl<'me> Parser<'me> {
         let mut sub_parser = Parser::new(self.db, token_tree);
         let initializer = if sub_parser.eat(Keyword::Var).is_some() {
             sub_parser.var_declaration()
-        } else if sub_parser.peek(Token::Semicolon).is_some() {
+        } else if sub_parser.eat(Token::Semicolon).is_some() {
             None
         } else {
             sub_parser.expr_stmt()
         };
-
-        sub_parser
-            .eat(Token::Semicolon)
-            .or_report_error(&mut sub_parser, || "expected `;`");
 
         let condition = if sub_parser.peek(Token::Semicolon).is_some() {
             None
