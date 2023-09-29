@@ -170,6 +170,24 @@ impl Compiler {
                 increment,
                 body,
             } => {
+                //        ┌─────────────────────┐
+                //        │initializer statement│
+                //        └─────────────────────┘
+                //        ┌─────────────────────┐
+                //    ┌─► │condition expression │
+                //    │   └─────────────────────┘
+                // ┌──┼── JUMP_IF_FALSE
+                // │  │   POP
+                // │  │   ┌─────────────────────┐
+                // │  │   │body statement list  │
+                // │  │   └─────────────────────┘
+                // │  │   ┌─────────────────────┐
+                // │  │   │increment expression │
+                // │  │   └─────────────────────┘
+                // │  └── JUMP
+                // │      POP
+                // └────► continues...
+
                 if let Some(initializer) = initializer {
                     self.compile_stmt(db, initializer, chunk);
                 }
