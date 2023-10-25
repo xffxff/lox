@@ -1,0 +1,7 @@
+Expr {
+    expr: Call {
+        callee: Variable(average),
+        arg: NumberLiteral(1),
+        arg: NumberLiteral(2),
+    },
+}

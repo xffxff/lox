@@ -322,7 +322,32 @@ impl<'me> Parser<'me> {
                 return Some(Expr::UnaryOp(*op, Box::new(expr)));
             }
         }
-        self.primary()
+        self.call()
+    }
+
+    fn call(&mut self) -> Option<Expr> {
+        let mut expr = self.primary()?;
+        loop {
+            if let Some((_, token_tree)) = self.delimited('(') {
+                let mut parser = Parser::new(self.db, token_tree);
+                let mut args = vec![];
+                while parser.tokens.peek().is_some() {
+                    let arg = parser.parse_expr()?;
+                    args.push(arg);
+                    if parser.eat(Token::Comma).is_none() {
+                        break;
+                    }
+                }
+                parser.eat(Token::Delimiter(')'));
+                expr = Expr::Call {
+                    callee: Box::new(expr),
+                    arguments: args,
+                };
+                continue;
+            }
+            break;
+        }
+        Some(expr)
     }
 
     fn primary(&mut self) -> Option<Expr> {

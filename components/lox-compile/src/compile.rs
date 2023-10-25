@@ -339,6 +339,7 @@ impl Compiler {
                 self.compile_expr(db, right, chunk);
                 self.patch_jump(jump_if_left_is_true, chunk);
             }
+            syntax::Expr::Call { callee, arguments } => todo!(),
         }
     }
 

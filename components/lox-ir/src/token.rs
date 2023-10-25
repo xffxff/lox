@@ -34,6 +34,9 @@ pub enum Token {
     // Semicolon
     Semicolon,
 
+    // Comma
+    Comma,
+
     // Unkown token
     Unknown(char),
 }
@@ -56,6 +59,7 @@ impl<'db> DebugWithDb<dyn crate::Db + 'db> for Token {
             Token::String(word) => write!(f, "String({})", word.as_str(db)),
             Token::Unknown(ch) => write!(f, "Unknown({})", ch),
             Token::Semicolon => write!(f, "Semicolon"),
+            Token::Comma => write!(f, "Comma"),
         }
     }
 }
@@ -71,6 +75,7 @@ impl Token {
             Token::Tree(tree) => tree.span(db).len(),
             Token::String(s) => s.as_str(db).len() as u32 + 2, // plus 2 for the quotes
             Token::Semicolon => 1,
+            Token::Comma => 1,
         }
     }
 

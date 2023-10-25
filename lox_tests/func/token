@@ -1,0 +1,20 @@
+TokenTree {
+    source text: "average(1, 2);",
+    tokens: [
+        Alphabetic(average),
+        Delimiter((),
+        Tree(
+            TokenTree {
+                source text: "average(1, 2);",
+                tokens: [
+                    Number(1),
+                    Comma,
+                    Whitespace(' '),
+                    Number(2),
+                ],
+            },
+        ),
+        Delimiter()),
+        Semicolon,
+    ],
+}

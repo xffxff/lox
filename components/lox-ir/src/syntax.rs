@@ -30,13 +30,22 @@ pub enum Expr {
     Variable(Word),
 
     // assignment expression, like `foo = 1 + 2`
-    Assign { name: Word, value: Box<Expr> },
+    Assign {
+        name: Word,
+        value: Box<Expr>,
+    },
 
     // logical and
     LogicalAnd(Box<Expr>, Box<Expr>),
 
     // logical or
     LogicalOr(Box<Expr>, Box<Expr>),
+
+    // call expression, like `foo(1, 2, 3)`
+    Call {
+        callee: Box<Expr>,
+        arguments: Vec<Expr>,
+    },
 }
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
@@ -81,6 +90,14 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
                 .field("left", &left.debug(db))
                 .field("right", &right.debug(db))
                 .finish(),
+            Expr::Call { callee, arguments } => {
+                let mut builder = f.debug_struct("Call");
+                builder.field("callee", &callee.debug(db));
+                for arg in arguments {
+                    builder.field("arg", &arg.debug(db));
+                }
+                builder.finish()
+            }
             _ => todo!(),
         }
     }
