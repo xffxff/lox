@@ -227,6 +227,11 @@ impl Compiler {
                 // this for loop is over, so we pop the value of the condition expression
                 chunk.emit_byte(Code::Pop);
             }
+            syntax::Stmt::FunctionDeclaration {
+                name,
+                parameters,
+                body,
+            } => todo!(),
         }
     }
 

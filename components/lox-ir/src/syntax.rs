@@ -140,6 +140,13 @@ pub enum Stmt {
         increment: Option<Expr>,
         body: Box<Stmt>,
     },
+
+    // function declaration, like `fun foo() { 1 + 2; }`
+    FunctionDeclaration {
+        name: Word,
+        parameters: Vec<Word>,
+        body: Box<Stmt>,
+    },
 }
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
@@ -204,6 +211,19 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
                 }
                 if let Some(increment) = increment {
                     builder.field("increment", &increment.debug(db));
+                }
+                builder.field("body", &body.debug(db));
+                builder.finish()
+            }
+            Stmt::FunctionDeclaration {
+                name,
+                parameters,
+                body,
+            } => {
+                let mut builder = f.debug_struct("FunctionDeclaration");
+                builder.field("name", &name.as_str(db));
+                for param in parameters {
+                    builder.field("param", &param.as_str(db));
                 }
                 builder.field("body", &body.debug(db));
                 builder.finish()

@@ -45,9 +45,33 @@ impl<'me> Parser<'me> {
     fn declaration(&mut self) -> Option<Stmt> {
         if self.eat(Keyword::Var).is_some() {
             self.var_declaration()
+        } else if self.eat(Keyword::Fun).is_some() {
+            self.func_declaration()
         } else {
             self.stmt()
         }
+    }
+
+    fn func_declaration(&mut self) -> Option<Stmt> {
+        let name = self.eat(Identifier)?.1;
+        let parameters_tree = self.delimited('(')?.1;
+        let mut sub_parser = Parser::new(self.db, parameters_tree);
+        let mut parameters = vec![];
+        while sub_parser.tokens.peek().is_some() {
+            let (_, id) = sub_parser.eat(Identifier)?;
+            parameters.push(id);
+            if sub_parser.eat(Token::Comma).is_none() {
+                break;
+            }
+        }
+        let body_tree = self.delimited('{')?.1;
+        let mut sub_parser = Parser::new(self.db, body_tree);
+        let body = sub_parser.parse();
+        Some(Stmt::FunctionDeclaration {
+            name,
+            parameters,
+            body: Box::new(Stmt::Block(body)),
+        })
     }
 
     // "var" IDENTIFIER ( "=" expression )? ";" ;
