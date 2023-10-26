@@ -8,6 +8,11 @@ pub enum Value {
     Boolean(bool),
     Nil,
     String(String),
+    Function {
+        name: String,
+        arity: usize,
+        chunk: bytecode::Chunk,
+    },
 }
 
 impl std::fmt::Display for Value {
@@ -17,6 +22,7 @@ impl std::fmt::Display for Value {
             Value::Boolean(b) => write!(f, "{}", b),
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
+            Value::Function { name, arity, chunk } => todo!(),
         }
     }
 }
@@ -268,7 +274,10 @@ impl VM {
                 bytecode::Code::Jump(ip) => {
                     self.ip = ip;
                 }
-                bytecode::Code::Function { name, arity, chunk } => todo!(),
+                bytecode::Code::Function { name, arity, chunk } => {
+                    let function = Value::Function { name, arity, chunk };
+                    self.push(function);
+                }
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);
