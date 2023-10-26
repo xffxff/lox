@@ -19,5 +19,22 @@ Chunk {
         GlobalVarDeclaration {
             name: "average",
         },
+        ReadGlobalVariable {
+            name: "average",
+        },
+        Constant(
+            F64(
+                1.0,
+            ),
+        ),
+        Constant(
+            F64(
+                2.0,
+            ),
+        ),
+        Call {
+            arity: 2,
+        },
+        Pop,
     ],
 }

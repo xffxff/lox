@@ -363,7 +363,15 @@ impl Compiler {
                 self.compile_expr(db, right, chunk);
                 self.patch_jump(jump_if_left_is_true, chunk);
             }
-            syntax::Expr::Call { callee, arguments } => todo!(),
+            syntax::Expr::Call { callee, arguments } => {
+                self.compile_expr(db, callee, chunk);
+                for arg in arguments {
+                    self.compile_expr(db, arg, chunk);
+                }
+                chunk.emit_byte(Code::Call {
+                    arity: arguments.len(),
+                });
+            }
         }
     }
 

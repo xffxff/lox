@@ -37,6 +37,9 @@ pub enum Code {
         arity: usize,
         chunk: Chunk,
     },
+    Call {
+        arity: usize,
+    },
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]

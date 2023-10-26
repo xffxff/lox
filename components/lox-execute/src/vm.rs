@@ -278,6 +278,7 @@ impl VM {
                     let function = Value::Function { name, arity, chunk };
                     self.push(function);
                 }
+                bytecode::Code::Call { arity } => todo!(),
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);
