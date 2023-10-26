@@ -268,6 +268,7 @@ impl VM {
                 bytecode::Code::Jump(ip) => {
                     self.ip = ip;
                 }
+                bytecode::Code::Function { name, arity, chunk } => todo!(),
             }
             if let Some(step_inspect) = &mut step_inspect {
                 step_inspect(instruction, self);

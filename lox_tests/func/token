@@ -1,5 +1,5 @@
 TokenTree {
-    source text: "fun average(a, b) {\n    (a + b) / 2;\n}\n\naverage(1, 2);",
+    source text: "fun average(a, b) {\n    a + b\n}",
     tokens: [
         Alphabetic(fun),
         Whitespace(' '),
@@ -7,7 +7,7 @@ TokenTree {
         Delimiter((),
         Tree(
             TokenTree {
-                source text: "fun average(a, b) {\n    (a + b) / 2;\n}\n\naverage(1, 2);",
+                source text: "fun average(a, b) {\n    a + b\n}",
                 tokens: [
                     Alphabetic(a),
                     Comma,
@@ -21,53 +21,22 @@ TokenTree {
         Delimiter({),
         Tree(
             TokenTree {
-                source text: "fun average(a, b) {\n    (a + b) / 2;\n}\n\naverage(1, 2);",
+                source text: "fun average(a, b) {\n    a + b\n}",
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
                     Whitespace(' '),
                     Whitespace(' '),
                     Whitespace(' '),
-                    Delimiter((),
-                    Tree(
-                        TokenTree {
-                            source text: "fun average(a, b) {\n    (a + b) / 2;\n}\n\naverage(1, 2);",
-                            tokens: [
-                                Alphabetic(a),
-                                Whitespace(' '),
-                                Op(+),
-                                Whitespace(' '),
-                                Alphabetic(b),
-                            ],
-                        },
-                    ),
-                    Delimiter()),
+                    Alphabetic(a),
                     Whitespace(' '),
-                    Op(/),
+                    Op(+),
                     Whitespace(' '),
-                    Number(2),
-                    Semicolon,
+                    Alphabetic(b),
                     Whitespace('\n'),
                 ],
             },
         ),
         Delimiter(}),
-        Whitespace('\n'),
-        Whitespace('\n'),
-        Alphabetic(average),
-        Delimiter((),
-        Tree(
-            TokenTree {
-                source text: "fun average(a, b) {\n    (a + b) / 2;\n}\n\naverage(1, 2);",
-                tokens: [
-                    Number(1),
-                    Comma,
-                    Whitespace(' '),
-                    Number(2),
-                ],
-            },
-        ),
-        Delimiter()),
-        Semicolon,
     ],
 }

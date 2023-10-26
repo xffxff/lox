@@ -5,23 +5,10 @@ FunctionDeclaration {
     body: Block {
         stmt: Expr {
             expr: BinaryOp {
-                left: Parenthesized {
-                    expr: BinaryOp {
-                        left: Variable(a),
-                        op: Plus,
-                        right: Variable(b),
-                    },
-                },
-                op: Slash,
-                right: NumberLiteral(2),
+                left: Variable(a),
+                op: Plus,
+                right: Variable(b),
             },
         },
-    },
-}
-Expr {
-    expr: Call {
-        callee: Variable(average),
-        arg: NumberLiteral(1),
-        arg: NumberLiteral(2),
     },
 }

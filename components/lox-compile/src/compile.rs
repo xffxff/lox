@@ -231,7 +231,26 @@ impl Compiler {
                 name,
                 parameters,
                 body,
-            } => todo!(),
+            } => {
+                let mut sub_compiler = Compiler::default();
+                let mut sub_chunk = Chunk::default();
+                for param in parameters {
+                    let name_str = param.as_str(db);
+                    let local = Local::new(name_str, self.scope_depth);
+                    sub_compiler.locals.push(local);
+                }
+                sub_compiler.compile_stmt(db, body, &mut sub_chunk);
+                let name_str = name.as_str(db);
+                let function = Code::Function {
+                    name: name_str.to_string(),
+                    arity: parameters.len(),
+                    chunk: sub_chunk,
+                };
+                chunk.emit_byte(function);
+                chunk.emit_byte(Code::GlobalVarDeclaration {
+                    name: name_str.to_string(),
+                });
+            }
         }
     }
 

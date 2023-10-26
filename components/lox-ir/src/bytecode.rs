@@ -32,6 +32,11 @@ pub enum Code {
     Pop,
     JumpIfFalse(usize),
     Jump(usize),
+    Function {
+        name: String,
+        arity: usize,
+        chunk: Chunk,
+    },
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]

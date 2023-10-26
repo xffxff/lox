@@ -1,7 +1,7 @@
-Error: extra tokens after statement
-   ╭─[/home/zhoufan/workspace/rust/lox/lox_tests/func.lox:1:1]
+Error: expected `;`
+   ╭─[/home/zhoufan/workspace/rust/lox/lox_tests/func.lox:1:11]
    │
  1 │ fun average(a, b) {
-   │ ─┬─  
-   │  ╰─── here
+   │           ┬  
+   │           ╰── here
 ───╯
