@@ -1,5 +1,0 @@
-fun average(a, b) {
-    a + b
-}
-
-average(1, 2);

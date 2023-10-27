@@ -1,24 +1,28 @@
-Chunk {
-    code: [
-        Constant(
-            F64(
-                1.0,
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                2.0,
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        ReadLocalVariable {
-            index_in_stack: 1,
-        },
-        Print,
-        Pop,
-        ReadLocalVariable {
-            index_in_stack: 0,
-        },
-        Print,
-        Pop,
-    ],
+            ReadLocalVariable {
+                index_in_stack: 1,
+            },
+            Print,
+            Pop,
+            ReadLocalVariable {
+                index_in_stack: 0,
+            },
+            Print,
+            Pop,
+        ],
+    },
 }

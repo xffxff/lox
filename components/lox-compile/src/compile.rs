@@ -1,18 +1,22 @@
 use lox_ir::{
-    bytecode::{Chunk, Code},
+    bytecode::{Chunk, Code, Function},
     input_file::InputFile,
     syntax,
 };
 
 #[salsa::tracked]
-pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
+pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Function {
     let stmts = lox_parse::parse_file(db, input_file);
     let mut chunk = Chunk::default();
     let mut compiler = Compiler::default();
     for stmt in stmts {
         compiler.compile_stmt(db, stmt, &mut chunk);
     }
-    chunk
+    Function {
+        name: "main".to_string(),
+        arity: 0,
+        chunk,
+    }
 }
 
 struct Local {
@@ -241,11 +245,11 @@ impl Compiler {
                 }
                 sub_compiler.compile_stmt(db, body, &mut sub_chunk);
                 let name_str = name.as_str(db);
-                let function = Code::Function {
+                let function = Code::Function(Function {
                     name: name_str.to_string(),
                     arity: parameters.len(),
                     chunk: sub_chunk,
-                };
+                });
                 chunk.emit_byte(function);
                 chunk.emit_byte(Code::GlobalVarDeclaration {
                     name: name_str.to_string(),

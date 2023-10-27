@@ -1,6 +1,7 @@
 use std::{
     fs,
     path::{Path, PathBuf},
+    sync::{Arc, Mutex},
 };
 
 use clap::{Parser, Subcommand};
@@ -136,14 +137,15 @@ impl TestCase {
         expect_file![self.bytecode].assert_eq(&format!("{:#?}", chunk));
 
         // test execute
-        let mut buf = String::new();
+        let buf = Arc::new(Mutex::new(String::new()));
         let step_inspect = |code: bytecode::Code, vm: &lox_execute::VM| {
+            let mut buf = buf.lock().unwrap();
             buf.push_str(&format!("execute: {:#?}\n", code));
             buf.push_str(&format!("stack: {:#?}\n", vm.stack));
             buf.push('\n');
         };
         lox_execute::execute_file(db, input_file, Some(step_inspect));
-        expect_file![self.execute].assert_eq(&buf);
+        expect_file![self.execute].assert_eq(&buf.lock().unwrap());
     }
 }
 

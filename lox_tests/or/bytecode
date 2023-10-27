@@ -1,13 +1,17 @@
-Chunk {
-    code: [
-        True,
-        JumpIfFalse(
-            3,
-        ),
-        Jump(
-            4,
-        ),
-        False,
-        Pop,
-    ],
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            True,
+            JumpIfFalse(
+                3,
+            ),
+            Jump(
+                4,
+            ),
+            False,
+            Pop,
+        ],
+    },
 }

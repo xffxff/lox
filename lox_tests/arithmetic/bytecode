@@ -1,71 +1,75 @@
-Chunk {
-    code: [
-        Constant(
-            F64(
-                1.0,
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                2.0,
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        Add,
-        Pop,
-        Constant(
-            F64(
-                1.0,
+            Add,
+            Pop,
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                2.0,
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                3.0,
+            Constant(
+                F64(
+                    3.0,
+                ),
             ),
-        ),
-        Multiply,
-        Add,
-        Pop,
-        Constant(
-            F64(
-                1.0,
+            Multiply,
+            Add,
+            Pop,
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                2.0,
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                3.0,
+            Constant(
+                F64(
+                    3.0,
+                ),
             ),
-        ),
-        Divide,
-        Subtract,
-        Pop,
-        Constant(
-            F64(
-                1.0,
+            Divide,
+            Subtract,
+            Pop,
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                2.0,
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                3.0,
+            Constant(
+                F64(
+                    3.0,
+                ),
             ),
-        ),
-        Negate,
-        Multiply,
-        Add,
-        Pop,
-    ],
+            Negate,
+            Multiply,
+            Add,
+            Pop,
+        ],
+    },
 }

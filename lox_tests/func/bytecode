@@ -1,40 +1,7 @@
-Chunk {
-    code: [
-        Function {
-            name: "average",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Pop,
-                ],
-            },
-        },
-        GlobalVarDeclaration {
-            name: "average",
-        },
-        ReadGlobalVariable {
-            name: "average",
-        },
-        Constant(
-            F64(
-                1.0,
-            ),
-        ),
-        Constant(
-            F64(
-                2.0,
-            ),
-        ),
-        Call {
-            arity: 2,
-        },
-        Pop,
-    ],
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [],
+    },
 }

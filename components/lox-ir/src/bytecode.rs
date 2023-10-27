@@ -32,11 +32,7 @@ pub enum Code {
     Pop,
     JumpIfFalse(usize),
     Jump(usize),
-    Function {
-        name: String,
-        arity: usize,
-        chunk: Chunk,
-    },
+    Function(Function),
     Call {
         arity: usize,
     },
@@ -68,4 +64,11 @@ impl Chunk {
     pub fn is_empty(&self) -> bool {
         self.code.is_empty()
     }
+}
+
+#[derive(PartialEq, Eq, Debug, Clone, Default)]
+pub struct Function {
+    pub name: String,
+    pub arity: usize,
+    pub chunk: Chunk,
 }
