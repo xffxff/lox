@@ -1,0 +1,123 @@
+execute: Function(
+    Function {
+        name: "hello",
+        arity: 0,
+        chunk: Chunk {
+            code: [
+                String(
+                    "hello world",
+                ),
+                Print,
+            ],
+        },
+    },
+)
+stack: [
+    Function(
+        Function {
+            name: "hello",
+            arity: 0,
+            chunk: Chunk {
+                code: [
+                    String(
+                        "hello world",
+                    ),
+                    Print,
+                ],
+            },
+        },
+    ),
+]
+output: ""
+
+execute: GlobalVarDeclaration {
+    name: "hello",
+}
+stack: []
+output: ""
+
+execute: ReadGlobalVariable {
+    name: "hello",
+}
+stack: [
+    Function(
+        Function {
+            name: "hello",
+            arity: 0,
+            chunk: Chunk {
+                code: [
+                    String(
+                        "hello world",
+                    ),
+                    Print,
+                ],
+            },
+        },
+    ),
+]
+output: ""
+
+execute: Call {
+    arity: 0,
+}
+stack: [
+    Function(
+        Function {
+            name: "hello",
+            arity: 0,
+            chunk: Chunk {
+                code: [
+                    String(
+                        "hello world",
+                    ),
+                    Print,
+                ],
+            },
+        },
+    ),
+]
+output: ""
+
+execute: String(
+    "hello world",
+)
+stack: [
+    Function(
+        Function {
+            name: "hello",
+            arity: 0,
+            chunk: Chunk {
+                code: [
+                    String(
+                        "hello world",
+                    ),
+                    Print,
+                ],
+            },
+        },
+    ),
+    String(
+        "hello world",
+    ),
+]
+output: ""
+
+execute: Print
+stack: [
+    Function(
+        Function {
+            name: "hello",
+            arity: 0,
+            chunk: Chunk {
+                code: [
+                    String(
+                        "hello world",
+                    ),
+                    Print,
+                ],
+            },
+        },
+    ),
+]
+output: "hello world\n"
+

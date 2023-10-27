@@ -175,30 +175,36 @@ pub struct VM {
     globals: HashMap<String, Value>,
 
     // output buffer
-    output: String,
+    pub output: String,
 }
 
 impl VM {
-    pub fn new(function: bytecode::Function) -> Self {
+    pub fn new() -> Self {
         Self {
-            frames: vec![CallFrame {
-                function: function.into(),
-                ip: 0,
-                fp: 0,
-            }],
+            frames: vec![],
             stack: Vec::new(),
             globals: HashMap::new(),
             output: String::new(),
         }
     }
 
+    pub fn push_frame(&mut self, function: Function) {
+        let arity = function.arity;
+        let frame = CallFrame {
+            function: function,
+            ip: 0,
+            fp: self.stack.len() - arity,
+        };
+        tracing::debug!("pushing frame: {:?}", frame);
+        self.frames.push(frame);
+    }
+
     fn current_frame(&self) -> CallFrame {
         self.frames.last().unwrap().clone()
     }
 
-    fn set_current_frame(&mut self, frame: CallFrame) {
-        self.frames.pop();
-        self.frames.push(frame);
+    fn update_frame(&mut self, frame_index: usize, frame: CallFrame) {
+        self.frames[frame_index] = frame;
     }
 
     // `step_inspect` is a callback that is called after each instruction is executed.
@@ -208,12 +214,15 @@ impl VM {
         F: FnMut(bytecode::Code, &VM),
     {
         let mut frame = self.current_frame();
+        let frame_index = self.frames.len() - 1;
+        tracing::debug!("current frame: {:#?}", frame);
         if frame.function.chunk.len() <= frame.ip {
             return ControlFlow::Done;
         }
+        let instruction = frame.read_byte();
         tracing::debug!("ip: {}", frame.ip);
         tracing::debug!("stack: {:?}", self.stack);
-        let instruction = frame.read_byte();
+        tracing::debug!("instruction: {:?}", instruction);
         match instruction.clone() {
             bytecode::Code::Return => return ControlFlow::Done,
             bytecode::Code::Constant(value) => self.push(value.0),
@@ -323,12 +332,20 @@ impl VM {
                 let function = Value::Function(Function::from(function));
                 self.push(function);
             }
-            bytecode::Code::Call { arity } => todo!(),
+            bytecode::Code::Call { arity } => {
+                let function = self.peek_n_from_top(arity);
+                match function {
+                    Value::Function(function) => {
+                        self.push_frame(function.clone());
+                    }
+                    _ => panic!("Cannot call {:?}", function),
+                }
+            }
         }
         if let Some(step_inspect) = &mut step_inspect {
             step_inspect(instruction, self);
         }
-        self.set_current_frame(frame);
+        self.update_frame(frame_index, frame);
         ControlFlow::Next
     }
 
@@ -338,6 +355,10 @@ impl VM {
 
     fn peek(&self) -> &Value {
         self.stack.last().unwrap()
+    }
+
+    fn peek_n_from_top(&self, n: usize) -> &Value {
+        &self.stack[self.stack.len() - n - 1]
     }
 
     fn push<T>(&mut self, value: T)

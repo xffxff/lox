@@ -1,0 +1,13 @@
+FunctionDeclaration {
+    name: "hello",
+    body: Block {
+        stmt: Print {
+            expr: StringLiteral(hello world),
+        },
+    },
+}
+Expr {
+    expr: Call {
+        callee: Variable(hello),
+    },
+}

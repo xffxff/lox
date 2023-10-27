@@ -2,6 +2,31 @@ Function {
     name: "main",
     arity: 0,
     chunk: Chunk {
-        code: [],
+        code: [
+            Function(
+                Function {
+                    name: "hello",
+                    arity: 0,
+                    chunk: Chunk {
+                        code: [
+                            String(
+                                "hello world",
+                            ),
+                            Print,
+                        ],
+                    },
+                },
+            ),
+            GlobalVarDeclaration {
+                name: "hello",
+            },
+            ReadGlobalVariable {
+                name: "hello",
+            },
+            Call {
+                arity: 0,
+            },
+            Pop,
+        ],
     },
 }

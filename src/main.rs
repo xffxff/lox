@@ -142,6 +142,7 @@ impl TestCase {
             let mut buf = buf.lock().unwrap();
             buf.push_str(&format!("execute: {:#?}\n", code));
             buf.push_str(&format!("stack: {:#?}\n", vm.stack));
+            buf.push_str(&format!("output: {:#?}\n", vm.output));
             buf.push('\n');
         };
         lox_execute::execute_file(db, input_file, Some(step_inspect));

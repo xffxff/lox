@@ -9,12 +9,13 @@ pub fn execute_file(
     step_inspect: Option<impl FnMut(bytecode::Code, &VM) + Clone>,
 ) -> String {
     let chunk = compile::compile_file(db, input_file);
-    let mut vm = VM::new(chunk);
+    let mut vm = VM::new();
+    vm.push_frame(chunk.into());
     loop {
         match vm.step(step_inspect.clone()) {
             ControlFlow::Next => continue,
             ControlFlow::Done => break,
         }
     }
-    "hello".to_string()
+    vm.output
 }
