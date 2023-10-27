@@ -8,6 +8,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -22,6 +23,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Less
 stack: [
@@ -29,9 +31,11 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: Constant(
     F64(
@@ -43,6 +47,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -57,6 +62,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: LessEqual
 stack: [
@@ -64,9 +70,11 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: Constant(
     F64(
@@ -78,6 +86,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -92,6 +101,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Greater
 stack: [
@@ -99,9 +109,11 @@ stack: [
         false,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: Constant(
     F64(
@@ -113,6 +125,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -127,6 +140,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: GreaterEqual
 stack: [
@@ -134,7 +148,9 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 

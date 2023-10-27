@@ -10,7 +10,7 @@ Function {
                     chunk: Chunk {
                         code: [
                             String(
-                                "hello world",
+                                "hello",
                             ),
                             Print,
                         ],
@@ -27,6 +27,10 @@ Function {
                 arity: 0,
             },
             Pop,
+            String(
+                "world",
+            ),
+            Print,
         ],
     },
 }

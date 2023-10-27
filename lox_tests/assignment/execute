@@ -8,11 +8,13 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: GlobalVarDeclaration {
     name: "a",
 }
 stack: []
+output: ""
 
 execute: Constant(
     F64(
@@ -24,6 +26,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Assign(
     "a",
@@ -33,9 +36,11 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -45,9 +50,11 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Print
 stack: []
+output: "2\n"
 
 execute: Constant(
     F64(
@@ -59,6 +66,7 @@ stack: [
         3.0,
     ),
 ]
+output: "2\n"
 
 execute: Assign(
     "a",
@@ -68,9 +76,11 @@ stack: [
         3.0,
     ),
 ]
+output: "2\n"
 
 execute: Print
 stack: []
+output: "2\n3\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -80,21 +90,25 @@ stack: [
         3.0,
     ),
 ]
+output: "2\n3\n"
 
 execute: GlobalVarDeclaration {
     name: "b",
 }
 stack: []
+output: "2\n3\n"
 
 execute: Nil
 stack: [
     Nil,
 ]
+output: "2\n3\n"
 
 execute: GlobalVarDeclaration {
     name: "c",
 }
 stack: []
+output: "2\n3\n"
 
 execute: ReadGlobalVariable {
     name: "b",
@@ -104,6 +118,7 @@ stack: [
         3.0,
     ),
 ]
+output: "2\n3\n"
 
 execute: Assign(
     "c",
@@ -113,9 +128,11 @@ stack: [
         3.0,
     ),
 ]
+output: "2\n3\n"
 
 execute: Pop
 stack: []
+output: "2\n3\n"
 
 execute: ReadGlobalVariable {
     name: "c",
@@ -125,7 +142,9 @@ stack: [
         3.0,
     ),
 ]
+output: "2\n3\n"
 
 execute: Print
 stack: []
+output: "2\n3\n3\n"
 

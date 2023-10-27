@@ -4,9 +4,11 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: False
 stack: [
@@ -14,9 +16,11 @@ stack: [
         false,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: True
 stack: [
@@ -24,6 +28,7 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Not
 stack: [
@@ -31,9 +36,11 @@ stack: [
         false,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: False
 stack: [
@@ -41,6 +48,7 @@ stack: [
         false,
     ),
 ]
+output: ""
 
 execute: Not
 stack: [
@@ -48,7 +56,9 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 

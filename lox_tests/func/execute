@@ -5,7 +5,7 @@ execute: Function(
         chunk: Chunk {
             code: [
                 String(
-                    "hello world",
+                    "hello",
                 ),
                 Print,
             ],
@@ -20,7 +20,7 @@ stack: [
             chunk: Chunk {
                 code: [
                     String(
-                        "hello world",
+                        "hello",
                     ),
                     Print,
                 ],
@@ -47,7 +47,7 @@ stack: [
             chunk: Chunk {
                 code: [
                     String(
-                        "hello world",
+                        "hello",
                     ),
                     Print,
                 ],
@@ -68,7 +68,7 @@ stack: [
             chunk: Chunk {
                 code: [
                     String(
-                        "hello world",
+                        "hello",
                     ),
                     Print,
                 ],
@@ -79,7 +79,7 @@ stack: [
 output: ""
 
 execute: String(
-    "hello world",
+    "hello",
 )
 stack: [
     Function(
@@ -89,7 +89,7 @@ stack: [
             chunk: Chunk {
                 code: [
                     String(
-                        "hello world",
+                        "hello",
                     ),
                     Print,
                 ],
@@ -97,7 +97,7 @@ stack: [
         },
     ),
     String(
-        "hello world",
+        "hello",
     ),
 ]
 output: ""
@@ -111,7 +111,7 @@ stack: [
             chunk: Chunk {
                 code: [
                     String(
-                        "hello world",
+                        "hello",
                     ),
                     Print,
                 ],
@@ -119,5 +119,23 @@ stack: [
         },
     ),
 ]
-output: "hello world\n"
+output: "hello\n"
+
+execute: Pop
+stack: []
+output: "hello\n"
+
+execute: String(
+    "world",
+)
+stack: [
+    String(
+        "world",
+    ),
+]
+output: "hello\n"
+
+execute: Print
+stack: []
+output: "hello\nworld\n"
 

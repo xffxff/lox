@@ -8,11 +8,13 @@ stack: [
         0.0,
     ),
 ]
+output: ""
 
 execute: GlobalVarDeclaration {
     name: "i",
 }
 stack: []
+output: ""
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -22,6 +24,7 @@ stack: [
         0.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -36,6 +39,7 @@ stack: [
         10.0,
     ),
 ]
+output: ""
 
 execute: Less
 stack: [
@@ -43,6 +47,7 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: JumpIfFalse(
     15,
@@ -52,9 +57,11 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -64,9 +71,11 @@ stack: [
         0.0,
     ),
 ]
+output: ""
 
 execute: Print
 stack: []
+output: "0\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -76,6 +85,7 @@ stack: [
         0.0,
     ),
 ]
+output: "0\n"
 
 execute: Constant(
     F64(
@@ -90,6 +100,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n"
 
 execute: Add
 stack: [
@@ -97,6 +108,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n"
 
 execute: Assign(
     "i",
@@ -106,14 +118,17 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n"
 
 execute: Pop
 stack: []
+output: "0\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "0\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -123,6 +138,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n"
 
 execute: Constant(
     F64(
@@ -137,6 +153,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n"
 
 execute: Less
 stack: [
@@ -144,6 +161,7 @@ stack: [
         true,
     ),
 ]
+output: "0\n"
 
 execute: JumpIfFalse(
     15,
@@ -153,9 +171,11 @@ stack: [
         true,
     ),
 ]
+output: "0\n"
 
 execute: Pop
 stack: []
+output: "0\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -165,9 +185,11 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n"
 
 execute: Print
 stack: []
+output: "0\n1\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -177,6 +199,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n"
 
 execute: Constant(
     F64(
@@ -191,6 +214,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n"
 
 execute: Add
 stack: [
@@ -198,6 +222,7 @@ stack: [
         2.0,
     ),
 ]
+output: "0\n1\n"
 
 execute: Assign(
     "i",
@@ -207,56 +232,17 @@ stack: [
         2.0,
     ),
 ]
+output: "0\n1\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n"
 
 execute: Jump(
     2,
 )
 stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        10.0,
-    ),
-)
-stack: [
-    Number(
-        2.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
-
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
-)
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: Pop
-stack: []
+output: "0\n1\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -266,9 +252,44 @@ stack: [
         2.0,
     ),
 ]
+output: "0\n1\n"
 
-execute: Print
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        2.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+output: "0\n1\n"
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+output: "0\n1\n"
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+output: "0\n1\n"
+
+execute: Pop
 stack: []
+output: "0\n1\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -278,6 +299,21 @@ stack: [
         2.0,
     ),
 ]
+output: "0\n1\n"
+
+execute: Print
+stack: []
+output: "0\n1\n2\n"
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        2.0,
+    ),
+]
+output: "0\n1\n2\n"
 
 execute: Constant(
     F64(
@@ -292,6 +328,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n2\n"
 
 execute: Add
 stack: [
@@ -299,6 +336,7 @@ stack: [
         3.0,
     ),
 ]
+output: "0\n1\n2\n"
 
 execute: Assign(
     "i",
@@ -308,56 +346,17 @@ stack: [
         3.0,
     ),
 ]
+output: "0\n1\n2\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n"
 
 execute: Jump(
     2,
 )
 stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        10.0,
-    ),
-)
-stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
-
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
-)
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: Pop
-stack: []
+output: "0\n1\n2\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -367,9 +366,44 @@ stack: [
         3.0,
     ),
 ]
+output: "0\n1\n2\n"
 
-execute: Print
+execute: Constant(
+    F64(
+        10.0,
+    ),
+)
+stack: [
+    Number(
+        3.0,
+    ),
+    Number(
+        10.0,
+    ),
+]
+output: "0\n1\n2\n"
+
+execute: Less
+stack: [
+    Boolean(
+        true,
+    ),
+]
+output: "0\n1\n2\n"
+
+execute: JumpIfFalse(
+    15,
+)
+stack: [
+    Boolean(
+        true,
+    ),
+]
+output: "0\n1\n2\n"
+
+execute: Pop
 stack: []
+output: "0\n1\n2\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -379,6 +413,21 @@ stack: [
         3.0,
     ),
 ]
+output: "0\n1\n2\n"
+
+execute: Print
+stack: []
+output: "0\n1\n2\n3\n"
+
+execute: ReadGlobalVariable {
+    name: "i",
+}
+stack: [
+    Number(
+        3.0,
+    ),
+]
+output: "0\n1\n2\n3\n"
 
 execute: Constant(
     F64(
@@ -393,6 +442,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n2\n3\n"
 
 execute: Add
 stack: [
@@ -400,6 +450,7 @@ stack: [
         4.0,
     ),
 ]
+output: "0\n1\n2\n3\n"
 
 execute: Assign(
     "i",
@@ -409,14 +460,17 @@ stack: [
         4.0,
     ),
 ]
+output: "0\n1\n2\n3\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "0\n1\n2\n3\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -426,6 +480,7 @@ stack: [
         4.0,
     ),
 ]
+output: "0\n1\n2\n3\n"
 
 execute: Constant(
     F64(
@@ -440,6 +495,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n"
 
 execute: Less
 stack: [
@@ -447,6 +503,7 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n"
 
 execute: JumpIfFalse(
     15,
@@ -456,9 +513,11 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -468,9 +527,11 @@ stack: [
         4.0,
     ),
 ]
+output: "0\n1\n2\n3\n"
 
 execute: Print
 stack: []
+output: "0\n1\n2\n3\n4\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -480,6 +541,7 @@ stack: [
         4.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n"
 
 execute: Constant(
     F64(
@@ -494,6 +556,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n"
 
 execute: Add
 stack: [
@@ -501,6 +564,7 @@ stack: [
         5.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n"
 
 execute: Assign(
     "i",
@@ -510,14 +574,17 @@ stack: [
         5.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "0\n1\n2\n3\n4\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -527,6 +594,7 @@ stack: [
         5.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n"
 
 execute: Constant(
     F64(
@@ -541,6 +609,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n"
 
 execute: Less
 stack: [
@@ -548,6 +617,7 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n"
 
 execute: JumpIfFalse(
     15,
@@ -557,9 +627,11 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -569,9 +641,11 @@ stack: [
         5.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n"
 
 execute: Print
 stack: []
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -581,6 +655,7 @@ stack: [
         5.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: Constant(
     F64(
@@ -595,6 +670,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: Add
 stack: [
@@ -602,6 +678,7 @@ stack: [
         6.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: Assign(
     "i",
@@ -611,14 +688,17 @@ stack: [
         6.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -628,6 +708,7 @@ stack: [
         6.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: Constant(
     F64(
@@ -642,6 +723,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: Less
 stack: [
@@ -649,6 +731,7 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: JumpIfFalse(
     15,
@@ -658,9 +741,11 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -670,9 +755,11 @@ stack: [
         6.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n"
 
 execute: Print
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -682,6 +769,7 @@ stack: [
         6.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Constant(
     F64(
@@ -696,6 +784,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Add
 stack: [
@@ -703,6 +792,7 @@ stack: [
         7.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Assign(
     "i",
@@ -712,14 +802,17 @@ stack: [
         7.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -729,6 +822,7 @@ stack: [
         7.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Constant(
     F64(
@@ -743,6 +837,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Less
 stack: [
@@ -750,6 +845,7 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: JumpIfFalse(
     15,
@@ -759,9 +855,11 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -771,9 +869,11 @@ stack: [
         7.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Print
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -783,6 +883,7 @@ stack: [
         7.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Constant(
     F64(
@@ -797,6 +898,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Add
 stack: [
@@ -804,6 +906,7 @@ stack: [
         8.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Assign(
     "i",
@@ -813,14 +916,17 @@ stack: [
         8.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -830,6 +936,7 @@ stack: [
         8.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Constant(
     F64(
@@ -844,6 +951,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Less
 stack: [
@@ -851,6 +959,7 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: JumpIfFalse(
     15,
@@ -860,9 +969,11 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -872,9 +983,11 @@ stack: [
         8.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Print
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -884,6 +997,7 @@ stack: [
         8.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Constant(
     F64(
@@ -898,6 +1012,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Add
 stack: [
@@ -905,6 +1020,7 @@ stack: [
         9.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Assign(
     "i",
@@ -914,14 +1030,17 @@ stack: [
         9.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -931,6 +1050,7 @@ stack: [
         9.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Constant(
     F64(
@@ -945,6 +1065,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Less
 stack: [
@@ -952,6 +1073,7 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: JumpIfFalse(
     15,
@@ -961,9 +1083,11 @@ stack: [
         true,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -973,9 +1097,11 @@ stack: [
         9.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Print
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -985,6 +1111,7 @@ stack: [
         9.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Constant(
     F64(
@@ -999,6 +1126,7 @@ stack: [
         1.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Add
 stack: [
@@ -1006,6 +1134,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Assign(
     "i",
@@ -1015,14 +1144,17 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: ReadGlobalVariable {
     name: "i",
@@ -1032,6 +1164,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Constant(
     F64(
@@ -1046,6 +1179,7 @@ stack: [
         10.0,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Less
 stack: [
@@ -1053,6 +1187,7 @@ stack: [
         false,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: JumpIfFalse(
     15,
@@ -1062,7 +1197,9 @@ stack: [
         false,
     ),
 ]
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Pop
 stack: []
+output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 

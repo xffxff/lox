@@ -1,5 +1,5 @@
 TokenTree {
-    source text: "fun hello() {\n    print \"hello world\";\n}\n\nhello();",
+    source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";",
     tokens: [
         Alphabetic(fun),
         Whitespace(' '),
@@ -7,7 +7,7 @@ TokenTree {
         Delimiter((),
         Tree(
             TokenTree {
-                source text: "fun hello() {\n    print \"hello world\";\n}\n\nhello();",
+                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";",
                 tokens: [],
             },
         ),
@@ -16,7 +16,7 @@ TokenTree {
         Delimiter({),
         Tree(
             TokenTree {
-                source text: "fun hello() {\n    print \"hello world\";\n}\n\nhello();",
+                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";",
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -25,7 +25,7 @@ TokenTree {
                     Whitespace(' '),
                     Alphabetic(print),
                     Whitespace(' '),
-                    String(hello world),
+                    String(hello),
                     Semicolon,
                     Whitespace('\n'),
                 ],
@@ -38,11 +38,16 @@ TokenTree {
         Delimiter((),
         Tree(
             TokenTree {
-                source text: "fun hello() {\n    print \"hello world\";\n}\n\nhello();",
+                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";",
                 tokens: [],
             },
         ),
         Delimiter()),
+        Semicolon,
+        Whitespace('\n'),
+        Alphabetic(print),
+        Whitespace(' '),
+        String(world),
         Semicolon,
     ],
 }

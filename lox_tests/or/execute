@@ -4,6 +4,7 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: JumpIfFalse(
     3,
@@ -13,6 +14,7 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Jump(
     4,
@@ -22,7 +24,9 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 

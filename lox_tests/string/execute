@@ -6,6 +6,7 @@ stack: [
         "hello",
     ),
 ]
+output: ""
 
 execute: String(
     " world",
@@ -18,6 +19,7 @@ stack: [
         " world",
     ),
 ]
+output: ""
 
 execute: Add
 stack: [
@@ -25,7 +27,9 @@ stack: [
         "hello world",
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 

@@ -8,6 +8,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -22,6 +23,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Equal
 stack: [
@@ -29,9 +31,11 @@ stack: [
         false,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: Constant(
     F64(
@@ -43,6 +47,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -57,6 +62,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: NotEqual
 stack: [
@@ -64,7 +70,9 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 

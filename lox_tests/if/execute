@@ -4,6 +4,7 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: JumpIfFalse(
     6,
@@ -13,9 +14,11 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: String(
     "true",
@@ -25,12 +28,15 @@ stack: [
         "true",
     ),
 ]
+output: ""
 
 execute: Print
 stack: []
+output: "true\n"
 
 execute: Jump(
     9,
 )
 stack: []
+output: "true\n"
 

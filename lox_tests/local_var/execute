@@ -8,6 +8,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -22,6 +23,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: ReadLocalVariable {
     index_in_stack: 1,
@@ -37,6 +39,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Print
 stack: [
@@ -47,6 +50,7 @@ stack: [
         2.0,
     ),
 ]
+output: "2\n"
 
 execute: Pop
 stack: [
@@ -54,6 +58,7 @@ stack: [
         1.0,
     ),
 ]
+output: "2\n"
 
 execute: ReadLocalVariable {
     index_in_stack: 0,
@@ -66,6 +71,7 @@ stack: [
         1.0,
     ),
 ]
+output: "2\n"
 
 execute: Print
 stack: [
@@ -73,7 +79,9 @@ stack: [
         1.0,
     ),
 ]
+output: "2\n1\n"
 
 execute: Pop
 stack: []
+output: "2\n1\n"
 

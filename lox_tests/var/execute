@@ -8,21 +8,25 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: GlobalVarDeclaration {
     name: "a",
 }
 stack: []
+output: ""
 
 execute: Nil
 stack: [
     Nil,
 ]
+output: ""
 
 execute: GlobalVarDeclaration {
     name: "b",
 }
 stack: []
+output: ""
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -32,9 +36,11 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Print
 stack: []
+output: "1\n"
 
 execute: String(
     "hello",
@@ -44,11 +50,13 @@ stack: [
         "hello",
     ),
 ]
+output: "1\n"
 
 execute: GlobalVarDeclaration {
     name: "str1",
 }
 stack: []
+output: "1\n"
 
 execute: String(
     "world",
@@ -58,11 +66,13 @@ stack: [
         "world",
     ),
 ]
+output: "1\n"
 
 execute: GlobalVarDeclaration {
     name: "str2",
 }
 stack: []
+output: "1\n"
 
 execute: ReadGlobalVariable {
     name: "str1",
@@ -72,6 +82,7 @@ stack: [
         "hello",
     ),
 ]
+output: "1\n"
 
 execute: ReadGlobalVariable {
     name: "str2",
@@ -84,6 +95,7 @@ stack: [
         "world",
     ),
 ]
+output: "1\n"
 
 execute: Add
 stack: [
@@ -91,7 +103,9 @@ stack: [
         "helloworld",
     ),
 ]
+output: "1\n"
 
 execute: Print
 stack: []
+output: "1\nhelloworld\n"
 

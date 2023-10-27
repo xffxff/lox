@@ -2,7 +2,7 @@ FunctionDeclaration {
     name: "hello",
     body: Block {
         stmt: Print {
-            expr: StringLiteral(hello world),
+            expr: StringLiteral(hello),
         },
     },
 }
@@ -10,4 +10,7 @@ Expr {
     expr: Call {
         callee: Variable(hello),
     },
+}
+Print {
+    expr: StringLiteral(world),
 }

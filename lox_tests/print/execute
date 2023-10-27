@@ -8,6 +8,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -22,6 +23,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Add
 stack: [
@@ -29,7 +31,9 @@ stack: [
         3.0,
     ),
 ]
+output: ""
 
 execute: Print
 stack: []
+output: "3\n"
 

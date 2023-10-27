@@ -207,6 +207,14 @@ impl VM {
         self.frames[frame_index] = frame;
     }
 
+    fn done_or_next(&mut self) -> ControlFlow {
+        if self.frames.is_empty() {
+            ControlFlow::Done
+        } else {
+            ControlFlow::Next
+        }
+    }
+
     // `step_inspect` is a callback that is called after each instruction is executed.
     //  It is useful for debugging.
     pub(crate) fn step<F>(&mut self, mut step_inspect: Option<F>) -> ControlFlow
@@ -217,7 +225,8 @@ impl VM {
         let frame_index = self.frames.len() - 1;
         tracing::debug!("current frame: {:#?}", frame);
         if frame.function.chunk.len() <= frame.ip {
-            return ControlFlow::Done;
+            self.frames.pop();
+            return self.done_or_next();
         }
         let instruction = frame.read_byte();
         tracing::debug!("ip: {}", frame.ip);

@@ -8,11 +8,13 @@ stack: [
         0.0,
     ),
 ]
+output: ""
 
 execute: GlobalVarDeclaration {
     name: "a",
 }
 stack: []
+output: ""
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -22,6 +24,7 @@ stack: [
         0.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -36,6 +39,7 @@ stack: [
         5.0,
     ),
 ]
+output: ""
 
 execute: Less
 stack: [
@@ -43,6 +47,7 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: JumpIfFalse(
     15,
@@ -52,9 +57,11 @@ stack: [
         true,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: String(
     "hello",
@@ -64,9 +71,11 @@ stack: [
         "hello",
     ),
 ]
+output: ""
 
 execute: Print
 stack: []
+output: "hello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -76,6 +85,7 @@ stack: [
         0.0,
     ),
 ]
+output: "hello\n"
 
 execute: Constant(
     F64(
@@ -90,6 +100,7 @@ stack: [
         1.0,
     ),
 ]
+output: "hello\n"
 
 execute: Add
 stack: [
@@ -97,6 +108,7 @@ stack: [
         1.0,
     ),
 ]
+output: "hello\n"
 
 execute: Assign(
     "a",
@@ -106,14 +118,17 @@ stack: [
         1.0,
     ),
 ]
+output: "hello\n"
 
 execute: Pop
 stack: []
+output: "hello\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "hello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -123,6 +138,7 @@ stack: [
         1.0,
     ),
 ]
+output: "hello\n"
 
 execute: Constant(
     F64(
@@ -137,6 +153,7 @@ stack: [
         5.0,
     ),
 ]
+output: "hello\n"
 
 execute: Less
 stack: [
@@ -144,6 +161,7 @@ stack: [
         true,
     ),
 ]
+output: "hello\n"
 
 execute: JumpIfFalse(
     15,
@@ -153,9 +171,11 @@ stack: [
         true,
     ),
 ]
+output: "hello\n"
 
 execute: Pop
 stack: []
+output: "hello\n"
 
 execute: String(
     "hello",
@@ -165,9 +185,11 @@ stack: [
         "hello",
     ),
 ]
+output: "hello\n"
 
 execute: Print
 stack: []
+output: "hello\nhello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -177,6 +199,7 @@ stack: [
         1.0,
     ),
 ]
+output: "hello\nhello\n"
 
 execute: Constant(
     F64(
@@ -191,6 +214,7 @@ stack: [
         1.0,
     ),
 ]
+output: "hello\nhello\n"
 
 execute: Add
 stack: [
@@ -198,6 +222,7 @@ stack: [
         2.0,
     ),
 ]
+output: "hello\nhello\n"
 
 execute: Assign(
     "a",
@@ -207,14 +232,17 @@ stack: [
         2.0,
     ),
 ]
+output: "hello\nhello\n"
 
 execute: Pop
 stack: []
+output: "hello\nhello\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "hello\nhello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -224,6 +252,7 @@ stack: [
         2.0,
     ),
 ]
+output: "hello\nhello\n"
 
 execute: Constant(
     F64(
@@ -238,6 +267,7 @@ stack: [
         5.0,
     ),
 ]
+output: "hello\nhello\n"
 
 execute: Less
 stack: [
@@ -245,6 +275,7 @@ stack: [
         true,
     ),
 ]
+output: "hello\nhello\n"
 
 execute: JumpIfFalse(
     15,
@@ -254,9 +285,11 @@ stack: [
         true,
     ),
 ]
+output: "hello\nhello\n"
 
 execute: Pop
 stack: []
+output: "hello\nhello\n"
 
 execute: String(
     "hello",
@@ -266,9 +299,11 @@ stack: [
         "hello",
     ),
 ]
+output: "hello\nhello\n"
 
 execute: Print
 stack: []
+output: "hello\nhello\nhello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -278,6 +313,7 @@ stack: [
         2.0,
     ),
 ]
+output: "hello\nhello\nhello\n"
 
 execute: Constant(
     F64(
@@ -292,6 +328,7 @@ stack: [
         1.0,
     ),
 ]
+output: "hello\nhello\nhello\n"
 
 execute: Add
 stack: [
@@ -299,6 +336,7 @@ stack: [
         3.0,
     ),
 ]
+output: "hello\nhello\nhello\n"
 
 execute: Assign(
     "a",
@@ -308,14 +346,17 @@ stack: [
         3.0,
     ),
 ]
+output: "hello\nhello\nhello\n"
 
 execute: Pop
 stack: []
+output: "hello\nhello\nhello\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "hello\nhello\nhello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -325,6 +366,7 @@ stack: [
         3.0,
     ),
 ]
+output: "hello\nhello\nhello\n"
 
 execute: Constant(
     F64(
@@ -339,6 +381,7 @@ stack: [
         5.0,
     ),
 ]
+output: "hello\nhello\nhello\n"
 
 execute: Less
 stack: [
@@ -346,6 +389,7 @@ stack: [
         true,
     ),
 ]
+output: "hello\nhello\nhello\n"
 
 execute: JumpIfFalse(
     15,
@@ -355,9 +399,11 @@ stack: [
         true,
     ),
 ]
+output: "hello\nhello\nhello\n"
 
 execute: Pop
 stack: []
+output: "hello\nhello\nhello\n"
 
 execute: String(
     "hello",
@@ -367,9 +413,11 @@ stack: [
         "hello",
     ),
 ]
+output: "hello\nhello\nhello\n"
 
 execute: Print
 stack: []
+output: "hello\nhello\nhello\nhello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -379,6 +427,7 @@ stack: [
         3.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\n"
 
 execute: Constant(
     F64(
@@ -393,6 +442,7 @@ stack: [
         1.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\n"
 
 execute: Add
 stack: [
@@ -400,6 +450,7 @@ stack: [
         4.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\n"
 
 execute: Assign(
     "a",
@@ -409,14 +460,17 @@ stack: [
         4.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\n"
 
 execute: Pop
 stack: []
+output: "hello\nhello\nhello\nhello\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "hello\nhello\nhello\nhello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -426,6 +480,7 @@ stack: [
         4.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\n"
 
 execute: Constant(
     F64(
@@ -440,6 +495,7 @@ stack: [
         5.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\n"
 
 execute: Less
 stack: [
@@ -447,6 +503,7 @@ stack: [
         true,
     ),
 ]
+output: "hello\nhello\nhello\nhello\n"
 
 execute: JumpIfFalse(
     15,
@@ -456,9 +513,11 @@ stack: [
         true,
     ),
 ]
+output: "hello\nhello\nhello\nhello\n"
 
 execute: Pop
 stack: []
+output: "hello\nhello\nhello\nhello\n"
 
 execute: String(
     "hello",
@@ -468,9 +527,11 @@ stack: [
         "hello",
     ),
 ]
+output: "hello\nhello\nhello\nhello\n"
 
 execute: Print
 stack: []
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -480,6 +541,7 @@ stack: [
         4.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Constant(
     F64(
@@ -494,6 +556,7 @@ stack: [
         1.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Add
 stack: [
@@ -501,6 +564,7 @@ stack: [
         5.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Assign(
     "a",
@@ -510,14 +574,17 @@ stack: [
         5.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Pop
 stack: []
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Jump(
     2,
 )
 stack: []
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: ReadGlobalVariable {
     name: "a",
@@ -527,6 +594,7 @@ stack: [
         5.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Constant(
     F64(
@@ -541,6 +609,7 @@ stack: [
         5.0,
     ),
 ]
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Less
 stack: [
@@ -548,6 +617,7 @@ stack: [
         false,
     ),
 ]
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: JumpIfFalse(
     15,
@@ -557,7 +627,9 @@ stack: [
         false,
     ),
 ]
+output: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Pop
 stack: []
+output: "hello\nhello\nhello\nhello\nhello\n"
 

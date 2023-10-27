@@ -8,6 +8,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -22,6 +23,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Add
 stack: [
@@ -29,9 +31,11 @@ stack: [
         3.0,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: Constant(
     F64(
@@ -43,6 +47,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -57,6 +62,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -74,6 +80,7 @@ stack: [
         3.0,
     ),
 ]
+output: ""
 
 execute: Multiply
 stack: [
@@ -84,6 +91,7 @@ stack: [
         6.0,
     ),
 ]
+output: ""
 
 execute: Add
 stack: [
@@ -91,9 +99,11 @@ stack: [
         7.0,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: Constant(
     F64(
@@ -105,6 +115,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -119,6 +130,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -136,6 +148,7 @@ stack: [
         3.0,
     ),
 ]
+output: ""
 
 execute: Divide
 stack: [
@@ -146,6 +159,7 @@ stack: [
         0.6666666666666666,
     ),
 ]
+output: ""
 
 execute: Subtract
 stack: [
@@ -153,9 +167,11 @@ stack: [
         0.33333333333333337,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
 execute: Constant(
     F64(
@@ -167,6 +183,7 @@ stack: [
         1.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -181,6 +198,7 @@ stack: [
         2.0,
     ),
 ]
+output: ""
 
 execute: Constant(
     F64(
@@ -198,6 +216,7 @@ stack: [
         3.0,
     ),
 ]
+output: ""
 
 execute: Negate
 stack: [
@@ -211,6 +230,7 @@ stack: [
         -3.0,
     ),
 ]
+output: ""
 
 execute: Multiply
 stack: [
@@ -221,6 +241,7 @@ stack: [
         -6.0,
     ),
 ]
+output: ""
 
 execute: Add
 stack: [
@@ -228,7 +249,9 @@ stack: [
         -5.0,
     ),
 ]
+output: ""
 
 execute: Pop
 stack: []
+output: ""
 
