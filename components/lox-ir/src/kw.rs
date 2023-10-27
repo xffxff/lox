@@ -56,6 +56,7 @@ define_keywords! {
     While => "while",
     For => "for",
     Fun => "fun",
+    Return => "return",
 }
 
 pub fn keywords(db: &dyn crate::Db) -> &HashMap<Word, Keyword> {

@@ -19,7 +19,7 @@ FunctionDeclaration {
     param: "a",
     param: "b",
     body: Block {
-        stmt: Print {
+        stmt: Return {
             expr: BinaryOp {
                 left: Variable(a),
                 op: Plus,

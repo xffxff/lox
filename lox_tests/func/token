@@ -1,5 +1,5 @@
 TokenTree {
-    source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    print a + b;\n}\n\nadd(1, 2);",
+    source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nadd(1, 2);",
     tokens: [
         Alphabetic(fun),
         Whitespace(' '),
@@ -7,7 +7,7 @@ TokenTree {
         Delimiter((),
         Tree(
             TokenTree {
-                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    print a + b;\n}\n\nadd(1, 2);",
+                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nadd(1, 2);",
                 tokens: [],
             },
         ),
@@ -16,7 +16,7 @@ TokenTree {
         Delimiter({),
         Tree(
             TokenTree {
-                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    print a + b;\n}\n\nadd(1, 2);",
+                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nadd(1, 2);",
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -38,7 +38,7 @@ TokenTree {
         Delimiter((),
         Tree(
             TokenTree {
-                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    print a + b;\n}\n\nadd(1, 2);",
+                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nadd(1, 2);",
                 tokens: [],
             },
         ),
@@ -57,7 +57,7 @@ TokenTree {
         Delimiter((),
         Tree(
             TokenTree {
-                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    print a + b;\n}\n\nadd(1, 2);",
+                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nadd(1, 2);",
                 tokens: [
                     Alphabetic(a),
                     Comma,
@@ -71,14 +71,14 @@ TokenTree {
         Delimiter({),
         Tree(
             TokenTree {
-                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    print a + b;\n}\n\nadd(1, 2);",
+                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nadd(1, 2);",
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
                     Whitespace(' '),
                     Whitespace(' '),
                     Whitespace(' '),
-                    Alphabetic(print),
+                    Alphabetic(return),
                     Whitespace(' '),
                     Alphabetic(a),
                     Whitespace(' '),
@@ -97,7 +97,7 @@ TokenTree {
         Delimiter((),
         Tree(
             TokenTree {
-                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    print a + b;\n}\n\nadd(1, 2);",
+                source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nadd(1, 2);",
                 tokens: [
                     Number(1),
                     Comma,

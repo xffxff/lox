@@ -255,6 +255,7 @@ impl Compiler {
                     name: name_str.to_string(),
                 });
             }
+            syntax::Stmt::Return(_) => todo!(),
         }
     }
 

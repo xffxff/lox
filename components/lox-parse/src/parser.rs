@@ -108,8 +108,18 @@ impl<'me> Parser<'me> {
             return self.while_stmt();
         } else if self.eat(Keyword::For).is_some() {
             return self.for_stmt();
+        } else if self.eat(Keyword::Return).is_some() {
+            return self.return_stmt();
         }
         self.expr_stmt()
+    }
+
+    fn return_stmt(&mut self) -> Option<Stmt> {
+        if let Some(_) = self.eat(Token::Semicolon) {
+            return Some(Stmt::Return(None));
+        }
+        let expr = self.parse_expr()?;
+        Some(Stmt::Return(Some(expr)))
     }
 
     // forStmt        → "for" "(" ( varDecl | exprStmt | ";" )

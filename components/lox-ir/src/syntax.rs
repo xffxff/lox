@@ -147,6 +147,9 @@ pub enum Stmt {
         parameters: Vec<Word>,
         body: Box<Stmt>,
     },
+
+    // return statement, like `return 1 + 2;`
+    Return(Option<Expr>),
 }
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
@@ -226,6 +229,13 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
                     builder.field("param", &param.as_str(db));
                 }
                 builder.field("body", &body.debug(db));
+                builder.finish()
+            }
+            Stmt::Return(expr) => {
+                let mut builder = f.debug_struct("Return");
+                if let Some(expr) = expr {
+                    builder.field("expr", &expr.debug(db));
+                }
                 builder.finish()
             }
         }

@@ -144,16 +144,7 @@ execute: Function(
         name: "add",
         arity: 2,
         chunk: Chunk {
-            code: [
-                ReadLocalVariable {
-                    index_in_stack: 0,
-                },
-                ReadLocalVariable {
-                    index_in_stack: 1,
-                },
-                Add,
-                Print,
-            ],
+            code: [],
         },
     },
 )
@@ -163,16 +154,7 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
+                code: [],
             },
         },
     ),
@@ -194,16 +176,7 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
+                code: [],
             },
         },
     ),
@@ -221,16 +194,7 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
+                code: [],
             },
         },
     ),
@@ -251,16 +215,7 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
+                code: [],
             },
         },
     ),
@@ -282,16 +237,7 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
+                code: [],
             },
         },
     ),
@@ -303,138 +249,6 @@ stack: [
     ),
 ]
 output: "hello\nworld\n"
-
-execute: ReadLocalVariable {
-    index_in_stack: 0,
-}
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
-output: "hello\nworld\n"
-
-execute: ReadLocalVariable {
-    index_in_stack: 1,
-}
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
-output: "hello\nworld\n"
-
-execute: Add
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        3.0,
-    ),
-]
-output: "hello\nworld\n"
-
-execute: Print
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
-output: "hello\nworld\n3\n"
 
 execute: Pop
 stack: [
@@ -443,16 +257,7 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Print,
-                ],
+                code: [],
             },
         },
     ),
@@ -460,5 +265,5 @@ stack: [
         1.0,
     ),
 ]
-output: "hello\nworld\n3\n"
+output: "hello\nworld\n"
 
