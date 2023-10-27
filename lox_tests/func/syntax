@@ -14,3 +14,24 @@ Expr {
 Print {
     expr: StringLiteral(world),
 }
+FunctionDeclaration {
+    name: "add",
+    param: "a",
+    param: "b",
+    body: Block {
+        stmt: Print {
+            expr: BinaryOp {
+                left: Variable(a),
+                op: Plus,
+                right: Variable(b),
+            },
+        },
+    },
+}
+Expr {
+    expr: Call {
+        callee: Variable(add),
+        arg: NumberLiteral(1),
+        arg: NumberLiteral(2),
+    },
+}

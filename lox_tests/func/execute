@@ -139,3 +139,326 @@ execute: Print
 stack: []
 output: "hello\nworld\n"
 
+execute: Function(
+    Function {
+        name: "add",
+        arity: 2,
+        chunk: Chunk {
+            code: [
+                ReadLocalVariable {
+                    index_in_stack: 0,
+                },
+                ReadLocalVariable {
+                    index_in_stack: 1,
+                },
+                Add,
+                Print,
+            ],
+        },
+    },
+)
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+]
+output: "hello\nworld\n"
+
+execute: GlobalVarDeclaration {
+    name: "add",
+}
+stack: []
+output: "hello\nworld\n"
+
+execute: ReadGlobalVariable {
+    name: "add",
+}
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+]
+output: "hello\nworld\n"
+
+execute: Constant(
+    F64(
+        1.0,
+    ),
+)
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+]
+output: "hello\nworld\n"
+
+execute: Constant(
+    F64(
+        2.0,
+    ),
+)
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+output: "hello\nworld\n"
+
+execute: Call {
+    arity: 2,
+}
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+output: "hello\nworld\n"
+
+execute: ReadLocalVariable {
+    index_in_stack: 0,
+}
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+output: "hello\nworld\n"
+
+execute: ReadLocalVariable {
+    index_in_stack: 1,
+}
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+output: "hello\nworld\n"
+
+execute: Add
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+output: "hello\nworld\n"
+
+execute: Print
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+output: "hello\nworld\n3\n"
+
+execute: Pop
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Print,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+]
+output: "hello\nworld\n3\n"
+
