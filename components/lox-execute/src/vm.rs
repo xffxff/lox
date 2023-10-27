@@ -233,7 +233,12 @@ impl VM {
         tracing::debug!("stack: {:?}", self.stack);
         tracing::debug!("instruction: {:?}", instruction);
         match instruction.clone() {
-            bytecode::Code::Return => return ControlFlow::Done,
+            bytecode::Code::Return => {
+                let value = self.pop();
+                self.frames.pop();
+                self.push(value);
+                return self.done_or_next();
+            }
             bytecode::Code::Constant(value) => self.push(value.0),
             bytecode::Code::Add => {
                 let b = self.pop();

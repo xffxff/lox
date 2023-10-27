@@ -36,7 +36,16 @@ Function {
                     name: "add",
                     arity: 2,
                     chunk: Chunk {
-                        code: [],
+                        code: [
+                            ReadLocalVariable {
+                                index_in_stack: 0,
+                            },
+                            ReadLocalVariable {
+                                index_in_stack: 1,
+                            },
+                            Add,
+                            Return,
+                        ],
                     },
                 },
             ),

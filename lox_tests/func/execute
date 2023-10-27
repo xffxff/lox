@@ -144,7 +144,16 @@ execute: Function(
         name: "add",
         arity: 2,
         chunk: Chunk {
-            code: [],
+            code: [
+                ReadLocalVariable {
+                    index_in_stack: 0,
+                },
+                ReadLocalVariable {
+                    index_in_stack: 1,
+                },
+                Add,
+                Return,
+            ],
         },
     },
 )
@@ -154,7 +163,16 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [],
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
             },
         },
     ),
@@ -176,7 +194,16 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [],
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
             },
         },
     ),
@@ -194,7 +221,16 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [],
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
             },
         },
     ),
@@ -215,7 +251,16 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [],
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
             },
         },
     ),
@@ -237,7 +282,16 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [],
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
             },
         },
     ),
@@ -250,6 +304,109 @@ stack: [
 ]
 output: "hello\nworld\n"
 
+execute: ReadLocalVariable {
+    index_in_stack: 0,
+}
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        1.0,
+    ),
+]
+output: "hello\nworld\n"
+
+execute: ReadLocalVariable {
+    index_in_stack: 1,
+}
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+]
+output: "hello\nworld\n"
+
+execute: Add
+stack: [
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
+            },
+        },
+    ),
+    Number(
+        1.0,
+    ),
+    Number(
+        2.0,
+    ),
+    Number(
+        3.0,
+    ),
+]
+output: "hello\nworld\n"
+
 execute: Pop
 stack: [
     Function(
@@ -257,12 +414,24 @@ stack: [
             name: "add",
             arity: 2,
             chunk: Chunk {
-                code: [],
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
             },
         },
     ),
     Number(
         1.0,
+    ),
+    Number(
+        2.0,
     ),
 ]
 output: "hello\nworld\n"

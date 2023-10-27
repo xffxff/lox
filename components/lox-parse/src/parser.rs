@@ -119,6 +119,8 @@ impl<'me> Parser<'me> {
             return Some(Stmt::Return(None));
         }
         let expr = self.parse_expr()?;
+        self.eat(Token::Semicolon)
+            .or_report_error(self, || "expected `;`");
         Some(Stmt::Return(Some(expr)))
     }
 
@@ -501,7 +503,7 @@ impl<'me> Parser<'me> {
     }
 
     fn error(&self, span: Span, message: impl ToString) -> DiagnosticBuilder {
-        tracing::debug!("emit error {:?}, {:?}", message.to_string(), span);
+        tracing::error!("emit error {:?}, {:?}", message.to_string(), span);
         lox_ir::error!(span.anchor_to(self.input_file), "{}", message.to_string())
     }
 }

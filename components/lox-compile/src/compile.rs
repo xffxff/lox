@@ -255,7 +255,14 @@ impl Compiler {
                     name: name_str.to_string(),
                 });
             }
-            syntax::Stmt::Return(_) => todo!(),
+            syntax::Stmt::Return(expr) => {
+                if let Some(expr) = expr {
+                    self.compile_expr(db, expr, chunk);
+                } else {
+                    chunk.emit_byte(Code::Nil);
+                }
+                chunk.emit_byte(Code::Return);
+            }
         }
     }
 
