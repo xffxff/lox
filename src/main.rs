@@ -38,6 +38,7 @@ struct TestCase {
     bytecode: PathBuf,
     execute: PathBuf,
     diagnostic: PathBuf,
+    stdout: PathBuf,
     text: String,
 }
 
@@ -61,6 +62,7 @@ impl TestCase {
         let bytecode = lox_dir.join("bytecode");
         let execute = lox_dir.join("execute");
         let diagnostic = lox_dir.join("diagnostic");
+        let output = lox_dir.join("output");
         let text = fs::read_to_string(&lox).unwrap();
         TestCase {
             lox: lox.to_owned(),
@@ -69,6 +71,7 @@ impl TestCase {
             bytecode,
             execute,
             diagnostic,
+            stdout: output,
             text,
         }
     }
@@ -142,11 +145,14 @@ impl TestCase {
             let mut buf = buf.lock().unwrap();
             buf.push_str(&format!("execute: {:#?}\n", code));
             buf.push_str(&format!("stack: {:?}\n", &vm.stack));
-            buf.push_str(&format!("output: {:#?}\n", vm.output));
+            buf.push_str(&format!("stdout: {:#?}\n", vm.output));
             buf.push('\n');
         };
-        lox_execute::execute_file(db, input_file, Some(step_inspect));
+        let output = lox_execute::execute_file(db, input_file, Some(step_inspect));
         expect_file![self.execute].assert_eq(&buf.lock().unwrap());
+
+        // test stdout
+        expect_file![self.stdout].assert_eq(&output);
     }
 }
 

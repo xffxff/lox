@@ -2,7 +2,7 @@ execute: Some(
     True,
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     JumpIfFalse(
@@ -10,13 +10,13 @@ execute: Some(
     ),
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     String(
@@ -24,13 +24,13 @@ execute: Some(
     ),
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Print,
 )
 stack: []
-output: "true\n"
+stdout: "true\n"
 
 execute: Some(
     Jump(
@@ -38,9 +38,9 @@ execute: Some(
     ),
 )
 stack: []
-output: "true\n"
+stdout: "true\n"
 
 execute: None
 stack: []
-output: "true\n"
+stdout: "true\n"
 

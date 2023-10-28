@@ -6,7 +6,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     GlobalVarDeclaration {
@@ -14,13 +14,13 @@ execute: Some(
     },
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     Nil,
 )
 stack: [nil]
-output: ""
+stdout: ""
 
 execute: Some(
     GlobalVarDeclaration {
@@ -28,7 +28,7 @@ execute: Some(
     },
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     ReadGlobalVariable {
@@ -36,13 +36,13 @@ execute: Some(
     },
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Print,
 )
 stack: []
-output: "1\n"
+stdout: "1\n"
 
 execute: Some(
     String(
@@ -50,7 +50,7 @@ execute: Some(
     ),
 )
 stack: [hello]
-output: "1\n"
+stdout: "1\n"
 
 execute: Some(
     GlobalVarDeclaration {
@@ -58,7 +58,7 @@ execute: Some(
     },
 )
 stack: []
-output: "1\n"
+stdout: "1\n"
 
 execute: Some(
     String(
@@ -66,7 +66,7 @@ execute: Some(
     ),
 )
 stack: [world]
-output: "1\n"
+stdout: "1\n"
 
 execute: Some(
     GlobalVarDeclaration {
@@ -74,7 +74,7 @@ execute: Some(
     },
 )
 stack: []
-output: "1\n"
+stdout: "1\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -82,7 +82,7 @@ execute: Some(
     },
 )
 stack: [hello]
-output: "1\n"
+stdout: "1\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -90,21 +90,21 @@ execute: Some(
     },
 )
 stack: [hello, world]
-output: "1\n"
+stdout: "1\n"
 
 execute: Some(
     Add,
 )
 stack: [helloworld]
-output: "1\n"
+stdout: "1\n"
 
 execute: Some(
     Print,
 )
 stack: []
-output: "1\nhelloworld\n"
+stdout: "1\nhelloworld\n"
 
 execute: None
 stack: []
-output: "1\nhelloworld\n"
+stdout: "1\nhelloworld\n"
 

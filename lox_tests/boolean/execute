@@ -2,63 +2,63 @@ execute: Some(
     True,
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     False,
 )
 stack: [false]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     True,
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Not,
 )
 stack: [false]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     False,
 )
 stack: [false]
-output: ""
+stdout: ""
 
 execute: Some(
     Not,
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: None
 stack: []
-output: ""
+stdout: ""
 

@@ -6,7 +6,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -16,19 +16,19 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     Equal,
 )
 stack: [false]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -38,7 +38,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -48,21 +48,21 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     NotEqual,
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: None
 stack: []
-output: ""
+stdout: ""
 

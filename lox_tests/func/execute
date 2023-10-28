@@ -15,7 +15,7 @@ execute: Some(
     ),
 )
 stack: [<func hello>]
-output: ""
+stdout: ""
 
 execute: Some(
     GlobalVarDeclaration {
@@ -23,7 +23,7 @@ execute: Some(
     },
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     ReadGlobalVariable {
@@ -31,7 +31,7 @@ execute: Some(
     },
 )
 stack: [<func hello>]
-output: ""
+stdout: ""
 
 execute: Some(
     Call {
@@ -39,7 +39,7 @@ execute: Some(
     },
 )
 stack: [<func hello>]
-output: ""
+stdout: ""
 
 execute: Some(
     String(
@@ -47,23 +47,23 @@ execute: Some(
     ),
 )
 stack: [<func hello>, hello]
-output: ""
+stdout: ""
 
 execute: Some(
     Print,
 )
 stack: [<func hello>]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: None
 stack: [<func hello>]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     String(
@@ -71,13 +71,13 @@ execute: Some(
     ),
 )
 stack: [world]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Print,
 )
 stack: []
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     Function(
@@ -100,7 +100,7 @@ execute: Some(
     ),
 )
 stack: [<func add>]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     GlobalVarDeclaration {
@@ -108,7 +108,7 @@ execute: Some(
     },
 )
 stack: []
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -116,7 +116,7 @@ execute: Some(
     },
 )
 stack: [<func add>]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     Constant(
@@ -126,7 +126,7 @@ execute: Some(
     ),
 )
 stack: [<func add>, 1]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     Constant(
@@ -136,7 +136,7 @@ execute: Some(
     ),
 )
 stack: [<func add>, 1, 2]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     Call {
@@ -144,7 +144,7 @@ execute: Some(
     },
 )
 stack: [<func add>, 1, 2]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     ReadLocalVariable {
@@ -152,7 +152,7 @@ execute: Some(
     },
 )
 stack: [<func add>, 1, 2, 1]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     ReadLocalVariable {
@@ -160,19 +160,19 @@ execute: Some(
     },
 )
 stack: [<func add>, 1, 2, 1, 2]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     Add,
 )
 stack: [<func add>, 1, 2, 3]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     Return,
 )
 stack: [<func add>, 3]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     GlobalVarDeclaration {
@@ -180,7 +180,7 @@ execute: Some(
     },
 )
 stack: [<func add>]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -188,15 +188,15 @@ execute: Some(
     },
 )
 stack: [<func add>, 3]
-output: "hello\nworld\n"
+stdout: "hello\nworld\n"
 
 execute: Some(
     Print,
 )
 stack: [<func add>]
-output: "hello\nworld\n3\n"
+stdout: "hello\nworld\n3\n"
 
 execute: None
 stack: []
-output: "hello\nworld\n3\n"
+stdout: "hello\nworld\n3\n"
 

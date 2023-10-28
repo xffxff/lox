@@ -6,7 +6,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -16,19 +16,19 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     Add,
 )
 stack: [3]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -38,7 +38,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -48,7 +48,7 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -58,25 +58,25 @@ execute: Some(
     ),
 )
 stack: [1, 2, 3]
-output: ""
+stdout: ""
 
 execute: Some(
     Multiply,
 )
 stack: [1, 6]
-output: ""
+stdout: ""
 
 execute: Some(
     Add,
 )
 stack: [7]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -86,7 +86,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -96,7 +96,7 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -106,25 +106,25 @@ execute: Some(
     ),
 )
 stack: [1, 2, 3]
-output: ""
+stdout: ""
 
 execute: Some(
     Divide,
 )
 stack: [1, 0.6666666666666666]
-output: ""
+stdout: ""
 
 execute: Some(
     Subtract,
 )
 stack: [0.33333333333333337]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -134,7 +134,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -144,7 +144,7 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -154,33 +154,33 @@ execute: Some(
     ),
 )
 stack: [1, 2, 3]
-output: ""
+stdout: ""
 
 execute: Some(
     Negate,
 )
 stack: [1, 2, -3]
-output: ""
+stdout: ""
 
 execute: Some(
     Multiply,
 )
 stack: [1, -6]
-output: ""
+stdout: ""
 
 execute: Some(
     Add,
 )
 stack: [-5]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: None
 stack: []
-output: ""
+stdout: ""
 

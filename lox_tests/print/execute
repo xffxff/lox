@@ -6,7 +6,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -16,21 +16,21 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     Add,
 )
 stack: [3]
-output: ""
+stdout: ""
 
 execute: Some(
     Print,
 )
 stack: []
-output: "3\n"
+stdout: "3\n"
 
 execute: None
 stack: []
-output: "3\n"
+stdout: "3\n"
 

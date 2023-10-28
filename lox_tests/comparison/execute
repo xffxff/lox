@@ -6,7 +6,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -16,19 +16,19 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     Less,
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -38,7 +38,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -48,19 +48,19 @@ execute: Some(
     ),
 )
 stack: [1, 1]
-output: ""
+stdout: ""
 
 execute: Some(
     LessEqual,
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -70,7 +70,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -80,19 +80,19 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     Greater,
 )
 stack: [false]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -102,7 +102,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -112,21 +112,21 @@ execute: Some(
     ),
 )
 stack: [1, 1]
-output: ""
+stdout: ""
 
 execute: Some(
     GreaterEqual,
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: None
 stack: []
-output: ""
+stdout: ""
 

@@ -2,7 +2,7 @@ execute: Some(
     False,
 )
 stack: [false]
-output: ""
+stdout: ""
 
 execute: Some(
     JumpIfFalse(
@@ -10,15 +10,15 @@ execute: Some(
     ),
 )
 stack: [false]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: None
 stack: []
-output: ""
+stdout: ""
 

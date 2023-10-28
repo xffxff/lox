@@ -6,7 +6,7 @@ execute: Some(
     ),
 )
 stack: [0]
-output: ""
+stdout: ""
 
 execute: Some(
     GlobalVarDeclaration {
@@ -14,7 +14,7 @@ execute: Some(
     },
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     ReadGlobalVariable {
@@ -22,7 +22,7 @@ execute: Some(
     },
 )
 stack: [0]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -32,13 +32,13 @@ execute: Some(
     ),
 )
 stack: [0, 5]
-output: ""
+stdout: ""
 
 execute: Some(
     Less,
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     JumpIfFalse(
@@ -46,13 +46,13 @@ execute: Some(
     ),
 )
 stack: [true]
-output: ""
+stdout: ""
 
 execute: Some(
     Pop,
 )
 stack: []
-output: ""
+stdout: ""
 
 execute: Some(
     String(
@@ -60,13 +60,13 @@ execute: Some(
     ),
 )
 stack: [hello]
-output: ""
+stdout: ""
 
 execute: Some(
     Print,
 )
 stack: []
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -74,7 +74,7 @@ execute: Some(
     },
 )
 stack: [0]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Constant(
@@ -84,13 +84,13 @@ execute: Some(
     ),
 )
 stack: [0, 1]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Add,
 )
 stack: [1]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Assign(
@@ -98,13 +98,13 @@ execute: Some(
     ),
 )
 stack: [1]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Jump(
@@ -112,7 +112,7 @@ execute: Some(
     ),
 )
 stack: []
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -120,7 +120,7 @@ execute: Some(
     },
 )
 stack: [1]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Constant(
@@ -130,13 +130,13 @@ execute: Some(
     ),
 )
 stack: [1, 5]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Less,
 )
 stack: [true]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     JumpIfFalse(
@@ -144,13 +144,13 @@ execute: Some(
     ),
 )
 stack: [true]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     String(
@@ -158,13 +158,13 @@ execute: Some(
     ),
 )
 stack: [hello]
-output: "hello\n"
+stdout: "hello\n"
 
 execute: Some(
     Print,
 )
 stack: []
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -172,7 +172,7 @@ execute: Some(
     },
 )
 stack: [1]
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     Constant(
@@ -182,13 +182,13 @@ execute: Some(
     ),
 )
 stack: [1, 1]
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     Add,
 )
 stack: [2]
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     Assign(
@@ -196,13 +196,13 @@ execute: Some(
     ),
 )
 stack: [2]
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     Jump(
@@ -210,7 +210,7 @@ execute: Some(
     ),
 )
 stack: []
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -218,7 +218,7 @@ execute: Some(
     },
 )
 stack: [2]
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     Constant(
@@ -228,13 +228,13 @@ execute: Some(
     ),
 )
 stack: [2, 5]
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     Less,
 )
 stack: [true]
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     JumpIfFalse(
@@ -242,13 +242,13 @@ execute: Some(
     ),
 )
 stack: [true]
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     String(
@@ -256,13 +256,13 @@ execute: Some(
     ),
 )
 stack: [hello]
-output: "hello\nhello\n"
+stdout: "hello\nhello\n"
 
 execute: Some(
     Print,
 )
 stack: []
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -270,7 +270,7 @@ execute: Some(
     },
 )
 stack: [2]
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     Constant(
@@ -280,13 +280,13 @@ execute: Some(
     ),
 )
 stack: [2, 1]
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     Add,
 )
 stack: [3]
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     Assign(
@@ -294,13 +294,13 @@ execute: Some(
     ),
 )
 stack: [3]
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     Jump(
@@ -308,7 +308,7 @@ execute: Some(
     ),
 )
 stack: []
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -316,7 +316,7 @@ execute: Some(
     },
 )
 stack: [3]
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     Constant(
@@ -326,13 +326,13 @@ execute: Some(
     ),
 )
 stack: [3, 5]
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     Less,
 )
 stack: [true]
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     JumpIfFalse(
@@ -340,13 +340,13 @@ execute: Some(
     ),
 )
 stack: [true]
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     String(
@@ -354,13 +354,13 @@ execute: Some(
     ),
 )
 stack: [hello]
-output: "hello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\n"
 
 execute: Some(
     Print,
 )
 stack: []
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -368,7 +368,7 @@ execute: Some(
     },
 )
 stack: [3]
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     Constant(
@@ -378,13 +378,13 @@ execute: Some(
     ),
 )
 stack: [3, 1]
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     Add,
 )
 stack: [4]
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     Assign(
@@ -392,13 +392,13 @@ execute: Some(
     ),
 )
 stack: [4]
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     Jump(
@@ -406,7 +406,7 @@ execute: Some(
     ),
 )
 stack: []
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -414,7 +414,7 @@ execute: Some(
     },
 )
 stack: [4]
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     Constant(
@@ -424,13 +424,13 @@ execute: Some(
     ),
 )
 stack: [4, 5]
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     Less,
 )
 stack: [true]
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     JumpIfFalse(
@@ -438,13 +438,13 @@ execute: Some(
     ),
 )
 stack: [true]
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     String(
@@ -452,13 +452,13 @@ execute: Some(
     ),
 )
 stack: [hello]
-output: "hello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
     Print,
 )
 stack: []
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -466,7 +466,7 @@ execute: Some(
     },
 )
 stack: [4]
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     Constant(
@@ -476,13 +476,13 @@ execute: Some(
     ),
 )
 stack: [4, 1]
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     Add,
 )
 stack: [5]
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     Assign(
@@ -490,13 +490,13 @@ execute: Some(
     ),
 )
 stack: [5]
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     Jump(
@@ -504,7 +504,7 @@ execute: Some(
     ),
 )
 stack: []
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     ReadGlobalVariable {
@@ -512,7 +512,7 @@ execute: Some(
     },
 )
 stack: [5]
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     Constant(
@@ -522,13 +522,13 @@ execute: Some(
     ),
 )
 stack: [5, 5]
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     Less,
 )
 stack: [false]
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     JumpIfFalse(
@@ -536,15 +536,15 @@ execute: Some(
     ),
 )
 stack: [false]
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: None
 stack: []
-output: "hello\nhello\nhello\nhello\nhello\n"
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 

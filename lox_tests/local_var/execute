@@ -6,7 +6,7 @@ execute: Some(
     ),
 )
 stack: [1]
-output: ""
+stdout: ""
 
 execute: Some(
     Constant(
@@ -16,7 +16,7 @@ execute: Some(
     ),
 )
 stack: [1, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     ReadLocalVariable {
@@ -24,19 +24,19 @@ execute: Some(
     },
 )
 stack: [1, 2, 2]
-output: ""
+stdout: ""
 
 execute: Some(
     Print,
 )
 stack: [1, 2]
-output: "2\n"
+stdout: "2\n"
 
 execute: Some(
     Pop,
 )
 stack: [1]
-output: "2\n"
+stdout: "2\n"
 
 execute: Some(
     ReadLocalVariable {
@@ -44,21 +44,21 @@ execute: Some(
     },
 )
 stack: [1, 1]
-output: "2\n"
+stdout: "2\n"
 
 execute: Some(
     Print,
 )
 stack: [1]
-output: "2\n1\n"
+stdout: "2\n1\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-output: "2\n1\n"
+stdout: "2\n1\n"
 
 execute: None
 stack: []
-output: "2\n1\n"
+stdout: "2\n1\n"
 
