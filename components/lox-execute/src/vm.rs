@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, fmt::write};
 
 use lox_ir::bytecode;
 
@@ -19,7 +19,7 @@ impl From<bytecode::Function> for Function {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub enum Value {
     Number(f64),
     Boolean(bool),
@@ -35,7 +35,19 @@ impl std::fmt::Display for Value {
             Value::Boolean(b) => write!(f, "{}", b),
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
-            Value::Function(Function) => todo!(),
+            Value::Function(func) => write!(f, "<func {}>", func.name),
+        }
+    }
+}
+
+impl std::fmt::Debug for Value {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self.clone() {
+            Value::Number(n) => write!(f, "{}", n),
+            Value::Boolean(b) => write!(f, "{}", b),
+            Value::Nil => write!(f, "nil"),
+            Value::String(s) => write!(f, "{}", s),
+            Value::Function(func) => write!(f, "<func {}>", func.name),
         }
     }
 }
@@ -207,6 +219,11 @@ impl VM {
         self.frames[frame_index] = frame;
     }
 
+    // clear the values introduced by the current frame from the stack
+    fn clear_stack(&mut self, frame: CallFrame) {
+        self.stack.truncate(frame.fp);
+    }
+
     fn done_or_next(&mut self) -> ControlFlow {
         if self.frames.is_empty() {
             ControlFlow::Done
@@ -225,18 +242,31 @@ impl VM {
         let frame_index = self.frames.len() - 1;
         tracing::debug!("current frame: {:#?}", frame);
         if frame.function.chunk.len() <= frame.ip {
+            // clear the values introduced by the current frame from the stack
+            self.clear_stack(frame);
+
+            // pop the current frame
             self.frames.pop();
+
             return self.done_or_next();
         }
         let instruction = frame.read_byte();
         tracing::debug!("ip: {}", frame.ip);
-        tracing::debug!("stack: {:?}", self.stack);
+        tracing::debug!("stack: {:?}", &self.stack[frame.fp..]);
         tracing::debug!("instruction: {:?}", instruction);
         match instruction.clone() {
             bytecode::Code::Return => {
+                // return the value at the top of the stack
                 let value = self.pop();
+
+                // clear the values introduced by the current frame from the stack
+                self.clear_stack(frame);
+                // pop the current frame
                 self.frames.pop();
+
+                // push the return value to the stack
                 self.push(value);
+
                 return self.done_or_next();
             }
             bytecode::Code::Constant(value) => self.push(value.0),

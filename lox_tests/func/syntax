@@ -28,10 +28,16 @@ FunctionDeclaration {
         },
     },
 }
-Expr {
-    expr: Call {
-        callee: Variable(add),
-        arg: NumberLiteral(1),
-        arg: NumberLiteral(2),
-    },
+Var {
+    name: "c",
+    initializer: Some(
+        Call {
+            callee: Variable(add),
+            arg: NumberLiteral(1),
+            arg: NumberLiteral(2),
+        },
+    ),
+}
+Print {
+    expr: Variable(c),
 }

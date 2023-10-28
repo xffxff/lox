@@ -12,22 +12,7 @@ execute: Function(
         },
     },
 )
-stack: [
-    Function(
-        Function {
-            name: "hello",
-            arity: 0,
-            chunk: Chunk {
-                code: [
-                    String(
-                        "hello",
-                    ),
-                    Print,
-                ],
-            },
-        },
-    ),
-]
+stack: [<func hello>]
 output: ""
 
 execute: GlobalVarDeclaration {
@@ -39,86 +24,23 @@ output: ""
 execute: ReadGlobalVariable {
     name: "hello",
 }
-stack: [
-    Function(
-        Function {
-            name: "hello",
-            arity: 0,
-            chunk: Chunk {
-                code: [
-                    String(
-                        "hello",
-                    ),
-                    Print,
-                ],
-            },
-        },
-    ),
-]
+stack: [<func hello>]
 output: ""
 
 execute: Call {
     arity: 0,
 }
-stack: [
-    Function(
-        Function {
-            name: "hello",
-            arity: 0,
-            chunk: Chunk {
-                code: [
-                    String(
-                        "hello",
-                    ),
-                    Print,
-                ],
-            },
-        },
-    ),
-]
+stack: [<func hello>]
 output: ""
 
 execute: String(
     "hello",
 )
-stack: [
-    Function(
-        Function {
-            name: "hello",
-            arity: 0,
-            chunk: Chunk {
-                code: [
-                    String(
-                        "hello",
-                    ),
-                    Print,
-                ],
-            },
-        },
-    ),
-    String(
-        "hello",
-    ),
-]
+stack: [<func hello>, hello]
 output: ""
 
 execute: Print
-stack: [
-    Function(
-        Function {
-            name: "hello",
-            arity: 0,
-            chunk: Chunk {
-                code: [
-                    String(
-                        "hello",
-                    ),
-                    Print,
-                ],
-            },
-        },
-    ),
-]
+stack: [<func hello>]
 output: "hello\n"
 
 execute: Pop
@@ -128,11 +50,7 @@ output: "hello\n"
 execute: String(
     "world",
 )
-stack: [
-    String(
-        "world",
-    ),
-]
+stack: [world]
 output: "hello\n"
 
 execute: Print
@@ -157,26 +75,7 @@ execute: Function(
         },
     },
 )
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Return,
-                ],
-            },
-        },
-    ),
-]
+stack: [<func add>]
 output: "hello\nworld\n"
 
 execute: GlobalVarDeclaration {
@@ -188,26 +87,7 @@ output: "hello\nworld\n"
 execute: ReadGlobalVariable {
     name: "add",
 }
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Return,
-                ],
-            },
-        },
-    ),
-]
+stack: [<func add>]
 output: "hello\nworld\n"
 
 execute: Constant(
@@ -215,29 +95,7 @@ execute: Constant(
         1.0,
     ),
 )
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Return,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [<func add>, 1]
 output: "hello\nworld\n"
 
 execute: Constant(
@@ -245,194 +103,44 @@ execute: Constant(
         2.0,
     ),
 )
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Return,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [<func add>, 1, 2]
 output: "hello\nworld\n"
 
 execute: Call {
     arity: 2,
 }
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Return,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [<func add>, 1, 2]
 output: "hello\nworld\n"
 
 execute: ReadLocalVariable {
     index_in_stack: 0,
 }
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Return,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [<func add>, 1, 2, 1]
 output: "hello\nworld\n"
 
 execute: ReadLocalVariable {
     index_in_stack: 1,
 }
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Return,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [<func add>, 1, 2, 1, 2]
 output: "hello\nworld\n"
 
 execute: Add
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Return,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        3.0,
-    ),
-]
+stack: [<func add>, 1, 2, 3]
 output: "hello\nworld\n"
 
-execute: Pop
-stack: [
-    Function(
-        Function {
-            name: "add",
-            arity: 2,
-            chunk: Chunk {
-                code: [
-                    ReadLocalVariable {
-                        index_in_stack: 0,
-                    },
-                    ReadLocalVariable {
-                        index_in_stack: 1,
-                    },
-                    Add,
-                    Return,
-                ],
-            },
-        },
-    ),
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+execute: GlobalVarDeclaration {
+    name: "c",
+}
+stack: [<func add>]
 output: "hello\nworld\n"
+
+execute: ReadGlobalVariable {
+    name: "c",
+}
+stack: [<func add>, 3]
+output: "hello\nworld\n"
+
+execute: Print
+stack: [<func add>]
+output: "hello\nworld\n3\n"
 

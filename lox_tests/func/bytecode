@@ -68,7 +68,13 @@ Function {
             Call {
                 arity: 2,
             },
-            Pop,
+            GlobalVarDeclaration {
+                name: "c",
+            },
+            ReadGlobalVariable {
+                name: "c",
+            },
+            Print,
         ],
     },
 }
