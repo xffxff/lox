@@ -236,8 +236,14 @@ impl VM {
     //  It is useful for debugging.
     pub(crate) fn step<F>(&mut self, mut step_inspect: Option<F>) -> ControlFlow
     where
-        F: FnMut(bytecode::Code, &VM),
+        F: FnMut(Option<bytecode::Code>, &VM),
     {
+        let mut inspect_step = |instruction, self_| {
+            if let Some(step_inspect) = &mut step_inspect {
+                step_inspect(instruction, self_);
+            }
+        };
+
         let mut frame = self.current_frame();
         let frame_index = self.frames.len() - 1;
         tracing::debug!("current frame: {:#?}", frame);
@@ -247,6 +253,8 @@ impl VM {
 
             // pop the current frame
             self.frames.pop();
+
+            inspect_step(None, self);
 
             return self.done_or_next();
         }
@@ -267,6 +275,7 @@ impl VM {
                 // push the return value to the stack
                 self.push(value);
 
+                inspect_step(Some(instruction), self);
                 return self.done_or_next();
             }
             bytecode::Code::Constant(value) => self.push(value.0),
@@ -386,9 +395,8 @@ impl VM {
                 }
             }
         }
-        if let Some(step_inspect) = &mut step_inspect {
-            step_inspect(instruction, self);
-        }
+
+        inspect_step(Some(instruction), self);
         self.update_frame(frame_index, frame);
         ControlFlow::Next
     }

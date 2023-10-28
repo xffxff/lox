@@ -6,7 +6,7 @@ use crate::vm::{ControlFlow, VM};
 pub fn execute_file(
     db: &impl crate::Db,
     input_file: InputFile,
-    step_inspect: Option<impl FnMut(bytecode::Code, &VM) + Clone>,
+    step_inspect: Option<impl FnMut(Option<bytecode::Code>, &VM) + Clone>,
 ) -> String {
     let chunk = compile::compile_file(db, input_file);
     let mut vm = VM::new();

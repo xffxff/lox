@@ -1,146 +1,202 @@
-execute: Function(
-    Function {
-        name: "hello",
-        arity: 0,
-        chunk: Chunk {
-            code: [
-                String(
-                    "hello",
-                ),
-                Print,
-            ],
+execute: Some(
+    Function(
+        Function {
+            name: "hello",
+            arity: 0,
+            chunk: Chunk {
+                code: [
+                    String(
+                        "hello",
+                    ),
+                    Print,
+                ],
+            },
         },
+    ),
+)
+stack: [<func hello>]
+output: ""
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "hello",
+    },
+)
+stack: []
+output: ""
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "hello",
     },
 )
 stack: [<func hello>]
 output: ""
 
-execute: GlobalVarDeclaration {
-    name: "hello",
-}
-stack: []
-output: ""
-
-execute: ReadGlobalVariable {
-    name: "hello",
-}
+execute: Some(
+    Call {
+        arity: 0,
+    },
+)
 stack: [<func hello>]
 output: ""
 
-execute: Call {
-    arity: 0,
-}
-stack: [<func hello>]
-output: ""
-
-execute: String(
-    "hello",
+execute: Some(
+    String(
+        "hello",
+    ),
 )
 stack: [<func hello>, hello]
 output: ""
 
-execute: Print
+execute: Some(
+    Print,
+)
 stack: [<func hello>]
 output: "hello\n"
 
-execute: Pop
+execute: None
+stack: [<func hello>]
+output: "hello\n"
+
+execute: Some(
+    Pop,
+)
 stack: []
 output: "hello\n"
 
-execute: String(
-    "world",
+execute: Some(
+    String(
+        "world",
+    ),
 )
 stack: [world]
 output: "hello\n"
 
-execute: Print
+execute: Some(
+    Print,
+)
 stack: []
 output: "hello\nworld\n"
 
-execute: Function(
-    Function {
-        name: "add",
-        arity: 2,
-        chunk: Chunk {
-            code: [
-                ReadLocalVariable {
-                    index_in_stack: 0,
-                },
-                ReadLocalVariable {
-                    index_in_stack: 1,
-                },
-                Add,
-                Return,
-            ],
+execute: Some(
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
+            },
         },
+    ),
+)
+stack: [<func add>]
+output: "hello\nworld\n"
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "add",
+    },
+)
+stack: []
+output: "hello\nworld\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "add",
     },
 )
 stack: [<func add>]
 output: "hello\nworld\n"
 
-execute: GlobalVarDeclaration {
-    name: "add",
-}
-stack: []
-output: "hello\nworld\n"
-
-execute: ReadGlobalVariable {
-    name: "add",
-}
-stack: [<func add>]
-output: "hello\nworld\n"
-
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
 stack: [<func add>, 1]
 output: "hello\nworld\n"
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
 stack: [<func add>, 1, 2]
 output: "hello\nworld\n"
 
-execute: Call {
-    arity: 2,
-}
+execute: Some(
+    Call {
+        arity: 2,
+    },
+)
 stack: [<func add>, 1, 2]
 output: "hello\nworld\n"
 
-execute: ReadLocalVariable {
-    index_in_stack: 0,
-}
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 0,
+    },
+)
 stack: [<func add>, 1, 2, 1]
 output: "hello\nworld\n"
 
-execute: ReadLocalVariable {
-    index_in_stack: 1,
-}
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 1,
+    },
+)
 stack: [<func add>, 1, 2, 1, 2]
 output: "hello\nworld\n"
 
-execute: Add
+execute: Some(
+    Add,
+)
 stack: [<func add>, 1, 2, 3]
 output: "hello\nworld\n"
 
-execute: GlobalVarDeclaration {
-    name: "c",
-}
-stack: [<func add>]
-output: "hello\nworld\n"
-
-execute: ReadGlobalVariable {
-    name: "c",
-}
+execute: Some(
+    Return,
+)
 stack: [<func add>, 3]
 output: "hello\nworld\n"
 
-execute: Print
+execute: Some(
+    GlobalVarDeclaration {
+        name: "c",
+    },
+)
 stack: [<func add>]
+output: "hello\nworld\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "c",
+    },
+)
+stack: [<func add>, 3]
+output: "hello\nworld\n"
+
+execute: Some(
+    Print,
+)
+stack: [<func add>]
+output: "hello\nworld\n3\n"
+
+execute: None
+stack: []
 output: "hello\nworld\n3\n"
 
