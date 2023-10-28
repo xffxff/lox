@@ -1,4 +1,4 @@
-use std::{collections::HashMap, fmt::write};
+use std::collections::HashMap;
 
 use lox_ir::bytecode;
 
@@ -190,6 +190,12 @@ pub struct VM {
     pub output: String,
 }
 
+impl Default for VM {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl VM {
     pub fn new() -> Self {
         Self {
@@ -203,7 +209,7 @@ impl VM {
     pub fn push_frame(&mut self, function: Function) {
         let arity = function.arity;
         let frame = CallFrame {
-            function: function,
+            function,
             ip: 0,
             fp: self.stack.len() - arity,
         };

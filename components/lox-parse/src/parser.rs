@@ -115,7 +115,7 @@ impl<'me> Parser<'me> {
     }
 
     fn return_stmt(&mut self) -> Option<Stmt> {
-        if let Some(_) = self.eat(Token::Semicolon) {
+        if self.eat(Token::Semicolon).is_some() {
             return Some(Stmt::Return(None));
         }
         let expr = self.parse_expr()?;

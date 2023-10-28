@@ -11,11 +11,8 @@ pub fn execute_file(
     let chunk = compile::compile_file(db, input_file);
     let mut vm = VM::new();
     vm.push_frame(chunk.into());
-    loop {
-        match vm.step(step_inspect.clone()) {
-            ControlFlow::Next => continue,
-            ControlFlow::Done => break,
-        }
-    }
+
+    while let ControlFlow::Next = vm.step(step_inspect.clone()) {}
+
     vm.output
 }
