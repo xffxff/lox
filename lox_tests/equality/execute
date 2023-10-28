@@ -1,78 +1,68 @@
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
 output: ""
 
-execute: Equal
-stack: [
-    Boolean(
-        false,
-    ),
-]
+execute: Some(
+    Equal,
+)
+stack: [false]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
 output: ""
 
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
 output: ""
 
-execute: NotEqual
-stack: [
-    Boolean(
-        true,
-    ),
-]
+execute: Some(
+    NotEqual,
+)
+stack: [true]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
+stack: []
+output: ""
+
+execute: None
 stack: []
 output: ""
 

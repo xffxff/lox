@@ -1,87 +1,64 @@
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
 output: ""
 
-execute: ReadLocalVariable {
-    index_in_stack: 1,
-}
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 1,
+    },
+)
+stack: [1, 2, 2]
 output: ""
 
-execute: Print
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+execute: Some(
+    Print,
+)
+stack: [1, 2]
 output: "2\n"
 
-execute: Pop
-stack: [
-    Number(
-        1.0,
-    ),
-]
+execute: Some(
+    Pop,
+)
+stack: [1]
 output: "2\n"
 
-execute: ReadLocalVariable {
-    index_in_stack: 0,
-}
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 0,
+    },
+)
+stack: [1, 1]
 output: "2\n"
 
-execute: Print
-stack: [
-    Number(
-        1.0,
-    ),
-]
+execute: Some(
+    Print,
+)
+stack: [1]
 output: "2\n1\n"
 
-execute: Pop
+execute: Some(
+    Pop,
+)
+stack: []
+output: "2\n1\n"
+
+execute: None
 stack: []
 output: "2\n1\n"
 

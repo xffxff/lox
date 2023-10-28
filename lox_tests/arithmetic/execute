@@ -1,257 +1,186 @@
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
 output: ""
 
-execute: Add
-stack: [
-    Number(
-        3.0,
-    ),
-]
+execute: Some(
+    Add,
+)
+stack: [3]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
 output: ""
 
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
 output: ""
 
-execute: Constant(
-    F64(
-        3.0,
+execute: Some(
+    Constant(
+        F64(
+            3.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        3.0,
-    ),
-]
+stack: [1, 2, 3]
 output: ""
 
-execute: Multiply
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        6.0,
-    ),
-]
+execute: Some(
+    Multiply,
+)
+stack: [1, 6]
 output: ""
 
-execute: Add
-stack: [
-    Number(
-        7.0,
-    ),
-]
+execute: Some(
+    Add,
+)
+stack: [7]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
 output: ""
 
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
 output: ""
 
-execute: Constant(
-    F64(
-        3.0,
+execute: Some(
+    Constant(
+        F64(
+            3.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        3.0,
-    ),
-]
+stack: [1, 2, 3]
 output: ""
 
-execute: Divide
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        0.6666666666666666,
-    ),
-]
+execute: Some(
+    Divide,
+)
+stack: [1, 0.6666666666666666]
 output: ""
 
-execute: Subtract
-stack: [
-    Number(
-        0.33333333333333337,
-    ),
-]
+execute: Some(
+    Subtract,
+)
+stack: [0.33333333333333337]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
 output: ""
 
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
 output: ""
 
-execute: Constant(
-    F64(
-        3.0,
+execute: Some(
+    Constant(
+        F64(
+            3.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        3.0,
-    ),
-]
+stack: [1, 2, 3]
 output: ""
 
-execute: Negate
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-    Number(
-        -3.0,
-    ),
-]
+execute: Some(
+    Negate,
+)
+stack: [1, 2, -3]
 output: ""
 
-execute: Multiply
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        -6.0,
-    ),
-]
+execute: Some(
+    Multiply,
+)
+stack: [1, -6]
 output: ""
 
-execute: Add
-stack: [
-    Number(
-        -5.0,
-    ),
-]
+execute: Some(
+    Add,
+)
+stack: [-5]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
+stack: []
+output: ""
+
+execute: None
 stack: []
 output: ""
 

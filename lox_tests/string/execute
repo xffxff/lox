@@ -1,35 +1,32 @@
-execute: String(
-    "hello",
-)
-stack: [
+execute: Some(
     String(
         "hello",
     ),
-]
+)
+stack: [hello]
 output: ""
 
-execute: String(
-    " world",
-)
-stack: [
-    String(
-        "hello",
-    ),
+execute: Some(
     String(
         " world",
     ),
-]
+)
+stack: [hello,  world]
 output: ""
 
-execute: Add
-stack: [
-    String(
-        "hello world",
-    ),
-]
+execute: Some(
+    Add,
+)
+stack: [hello world]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
+stack: []
+output: ""
+
+execute: None
 stack: []
 output: ""
 

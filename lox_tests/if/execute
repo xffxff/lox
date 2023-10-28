@@ -1,42 +1,46 @@
-execute: True
-stack: [
-    Boolean(
-        true,
-    ),
-]
-output: ""
-
-execute: JumpIfFalse(
-    6,
+execute: Some(
+    True,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [true]
 output: ""
 
-execute: Pop
+execute: Some(
+    JumpIfFalse(
+        6,
+    ),
+)
+stack: [true]
+output: ""
+
+execute: Some(
+    Pop,
+)
 stack: []
 output: ""
 
-execute: String(
-    "true",
-)
-stack: [
+execute: Some(
     String(
         "true",
     ),
-]
+)
+stack: [true]
 output: ""
 
-execute: Print
+execute: Some(
+    Print,
+)
 stack: []
 output: "true\n"
 
-execute: Jump(
-    9,
+execute: Some(
+    Jump(
+        9,
+    ),
 )
+stack: []
+output: "true\n"
+
+execute: None
 stack: []
 output: "true\n"
 

@@ -1,156 +1,132 @@
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
 output: ""
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
+execute: Some(
+    Less,
+)
+stack: [true]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
 output: ""
 
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [1, 1]
 output: ""
 
-execute: LessEqual
-stack: [
-    Boolean(
-        true,
-    ),
-]
+execute: Some(
+    LessEqual,
+)
+stack: [true]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
 output: ""
 
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
 output: ""
 
-execute: Greater
-stack: [
-    Boolean(
-        false,
-    ),
-]
+execute: Some(
+    Greater,
+)
+stack: [false]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
 output: ""
 
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
 output: ""
 
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [1, 1]
 output: ""
 
-execute: GreaterEqual
-stack: [
-    Boolean(
-        true,
-    ),
-]
+execute: Some(
+    GreaterEqual,
+)
+stack: [true]
 output: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
+stack: []
+output: ""
+
+execute: None
 stack: []
 output: ""
 
