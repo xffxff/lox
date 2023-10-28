@@ -1,40 +1,44 @@
-Chunk {
-    code: [
-        Constant(
-            F64(
-                1.0,
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        GlobalVarDeclaration {
-            name: "a",
-        },
-        Nil,
-        GlobalVarDeclaration {
-            name: "b",
-        },
-        ReadGlobalVariable {
-            name: "a",
-        },
-        Print,
-        String(
-            "hello",
-        ),
-        GlobalVarDeclaration {
-            name: "str1",
-        },
-        String(
-            "world",
-        ),
-        GlobalVarDeclaration {
-            name: "str2",
-        },
-        ReadGlobalVariable {
-            name: "str1",
-        },
-        ReadGlobalVariable {
-            name: "str2",
-        },
-        Add,
-        Print,
-    ],
+            GlobalVarDeclaration {
+                name: "a",
+            },
+            Nil,
+            GlobalVarDeclaration {
+                name: "b",
+            },
+            ReadGlobalVariable {
+                name: "a",
+            },
+            Print,
+            String(
+                "hello",
+            ),
+            GlobalVarDeclaration {
+                name: "str1",
+            },
+            String(
+                "world",
+            ),
+            GlobalVarDeclaration {
+                name: "str2",
+            },
+            ReadGlobalVariable {
+                name: "str1",
+            },
+            ReadGlobalVariable {
+                name: "str2",
+            },
+            Add,
+            Print,
+        ],
+    },
 }

@@ -1,0 +1,43 @@
+FunctionDeclaration {
+    name: "hello",
+    body: Block {
+        stmt: Print {
+            expr: StringLiteral(hello),
+        },
+    },
+}
+Expr {
+    expr: Call {
+        callee: Variable(hello),
+    },
+}
+Print {
+    expr: StringLiteral(world),
+}
+FunctionDeclaration {
+    name: "add",
+    param: "a",
+    param: "b",
+    body: Block {
+        stmt: Return {
+            expr: BinaryOp {
+                left: Variable(a),
+                op: Plus,
+                right: Variable(b),
+            },
+        },
+    },
+}
+Var {
+    name: "c",
+    initializer: Some(
+        Call {
+            callee: Variable(add),
+            arg: NumberLiteral(1),
+            arg: NumberLiteral(2),
+        },
+    ),
+}
+Print {
+    expr: Variable(c),
+}

@@ -1,0 +1,202 @@
+execute: Some(
+    Function(
+        Function {
+            name: "hello",
+            arity: 0,
+            chunk: Chunk {
+                code: [
+                    String(
+                        "hello",
+                    ),
+                    Print,
+                ],
+            },
+        },
+    ),
+)
+stack: [<func hello>]
+stdout: ""
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "hello",
+    },
+)
+stack: []
+stdout: ""
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "hello",
+    },
+)
+stack: [<func hello>]
+stdout: ""
+
+execute: Some(
+    Call {
+        arity: 0,
+    },
+)
+stack: [<func hello>]
+stdout: ""
+
+execute: Some(
+    String(
+        "hello",
+    ),
+)
+stack: [<func hello>, hello]
+stdout: ""
+
+execute: Some(
+    Print,
+)
+stack: [<func hello>]
+stdout: "hello\n"
+
+execute: None
+stack: [<func hello>]
+stdout: "hello\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "hello\n"
+
+execute: Some(
+    String(
+        "world",
+    ),
+)
+stack: [world]
+stdout: "hello\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "hello\nworld\n"
+
+execute: Some(
+    Function(
+        Function {
+            name: "add",
+            arity: 2,
+            chunk: Chunk {
+                code: [
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Add,
+                    Return,
+                ],
+            },
+        },
+    ),
+)
+stack: [<func add>]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "add",
+    },
+)
+stack: []
+stdout: "hello\nworld\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "add",
+    },
+)
+stack: [<func add>]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [<func add>, 1]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
+    ),
+)
+stack: [<func add>, 1, 2]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    Call {
+        arity: 2,
+    },
+)
+stack: [<func add>, 1, 2]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 0,
+    },
+)
+stack: [<func add>, 1, 2, 1]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 1,
+    },
+)
+stack: [<func add>, 1, 2, 1, 2]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    Add,
+)
+stack: [<func add>, 1, 2, 3]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    Return,
+)
+stack: [<func add>, 3]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "c",
+    },
+)
+stack: [<func add>]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "c",
+    },
+)
+stack: [<func add>, 3]
+stdout: "hello\nworld\n"
+
+execute: Some(
+    Print,
+)
+stack: [<func add>]
+stdout: "hello\nworld\n3\n"
+
+execute: None
+stack: []
+stdout: "hello\nworld\n3\n"
+

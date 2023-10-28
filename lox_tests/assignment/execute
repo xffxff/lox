@@ -1,131 +1,150 @@
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
+stdout: ""
 
-execute: GlobalVarDeclaration {
-    name: "a",
-}
+execute: Some(
+    GlobalVarDeclaration {
+        name: "a",
+    },
+)
 stack: []
+stdout: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        2.0,
-    ),
-]
+stack: [2]
+stdout: ""
 
-execute: Assign(
-    "a",
-)
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: Constant(
-    F64(
-        3.0,
+execute: Some(
+    Assign(
+        "a",
     ),
 )
-stack: [
-    Number(
-        3.0,
-    ),
-]
+stack: [2]
+stdout: ""
 
-execute: Assign(
-    "a",
+execute: Some(
+    Pop,
 )
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Print
 stack: []
+stdout: ""
 
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        3.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [2]
+stdout: ""
 
-execute: GlobalVarDeclaration {
-    name: "b",
-}
+execute: Some(
+    Print,
+)
 stack: []
+stdout: "2\n"
 
-execute: Nil
-stack: [
+execute: Some(
+    Constant(
+        F64(
+            3.0,
+        ),
+    ),
+)
+stack: [3]
+stdout: "2\n"
+
+execute: Some(
+    Assign(
+        "a",
+    ),
+)
+stack: [3]
+stdout: "2\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "2\n3\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [3]
+stdout: "2\n3\n"
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "b",
+    },
+)
+stack: []
+stdout: "2\n3\n"
+
+execute: Some(
     Nil,
-]
-
-execute: GlobalVarDeclaration {
-    name: "c",
-}
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "b",
-}
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Assign(
-    "c",
 )
-stack: [
-    Number(
-        3.0,
-    ),
-]
+stack: [nil]
+stdout: "2\n3\n"
 
-execute: Pop
+execute: Some(
+    GlobalVarDeclaration {
+        name: "c",
+    },
+)
 stack: []
+stdout: "2\n3\n"
 
-execute: ReadGlobalVariable {
-    name: "c",
-}
-stack: [
-    Number(
-        3.0,
+execute: Some(
+    ReadGlobalVariable {
+        name: "b",
+    },
+)
+stack: [3]
+stdout: "2\n3\n"
+
+execute: Some(
+    Assign(
+        "c",
     ),
-]
+)
+stack: [3]
+stdout: "2\n3\n"
 
-execute: Print
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: "2\n3\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "c",
+    },
+)
+stack: [3]
+stdout: "2\n3\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "2\n3\n3\n"
+
+execute: None
+stack: []
+stdout: "2\n3\n3\n"
 

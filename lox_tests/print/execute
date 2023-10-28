@@ -1,35 +1,36 @@
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
+stdout: ""
 
-execute: Constant(
-    F64(
-        2.0,
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        2.0,
-    ),
-]
+stack: [1, 2]
+stdout: ""
 
-execute: Add
-stack: [
-    Number(
-        3.0,
-    ),
-]
+execute: Some(
+    Add,
+)
+stack: [3]
+stdout: ""
 
-execute: Print
+execute: Some(
+    Print,
+)
 stack: []
+stdout: "3\n"
+
+execute: None
+stack: []
+stdout: "3\n"
 

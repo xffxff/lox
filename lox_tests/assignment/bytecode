@@ -1,55 +1,59 @@
-Chunk {
-    code: [
-        Constant(
-            F64(
-                1.0,
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        GlobalVarDeclaration {
-            name: "a",
-        },
-        Constant(
-            F64(
-                2.0,
+            GlobalVarDeclaration {
+                name: "a",
+            },
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        Assign(
-            "a",
-        ),
-        Pop,
-        ReadGlobalVariable {
-            name: "a",
-        },
-        Print,
-        Constant(
-            F64(
-                3.0,
+            Assign(
+                "a",
             ),
-        ),
-        Assign(
-            "a",
-        ),
-        Print,
-        ReadGlobalVariable {
-            name: "a",
-        },
-        GlobalVarDeclaration {
-            name: "b",
-        },
-        Nil,
-        GlobalVarDeclaration {
-            name: "c",
-        },
-        ReadGlobalVariable {
-            name: "b",
-        },
-        Assign(
-            "c",
-        ),
-        Pop,
-        ReadGlobalVariable {
-            name: "c",
-        },
-        Print,
-    ],
+            Pop,
+            ReadGlobalVariable {
+                name: "a",
+            },
+            Print,
+            Constant(
+                F64(
+                    3.0,
+                ),
+            ),
+            Assign(
+                "a",
+            ),
+            Print,
+            ReadGlobalVariable {
+                name: "a",
+            },
+            GlobalVarDeclaration {
+                name: "b",
+            },
+            Nil,
+            GlobalVarDeclaration {
+                name: "c",
+            },
+            ReadGlobalVariable {
+                name: "b",
+            },
+            Assign(
+                "c",
+            ),
+            Pop,
+            ReadGlobalVariable {
+                name: "c",
+            },
+            Print,
+        ],
+    },
 }

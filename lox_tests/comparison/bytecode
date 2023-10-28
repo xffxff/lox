@@ -1,52 +1,56 @@
-Chunk {
-    code: [
-        Constant(
-            F64(
-                1.0,
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                2.0,
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        Less,
-        Pop,
-        Constant(
-            F64(
-                1.0,
+            Less,
+            Pop,
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                1.0,
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        LessEqual,
-        Pop,
-        Constant(
-            F64(
-                1.0,
+            LessEqual,
+            Pop,
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                2.0,
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        Greater,
-        Pop,
-        Constant(
-            F64(
-                1.0,
+            Greater,
+            Pop,
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                1.0,
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        GreaterEqual,
-        Pop,
-    ],
+            GreaterEqual,
+            Pop,
+        ],
+    },
 }

@@ -30,13 +30,22 @@ pub enum Expr {
     Variable(Word),
 
     // assignment expression, like `foo = 1 + 2`
-    Assign { name: Word, value: Box<Expr> },
+    Assign {
+        name: Word,
+        value: Box<Expr>,
+    },
 
     // logical and
     LogicalAnd(Box<Expr>, Box<Expr>),
 
     // logical or
     LogicalOr(Box<Expr>, Box<Expr>),
+
+    // call expression, like `foo(1, 2, 3)`
+    Call {
+        callee: Box<Expr>,
+        arguments: Vec<Expr>,
+    },
 }
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
@@ -81,6 +90,14 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Expr {
                 .field("left", &left.debug(db))
                 .field("right", &right.debug(db))
                 .finish(),
+            Expr::Call { callee, arguments } => {
+                let mut builder = f.debug_struct("Call");
+                builder.field("callee", &callee.debug(db));
+                for arg in arguments {
+                    builder.field("arg", &arg.debug(db));
+                }
+                builder.finish()
+            }
             _ => todo!(),
         }
     }
@@ -123,6 +140,16 @@ pub enum Stmt {
         increment: Option<Expr>,
         body: Box<Stmt>,
     },
+
+    // function declaration, like `fun foo() { 1 + 2; }`
+    FunctionDeclaration {
+        name: Word,
+        parameters: Vec<Word>,
+        body: Box<Stmt>,
+    },
+
+    // return statement, like `return 1 + 2;`
+    Return(Option<Expr>),
 }
 
 impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
@@ -189,6 +216,26 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
                     builder.field("increment", &increment.debug(db));
                 }
                 builder.field("body", &body.debug(db));
+                builder.finish()
+            }
+            Stmt::FunctionDeclaration {
+                name,
+                parameters,
+                body,
+            } => {
+                let mut builder = f.debug_struct("FunctionDeclaration");
+                builder.field("name", &name.as_str(db));
+                for param in parameters {
+                    builder.field("param", &param.as_str(db));
+                }
+                builder.field("body", &body.debug(db));
+                builder.finish()
+            }
+            Stmt::Return(expr) => {
+                let mut builder = f.debug_struct("Return");
+                if let Some(expr) = expr {
+                    builder.field("expr", &expr.debug(db));
+                }
                 builder.finish()
             }
         }

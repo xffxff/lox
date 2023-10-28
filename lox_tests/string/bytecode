@@ -1,12 +1,16 @@
-Chunk {
-    code: [
-        String(
-            "hello",
-        ),
-        String(
-            " world",
-        ),
-        Add,
-        Pop,
-    ],
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            String(
+                "hello",
+            ),
+            String(
+                " world",
+            ),
+            Add,
+            Pop,
+        ],
+    },
 }

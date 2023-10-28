@@ -1,28 +1,32 @@
-execute: True
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    3,
+execute: Some(
+    True,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [true]
+stdout: ""
 
-execute: Jump(
-    4,
+execute: Some(
+    JumpIfFalse(
+        3,
+    ),
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [true]
+stdout: ""
 
-execute: Pop
+execute: Some(
+    Jump(
+        4,
+    ),
+)
+stack: [true]
+stdout: ""
+
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: ""
+
+execute: None
+stack: []
+stdout: ""
 

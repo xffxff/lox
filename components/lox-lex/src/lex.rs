@@ -91,6 +91,9 @@ where
                 ';' => {
                     push_token(Token::Semicolon);
                 }
+                ',' => {
+                    push_token(Token::Comma);
+                }
                 _ => {
                     if ch.is_whitespace() {
                         push_token(Token::Whitespace(ch))

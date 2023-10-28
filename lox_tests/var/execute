@@ -1,97 +1,110 @@
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
+stdout: ""
 
-execute: GlobalVarDeclaration {
-    name: "a",
-}
+execute: Some(
+    GlobalVarDeclaration {
+        name: "a",
+    },
+)
 stack: []
+stdout: ""
 
-execute: Nil
-stack: [
+execute: Some(
     Nil,
-]
-
-execute: GlobalVarDeclaration {
-    name: "b",
-}
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        1.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: String(
-    "hello",
 )
-stack: [
+stack: [nil]
+stdout: ""
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "b",
+    },
+)
+stack: []
+stdout: ""
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [1]
+stdout: ""
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "1\n"
+
+execute: Some(
     String(
         "hello",
     ),
-]
-
-execute: GlobalVarDeclaration {
-    name: "str1",
-}
-stack: []
-
-execute: String(
-    "world",
 )
-stack: [
+stack: [hello]
+stdout: "1\n"
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "str1",
+    },
+)
+stack: []
+stdout: "1\n"
+
+execute: Some(
     String(
         "world",
     ),
-]
+)
+stack: [world]
+stdout: "1\n"
 
-execute: GlobalVarDeclaration {
-    name: "str2",
-}
+execute: Some(
+    GlobalVarDeclaration {
+        name: "str2",
+    },
+)
 stack: []
+stdout: "1\n"
 
-execute: ReadGlobalVariable {
-    name: "str1",
-}
-stack: [
-    String(
-        "hello",
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "str1",
+    },
+)
+stack: [hello]
+stdout: "1\n"
 
-execute: ReadGlobalVariable {
-    name: "str2",
-}
-stack: [
-    String(
-        "hello",
-    ),
-    String(
-        "world",
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "str2",
+    },
+)
+stack: [hello, world]
+stdout: "1\n"
 
-execute: Add
-stack: [
-    String(
-        "helloworld",
-    ),
-]
+execute: Some(
+    Add,
+)
+stack: [helloworld]
+stdout: "1\n"
 
-execute: Print
+execute: Some(
+    Print,
+)
 stack: []
+stdout: "1\nhelloworld\n"
+
+execute: None
+stack: []
+stdout: "1\nhelloworld\n"
 

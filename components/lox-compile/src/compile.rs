@@ -1,18 +1,22 @@
 use lox_ir::{
-    bytecode::{Chunk, Code},
+    bytecode::{Chunk, Code, Function},
     input_file::InputFile,
     syntax,
 };
 
 #[salsa::tracked]
-pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Chunk {
+pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Function {
     let stmts = lox_parse::parse_file(db, input_file);
     let mut chunk = Chunk::default();
     let mut compiler = Compiler::default();
     for stmt in stmts {
         compiler.compile_stmt(db, stmt, &mut chunk);
     }
-    chunk
+    Function {
+        name: "main".to_string(),
+        arity: 0,
+        chunk,
+    }
 }
 
 struct Local {
@@ -227,6 +231,38 @@ impl Compiler {
                 // this for loop is over, so we pop the value of the condition expression
                 chunk.emit_byte(Code::Pop);
             }
+            syntax::Stmt::FunctionDeclaration {
+                name,
+                parameters,
+                body,
+            } => {
+                let mut sub_compiler = Compiler::default();
+                let mut sub_chunk = Chunk::default();
+                for param in parameters {
+                    let name_str = param.as_str(db);
+                    let local = Local::new(name_str, self.scope_depth);
+                    sub_compiler.locals.push(local);
+                }
+                sub_compiler.compile_stmt(db, body, &mut sub_chunk);
+                let name_str = name.as_str(db);
+                let function = Code::Function(Function {
+                    name: name_str.to_string(),
+                    arity: parameters.len(),
+                    chunk: sub_chunk,
+                });
+                chunk.emit_byte(function);
+                chunk.emit_byte(Code::GlobalVarDeclaration {
+                    name: name_str.to_string(),
+                });
+            }
+            syntax::Stmt::Return(expr) => {
+                if let Some(expr) = expr {
+                    self.compile_expr(db, expr, chunk);
+                } else {
+                    chunk.emit_byte(Code::Nil);
+                }
+                chunk.emit_byte(Code::Return);
+            }
         }
     }
 
@@ -338,6 +374,15 @@ impl Compiler {
                 self.patch_jump(jump_if_left_is_false, chunk);
                 self.compile_expr(db, right, chunk);
                 self.patch_jump(jump_if_left_is_true, chunk);
+            }
+            syntax::Expr::Call { callee, arguments } => {
+                self.compile_expr(db, callee, chunk);
+                for arg in arguments {
+                    self.compile_expr(db, arg, chunk);
+                }
+                chunk.emit_byte(Code::Call {
+                    arity: arguments.len(),
+                });
             }
         }
     }

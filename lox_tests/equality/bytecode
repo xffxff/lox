@@ -1,28 +1,32 @@
-Chunk {
-    code: [
-        Constant(
-            F64(
-                1.0,
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                2.0,
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        Equal,
-        Pop,
-        Constant(
-            F64(
-                1.0,
+            Equal,
+            Pop,
+            Constant(
+                F64(
+                    1.0,
+                ),
             ),
-        ),
-        Constant(
-            F64(
-                2.0,
+            Constant(
+                F64(
+                    2.0,
+                ),
             ),
-        ),
-        NotEqual,
-        Pop,
-    ],
+            NotEqual,
+            Pop,
+        ],
+    },
 }

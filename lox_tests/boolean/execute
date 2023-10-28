@@ -1,54 +1,64 @@
-execute: True
-stack: [
-    Boolean(
-        true,
-    ),
-]
+execute: Some(
+    True,
+)
+stack: [true]
+stdout: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: ""
 
-execute: False
-stack: [
-    Boolean(
-        false,
-    ),
-]
+execute: Some(
+    False,
+)
+stack: [false]
+stdout: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: ""
 
-execute: True
-stack: [
-    Boolean(
-        true,
-    ),
-]
+execute: Some(
+    True,
+)
+stack: [true]
+stdout: ""
 
-execute: Not
-stack: [
-    Boolean(
-        false,
-    ),
-]
+execute: Some(
+    Not,
+)
+stack: [false]
+stdout: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: ""
 
-execute: False
-stack: [
-    Boolean(
-        false,
-    ),
-]
+execute: Some(
+    False,
+)
+stack: [false]
+stdout: ""
 
-execute: Not
-stack: [
-    Boolean(
-        true,
-    ),
-]
+execute: Some(
+    Not,
+)
+stack: [true]
+stdout: ""
 
-execute: Pop
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: ""
+
+execute: None
+stack: []
+stdout: ""
 

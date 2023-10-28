@@ -1,1068 +1,1040 @@
-execute: Constant(
-    F64(
-        0.0,
+execute: Some(
+    Constant(
+        F64(
+            0.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        0.0,
-    ),
-]
+stack: [0]
+stdout: ""
 
-execute: GlobalVarDeclaration {
-    name: "i",
-}
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        0.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        10.0,
-    ),
-)
-stack: [
-    Number(
-        0.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
-
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
-)
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        0.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        0.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
-)
-stack: [
-    Number(
-        0.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
-
-execute: Add
-stack: [
-    Number(
-        1.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        1.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    GlobalVarDeclaration {
+        name: "i",
+    },
 )
 stack: []
+stdout: ""
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        1.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [0]
+stdout: ""
 
-execute: Constant(
-    F64(
-        10.0,
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
+stack: [0, 10]
+stdout: ""
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Less,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [true]
+stdout: ""
 
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        1.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        1.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    JumpIfFalse(
+        15,
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [true]
+stdout: ""
 
-execute: Add
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Pop,
 )
 stack: []
+stdout: ""
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        10.0,
-    ),
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
 )
-stack: [
-    Number(
-        2.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
+stack: [0]
+stdout: ""
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
-)
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
-)
-stack: [
-    Number(
-        2.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
-
-execute: Add
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Print,
 )
 stack: []
+stdout: "0\n"
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        3.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [0]
+stdout: "0\n"
 
-execute: Constant(
-    F64(
-        10.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
+stack: [0, 1]
+stdout: "0\n"
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Add,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [1]
+stdout: "0\n"
 
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Assign(
+        "i",
     ),
 )
-stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [1]
+stdout: "0\n"
 
-execute: Add
-stack: [
-    Number(
-        4.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        4.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Pop,
 )
 stack: []
+stdout: "0\n"
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        4.0,
+execute: Some(
+    Jump(
+        2,
     ),
-]
-
-execute: Constant(
-    F64(
-        10.0,
-    ),
-)
-stack: [
-    Number(
-        4.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
-
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
-)
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        4.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        4.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
-)
-stack: [
-    Number(
-        4.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
-
-execute: Add
-stack: [
-    Number(
-        5.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        5.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
 )
 stack: []
+stdout: "0\n"
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        5.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [1]
+stdout: "0\n"
 
-execute: Constant(
-    F64(
-        10.0,
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        5.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
+stack: [1, 10]
+stdout: "0\n"
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Less,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [true]
+stdout: "0\n"
 
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        5.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        5.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    JumpIfFalse(
+        15,
     ),
 )
-stack: [
-    Number(
-        5.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [true]
+stdout: "0\n"
 
-execute: Add
-stack: [
-    Number(
-        6.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        6.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Pop,
 )
 stack: []
+stdout: "0\n"
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        6.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        10.0,
-    ),
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
 )
-stack: [
-    Number(
-        6.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
+stack: [1]
+stdout: "0\n"
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
-)
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        6.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        6.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
-)
-stack: [
-    Number(
-        6.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
-
-execute: Add
-stack: [
-    Number(
-        7.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        7.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Print,
 )
 stack: []
+stdout: "0\n1\n"
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        7.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [1]
+stdout: "0\n1\n"
 
-execute: Constant(
-    F64(
-        10.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        7.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
+stack: [1, 1]
+stdout: "0\n1\n"
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Add,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [2]
+stdout: "0\n1\n"
 
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        7.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        7.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    Assign(
+        "i",
     ),
 )
-stack: [
-    Number(
-        7.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [2]
+stdout: "0\n1\n"
 
-execute: Add
-stack: [
-    Number(
-        8.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        8.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Pop,
 )
 stack: []
+stdout: "0\n1\n"
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        8.0,
+execute: Some(
+    Jump(
+        2,
     ),
-]
-
-execute: Constant(
-    F64(
-        10.0,
-    ),
-)
-stack: [
-    Number(
-        8.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
-
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
-)
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        8.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        8.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
-)
-stack: [
-    Number(
-        8.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
-
-execute: Add
-stack: [
-    Number(
-        9.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        9.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
 )
 stack: []
+stdout: "0\n1\n"
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        9.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [2]
+stdout: "0\n1\n"
 
-execute: Constant(
-    F64(
-        10.0,
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        9.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
+stack: [2, 10]
+stdout: "0\n1\n"
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Less,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [true]
+stdout: "0\n1\n"
 
-execute: Pop
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        9.0,
-    ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        9.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
+execute: Some(
+    JumpIfFalse(
+        15,
     ),
 )
-stack: [
-    Number(
-        9.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [true]
+stdout: "0\n1\n"
 
-execute: Add
-stack: [
-    Number(
-        10.0,
-    ),
-]
-
-execute: Assign(
-    "i",
-)
-stack: [
-    Number(
-        10.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Pop,
 )
 stack: []
+stdout: "0\n1\n"
 
-execute: ReadGlobalVariable {
-    name: "i",
-}
-stack: [
-    Number(
-        10.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        10.0,
-    ),
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
 )
-stack: [
-    Number(
-        10.0,
-    ),
-    Number(
-        10.0,
-    ),
-]
+stack: [2]
+stdout: "0\n1\n"
 
-execute: Less
-stack: [
-    Boolean(
-        false,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Print,
 )
-stack: [
-    Boolean(
-        false,
-    ),
-]
-
-execute: Pop
 stack: []
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [2]
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [2, 1]
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    Add,
+)
+stack: [3]
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    Assign(
+        "i",
+    ),
+)
+stack: [3]
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    Jump(
+        2,
+    ),
+)
+stack: []
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [3]
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
+    ),
+)
+stack: [3, 10]
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [3]
+stdout: "0\n1\n2\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [3]
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [3, 1]
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    Add,
+)
+stack: [4]
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    Assign(
+        "i",
+    ),
+)
+stack: [4]
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    Jump(
+        2,
+    ),
+)
+stack: []
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [4]
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
+    ),
+)
+stack: [4, 10]
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [4]
+stdout: "0\n1\n2\n3\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [4]
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [4, 1]
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    Add,
+)
+stack: [5]
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    Assign(
+        "i",
+    ),
+)
+stack: [5]
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    Jump(
+        2,
+    ),
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [5]
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
+    ),
+)
+stack: [5, 10]
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [5]
+stdout: "0\n1\n2\n3\n4\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [5]
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [5, 1]
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    Add,
+)
+stack: [6]
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    Assign(
+        "i",
+    ),
+)
+stack: [6]
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    Jump(
+        2,
+    ),
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [6]
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
+    ),
+)
+stack: [6, 10]
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [6]
+stdout: "0\n1\n2\n3\n4\n5\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [6]
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [6, 1]
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    Add,
+)
+stack: [7]
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    Assign(
+        "i",
+    ),
+)
+stack: [7]
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    Jump(
+        2,
+    ),
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [7]
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
+    ),
+)
+stack: [7, 10]
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [7]
+stdout: "0\n1\n2\n3\n4\n5\n6\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [7]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [7, 1]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    Add,
+)
+stack: [8]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    Assign(
+        "i",
+    ),
+)
+stack: [8]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    Jump(
+        2,
+    ),
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [8]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
+    ),
+)
+stack: [8, 10]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [8]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [8]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [8, 1]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    Add,
+)
+stack: [9]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    Assign(
+        "i",
+    ),
+)
+stack: [9]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    Jump(
+        2,
+    ),
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [9]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
+    ),
+)
+stack: [9, 10]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [9]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
+
+execute: Some(
+    Print,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [9]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [9, 1]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    Add,
+)
+stack: [10]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    Assign(
+        "i",
+    ),
+)
+stack: [10]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    Jump(
+        2,
+    ),
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "i",
+    },
+)
+stack: [10]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    Constant(
+        F64(
+            10.0,
+        ),
+    ),
+)
+stack: [10, 10]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    Less,
+)
+stack: [false]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [false]
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+execute: None
+stack: []
+stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 

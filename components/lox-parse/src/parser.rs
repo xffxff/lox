@@ -45,9 +45,33 @@ impl<'me> Parser<'me> {
     fn declaration(&mut self) -> Option<Stmt> {
         if self.eat(Keyword::Var).is_some() {
             self.var_declaration()
+        } else if self.eat(Keyword::Fun).is_some() {
+            self.func_declaration()
         } else {
             self.stmt()
         }
+    }
+
+    fn func_declaration(&mut self) -> Option<Stmt> {
+        let name = self.eat(Identifier)?.1;
+        let parameters_tree = self.delimited('(')?.1;
+        let mut sub_parser = Parser::new(self.db, parameters_tree);
+        let mut parameters = vec![];
+        while sub_parser.tokens.peek().is_some() {
+            let (_, id) = sub_parser.eat(Identifier)?;
+            parameters.push(id);
+            if sub_parser.eat(Token::Comma).is_none() {
+                break;
+            }
+        }
+        let body_tree = self.delimited('{')?.1;
+        let mut sub_parser = Parser::new(self.db, body_tree);
+        let body = sub_parser.parse();
+        Some(Stmt::FunctionDeclaration {
+            name,
+            parameters,
+            body: Box::new(Stmt::Block(body)),
+        })
     }
 
     // "var" IDENTIFIER ( "=" expression )? ";" ;
@@ -84,8 +108,20 @@ impl<'me> Parser<'me> {
             return self.while_stmt();
         } else if self.eat(Keyword::For).is_some() {
             return self.for_stmt();
+        } else if self.eat(Keyword::Return).is_some() {
+            return self.return_stmt();
         }
         self.expr_stmt()
+    }
+
+    fn return_stmt(&mut self) -> Option<Stmt> {
+        if self.eat(Token::Semicolon).is_some() {
+            return Some(Stmt::Return(None));
+        }
+        let expr = self.parse_expr()?;
+        self.eat(Token::Semicolon)
+            .or_report_error(self, || "expected `;`");
+        Some(Stmt::Return(Some(expr)))
     }
 
     // forStmt        → "for" "(" ( varDecl | exprStmt | ";" )
@@ -322,7 +358,32 @@ impl<'me> Parser<'me> {
                 return Some(Expr::UnaryOp(*op, Box::new(expr)));
             }
         }
-        self.primary()
+        self.call()
+    }
+
+    fn call(&mut self) -> Option<Expr> {
+        let mut expr = self.primary()?;
+        loop {
+            if let Some((_, token_tree)) = self.delimited('(') {
+                let mut parser = Parser::new(self.db, token_tree);
+                let mut args = vec![];
+                while parser.tokens.peek().is_some() {
+                    let arg = parser.parse_expr()?;
+                    args.push(arg);
+                    if parser.eat(Token::Comma).is_none() {
+                        break;
+                    }
+                }
+                parser.eat(Token::Delimiter(')'));
+                expr = Expr::Call {
+                    callee: Box::new(expr),
+                    arguments: args,
+                };
+                continue;
+            }
+            break;
+        }
+        Some(expr)
     }
 
     fn primary(&mut self) -> Option<Expr> {
@@ -442,7 +503,7 @@ impl<'me> Parser<'me> {
     }
 
     fn error(&self, span: Span, message: impl ToString) -> DiagnosticBuilder {
-        tracing::debug!("emit error {:?}, {:?}", message.to_string(), span);
+        tracing::error!("emit error {:?}, {:?}", message.to_string(), span);
         lox_ir::error!(span.anchor_to(self.input_file), "{}", message.to_string())
     }
 }

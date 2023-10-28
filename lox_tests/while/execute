@@ -1,563 +1,550 @@
-execute: Constant(
-    F64(
-        0.0,
+execute: Some(
+    Constant(
+        F64(
+            0.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        0.0,
-    ),
-]
+stack: [0]
+stdout: ""
 
-execute: GlobalVarDeclaration {
-    name: "a",
-}
+execute: Some(
+    GlobalVarDeclaration {
+        name: "a",
+    },
+)
 stack: []
+stdout: ""
 
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        0.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [0]
+stdout: ""
 
-execute: Constant(
-    F64(
-        5.0,
+execute: Some(
+    Constant(
+        F64(
+            5.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        0.0,
-    ),
-    Number(
-        5.0,
-    ),
-]
+stack: [0, 5]
+stdout: ""
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Less,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [true]
+stdout: ""
 
-execute: Pop
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: ""
+
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: ""
 
-execute: String(
-    "hello",
-)
-stack: [
+execute: Some(
     String(
         "hello",
     ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        0.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
 )
-stack: [
-    Number(
-        0.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [hello]
+stdout: ""
 
-execute: Add
-stack: [
-    Number(
-        1.0,
-    ),
-]
-
-execute: Assign(
-    "a",
-)
-stack: [
-    Number(
-        1.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Print,
 )
 stack: []
+stdout: "hello\n"
 
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        1.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [0]
+stdout: "hello\n"
 
-execute: Constant(
-    F64(
-        5.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        5.0,
-    ),
-]
+stack: [0, 1]
+stdout: "hello\n"
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Add,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [1]
+stdout: "hello\n"
 
-execute: Pop
+execute: Some(
+    Assign(
+        "a",
+    ),
+)
+stack: [1]
+stdout: "hello\n"
+
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: "hello\n"
 
-execute: String(
-    "hello",
+execute: Some(
+    Jump(
+        2,
+    ),
 )
-stack: [
+stack: []
+stdout: "hello\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [1]
+stdout: "hello\n"
+
+execute: Some(
+    Constant(
+        F64(
+            5.0,
+        ),
+    ),
+)
+stack: [1, 5]
+stdout: "hello\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "hello\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "hello\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "hello\n"
+
+execute: Some(
     String(
         "hello",
     ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        1.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
 )
-stack: [
-    Number(
-        1.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [hello]
+stdout: "hello\n"
 
-execute: Add
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Assign(
-    "a",
-)
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Print,
 )
 stack: []
+stdout: "hello\nhello\n"
 
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        2.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [1]
+stdout: "hello\nhello\n"
 
-execute: Constant(
-    F64(
-        5.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        2.0,
-    ),
-    Number(
-        5.0,
-    ),
-]
+stack: [1, 1]
+stdout: "hello\nhello\n"
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Add,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [2]
+stdout: "hello\nhello\n"
 
-execute: Pop
+execute: Some(
+    Assign(
+        "a",
+    ),
+)
+stack: [2]
+stdout: "hello\nhello\n"
+
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: "hello\nhello\n"
 
-execute: String(
-    "hello",
+execute: Some(
+    Jump(
+        2,
+    ),
 )
-stack: [
+stack: []
+stdout: "hello\nhello\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [2]
+stdout: "hello\nhello\n"
+
+execute: Some(
+    Constant(
+        F64(
+            5.0,
+        ),
+    ),
+)
+stack: [2, 5]
+stdout: "hello\nhello\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "hello\nhello\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "hello\nhello\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "hello\nhello\n"
+
+execute: Some(
     String(
         "hello",
     ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        2.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
 )
-stack: [
-    Number(
-        2.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [hello]
+stdout: "hello\nhello\n"
 
-execute: Add
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Assign(
-    "a",
-)
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Print,
 )
 stack: []
+stdout: "hello\nhello\nhello\n"
 
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        3.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [2]
+stdout: "hello\nhello\nhello\n"
 
-execute: Constant(
-    F64(
-        5.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        5.0,
-    ),
-]
+stack: [2, 1]
+stdout: "hello\nhello\nhello\n"
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Add,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [3]
+stdout: "hello\nhello\nhello\n"
 
-execute: Pop
+execute: Some(
+    Assign(
+        "a",
+    ),
+)
+stack: [3]
+stdout: "hello\nhello\nhello\n"
+
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: "hello\nhello\nhello\n"
 
-execute: String(
-    "hello",
+execute: Some(
+    Jump(
+        2,
+    ),
 )
-stack: [
+stack: []
+stdout: "hello\nhello\nhello\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [3]
+stdout: "hello\nhello\nhello\n"
+
+execute: Some(
+    Constant(
+        F64(
+            5.0,
+        ),
+    ),
+)
+stack: [3, 5]
+stdout: "hello\nhello\nhello\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "hello\nhello\nhello\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "hello\nhello\nhello\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "hello\nhello\nhello\n"
+
+execute: Some(
     String(
         "hello",
     ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        3.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
 )
-stack: [
-    Number(
-        3.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [hello]
+stdout: "hello\nhello\nhello\n"
 
-execute: Add
-stack: [
-    Number(
-        4.0,
-    ),
-]
-
-execute: Assign(
-    "a",
-)
-stack: [
-    Number(
-        4.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Print,
 )
 stack: []
+stdout: "hello\nhello\nhello\nhello\n"
 
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        4.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [3]
+stdout: "hello\nhello\nhello\nhello\n"
 
-execute: Constant(
-    F64(
-        5.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        4.0,
-    ),
-    Number(
-        5.0,
-    ),
-]
+stack: [3, 1]
+stdout: "hello\nhello\nhello\nhello\n"
 
-execute: Less
-stack: [
-    Boolean(
-        true,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Add,
 )
-stack: [
-    Boolean(
-        true,
-    ),
-]
+stack: [4]
+stdout: "hello\nhello\nhello\nhello\n"
 
-execute: Pop
+execute: Some(
+    Assign(
+        "a",
+    ),
+)
+stack: [4]
+stdout: "hello\nhello\nhello\nhello\n"
+
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: "hello\nhello\nhello\nhello\n"
 
-execute: String(
-    "hello",
+execute: Some(
+    Jump(
+        2,
+    ),
 )
-stack: [
+stack: []
+stdout: "hello\nhello\nhello\nhello\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [4]
+stdout: "hello\nhello\nhello\nhello\n"
+
+execute: Some(
+    Constant(
+        F64(
+            5.0,
+        ),
+    ),
+)
+stack: [4, 5]
+stdout: "hello\nhello\nhello\nhello\n"
+
+execute: Some(
+    Less,
+)
+stack: [true]
+stdout: "hello\nhello\nhello\nhello\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [true]
+stdout: "hello\nhello\nhello\nhello\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "hello\nhello\nhello\nhello\n"
+
+execute: Some(
     String(
         "hello",
     ),
-]
-
-execute: Print
-stack: []
-
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        4.0,
-    ),
-]
-
-execute: Constant(
-    F64(
-        1.0,
-    ),
 )
-stack: [
-    Number(
-        4.0,
-    ),
-    Number(
-        1.0,
-    ),
-]
+stack: [hello]
+stdout: "hello\nhello\nhello\nhello\n"
 
-execute: Add
-stack: [
-    Number(
-        5.0,
-    ),
-]
-
-execute: Assign(
-    "a",
-)
-stack: [
-    Number(
-        5.0,
-    ),
-]
-
-execute: Pop
-stack: []
-
-execute: Jump(
-    2,
+execute: Some(
+    Print,
 )
 stack: []
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
-execute: ReadGlobalVariable {
-    name: "a",
-}
-stack: [
-    Number(
-        5.0,
-    ),
-]
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [4]
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
-execute: Constant(
-    F64(
-        5.0,
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
     ),
 )
-stack: [
-    Number(
-        5.0,
-    ),
-    Number(
-        5.0,
-    ),
-]
+stack: [4, 1]
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
-execute: Less
-stack: [
-    Boolean(
-        false,
-    ),
-]
-
-execute: JumpIfFalse(
-    15,
+execute: Some(
+    Add,
 )
-stack: [
-    Boolean(
-        false,
-    ),
-]
+stack: [5]
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 
-execute: Pop
+execute: Some(
+    Assign(
+        "a",
+    ),
+)
+stack: [5]
+stdout: "hello\nhello\nhello\nhello\nhello\n"
+
+execute: Some(
+    Pop,
+)
 stack: []
+stdout: "hello\nhello\nhello\nhello\nhello\n"
+
+execute: Some(
+    Jump(
+        2,
+    ),
+)
+stack: []
+stdout: "hello\nhello\nhello\nhello\nhello\n"
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "a",
+    },
+)
+stack: [5]
+stdout: "hello\nhello\nhello\nhello\nhello\n"
+
+execute: Some(
+    Constant(
+        F64(
+            5.0,
+        ),
+    ),
+)
+stack: [5, 5]
+stdout: "hello\nhello\nhello\nhello\nhello\n"
+
+execute: Some(
+    Less,
+)
+stack: [false]
+stdout: "hello\nhello\nhello\nhello\nhello\n"
+
+execute: Some(
+    JumpIfFalse(
+        15,
+    ),
+)
+stack: [false]
+stdout: "hello\nhello\nhello\nhello\nhello\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "hello\nhello\nhello\nhello\nhello\n"
+
+execute: None
+stack: []
+stdout: "hello\nhello\nhello\nhello\nhello\n"
 

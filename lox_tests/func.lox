@@ -1,0 +1,13 @@
+fun hello() {
+    print "hello";
+}
+
+hello();
+print "world";
+
+fun add(a, b) {
+    return a + b;
+}
+
+var c = add(1, 2);
+print c;
