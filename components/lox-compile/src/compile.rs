@@ -251,9 +251,16 @@ impl Compiler {
                     chunk: sub_chunk,
                 });
                 chunk.emit_byte(function);
-                chunk.emit_byte(Code::GlobalVarDeclaration {
-                    name: name_str.to_string(),
-                });
+                // there are two types of variables: global and local, they are compiled differently
+                // they are distinguished by the lexical scope depth
+                if self.scope_depth == 0 {
+                    chunk.emit_byte(Code::GlobalVarDeclaration {
+                        name: name_str.to_string(),
+                    });
+                } else {
+                    let local = Local::new(name_str, self.scope_depth);
+                    self.locals.push(local)
+                }
             }
             syntax::Stmt::Return(expr) => {
                 if let Some(expr) = expr {

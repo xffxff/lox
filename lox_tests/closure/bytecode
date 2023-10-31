@@ -1,0 +1,60 @@
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            String(
+                "global",
+            ),
+            GlobalVarDeclaration {
+                name: "x",
+            },
+            Function(
+                Function {
+                    name: "outer",
+                    arity: 0,
+                    chunk: Chunk {
+                        code: [
+                            String(
+                                "outer",
+                            ),
+                            Function(
+                                Function {
+                                    name: "inner",
+                                    arity: 0,
+                                    chunk: Chunk {
+                                        code: [
+                                            ReadGlobalVariable {
+                                                name: "x",
+                                            },
+                                            Print,
+                                        ],
+                                    },
+                                },
+                            ),
+                            ReadLocalVariable {
+                                index_in_stack: 1,
+                            },
+                            Call {
+                                arity: 0,
+                            },
+                            Pop,
+                            Pop,
+                            Pop,
+                        ],
+                    },
+                },
+            ),
+            GlobalVarDeclaration {
+                name: "outer",
+            },
+            ReadGlobalVariable {
+                name: "outer",
+            },
+            Call {
+                arity: 0,
+            },
+            Pop,
+        ],
+    },
+}

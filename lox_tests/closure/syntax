@@ -1,0 +1,35 @@
+Var {
+    name: "x",
+    initializer: Some(
+        StringLiteral(global),
+    ),
+}
+FunctionDeclaration {
+    name: "outer",
+    body: Block {
+        stmt: Var {
+            name: "x",
+            initializer: Some(
+                StringLiteral(outer),
+            ),
+        },
+        stmt: FunctionDeclaration {
+            name: "inner",
+            body: Block {
+                stmt: Print {
+                    expr: Variable(x),
+                },
+            },
+        },
+        stmt: Expr {
+            expr: Call {
+                callee: Variable(inner),
+            },
+        },
+    },
+}
+Expr {
+    expr: Call {
+        callee: Variable(outer),
+    },
+}
