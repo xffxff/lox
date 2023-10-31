@@ -387,10 +387,10 @@ impl VM {
             bytecode::Code::Jump(ip) => {
                 frame.ip = ip;
             }
-            bytecode::Code::Function(function) => {
-                let function = Value::Function(Function::from(function));
-                self.push(function);
-            }
+            // bytecode::Code::Function(function) => {
+            //     let function = Value::Function(Function::from(function));
+            //     self.push(function);
+            // }
             bytecode::Code::Call { arity } => {
                 let function = self.peek_n_from_top(arity);
                 match function {
@@ -400,6 +400,7 @@ impl VM {
                     _ => panic!("Cannot call {:?}", function),
                 }
             }
+            bytecode::Code::Closure { function, upvalues } => todo!(),
         }
 
         inspect_step(Some(instruction), self);

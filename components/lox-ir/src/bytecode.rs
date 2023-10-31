@@ -1,4 +1,10 @@
 #[derive(Clone, PartialEq, Eq, Debug)]
+pub struct Upvalue {
+    pub is_local: bool,
+    pub index: usize,
+}
+
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub enum Code {
     Return,
     Constant(eq_float::F64),
@@ -32,7 +38,10 @@ pub enum Code {
     Pop,
     JumpIfFalse(usize),
     Jump(usize),
-    Function(Function),
+    Closure {
+        function: Function,
+        upvalues: Vec<Upvalue>,
+    },
     Call {
         arity: usize,
     },
