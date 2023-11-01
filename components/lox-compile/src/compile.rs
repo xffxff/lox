@@ -1,7 +1,7 @@
 use std::{cell::RefCell, rc::Rc};
 
 use lox_ir::{
-    bytecode::{Chunk, Code, Function},
+    bytecode::{Chunk, Code, Function, Upvalue},
     input_file::InputFile,
     syntax,
 };
@@ -46,6 +46,9 @@ struct Compiler {
     // to the function's compiler to enable access to the variables in the enclosing scope.
     // Specifically, the enclosing scope is necessary to support closures
     enclosing: Option<Rc<RefCell<Compiler>>>,
+
+    // The upvalues of a function are the variables in the enclosing scope that are used in the function.
+    upvalues: Vec<Upvalue>,
 }
 
 impl Compiler {
@@ -266,7 +269,7 @@ fn compile_stmt(
                 let local = Local::new(name_str, compiler.borrow().scope_depth);
                 sub_compiler.borrow_mut().locals.push(local);
             }
-            compile_stmt(sub_compiler, db, body, &mut sub_chunk);
+            compile_stmt(sub_compiler.clone(), db, body, &mut sub_chunk);
             let name_str = name.as_str(db);
             let function = Function {
                 name: name_str.to_string(),
@@ -275,7 +278,7 @@ fn compile_stmt(
             };
             let closure = Code::Closure {
                 function,
-                upvalues: vec![],
+                upvalues: sub_compiler.borrow().upvalues.clone(),
             };
             chunk.emit_byte(closure);
             // there are two types of variables: global and local, they are compiled differently
@@ -353,10 +356,12 @@ fn compile_expr(
         syntax::Expr::Parenthesized(_) => todo!(),
         syntax::Expr::Variable(word) => {
             let name = word.as_str(db);
-            if let Some(index) = resolve_local(compiler, name) {
+            if let Some(index) = resolve_local(compiler.clone(), name) {
                 chunk.emit_byte(Code::ReadLocalVariable {
                     index_in_stack: index,
                 })
+            } else if let Some(index) = resolve_upvalue(compiler, name) {
+                chunk.emit_byte(Code::ReadUpvalue { index })
             } else {
                 chunk.emit_byte(Code::ReadGlobalVariable {
                     name: name.to_string(),
@@ -449,6 +454,36 @@ fn resolve_local(compiler: Rc<RefCell<Compiler>>, name: &str) -> Option<usize> {
             return Some(i);
         }
     }
+    None
+}
+
+fn resolve_upvalue(compiler: Rc<RefCell<Compiler>>, name: &str) -> Option<usize> {
+    let new_index = {
+        let compiler_borrow = compiler.borrow();
+        let enclosing = compiler_borrow.enclosing.clone();
+
+        let index = if let Some(enc) = enclosing.clone() {
+            if let Some(idx) = resolve_local(enc.clone(), name) {
+                Some((idx, true))
+            } else if let Some(idx) = resolve_upvalue(enc, name) {
+                Some((idx, false))
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+
+        index
+    };
+
+    if let Some((index, is_local)) = new_index {
+        let mut compiler_mut = compiler.borrow_mut();
+        let upvalue = Upvalue::new(index, is_local);
+        compiler_mut.upvalues.push(upvalue);
+        return Some(compiler_mut.upvalues.len() - 1);
+    }
+
     None
 }
 

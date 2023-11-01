@@ -401,6 +401,7 @@ impl VM {
                 }
             }
             bytecode::Code::Closure { function, upvalues } => todo!(),
+            bytecode::Code::ReadUpvalue { index } => todo!(),
         }
 
         inspect_step(Some(instruction), self);

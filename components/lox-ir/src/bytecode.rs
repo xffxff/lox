@@ -1,7 +1,13 @@
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub struct Upvalue {
-    pub is_local: bool,
     pub index: usize,
+    pub is_local: bool,
+}
+
+impl Upvalue {
+    pub fn new(index: usize, is_local: bool) -> Self {
+        Self { index, is_local }
+    }
 }
 
 #[derive(Clone, PartialEq, Eq, Debug)]
@@ -44,6 +50,9 @@ pub enum Code {
     },
     Call {
         arity: usize,
+    },
+    ReadUpvalue {
+        index: usize,
     },
 }
 

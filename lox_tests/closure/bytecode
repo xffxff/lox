@@ -9,8 +9,8 @@ Function {
             GlobalVarDeclaration {
                 name: "x",
             },
-            Function(
-                Function {
+            Closure {
+                function: Function {
                     name: "outer",
                     arity: 0,
                     chunk: Chunk {
@@ -18,20 +18,26 @@ Function {
                             String(
                                 "outer",
                             ),
-                            Function(
-                                Function {
+                            Closure {
+                                function: Function {
                                     name: "inner",
                                     arity: 0,
                                     chunk: Chunk {
                                         code: [
-                                            ReadGlobalVariable {
-                                                name: "x",
+                                            ReadUpvalue {
+                                                index: 0,
                                             },
                                             Print,
                                         ],
                                     },
                                 },
-                            ),
+                                upvalues: [
+                                    Upvalue {
+                                        index: 0,
+                                        is_local: true,
+                                    },
+                                ],
+                            },
                             ReadLocalVariable {
                                 index_in_stack: 1,
                             },
@@ -44,7 +50,8 @@ Function {
                         ],
                     },
                 },
-            ),
+                upvalues: [],
+            },
             GlobalVarDeclaration {
                 name: "outer",
             },
