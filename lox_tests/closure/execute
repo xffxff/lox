@@ -15,8 +15,8 @@ stack: []
 stdout: ""
 
 execute: Some(
-    Function(
-        Function {
+    Closure {
+        function: Function {
             name: "outer",
             arity: 0,
             chunk: Chunk {
@@ -24,20 +24,26 @@ execute: Some(
                     String(
                         "outer",
                     ),
-                    Function(
-                        Function {
+                    Closure {
+                        function: Function {
                             name: "inner",
                             arity: 0,
                             chunk: Chunk {
                                 code: [
-                                    ReadGlobalVariable {
-                                        name: "x",
+                                    ReadUpvalue {
+                                        index: 0,
                                     },
                                     Print,
                                 ],
                             },
                         },
-                    ),
+                        upvalues: [
+                            Upvalue {
+                                index: 0,
+                                is_local: true,
+                            },
+                        ],
+                    },
                     ReadLocalVariable {
                         index_in_stack: 1,
                     },
@@ -50,7 +56,8 @@ execute: Some(
                 ],
             },
         },
-    ),
+        upvalues: [],
+    },
 )
 stack: [<func outer>]
 stdout: ""
@@ -88,20 +95,26 @@ stack: [<func outer>, outer]
 stdout: ""
 
 execute: Some(
-    Function(
-        Function {
+    Closure {
+        function: Function {
             name: "inner",
             arity: 0,
             chunk: Chunk {
                 code: [
-                    ReadGlobalVariable {
-                        name: "x",
+                    ReadUpvalue {
+                        index: 0,
                     },
                     Print,
                 ],
             },
         },
-    ),
+        upvalues: [
+            Upvalue {
+                index: 0,
+                is_local: true,
+            },
+        ],
+    },
 )
 stack: [<func outer>, outer, <func inner>]
 stdout: ""
@@ -123,52 +136,52 @@ stack: [<func outer>, outer, <func inner>, <func inner>]
 stdout: ""
 
 execute: Some(
-    ReadGlobalVariable {
-        name: "x",
+    ReadUpvalue {
+        index: 0,
     },
 )
-stack: [<func outer>, outer, <func inner>, <func inner>, global]
+stack: [<func outer>, outer, <func inner>, <func inner>, outer]
 stdout: ""
 
 execute: Some(
     Print,
 )
 stack: [<func outer>, outer, <func inner>, <func inner>]
-stdout: "global\n"
+stdout: "outer\n"
 
 execute: None
 stack: [<func outer>, outer, <func inner>, <func inner>]
-stdout: "global\n"
+stdout: "outer\n"
 
 execute: Some(
     Pop,
 )
 stack: [<func outer>, outer, <func inner>]
-stdout: "global\n"
+stdout: "outer\n"
 
 execute: Some(
     Pop,
 )
 stack: [<func outer>, outer]
-stdout: "global\n"
+stdout: "outer\n"
 
 execute: Some(
     Pop,
 )
 stack: [<func outer>]
-stdout: "global\n"
+stdout: "outer\n"
 
 execute: None
 stack: [<func outer>]
-stdout: "global\n"
+stdout: "outer\n"
 
 execute: Some(
     Pop,
 )
 stack: []
-stdout: "global\n"
+stdout: "outer\n"
 
 execute: None
 stack: []
-stdout: "global\n"
+stdout: "outer\n"
 

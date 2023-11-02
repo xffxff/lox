@@ -8,9 +8,9 @@ pub fn execute_file(
     input_file: InputFile,
     step_inspect: Option<impl FnMut(Option<bytecode::Code>, &VM) + Clone>,
 ) -> String {
-    let chunk = compile::compile_file(db, input_file);
+    let function = compile::compile_file(db, input_file);
     let mut vm = VM::new();
-    vm.push_frame(chunk.into());
+    vm.push_frame(function, vec![]);
 
     while let ControlFlow::Next = vm.step(step_inspect.clone()) {}
 

@@ -1,23 +1,6 @@
 use std::collections::HashMap;
 
-use lox_ir::bytecode;
-
-#[derive(Debug, Clone)]
-pub struct Function {
-    name: String,
-    arity: usize,
-    chunk: bytecode::Chunk,
-}
-
-impl From<bytecode::Function> for Function {
-    fn from(f: bytecode::Function) -> Self {
-        Self {
-            name: f.name,
-            arity: f.arity,
-            chunk: f.chunk,
-        }
-    }
-}
+use lox_ir::bytecode::{self, Function, Upvalue};
 
 #[derive(Clone)]
 pub enum Value {
@@ -25,7 +8,10 @@ pub enum Value {
     Boolean(bool),
     Nil,
     String(String),
-    Function(Function),
+    Closure {
+        function: Function,
+        upvalues: Vec<Upvalue>,
+    },
 }
 
 impl std::fmt::Display for Value {
@@ -35,7 +21,7 @@ impl std::fmt::Display for Value {
             Value::Boolean(b) => write!(f, "{}", b),
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
-            Value::Function(func) => write!(f, "<func {}>", func.name),
+            Value::Closure { function, .. } => write!(f, "<func {}>", function.name),
         }
     }
 }
@@ -47,7 +33,7 @@ impl std::fmt::Debug for Value {
             Value::Boolean(b) => write!(f, "{}", b),
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
-            Value::Function(func) => write!(f, "<func {}>", func.name),
+            Value::Closure { function, .. } => write!(f, "<func {}>", function.name),
         }
     }
 }
@@ -168,6 +154,7 @@ struct CallFrame {
     function: Function,
     ip: usize,
     fp: usize,
+    upvalues: Vec<usize>,
 }
 
 impl CallFrame {
@@ -206,19 +193,36 @@ impl VM {
         }
     }
 
-    pub fn push_frame(&mut self, function: Function) {
+    pub fn push_frame(&mut self, function: Function, upvalues: Vec<Upvalue>) {
         let arity = function.arity;
+
+        let upvalues = if let Some(current_frame) = self.current_frame() {
+            upvalues
+                .into_iter()
+                .map(|upvalue| {
+                    if upvalue.is_local {
+                        current_frame.fp + upvalue.index
+                    } else {
+                        current_frame.upvalues[upvalue.index]
+                    }
+                })
+                .collect()
+        } else {
+            vec![]
+        };
+
         let frame = CallFrame {
             function,
             ip: 0,
             fp: self.stack.len() - arity,
+            upvalues,
         };
         tracing::debug!("pushing frame: {:?}", frame);
         self.frames.push(frame);
     }
 
-    fn current_frame(&self) -> CallFrame {
-        self.frames.last().unwrap().clone()
+    fn current_frame(&self) -> Option<CallFrame> {
+        self.frames.last().cloned()
     }
 
     fn update_frame(&mut self, frame_index: usize, frame: CallFrame) {
@@ -250,7 +254,7 @@ impl VM {
             }
         };
 
-        let mut frame = self.current_frame();
+        let mut frame = self.current_frame().unwrap();
         let frame_index = self.frames.len() - 1;
         tracing::debug!("current frame: {:#?}", frame);
         if frame.function.chunk.len() <= frame.ip {
@@ -392,16 +396,26 @@ impl VM {
             //     self.push(function);
             // }
             bytecode::Code::Call { arity } => {
-                let function = self.peek_n_from_top(arity);
-                match function {
-                    Value::Function(function) => {
-                        self.push_frame(function.clone());
+                let closure = self.peek_n_from_top(arity);
+                match closure {
+                    Value::Closure { function, upvalues } => {
+                        self.push_frame(function.clone(), upvalues.clone());
                     }
-                    _ => panic!("Cannot call {:?}", function),
+                    _ => panic!("Cannot call {:?}", closure),
                 }
             }
-            bytecode::Code::Closure { function, upvalues } => todo!(),
-            bytecode::Code::ReadUpvalue { index } => todo!(),
+            bytecode::Code::Closure { function, upvalues } => {
+                let closure = Value::Closure {
+                    function: function.clone(),
+                    upvalues: upvalues.clone(),
+                };
+                self.push(closure);
+            }
+            bytecode::Code::ReadUpvalue { index } => {
+                let upvalue = &frame.upvalues[index];
+                let value = self.stack[*upvalue].clone();
+                self.push(value)
+            }
         }
 
         inspect_step(Some(instruction), self);
