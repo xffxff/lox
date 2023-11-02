@@ -1,0 +1,12 @@
+fun outer() {
+    var x = "value";
+    fun middle() {
+        fun inner() {
+            print x;
+        }
+        inner();
+    }
+    middle();
+}
+
+outer();

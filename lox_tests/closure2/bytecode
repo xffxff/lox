@@ -1,0 +1,85 @@
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Closure {
+                function: Function {
+                    name: "outer",
+                    arity: 0,
+                    chunk: Chunk {
+                        code: [
+                            String(
+                                "value",
+                            ),
+                            Closure {
+                                function: Function {
+                                    name: "middle",
+                                    arity: 0,
+                                    chunk: Chunk {
+                                        code: [
+                                            Closure {
+                                                function: Function {
+                                                    name: "inner",
+                                                    arity: 0,
+                                                    chunk: Chunk {
+                                                        code: [
+                                                            ReadUpvalue {
+                                                                index: 0,
+                                                            },
+                                                            Print,
+                                                        ],
+                                                    },
+                                                },
+                                                upvalues: [
+                                                    Upvalue {
+                                                        index: 0,
+                                                        is_local: false,
+                                                    },
+                                                ],
+                                            },
+                                            ReadLocalVariable {
+                                                index_in_stack: 0,
+                                            },
+                                            Call {
+                                                arity: 0,
+                                            },
+                                            Pop,
+                                            Pop,
+                                        ],
+                                    },
+                                },
+                                upvalues: [
+                                    Upvalue {
+                                        index: 0,
+                                        is_local: true,
+                                    },
+                                ],
+                            },
+                            ReadLocalVariable {
+                                index_in_stack: 1,
+                            },
+                            Call {
+                                arity: 0,
+                            },
+                            Pop,
+                            Pop,
+                            Pop,
+                        ],
+                    },
+                },
+                upvalues: [],
+            },
+            GlobalVarDeclaration {
+                name: "outer",
+            },
+            ReadGlobalVariable {
+                name: "outer",
+            },
+            Call {
+                arity: 0,
+            },
+            Pop,
+        ],
+    },
+}
