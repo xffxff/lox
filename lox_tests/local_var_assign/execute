@@ -1,0 +1,72 @@
+execute: Some(
+    Constant(
+        F64(
+            1.0,
+        ),
+    ),
+)
+stack: [1]
+stdout: ""
+
+execute: Some(
+    Constant(
+        F64(
+            2.0,
+        ),
+    ),
+)
+stack: [1, 2]
+stdout: ""
+
+execute: Some(
+    WriteLocalVariable {
+        index_in_stack: 0,
+    },
+)
+stack: [2, 2]
+stdout: ""
+
+execute: Some(
+    Pop,
+)
+stack: [2]
+stdout: ""
+
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 0,
+    },
+)
+stack: [2, 2]
+stdout: ""
+
+execute: Some(
+    Print,
+)
+stack: [2]
+stdout: "2\n"
+
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 0,
+    },
+)
+stack: [2, 2]
+stdout: "2\n"
+
+execute: Some(
+    Print,
+)
+stack: [2]
+stdout: "2\n2\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "2\n2\n"
+
+execute: None
+stack: []
+stdout: "2\n2\n"
+

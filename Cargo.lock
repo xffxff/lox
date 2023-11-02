@@ -367,6 +367,7 @@ dependencies = [
  "lox-ir",
  "lox-parse",
  "salsa",
+ "tracing",
 ]
 
 [[package]]

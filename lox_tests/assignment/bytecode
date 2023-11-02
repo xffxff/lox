@@ -16,9 +16,9 @@ Function {
                     2.0,
                 ),
             ),
-            Assign(
-                "a",
-            ),
+            WriteGlobalVariable {
+                name: "a",
+            },
             Pop,
             ReadGlobalVariable {
                 name: "a",
@@ -29,9 +29,9 @@ Function {
                     3.0,
                 ),
             ),
-            Assign(
-                "a",
-            ),
+            WriteGlobalVariable {
+                name: "a",
+            },
             Print,
             ReadGlobalVariable {
                 name: "a",
@@ -46,9 +46,9 @@ Function {
             ReadGlobalVariable {
                 name: "b",
             },
-            Assign(
-                "c",
-            ),
+            WriteGlobalVariable {
+                name: "c",
+            },
             Pop,
             ReadGlobalVariable {
                 name: "c",

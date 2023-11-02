@@ -374,13 +374,17 @@ impl VM {
                 let value = self.globals.get(&name).expect("variable not found");
                 self.push(value.clone());
             }
-            bytecode::Code::Assign(name) => {
+            bytecode::Code::WriteGlobalVariable { name } => {
                 let value = self.peek();
                 self.globals.insert(name, value.clone());
             }
             bytecode::Code::ReadLocalVariable { index_in_stack } => {
                 let value = self.stack[frame.fp + index_in_stack].clone();
                 self.push(value);
+            }
+            bytecode::Code::WriteLocalVariable { index_in_stack } => {
+                let value = self.peek();
+                self.stack[frame.fp + index_in_stack] = value.clone();
             }
             bytecode::Code::Pop => {
                 self.pop();
@@ -418,6 +422,11 @@ impl VM {
                 let upvalue = &frame.upvalues[index];
                 let value = self.stack[*upvalue].clone();
                 self.push(value)
+            }
+            bytecode::Code::WriteUpvalue { index } => {
+                let upvalue = &frame.upvalues[index];
+                let value = self.pop();
+                self.stack[*upvalue] = value;
             }
         }
 

@@ -27,9 +27,9 @@ stack: [2]
 stdout: ""
 
 execute: Some(
-    Assign(
-        "a",
-    ),
+    WriteGlobalVariable {
+        name: "a",
+    },
 )
 stack: [2]
 stdout: ""
@@ -65,9 +65,9 @@ stack: [3]
 stdout: "2\n"
 
 execute: Some(
-    Assign(
-        "a",
-    ),
+    WriteGlobalVariable {
+        name: "a",
+    },
 )
 stack: [3]
 stdout: "2\n"
@@ -117,9 +117,9 @@ stack: [3]
 stdout: "2\n3\n"
 
 execute: Some(
-    Assign(
-        "c",
-    ),
+    WriteGlobalVariable {
+        name: "c",
+    },
 )
 stack: [3]
 stdout: "2\n3\n"

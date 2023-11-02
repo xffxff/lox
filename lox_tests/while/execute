@@ -93,9 +93,9 @@ stack: [1]
 stdout: "hello\n"
 
 execute: Some(
-    Assign(
-        "a",
-    ),
+    WriteGlobalVariable {
+        name: "a",
+    },
 )
 stack: [1]
 stdout: "hello\n"
@@ -191,9 +191,9 @@ stack: [2]
 stdout: "hello\nhello\n"
 
 execute: Some(
-    Assign(
-        "a",
-    ),
+    WriteGlobalVariable {
+        name: "a",
+    },
 )
 stack: [2]
 stdout: "hello\nhello\n"
@@ -289,9 +289,9 @@ stack: [3]
 stdout: "hello\nhello\nhello\n"
 
 execute: Some(
-    Assign(
-        "a",
-    ),
+    WriteGlobalVariable {
+        name: "a",
+    },
 )
 stack: [3]
 stdout: "hello\nhello\nhello\n"
@@ -387,9 +387,9 @@ stack: [4]
 stdout: "hello\nhello\nhello\nhello\n"
 
 execute: Some(
-    Assign(
-        "a",
-    ),
+    WriteGlobalVariable {
+        name: "a",
+    },
 )
 stack: [4]
 stdout: "hello\nhello\nhello\nhello\n"
@@ -485,9 +485,9 @@ stack: [5]
 stdout: "hello\nhello\nhello\nhello\nhello\n"
 
 execute: Some(
-    Assign(
-        "a",
-    ),
+    WriteGlobalVariable {
+        name: "a",
+    },
 )
 stack: [5]
 stdout: "hello\nhello\nhello\nhello\nhello\n"

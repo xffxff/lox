@@ -37,9 +37,9 @@ Function {
                 ),
             ),
             Add,
-            Assign(
-                "a",
-            ),
+            WriteGlobalVariable {
+                name: "a",
+            },
             Pop,
             Jump(
                 2,

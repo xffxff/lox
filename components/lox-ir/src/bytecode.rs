@@ -40,7 +40,12 @@ pub enum Code {
         index_in_stack: usize, // index of the variable in the stack
     },
     Nil,
-    Assign(String),
+    WriteGlobalVariable {
+        name: String, // name of the variable
+    },
+    WriteLocalVariable {
+        index_in_stack: usize, // index of the variable in the stack
+    },
     Pop,
     JumpIfFalse(usize),
     Jump(usize),
@@ -54,6 +59,9 @@ pub enum Code {
     ReadUpvalue {
         index: usize,
     },
+    WriteUpvalue {
+        index: usize,
+    },
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]
@@ -63,6 +71,7 @@ pub struct Chunk {
 
 impl Chunk {
     pub fn emit_byte(&mut self, byte: Code) -> usize {
+        tracing::debug!(?byte, "emitting byte");
         self.code.push(byte);
         self.len() - 1
     }

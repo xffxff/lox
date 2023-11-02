@@ -66,6 +66,7 @@ fn compile_stmt(
     stmt: &syntax::Stmt,
     chunk: &mut Chunk,
 ) {
+    tracing::debug!(?stmt, "compiling statement");
     match stmt {
         syntax::Stmt::Expr(expr) => {
             compile_expr(compiler.clone(), db, expr, chunk);
@@ -301,6 +302,7 @@ fn compile_stmt(
             chunk.emit_byte(Code::Return);
         }
     }
+    tracing::debug!(?stmt, "finished compiling statement");
 }
 
 fn compile_expr(
@@ -309,6 +311,7 @@ fn compile_expr(
     expr: &syntax::Expr,
     chunk: &mut Chunk,
 ) {
+    tracing::debug!(?expr, "compiling expression");
     match expr {
         syntax::Expr::NumberLiteral(word) => {
             let word_str = word.as_str(db);
@@ -371,7 +374,17 @@ fn compile_expr(
         syntax::Expr::Assign { name, value } => {
             compile_expr(compiler.clone(), db, value, chunk);
             let name_str = name.as_str(db);
-            chunk.emit_byte(Code::Assign(name_str.to_string()));
+            if let Some(index) = resolve_local(compiler.clone(), name_str) {
+                chunk.emit_byte(Code::WriteLocalVariable {
+                    index_in_stack: index,
+                })
+            } else if let Some(index) = resolve_upvalue(compiler, name_str) {
+                chunk.emit_byte(Code::WriteUpvalue { index })
+            } else {
+                chunk.emit_byte(Code::WriteGlobalVariable {
+                    name: name_str.to_string(),
+                })
+            };
         }
         syntax::Expr::LogicalAnd(left, right) => {
             //      ┌───────────────┐
@@ -429,6 +442,7 @@ fn compile_expr(
             });
         }
     }
+    tracing::debug!(?expr, "finished compiling expression");
 }
 
 fn before_scope(compiler: Rc<RefCell<Compiler>>) {
