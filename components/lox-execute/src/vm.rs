@@ -154,6 +154,8 @@ struct CallFrame {
     function: Function,
     ip: usize,
     fp: usize,
+
+    // the absolute index of the upvalue in the stack
     upvalues: Vec<usize>,
 }
 
@@ -196,6 +198,7 @@ impl VM {
     pub fn push_frame(&mut self, function: Function, upvalues: Vec<Upvalue>) {
         let arity = function.arity;
 
+        // convert the upvalues to absolute indices in the stack
         let upvalues = if let Some(current_frame) = self.current_frame() {
             upvalues
                 .into_iter()
