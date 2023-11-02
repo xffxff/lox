@@ -425,8 +425,8 @@ impl VM {
             }
             bytecode::Code::WriteUpvalue { index } => {
                 let upvalue = &frame.upvalues[index];
-                let value = self.pop();
-                self.stack[*upvalue] = value;
+                let value = self.peek();
+                self.stack[*upvalue] = value.clone();
             }
         }
 
