@@ -1,0 +1,57 @@
+FunctionDeclaration {
+    name: "outer",
+    body: Block {
+        stmt: Var {
+            name: "x",
+            initializer: Some(
+                StringLiteral(value),
+            ),
+        },
+        stmt: FunctionDeclaration {
+            name: "middle",
+            body: Block {
+                stmt: FunctionDeclaration {
+                    name: "inner",
+                    body: Block {
+                        stmt: Print {
+                            expr: Variable(x),
+                        },
+                    },
+                },
+                stmt: Print {
+                    expr: StringLiteral(create inner closure),
+                },
+                stmt: Return {
+                    expr: Variable(inner),
+                },
+            },
+        },
+        stmt: Print {
+            expr: StringLiteral(return from outer),
+        },
+        stmt: Return {
+            expr: Variable(middle),
+        },
+    },
+}
+Var {
+    name: "mid",
+    initializer: Some(
+        Call {
+            callee: Variable(outer),
+        },
+    ),
+}
+Var {
+    name: "in",
+    initializer: Some(
+        Call {
+            callee: Variable(mid),
+        },
+    ),
+}
+Expr {
+    expr: Call {
+        callee: Variable(in),
+    },
+}

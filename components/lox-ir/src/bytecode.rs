@@ -62,6 +62,7 @@ pub enum Code {
     WriteUpvalue {
         index: usize,
     },
+    CloseUpvalue,
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]

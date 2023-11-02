@@ -25,6 +25,9 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Function {
 struct Local {
     name: String,
     depth: usize,
+    // whether this local variable is captured by a closure
+    // if it is captured, then it can't be freed when leaving the scope
+    is_captured: bool,
 }
 
 impl Local {
@@ -32,6 +35,7 @@ impl Local {
         Self {
             name: name.to_string(),
             depth,
+            is_captured: false,
         }
     }
 }
@@ -456,8 +460,12 @@ fn after_scope(compiler: Rc<RefCell<Compiler>>, chunk: &mut Chunk) {
     while !compiler.locals.is_empty()
         && compiler.locals.last().unwrap().depth > compiler.scope_depth
     {
-        compiler.locals.pop();
-        chunk.emit_byte(Code::Pop);
+        let local = compiler.locals.pop().unwrap();
+        if local.is_captured {
+            chunk.emit_byte(Code::CloseUpvalue);
+        } else {
+            chunk.emit_byte(Code::Pop);
+        }
     }
 }
 
@@ -478,6 +486,8 @@ fn resolve_upvalue(compiler: Rc<RefCell<Compiler>>, name: &str) -> Option<usize>
 
         let index = if let Some(enc) = enclosing.clone() {
             if let Some(idx) = resolve_local(enc.clone(), name) {
+                let mut enc_mut = enc.borrow_mut();
+                enc_mut.locals[idx].is_captured = true;
                 Some((idx, true))
             } else if let Some(idx) = resolve_upvalue(enc, name) {
                 Some((idx, false))

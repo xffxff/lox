@@ -428,6 +428,7 @@ impl VM {
                 let value = self.peek();
                 self.stack[*upvalue] = value.clone();
             }
+            bytecode::Code::CloseUpvalue => todo!(),
         }
 
         inspect_step(Some(instruction), self);
