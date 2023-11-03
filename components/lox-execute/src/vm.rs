@@ -10,7 +10,7 @@ pub enum Value {
     String(String),
     Closure {
         function: Function,
-        upvalues: Vec<Upvalue>,
+        upvalues: Vec<generational_arena::Index>,
     },
 }
 
@@ -203,24 +203,8 @@ impl VM {
         }
     }
 
-    pub fn push_frame(&mut self, function: Function, upvalues: Vec<Upvalue>) {
+    pub fn push_frame(&mut self, function: Function, upvalues: Vec<generational_arena::Index>) {
         let arity = function.arity;
-
-        // convert the upvalues to absolute indices in the stack
-        let upvalues = if let Some(current_frame) = self.current_frame() {
-            upvalues
-                .into_iter()
-                .map(|upvalue| {
-                    if upvalue.is_local {
-                        self.stack[current_frame.fp + upvalue.index]
-                    } else {
-                        current_frame.upvalues[upvalue.index]
-                    }
-                })
-                .collect()
-        } else {
-            vec![]
-        };
 
         let frame = CallFrame {
             function,
@@ -281,7 +265,7 @@ impl VM {
         }
         let instruction = frame.read_byte();
         tracing::debug!("ip: {}", frame.ip);
-        tracing::debug!("stack: {:?}", &self.stack[frame.fp..]);
+        tracing::debug!("stack: {:?}", &self.stack_values()[frame.fp..]);
         tracing::debug!("instruction: {:?}", instruction);
         match instruction.clone() {
             bytecode::Code::Return => {
@@ -422,10 +406,17 @@ impl VM {
                 }
             }
             bytecode::Code::Closure { function, upvalues } => {
-                let closure = Value::Closure {
-                    function: function.clone(),
-                    upvalues: upvalues.clone(),
-                };
+                let upvalues = upvalues
+                    .into_iter()
+                    .map(|upvalue| {
+                        if upvalue.is_local {
+                            self.stack[frame.fp + upvalue.index]
+                        } else {
+                            frame.upvalues[upvalue.index]
+                        }
+                    })
+                    .collect();
+                let closure = Value::Closure { function, upvalues };
                 self.push(closure);
             }
             bytecode::Code::ReadUpvalue { index } => {
