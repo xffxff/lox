@@ -60,7 +60,7 @@ execute: Some(
                     },
                     Pop,
                     Pop,
-                    Pop,
+                    CloseUpvalue,
                 ],
             },
         },
@@ -255,7 +255,7 @@ stack: [<func outer>, value]
 stdout: "value\n"
 
 execute: Some(
-    Pop,
+    CloseUpvalue,
 )
 stack: [<func outer>]
 stdout: "value\n"

@@ -61,7 +61,7 @@ Function {
                             },
                             Print,
                             Pop,
-                            Pop,
+                            CloseUpvalue,
                         ],
                     },
                 },

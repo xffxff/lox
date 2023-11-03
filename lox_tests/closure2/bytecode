@@ -64,7 +64,7 @@ Function {
                             },
                             Pop,
                             Pop,
-                            Pop,
+                            CloseUpvalue,
                         ],
                     },
                 },

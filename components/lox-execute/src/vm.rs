@@ -161,8 +161,7 @@ struct CallFrame {
     ip: usize,
     fp: usize,
 
-    // the absolute index of the upvalue in the stack
-    upvalues: Vec<UpvalueObject>,
+    upvalues: Vec<generational_arena::Index>,
 }
 
 impl CallFrame {
@@ -213,12 +212,9 @@ impl VM {
                 .into_iter()
                 .map(|upvalue| {
                     if upvalue.is_local {
-                        UpvalueObject {
-                            value: None,
-                            location_in_stack: current_frame.fp + upvalue.index,
-                        }
+                        self.stack[current_frame.fp + upvalue.index]
                     } else {
-                        current_frame.upvalues[upvalue.index].clone()
+                        current_frame.upvalues[upvalue.index]
                     }
                 })
                 .collect()
@@ -433,23 +429,18 @@ impl VM {
                 self.push(closure);
             }
             bytecode::Code::ReadUpvalue { index } => {
-                let upvalue = &frame.upvalues[index];
-                if let Some(value) = &upvalue.value {
-                    self.push(value.clone());
-                } else {
-                    let value_idx = self.stack[upvalue.location_in_stack].clone();
-                    self.push(self.heap[value_idx].clone())
-                }
+                let upvalue_idx = frame.upvalues[index];
+                let upvalue = &self.heap[upvalue_idx];
+                self.push(upvalue.clone())
             }
             bytecode::Code::WriteUpvalue { index } => {
-                let upvalue = &frame.upvalues[index];
+                let upvalue = frame.upvalues[index];
                 let value = self.peek();
-                let value_idx = self.stack[upvalue.location_in_stack];
-                self.heap[value_idx] = value.clone();
+                self.heap[upvalue] = value.clone();
             }
             bytecode::Code::CloseUpvalue => {
                 // self.close_upvalue(&mut frame, self.stack.len() - 1);
-                // self.pop();
+                self.pop();
             }
         }
 
@@ -487,13 +478,13 @@ impl VM {
     }
 
     fn close_upvalue(&mut self, frame: &mut CallFrame, location_in_stack: usize) {
-        let upvalue_index = frame
-            .upvalues
-            .iter()
-            .position(|upvalue| upvalue.location_in_stack == location_in_stack)
-            .unwrap();
-        let upvalue = frame.upvalues.get_mut(upvalue_index).unwrap();
-        let value_idx = self.stack[location_in_stack];
+        // let upvalue_index = frame
+        //     .upvalues
+        //     .iter()
+        //     .position(|upvalue| upvalue.location_in_stack == location_in_stack)
+        //     .unwrap();
+        // let upvalue = frame.upvalues.get_mut(upvalue_index).unwrap();
+        // let value_idx = self.stack[location_in_stack];
         // upvalue.location_in_stack = value_idx;
         // upvalue.value = Some(value);
     }
