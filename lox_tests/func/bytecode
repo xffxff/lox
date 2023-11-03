@@ -3,8 +3,8 @@ Function {
     arity: 0,
     chunk: Chunk {
         code: [
-            Function(
-                Function {
+            Closure {
+                function: Function {
                     name: "hello",
                     arity: 0,
                     chunk: Chunk {
@@ -16,7 +16,8 @@ Function {
                         ],
                     },
                 },
-            ),
+                upvalues: [],
+            },
             GlobalVarDeclaration {
                 name: "hello",
             },
@@ -31,8 +32,8 @@ Function {
                 "world",
             ),
             Print,
-            Function(
-                Function {
+            Closure {
+                function: Function {
                     name: "add",
                     arity: 2,
                     chunk: Chunk {
@@ -48,7 +49,8 @@ Function {
                         ],
                     },
                 },
-            ),
+                upvalues: [],
+            },
             GlobalVarDeclaration {
                 name: "add",
             },

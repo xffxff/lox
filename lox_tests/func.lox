@@ -1,5 +1,3 @@
-# ignore
-
 fun hello() {
     print "hello";
 }

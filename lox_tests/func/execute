@@ -1,6 +1,6 @@
 execute: Some(
-    Function(
-        Function {
+    Closure {
+        function: Function {
             name: "hello",
             arity: 0,
             chunk: Chunk {
@@ -12,7 +12,8 @@ execute: Some(
                 ],
             },
         },
-    ),
+        upvalues: [],
+    },
 )
 stack: [<func hello>]
 stdout: ""
@@ -80,8 +81,8 @@ stack: []
 stdout: "hello\nworld\n"
 
 execute: Some(
-    Function(
-        Function {
+    Closure {
+        function: Function {
             name: "add",
             arity: 2,
             chunk: Chunk {
@@ -97,7 +98,8 @@ execute: Some(
                 ],
             },
         },
-    ),
+        upvalues: [],
+    },
 )
 stack: [<func add>]
 stdout: "hello\nworld\n"
