@@ -1,0 +1,31 @@
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Constant(
+                F64(
+                    1.0,
+                ),
+            ),
+            Constant(
+                F64(
+                    2.0,
+                ),
+            ),
+            WriteLocalVariable {
+                index_in_stack: 0,
+            },
+            Pop,
+            ReadLocalVariable {
+                index_in_stack: 0,
+            },
+            Print,
+            ReadLocalVariable {
+                index_in_stack: 0,
+            },
+            Print,
+            Pop,
+        ],
+    },
+}

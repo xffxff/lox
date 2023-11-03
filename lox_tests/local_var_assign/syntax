@@ -1,0 +1,22 @@
+Block {
+    stmt: Var {
+        name: "a",
+        initializer: Some(
+            NumberLiteral(1),
+        ),
+    },
+    stmt: Block {
+        stmt: Expr {
+            expr: Assign {
+                name: "a",
+                value: NumberLiteral(2),
+            },
+        },
+        stmt: Print {
+            expr: Variable(a),
+        },
+    },
+    stmt: Print {
+        expr: Variable(a),
+    },
+}

@@ -1,0 +1,105 @@
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Closure {
+                function: Function {
+                    name: "outer",
+                    arity: 0,
+                    chunk: Chunk {
+                        code: [
+                            String(
+                                "value",
+                            ),
+                            Closure {
+                                function: Function {
+                                    name: "middle",
+                                    arity: 0,
+                                    chunk: Chunk {
+                                        code: [
+                                            Closure {
+                                                function: Function {
+                                                    name: "inner",
+                                                    arity: 0,
+                                                    chunk: Chunk {
+                                                        code: [
+                                                            ReadUpvalue {
+                                                                index: 0,
+                                                            },
+                                                            Print,
+                                                        ],
+                                                    },
+                                                },
+                                                upvalues: [
+                                                    Upvalue {
+                                                        index: 0,
+                                                        is_local: false,
+                                                    },
+                                                ],
+                                            },
+                                            String(
+                                                "create inner closure",
+                                            ),
+                                            Print,
+                                            ReadLocalVariable {
+                                                index_in_stack: 0,
+                                            },
+                                            Return,
+                                            Pop,
+                                        ],
+                                    },
+                                },
+                                upvalues: [
+                                    Upvalue {
+                                        index: 0,
+                                        is_local: true,
+                                    },
+                                ],
+                            },
+                            String(
+                                "return from outer",
+                            ),
+                            Print,
+                            ReadLocalVariable {
+                                index_in_stack: 1,
+                            },
+                            Return,
+                            Pop,
+                            CloseUpvalue,
+                        ],
+                    },
+                },
+                upvalues: [],
+            },
+            GlobalVarDeclaration {
+                name: "outer",
+            },
+            ReadGlobalVariable {
+                name: "outer",
+            },
+            Call {
+                arity: 0,
+            },
+            GlobalVarDeclaration {
+                name: "mid",
+            },
+            ReadGlobalVariable {
+                name: "mid",
+            },
+            Call {
+                arity: 0,
+            },
+            GlobalVarDeclaration {
+                name: "in",
+            },
+            ReadGlobalVariable {
+                name: "in",
+            },
+            Call {
+                arity: 0,
+            },
+            Pop,
+        ],
+    },
+}

@@ -1,0 +1,249 @@
+execute: Some(
+    String(
+        "global",
+    ),
+)
+stack: [global]
+stdout: ""
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "x",
+    },
+)
+stack: []
+stdout: ""
+
+execute: Some(
+    Closure {
+        function: Function {
+            name: "outer",
+            arity: 0,
+            chunk: Chunk {
+                code: [
+                    String(
+                        "outer",
+                    ),
+                    Closure {
+                        function: Function {
+                            name: "inner",
+                            arity: 0,
+                            chunk: Chunk {
+                                code: [
+                                    ReadUpvalue {
+                                        index: 0,
+                                    },
+                                    Print,
+                                    String(
+                                        "inner",
+                                    ),
+                                    WriteUpvalue {
+                                        index: 1,
+                                    },
+                                    Pop,
+                                ],
+                            },
+                        },
+                        upvalues: [
+                            Upvalue {
+                                index: 0,
+                                is_local: true,
+                            },
+                            Upvalue {
+                                index: 0,
+                                is_local: true,
+                            },
+                        ],
+                    },
+                    ReadLocalVariable {
+                        index_in_stack: 1,
+                    },
+                    Call {
+                        arity: 0,
+                    },
+                    Pop,
+                    ReadLocalVariable {
+                        index_in_stack: 0,
+                    },
+                    Print,
+                    Pop,
+                    CloseUpvalue,
+                ],
+            },
+        },
+        upvalues: [],
+    },
+)
+stack: [<func outer>]
+stdout: ""
+
+execute: Some(
+    GlobalVarDeclaration {
+        name: "outer",
+    },
+)
+stack: []
+stdout: ""
+
+execute: Some(
+    ReadGlobalVariable {
+        name: "outer",
+    },
+)
+stack: [<func outer>]
+stdout: ""
+
+execute: Some(
+    Call {
+        arity: 0,
+    },
+)
+stack: [<func outer>]
+stdout: ""
+
+execute: Some(
+    String(
+        "outer",
+    ),
+)
+stack: [<func outer>, outer]
+stdout: ""
+
+execute: Some(
+    Closure {
+        function: Function {
+            name: "inner",
+            arity: 0,
+            chunk: Chunk {
+                code: [
+                    ReadUpvalue {
+                        index: 0,
+                    },
+                    Print,
+                    String(
+                        "inner",
+                    ),
+                    WriteUpvalue {
+                        index: 1,
+                    },
+                    Pop,
+                ],
+            },
+        },
+        upvalues: [
+            Upvalue {
+                index: 0,
+                is_local: true,
+            },
+            Upvalue {
+                index: 0,
+                is_local: true,
+            },
+        ],
+    },
+)
+stack: [<func outer>, outer, <func inner>]
+stdout: ""
+
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 1,
+    },
+)
+stack: [<func outer>, outer, <func inner>, <func inner>]
+stdout: ""
+
+execute: Some(
+    Call {
+        arity: 0,
+    },
+)
+stack: [<func outer>, outer, <func inner>, <func inner>]
+stdout: ""
+
+execute: Some(
+    ReadUpvalue {
+        index: 0,
+    },
+)
+stack: [<func outer>, outer, <func inner>, <func inner>, outer]
+stdout: ""
+
+execute: Some(
+    Print,
+)
+stack: [<func outer>, outer, <func inner>, <func inner>]
+stdout: "outer\n"
+
+execute: Some(
+    String(
+        "inner",
+    ),
+)
+stack: [<func outer>, outer, <func inner>, <func inner>, inner]
+stdout: "outer\n"
+
+execute: Some(
+    WriteUpvalue {
+        index: 1,
+    },
+)
+stack: [<func outer>, inner, <func inner>, <func inner>, inner]
+stdout: "outer\n"
+
+execute: Some(
+    Pop,
+)
+stack: [<func outer>, inner, <func inner>, <func inner>]
+stdout: "outer\n"
+
+execute: None
+stack: [<func outer>, inner, <func inner>, <func inner>]
+stdout: "outer\n"
+
+execute: Some(
+    Pop,
+)
+stack: [<func outer>, inner, <func inner>]
+stdout: "outer\n"
+
+execute: Some(
+    ReadLocalVariable {
+        index_in_stack: 0,
+    },
+)
+stack: [<func outer>, inner, <func inner>, inner]
+stdout: "outer\n"
+
+execute: Some(
+    Print,
+)
+stack: [<func outer>, inner, <func inner>]
+stdout: "outer\ninner\n"
+
+execute: Some(
+    Pop,
+)
+stack: [<func outer>, inner]
+stdout: "outer\ninner\n"
+
+execute: Some(
+    CloseUpvalue,
+)
+stack: [<func outer>]
+stdout: "outer\ninner\n"
+
+execute: None
+stack: [<func outer>]
+stdout: "outer\ninner\n"
+
+execute: Some(
+    Pop,
+)
+stack: []
+stdout: "outer\ninner\n"
+
+execute: None
+stack: []
+stdout: "outer\ninner\n"
+

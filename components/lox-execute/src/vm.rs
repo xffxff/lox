@@ -1,23 +1,6 @@
 use std::collections::HashMap;
 
-use lox_ir::bytecode;
-
-#[derive(Debug, Clone)]
-pub struct Function {
-    name: String,
-    arity: usize,
-    chunk: bytecode::Chunk,
-}
-
-impl From<bytecode::Function> for Function {
-    fn from(f: bytecode::Function) -> Self {
-        Self {
-            name: f.name,
-            arity: f.arity,
-            chunk: f.chunk,
-        }
-    }
-}
+use lox_ir::bytecode::{self, Function};
 
 #[derive(Clone)]
 pub enum Value {
@@ -25,7 +8,10 @@ pub enum Value {
     Boolean(bool),
     Nil,
     String(String),
-    Function(Function),
+    Closure {
+        function: Function,
+        upvalues: Vec<generational_arena::Index>,
+    },
 }
 
 impl std::fmt::Display for Value {
@@ -35,7 +21,7 @@ impl std::fmt::Display for Value {
             Value::Boolean(b) => write!(f, "{}", b),
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
-            Value::Function(func) => write!(f, "<func {}>", func.name),
+            Value::Closure { function, .. } => write!(f, "<func {}>", function.name),
         }
     }
 }
@@ -47,7 +33,7 @@ impl std::fmt::Debug for Value {
             Value::Boolean(b) => write!(f, "{}", b),
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
-            Value::Function(func) => write!(f, "<func {}>", func.name),
+            Value::Closure { function, .. } => write!(f, "<func {}>", function.name),
         }
     }
 }
@@ -168,6 +154,8 @@ struct CallFrame {
     function: Function,
     ip: usize,
     fp: usize,
+
+    upvalues: Vec<generational_arena::Index>,
 }
 
 impl CallFrame {
@@ -181,7 +169,9 @@ impl CallFrame {
 pub struct VM {
     frames: Vec<CallFrame>,
 
-    pub stack: Vec<Value>,
+    heap: generational_arena::Arena<Value>,
+
+    pub stack: Vec<generational_arena::Index>,
 
     // global variables
     globals: HashMap<String, Value>,
@@ -200,25 +190,28 @@ impl VM {
     pub fn new() -> Self {
         Self {
             frames: vec![],
+            heap: generational_arena::Arena::new(),
             stack: Vec::new(),
             globals: HashMap::new(),
             output: String::new(),
         }
     }
 
-    pub fn push_frame(&mut self, function: Function) {
+    pub fn push_frame(&mut self, function: Function, upvalues: Vec<generational_arena::Index>) {
         let arity = function.arity;
+
         let frame = CallFrame {
             function,
             ip: 0,
             fp: self.stack.len() - arity,
+            upvalues,
         };
         tracing::debug!("pushing frame: {:?}", frame);
         self.frames.push(frame);
     }
 
-    fn current_frame(&self) -> CallFrame {
-        self.frames.last().unwrap().clone()
+    fn current_frame(&self) -> Option<CallFrame> {
+        self.frames.last().cloned()
     }
 
     fn update_frame(&mut self, frame_index: usize, frame: CallFrame) {
@@ -227,6 +220,9 @@ impl VM {
 
     // clear the values introduced by the current frame from the stack
     fn clear_stack(&mut self, frame: CallFrame) {
+        // FIXME: As the value in the stack is just an index into the heap,
+        // truncating the stack does not free the memory in the heap.
+        // This is a memory leak.
         self.stack.truncate(frame.fp);
     }
 
@@ -250,7 +246,7 @@ impl VM {
             }
         };
 
-        let mut frame = self.current_frame();
+        let mut frame = self.current_frame().unwrap();
         let frame_index = self.frames.len() - 1;
         tracing::debug!("current frame: {:#?}", frame);
         if frame.function.chunk.len() <= frame.ip {
@@ -266,7 +262,7 @@ impl VM {
         }
         let instruction = frame.read_byte();
         tracing::debug!("ip: {}", frame.ip);
-        tracing::debug!("stack: {:?}", &self.stack[frame.fp..]);
+        tracing::debug!("stack: {:?}", &self.stack_values()[frame.fp..]);
         tracing::debug!("instruction: {:?}", instruction);
         match instruction.clone() {
             bytecode::Code::Return => {
@@ -367,13 +363,19 @@ impl VM {
                 let value = self.globals.get(&name).expect("variable not found");
                 self.push(value.clone());
             }
-            bytecode::Code::Assign(name) => {
+            bytecode::Code::WriteGlobalVariable { name } => {
                 let value = self.peek();
                 self.globals.insert(name, value.clone());
             }
             bytecode::Code::ReadLocalVariable { index_in_stack } => {
-                let value = self.stack[frame.fp + index_in_stack].clone();
+                let value_idx = self.stack[frame.fp + index_in_stack];
+                let value = self.heap[value_idx].clone();
                 self.push(value);
+            }
+            bytecode::Code::WriteLocalVariable { index_in_stack } => {
+                let value = self.peek();
+                let value_idx = self.stack[frame.fp + index_in_stack];
+                self.heap[value_idx] = value.clone();
             }
             bytecode::Code::Pop => {
                 self.pop();
@@ -387,18 +389,43 @@ impl VM {
             bytecode::Code::Jump(ip) => {
                 frame.ip = ip;
             }
-            bytecode::Code::Function(function) => {
-                let function = Value::Function(Function::from(function));
-                self.push(function);
-            }
             bytecode::Code::Call { arity } => {
-                let function = self.peek_n_from_top(arity);
-                match function {
-                    Value::Function(function) => {
-                        self.push_frame(function.clone());
+                let closure = self.peek_n_from_top(arity);
+                match closure {
+                    Value::Closure { function, upvalues } => {
+                        self.push_frame(function.clone(), upvalues.clone());
                     }
-                    _ => panic!("Cannot call {:?}", function),
+                    _ => panic!("Cannot call {:?}", closure),
                 }
+            }
+            bytecode::Code::Closure { function, upvalues } => {
+                let upvalues = upvalues
+                    .into_iter()
+                    .map(|upvalue| {
+                        if upvalue.is_local {
+                            self.stack[frame.fp + upvalue.index]
+                        } else {
+                            frame.upvalues[upvalue.index]
+                        }
+                    })
+                    .collect();
+                let closure = Value::Closure { function, upvalues };
+                self.push(closure);
+            }
+            bytecode::Code::ReadUpvalue { index } => {
+                let upvalue_idx = frame.upvalues[index];
+                let upvalue = &self.heap[upvalue_idx];
+                self.push(upvalue.clone())
+            }
+            bytecode::Code::WriteUpvalue { index } => {
+                let upvalue = frame.upvalues[index];
+                let value = self.peek();
+                self.heap[upvalue] = value.clone();
+            }
+            bytecode::Code::CloseUpvalue => {
+                // FIXME: As we don't remove the value in the heap created by a function frame,
+                // we don't need to do anything here for closing upvalues, but this is a memory leak.
+                self.pop();
             }
         }
 
@@ -408,26 +435,39 @@ impl VM {
     }
 
     fn pop(&mut self) -> Value {
-        self.stack.pop().unwrap()
+        let index = self.stack.pop().unwrap();
+        self.heap.remove(index).unwrap()
     }
 
     fn peek(&self) -> &Value {
-        self.stack.last().unwrap()
+        let index = self.stack.last().unwrap();
+        self.heap.get(*index).unwrap()
     }
 
     fn peek_n_from_top(&self, n: usize) -> &Value {
-        &self.stack[self.stack.len() - n - 1]
+        let index = self.stack[self.stack.len() - n - 1];
+        self.heap.get(index).unwrap()
     }
 
     fn push<T>(&mut self, value: T)
     where
         T: Into<Value>,
     {
-        self.stack.push(value.into());
+        let index = self.heap.insert(value.into());
+        self.stack.push(index);
     }
 
     fn print(&mut self, s: &str) {
         self.output.push_str(s);
         self.output.push('\n');
+    }
+
+    // Returns the values in the stack in the order they were pushed.
+    // This is useful for debugging.
+    pub fn stack_values(&self) -> Vec<Value> {
+        self.stack
+            .iter()
+            .map(|index| self.heap[*index].clone())
+            .collect()
     }
 }

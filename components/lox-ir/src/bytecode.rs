@@ -1,4 +1,16 @@
 #[derive(Clone, PartialEq, Eq, Debug)]
+pub struct Upvalue {
+    pub index: usize,
+    pub is_local: bool,
+}
+
+impl Upvalue {
+    pub fn new(index: usize, is_local: bool) -> Self {
+        Self { index, is_local }
+    }
+}
+
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub enum Code {
     Return,
     Constant(eq_float::F64),
@@ -28,14 +40,29 @@ pub enum Code {
         index_in_stack: usize, // index of the variable in the stack
     },
     Nil,
-    Assign(String),
+    WriteGlobalVariable {
+        name: String, // name of the variable
+    },
+    WriteLocalVariable {
+        index_in_stack: usize, // index of the variable in the stack
+    },
     Pop,
     JumpIfFalse(usize),
     Jump(usize),
-    Function(Function),
+    Closure {
+        function: Function,
+        upvalues: Vec<Upvalue>,
+    },
     Call {
         arity: usize,
     },
+    ReadUpvalue {
+        index: usize,
+    },
+    WriteUpvalue {
+        index: usize,
+    },
+    CloseUpvalue,
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]
@@ -45,6 +72,7 @@ pub struct Chunk {
 
 impl Chunk {
     pub fn emit_byte(&mut self, byte: Code) -> usize {
+        tracing::debug!(?byte, "emitting byte");
         self.code.push(byte);
         self.len() - 1
     }

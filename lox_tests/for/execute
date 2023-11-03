@@ -93,9 +93,9 @@ stack: [1]
 stdout: "0\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [1]
 stdout: "0\n"
@@ -191,9 +191,9 @@ stack: [2]
 stdout: "0\n1\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [2]
 stdout: "0\n1\n"
@@ -289,9 +289,9 @@ stack: [3]
 stdout: "0\n1\n2\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [3]
 stdout: "0\n1\n2\n"
@@ -387,9 +387,9 @@ stack: [4]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [4]
 stdout: "0\n1\n2\n3\n"
@@ -485,9 +485,9 @@ stack: [5]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [5]
 stdout: "0\n1\n2\n3\n4\n"
@@ -583,9 +583,9 @@ stack: [6]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [6]
 stdout: "0\n1\n2\n3\n4\n5\n"
@@ -681,9 +681,9 @@ stack: [7]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [7]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
@@ -779,9 +779,9 @@ stack: [8]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [8]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
@@ -877,9 +877,9 @@ stack: [9]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [9]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
@@ -975,9 +975,9 @@ stack: [10]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
-    Assign(
-        "i",
-    ),
+    WriteGlobalVariable {
+        name: "i",
+    },
 )
 stack: [10]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"

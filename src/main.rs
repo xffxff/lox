@@ -105,11 +105,22 @@ impl TestCase {
     }
 
     fn test(self, db: &Database) {
+        print!("test {} ... ", self.lox.display());
         let input_file = InputFile::new(
             db,
             Word::intern(db, self.lox.to_str().unwrap()),
             self.text.clone(),
         );
+
+        // check if we should ignore this test
+        let ignore = input_file
+            .source_text(db)
+            .lines()
+            .any(|line| line.trim_start().starts_with("# ignore"));
+        if ignore {
+            println!("ignored");
+            return;
+        }
 
         // test lex
         let token_tree = lox_lex::lex_file(db, input_file);
@@ -144,7 +155,7 @@ impl TestCase {
         let step_inspect = |code: Option<bytecode::Code>, vm: &lox_execute::VM| {
             let mut buf = buf.lock().unwrap();
             buf.push_str(&format!("execute: {:#?}\n", code));
-            buf.push_str(&format!("stack: {:?}\n", &vm.stack));
+            buf.push_str(&format!("stack: {:?}\n", &vm.stack_values()));
             buf.push_str(&format!("stdout: {:#?}\n", vm.output));
             buf.push('\n');
         };
@@ -153,6 +164,8 @@ impl TestCase {
 
         // test stdout
         expect_file![self.stdout].assert_eq(&output);
+
+        println!("ok");
     }
 }
 
