@@ -489,10 +489,8 @@ fn resolve_upvalue(compiler: Rc<RefCell<Compiler>>, name: &str) -> Option<usize>
                 let mut enc_mut = enc.borrow_mut();
                 enc_mut.locals[idx].is_captured = true;
                 Some((idx, true))
-            } else if let Some(idx) = resolve_upvalue(enc, name) {
-                Some((idx, false))
             } else {
-                None
+                resolve_upvalue(enc, name).map(|idx| (idx, false))
             }
         } else {
             None

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use lox_ir::bytecode::{self, Function, Upvalue};
+use lox_ir::bytecode::{self, Function};
 
 #[derive(Clone)]
 pub enum Value {
@@ -147,12 +147,6 @@ impl std::cmp::PartialOrd for Value {
 pub(crate) enum ControlFlow {
     Next,
     Done,
-}
-
-#[derive(Debug, Clone)]
-struct UpvalueObject {
-    value: Option<Value>,
-    location_in_stack: usize,
 }
 
 #[derive(Debug, Clone)]
@@ -392,10 +386,6 @@ impl VM {
             bytecode::Code::Jump(ip) => {
                 frame.ip = ip;
             }
-            // bytecode::Code::Function(function) => {
-            //     let function = Value::Function(Function::from(function));
-            //     self.push(function);
-            // }
             bytecode::Code::Call { arity } => {
                 let closure = self.peek_n_from_top(arity);
                 match closure {
@@ -466,18 +456,6 @@ impl VM {
     fn print(&mut self, s: &str) {
         self.output.push_str(s);
         self.output.push('\n');
-    }
-
-    fn close_upvalue(&mut self, frame: &mut CallFrame, location_in_stack: usize) {
-        // let upvalue_index = frame
-        //     .upvalues
-        //     .iter()
-        //     .position(|upvalue| upvalue.location_in_stack == location_in_stack)
-        //     .unwrap();
-        // let upvalue = frame.upvalues.get_mut(upvalue_index).unwrap();
-        // let value_idx = self.stack[location_in_stack];
-        // upvalue.location_in_stack = value_idx;
-        // upvalue.value = Some(value);
     }
 
     // Returns the values in the stack in the order they were pushed.
