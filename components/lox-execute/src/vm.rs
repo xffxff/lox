@@ -150,13 +150,19 @@ pub(crate) enum ControlFlow {
 }
 
 #[derive(Debug, Clone)]
+struct UpvalueObject {
+    value: Option<Value>,
+    location_in_stack: usize,
+}
+
+#[derive(Debug, Clone)]
 struct CallFrame {
     function: Function,
     ip: usize,
     fp: usize,
 
     // the absolute index of the upvalue in the stack
-    upvalues: Vec<usize>,
+    upvalues: Vec<UpvalueObject>,
 }
 
 impl CallFrame {
@@ -204,9 +210,12 @@ impl VM {
                 .into_iter()
                 .map(|upvalue| {
                     if upvalue.is_local {
-                        current_frame.fp + upvalue.index
+                        UpvalueObject {
+                            value: None,
+                            location_in_stack: current_frame.fp + upvalue.index,
+                        }
                     } else {
-                        current_frame.upvalues[upvalue.index]
+                        current_frame.upvalues[upvalue.index].clone()
                     }
                 })
                 .collect()
@@ -420,15 +429,22 @@ impl VM {
             }
             bytecode::Code::ReadUpvalue { index } => {
                 let upvalue = &frame.upvalues[index];
-                let value = self.stack[*upvalue].clone();
-                self.push(value)
+                if let Some(value) = &upvalue.value {
+                    self.push(value.clone());
+                } else {
+                    let value = self.stack[upvalue.location_in_stack].clone();
+                    self.push(value)
+                }
             }
             bytecode::Code::WriteUpvalue { index } => {
                 let upvalue = &frame.upvalues[index];
                 let value = self.peek();
-                self.stack[*upvalue] = value.clone();
+                self.stack[upvalue.location_in_stack] = value.clone();
             }
-            bytecode::Code::CloseUpvalue => todo!(),
+            bytecode::Code::CloseUpvalue => {
+                self.close_upvalue(&mut frame, self.stack.len() - 1);
+                self.pop();
+            }
         }
 
         inspect_step(Some(instruction), self);
@@ -458,5 +474,16 @@ impl VM {
     fn print(&mut self, s: &str) {
         self.output.push_str(s);
         self.output.push('\n');
+    }
+
+    fn close_upvalue(&mut self, frame: &mut CallFrame, location_in_stack: usize) {
+        let upvalue_index = frame
+            .upvalues
+            .iter()
+            .position(|upvalue| upvalue.location_in_stack == location_in_stack)
+            .unwrap();
+        let upvalue = frame.upvalues.get_mut(upvalue_index).unwrap();
+        let value = self.stack[location_in_stack].clone();
+        upvalue.value = Some(value);
     }
 }
