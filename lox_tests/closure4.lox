@@ -1,3 +1,4 @@
+# ignore
 fun outer() {
   var x = "value";
   fun middle() {

@@ -155,7 +155,7 @@ impl TestCase {
         let step_inspect = |code: Option<bytecode::Code>, vm: &lox_execute::VM| {
             let mut buf = buf.lock().unwrap();
             buf.push_str(&format!("execute: {:#?}\n", code));
-            buf.push_str(&format!("stack: {:?}\n", &vm.stack));
+            buf.push_str(&format!("stack: {:?}\n", &vm.stack_values()));
             buf.push_str(&format!("stdout: {:#?}\n", vm.output));
             buf.push('\n');
         };

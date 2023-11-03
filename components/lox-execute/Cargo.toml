@@ -10,3 +10,4 @@ salsa = { path="../salsa" }
 lox-ir = { path="../lox-ir" }
 lox-compile = { path="../lox-compile" }
 tracing = "0.1.37"
+generational-arena = "0.2.9"

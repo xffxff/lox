@@ -176,7 +176,9 @@ impl CallFrame {
 pub struct VM {
     frames: Vec<CallFrame>,
 
-    pub stack: Vec<Value>,
+    heap: generational_arena::Arena<Value>,
+
+    pub stack: Vec<generational_arena::Index>,
 
     // global variables
     globals: HashMap<String, Value>,
@@ -195,6 +197,7 @@ impl VM {
     pub fn new() -> Self {
         Self {
             frames: vec![],
+            heap: generational_arena::Arena::new(),
             stack: Vec::new(),
             globals: HashMap::new(),
             output: String::new(),
@@ -388,12 +391,14 @@ impl VM {
                 self.globals.insert(name, value.clone());
             }
             bytecode::Code::ReadLocalVariable { index_in_stack } => {
-                let value = self.stack[frame.fp + index_in_stack].clone();
+                let value_idx = self.stack[frame.fp + index_in_stack];
+                let value = self.heap[value_idx].clone();
                 self.push(value);
             }
             bytecode::Code::WriteLocalVariable { index_in_stack } => {
                 let value = self.peek();
-                self.stack[frame.fp + index_in_stack] = value.clone();
+                let value_idx = self.stack[frame.fp + index_in_stack];
+                self.heap[value_idx] = value.clone();
             }
             bytecode::Code::Pop => {
                 self.pop();
@@ -432,18 +437,19 @@ impl VM {
                 if let Some(value) = &upvalue.value {
                     self.push(value.clone());
                 } else {
-                    let value = self.stack[upvalue.location_in_stack].clone();
-                    self.push(value)
+                    let value_idx = self.stack[upvalue.location_in_stack].clone();
+                    self.push(self.heap[value_idx].clone())
                 }
             }
             bytecode::Code::WriteUpvalue { index } => {
                 let upvalue = &frame.upvalues[index];
                 let value = self.peek();
-                self.stack[upvalue.location_in_stack] = value.clone();
+                let value_idx = self.stack[upvalue.location_in_stack];
+                self.heap[value_idx] = value.clone();
             }
             bytecode::Code::CloseUpvalue => {
-                self.close_upvalue(&mut frame, self.stack.len() - 1);
-                self.pop();
+                // self.close_upvalue(&mut frame, self.stack.len() - 1);
+                // self.pop();
             }
         }
 
@@ -453,22 +459,26 @@ impl VM {
     }
 
     fn pop(&mut self) -> Value {
-        self.stack.pop().unwrap()
+        let index = self.stack.pop().unwrap();
+        self.heap.remove(index).unwrap()
     }
 
     fn peek(&self) -> &Value {
-        self.stack.last().unwrap()
+        let index = self.stack.last().unwrap();
+        self.heap.get(*index).unwrap()
     }
 
     fn peek_n_from_top(&self, n: usize) -> &Value {
-        &self.stack[self.stack.len() - n - 1]
+        let index = self.stack[self.stack.len() - n - 1];
+        self.heap.get(index).unwrap()
     }
 
     fn push<T>(&mut self, value: T)
     where
         T: Into<Value>,
     {
-        self.stack.push(value.into());
+        let index = self.heap.insert(value.into());
+        self.stack.push(index);
     }
 
     fn print(&mut self, s: &str) {
@@ -483,7 +493,17 @@ impl VM {
             .position(|upvalue| upvalue.location_in_stack == location_in_stack)
             .unwrap();
         let upvalue = frame.upvalues.get_mut(upvalue_index).unwrap();
-        let value = self.stack[location_in_stack].clone();
-        upvalue.value = Some(value);
+        let value_idx = self.stack[location_in_stack];
+        // upvalue.location_in_stack = value_idx;
+        // upvalue.value = Some(value);
+    }
+
+    // Returns the values in the stack in the order they were pushed.
+    // This is useful for debugging.
+    pub fn stack_values(&self) -> Vec<Value> {
+        self.stack
+            .iter()
+            .map(|index| self.heap[*index].clone())
+            .collect()
     }
 }
