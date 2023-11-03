@@ -220,6 +220,9 @@ impl VM {
 
     // clear the values introduced by the current frame from the stack
     fn clear_stack(&mut self, frame: CallFrame) {
+        // FIXME: As the value in the stack is just an index into the heap,
+        // truncating the stack does not free the memory in the heap.
+        // This is a memory leak.
         self.stack.truncate(frame.fp);
     }
 
@@ -420,7 +423,8 @@ impl VM {
                 self.heap[upvalue] = value.clone();
             }
             bytecode::Code::CloseUpvalue => {
-                // self.close_upvalue(&mut frame, self.stack.len() - 1);
+                // FIXME: As we don't remove the value in the heap created by a function frame,
+                // we don't need to do anything here for closing upvalues, but this is a memory leak.
                 self.pop();
             }
         }
