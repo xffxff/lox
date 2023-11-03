@@ -4,6 +4,4 @@ Another implementation of the Lox language from the book [Crafting Interpreters]
 
 This isn't a direct translation of the book's code into Rust, but rather a personal attempt to recreate the language, using the book as a guiding resource.
 
-This lox variant borrows heavily from [dada](https://github.com/dada-lang/dada), a language I think whose code includes many best practices for writing a language interpreter. 
-
-Lox is a toy that I enjoy playing with, but feel free to join in and make it your toy too.
+This lox variant borrows heavily from [dada](https://github.com/dada-lang/dada), (Learning? Well, it starts with a bit of cheeky imitation!😜) 
