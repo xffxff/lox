@@ -20,5 +20,60 @@ pub fn main_js() -> Result<(), JsValue> {
     // Your code goes here!
     console::log_1(&JsValue::from_str("Hello world!"));
 
+    let compiler = LoxCompiler::default()
+        .with_source_text(
+            r#"
+            var a = 1;
+            var b = 2;
+            var c = a + b;
+            print c;
+        "#
+            .to_string(),
+        )
+        .execute();
+
+    console::log_1(&JsValue::from_str(&compiler.output));
+
     Ok(())
+}
+
+#[wasm_bindgen]
+pub struct LoxCompiler {
+    db: lox_db::Database,
+
+    input_file: lox_ir::input_file::InputFile,
+
+    output: String,
+}
+
+impl Default for LoxCompiler {
+    fn default() -> Self {
+        let mut db = lox_db::Database::default();
+        let input_file = db.new_input_file("input.lox", String::new());
+        Self {
+            db,
+            input_file,
+            output: String::new(),
+        }
+    }
+}
+
+#[wasm_bindgen]
+impl LoxCompiler {
+    #[wasm_bindgen]
+    pub fn execute(mut self) -> Self {
+        let output =
+            lox_execute::execute_file(&self.db, self.input_file, None::<fn(_, &lox_execute::VM)>);
+        console::log_1(&JsValue::from_str(&output));
+        self.output = output;
+        self
+    }
+
+    #[wasm_bindgen]
+    pub fn with_source_text(mut self, source_text: String) -> Self {
+        self.input_file
+            .set_source_text(&mut self.db)
+            .to(source_text);
+        self
+    }
 }

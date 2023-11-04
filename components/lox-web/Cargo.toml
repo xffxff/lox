@@ -32,6 +32,10 @@ wee_alloc = { version = "0.4.2", optional = true }
 
 lox-execute = { path = "../lox-execute" }
 
+lox-db = { path = "../lox-db" }
+
+lox-ir = { path = "../lox-ir" }
+
 # The `web-sys` crate allows you to interact with the various browser APIs,
 # like the DOM.
 [dependencies.web-sys]
