@@ -1,0 +1,15 @@
+[package]
+name = "lox-db"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+salsa = { path="../salsa" }
+lox-ir = { path="../lox-ir" }
+lox-parse = { path="../lox-parse" }
+lox-lex = { path="../lox-lex" }
+lox-compile = { path="../lox-compile" }
+lox-execute = { path="../lox-execute" }
+lox-error-format = { path="../lox-error-format" }

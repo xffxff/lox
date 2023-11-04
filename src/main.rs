@@ -6,29 +6,11 @@ use std::{
 
 use clap::{Parser, Subcommand};
 use expect_test::expect_file;
+use lox_db::Database;
 use lox_error_format::FormatOptions;
 use lox_ir::{bytecode, diagnostic::Diagnostics, input_file::InputFile, word::Word};
 use salsa::DebugWithDb;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
-
-#[salsa::db(
-    lox_parse::Jar,
-    lox_ir::Jar,
-    lox_lex::Jar,
-    lox_compile::Jar,
-    lox_execute::Jar,
-    lox_error_format::Jar
-)]
-#[derive(Default)]
-struct Database {
-    storage: salsa::Storage<Self>,
-}
-
-impl salsa::Database for Database {}
-
-impl lox_ir::Db for Database {}
-
-impl lox_lex::Db for Database {}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug)]
 struct TestCase {

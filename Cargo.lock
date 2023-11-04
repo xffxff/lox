@@ -396,6 +396,7 @@ dependencies = [
  "clap",
  "expect-test",
  "lox-compile",
+ "lox-db",
  "lox-error-format",
  "lox-execute",
  "lox-ir",
@@ -414,6 +415,19 @@ dependencies = [
  "lox-parse",
  "salsa",
  "tracing",
+]
+
+[[package]]
+name = "lox-db"
+version = "0.1.0"
+dependencies = [
+ "lox-compile",
+ "lox-error-format",
+ "lox-execute",
+ "lox-ir",
+ "lox-lex",
+ "lox-parse",
+ "salsa",
 ]
 
 [[package]]
