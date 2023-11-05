@@ -458,6 +458,9 @@ dependencies = [
 name = "lox-web"
 version = "0.1.0"
 dependencies = [
+ "lox-db",
+ "lox-execute",
+ "lox-ir",
  "wasm-bindgen",
 ]
 

@@ -1,4 +1,4 @@
-import { greet } from 'lox_web';
+import { execute } from 'lox_web';
 import './style.css';
 import { basicSetup, EditorView } from "codemirror"
 import { EditorState } from "@codemirror/state"
@@ -29,7 +29,7 @@ const inputView = new EditorView({
 document.getElementById('run-button').addEventListener('click', () => {
     const code = inputView.state.doc.toString();
     try {
-        const output = eval(code);
+        const output = execute(code);
         document.getElementById('output-display').textContent = String(output);
     } catch (e) {
         document.getElementById('output-display').textContent = e.message;
