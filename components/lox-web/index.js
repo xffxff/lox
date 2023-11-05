@@ -1,13 +1,37 @@
 import { greet } from 'lox_web';
 import './style.css';
+import { basicSetup, EditorView } from "codemirror"
+import { EditorState } from "@codemirror/state"
 
-function component() {
-    const element = document.createElement('div');
+// Create HTML structure
+document.body.insertAdjacentHTML('beforeend', `
+    <div id="playground">
+        <button id="run-button">Run</button>
+        <div id="editor-container">
+            <div id="input-editor"></div>
+            <pre id="output-display"></pre>
+        </div>
+    </div>
+`);
 
-    element.innerHTML = greet("hello wasm!");
-    element.classList.add('hello');
+// Initialize CodeMirror input editor
+const inputState = EditorState.create({
+    doc: "",
+    extensions: [basicSetup]
+});
 
-    return element;
-}
+const inputView = new EditorView({
+    state: inputState,
+    parent: document.getElementById('input-editor')
+});
 
-document.body.appendChild(component());
+// Add event listener for run button
+document.getElementById('run-button').addEventListener('click', () => {
+    const code = inputView.state.doc.toString();
+    try {
+        const output = eval(code);
+        document.getElementById('output-display').textContent = String(output);
+    } catch (e) {
+        document.getElementById('output-display').textContent = e.message;
+    }
+});

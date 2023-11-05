@@ -1,3 +1,25 @@
-.hello {
-    color: red;
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#playground {
+    height: 90%;
+    margin: 10px;
+}
+
+#editor-container {
+    display: flex;
+    height: 100%;
+    margin-top: 10px;
+}
+
+#input-editor,
+#output-display {
+    flex: 1;
+    border: solid gray;
+    margin: 0;
 }
