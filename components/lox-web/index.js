@@ -16,7 +16,13 @@ document.body.insertAdjacentHTML('beforeend', `
 
 // Initialize CodeMirror input editor
 const inputState = EditorState.create({
-    doc: "",
+    doc: `
+fun hello() {
+    print "hello lox!";
+}
+
+hello();
+    `,
     extensions: [basicSetup]
 });
 
