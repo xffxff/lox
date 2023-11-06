@@ -50,4 +50,9 @@ impl Compiler {
         }
         buf
     }
+
+    pub fn bytecode(&mut self) -> String {
+        let chunk = lox_compile::compile_file(&self.db, self.input_file);
+        format!("{:#?}", chunk)
+    }
 }
