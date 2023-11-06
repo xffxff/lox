@@ -19,6 +19,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "ansi-to-html": "^0.7.2",
     "codemirror": "^6.0.1",
     "lox_web": "file:./pkg"
   }

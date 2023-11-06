@@ -23,3 +23,7 @@ html {
     border: solid gray;
     margin: 0;
 }
+
+#output-display {
+    font-family: 'Courier New', Courier, monospace;
+}

@@ -2,6 +2,7 @@ import { execute } from 'lox_web';
 import './style.css';
 import { basicSetup, EditorView } from "codemirror"
 import { EditorState } from "@codemirror/state"
+import Convert from "ansi-to-html"
 
 // Create HTML structure
 document.body.insertAdjacentHTML('beforeend', `
@@ -34,9 +35,13 @@ const inputView = new EditorView({
 // Add event listener for run button
 document.getElementById('run-button').addEventListener('click', () => {
     const code = inputView.state.doc.toString();
+    const convert = new Convert({
+        newline: true
+    });
     try {
         const output = execute(code);
-        document.getElementById('output-display').textContent = String(output);
+        const outputHtml = convert.toHtml(output);
+        document.getElementById('output-display').innerHTML = outputHtml;
     } catch (e) {
         document.getElementById('output-display').textContent = e.message;
     }

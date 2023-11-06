@@ -12,5 +12,7 @@ crate-type = ["cdylib"]
 [dependencies]
 wasm-bindgen = "0.2.88"
 lox-execute = { path = "../lox-execute" }
+lox-compile = { path = "../lox-compile" }
+lox-error-format = { path = "../lox-error-format" }
 lox-db = { path = "../lox-db" }
 lox-ir = { path = "../lox-ir" }
