@@ -215,6 +215,10 @@ fn main() {
             if !diagnostics.is_empty() {
                 for diagnostic in &diagnostics {
                     lox_error_format::print_diagnostic(&db, diagnostic).unwrap();
+                    println!(
+                        "{}",
+                        lox_error_format::format_diagnostics(&db, &diagnostics).unwrap()
+                    );
                 }
             } else {
                 let output =

@@ -1,4 +1,4 @@
-import { execute } from 'lox_web';
+import { compiler } from 'lox_web';
 import './style.css';
 import { basicSetup, EditorView } from "codemirror"
 import { EditorState } from "@codemirror/state"
@@ -8,6 +8,7 @@ import Convert from "ansi-to-html"
 document.body.insertAdjacentHTML('beforeend', `
     <div id="playground">
         <button id="run-button">Run</button>
+        <button id="syntax-button">Syntax</button>
         <div id="editor-container">
             <div id="input-editor"></div>
             <pre id="output-display"></pre>
@@ -32,17 +33,24 @@ const inputView = new EditorView({
     parent: document.getElementById('input-editor')
 });
 
+const lox_compiler = compiler();
+
 // Add event listener for run button
-document.getElementById('run-button').addEventListener('click', () => {
+function handleButtonClick(action) {
     const code = inputView.state.doc.toString();
     const convert = new Convert({
         newline: true
     });
     try {
-        const output = execute(code);
+        lox_compiler.set_source_text(code)
+        const output = action === 'execute' ? lox_compiler.execute() : lox_compiler.parse();
+        console.log(output);
         const outputHtml = convert.toHtml(output);
         document.getElementById('output-display').innerHTML = outputHtml;
     } catch (e) {
         document.getElementById('output-display').textContent = e.message;
     }
-});
+}
+
+document.getElementById('run-button').addEventListener('click', () => handleButtonClick('execute'));
+document.getElementById('syntax-button').addEventListener('click', () => handleButtonClick('parse'));

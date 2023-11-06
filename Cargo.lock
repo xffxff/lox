@@ -463,6 +463,8 @@ dependencies = [
  "lox-error-format",
  "lox-execute",
  "lox-ir",
+ "lox-parse",
+ "salsa",
  "wasm-bindgen",
 ]
 

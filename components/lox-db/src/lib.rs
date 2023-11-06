@@ -20,7 +20,7 @@ impl lox_ir::Db for Database {}
 impl lox_lex::Db for Database {}
 
 impl Database {
-    pub fn new_input_file(&mut self, name: impl ToString, source_text: String) -> InputFile {
+    pub fn new_input_file(&self, name: impl ToString, source_text: String) -> InputFile {
         let name = Word::intern(self, name);
         InputFile::new(self, name, source_text)
     }
