@@ -13,7 +13,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'lox-web',
+            title: 'Lox Playground',
         }),
     ],
     output: {
