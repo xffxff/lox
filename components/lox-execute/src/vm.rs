@@ -216,6 +216,17 @@ impl VM {
             ip: 0,
 
             // fp points to the first value introduced by the current frame in the stack
+            //
+            // For example, the stack may look like this:
+            //
+            //            fp        stack top
+            //             v            v
+            //   0    1    2    3   4   5   6   7
+            // |main| 4 | sum | 5 | 6 | 7 |   |   |
+            //          |<-  call frame ->|
+            //                | arity = 3 |
+            //
+            // the the fp is `6 - 3 - 1 = 2`, -1 for the function itself.
             fp: self.stack.len() - arity - 1,
             upvalues,
         };
