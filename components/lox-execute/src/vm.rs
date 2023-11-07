@@ -201,8 +201,8 @@ impl VM {
 
         Self {
             frames: vec![frame],
-            heap: heap,
-            stack: stack,
+            heap,
+            stack,
             globals: HashMap::new(),
             output: String::new(),
         }
