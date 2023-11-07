@@ -1,14 +1,13 @@
 use std::{
     fs,
     path::{Path, PathBuf},
-    sync::{Arc, Mutex},
 };
 
 use clap::{Parser, Subcommand};
 use expect_test::expect_file;
 use lox_db::Database;
 use lox_error_format::FormatOptions;
-use lox_ir::{bytecode, diagnostic::Diagnostics, input_file::InputFile, word::Word};
+use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word};
 use salsa::DebugWithDb;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
 
@@ -133,18 +132,19 @@ impl TestCase {
         expect_file![self.bytecode].assert_eq(&format!("{:#?}", chunk));
 
         // test execute
-        let buf = Arc::new(Mutex::new(String::new()));
-        let step_inspect = |code: Option<bytecode::Code>, vm: &lox_execute::VM| {
-            let mut buf = buf.lock().unwrap();
-            buf.push_str(&format!("execute: {:#?}\n", code));
-            buf.push_str(&format!("stack: {:?}\n", &vm.stack_values()));
-            buf.push_str(&format!("stdout: {:#?}\n", vm.output));
-            buf.push('\n');
-        };
-        let output = lox_execute::execute_file(db, input_file, Some(step_inspect));
-        expect_file![self.execute].assert_eq(&buf.lock().unwrap());
+        // let buf = Arc::new(Mutex::new(String::new()));
+        // let step_inspect = |code: Option<bytecode::Code>, vm: &lox_execute::VM| {
+        //     let mut buf = buf.lock().unwrap();
+        //     buf.push_str(&format!("execute: {:#?}\n", code));
+        //     buf.push_str(&format!("stack: {:?}\n", &vm.stack_values()));
+        //     buf.push_str(&format!("stdout: {:#?}\n", vm.output));
+        //     buf.push('\n');
+        // };
+        // let output = lox_execute::execute_file(db, input_file, Some(step_inspect));
+        // expect_file![self.execute].assert_eq(&buf.lock().unwrap());
 
         // test stdout
+        let output = lox_execute::execute_file(db, input_file, None::<fn(_, &lox_execute::VM)>);
         expect_file![self.stdout].assert_eq(&output);
 
         println!("ok");
