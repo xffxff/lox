@@ -40,6 +40,6 @@ FunctionDeclaration {
 Print {
     expr: Call {
         callee: Variable(fib),
-        arg: NumberLiteral(3),
+        arg: NumberLiteral(5),
     },
 }

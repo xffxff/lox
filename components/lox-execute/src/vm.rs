@@ -164,6 +164,14 @@ impl CallFrame {
         self.ip += 1;
         byte
     }
+
+    fn local_variable(
+        &self,
+        stack: &[generational_arena::Index],
+        index: usize,
+    ) -> generational_arena::Index {
+        stack[self.fp + index + 1]
+    }
 }
 
 pub struct VM {
@@ -392,13 +400,13 @@ impl VM {
                 self.globals.insert(name, value.clone());
             }
             bytecode::Code::ReadLocalVariable { index_in_stack } => {
-                let value_idx = self.stack[frame.fp + index_in_stack + 1];
+                let value_idx = frame.local_variable(&self.stack, index_in_stack);
                 let value = self.heap[value_idx].clone();
                 self.push(value);
             }
             bytecode::Code::WriteLocalVariable { index_in_stack } => {
                 let value = self.peek();
-                let value_idx = self.stack[frame.fp + index_in_stack + 1];
+                let value_idx = frame.local_variable(&self.stack, index_in_stack);
                 self.heap[value_idx] = value.clone();
             }
             bytecode::Code::Pop => {
@@ -427,7 +435,7 @@ impl VM {
                     .into_iter()
                     .map(|upvalue| {
                         if upvalue.is_local {
-                            self.stack[frame.fp + upvalue.index]
+                            frame.local_variable(&self.stack, upvalue.index)
                         } else {
                             frame.upvalues[upvalue.index]
                         }

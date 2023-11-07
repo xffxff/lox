@@ -5,7 +5,7 @@ execute: Some(
         ),
     ),
 )
-stack: [0]
+stack: [<func main>, 0]
 stdout: ""
 
 execute: Some(
@@ -13,7 +13,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -21,7 +21,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [0]
+stack: [<func main>, 0]
 stdout: ""
 
 execute: Some(
@@ -31,13 +31,13 @@ execute: Some(
         ),
     ),
 )
-stack: [0, 10]
+stack: [<func main>, 0, 10]
 stdout: ""
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: ""
 
 execute: Some(
@@ -45,13 +45,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -59,13 +59,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [0]
+stack: [<func main>, 0]
 stdout: ""
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n"
 
 execute: Some(
@@ -73,7 +73,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [0]
+stack: [<func main>, 0]
 stdout: "0\n"
 
 execute: Some(
@@ -83,13 +83,13 @@ execute: Some(
         ),
     ),
 )
-stack: [0, 1]
+stack: [<func main>, 0, 1]
 stdout: "0\n"
 
 execute: Some(
     Add,
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: "0\n"
 
 execute: Some(
@@ -97,13 +97,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: "0\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n"
 
 execute: Some(
@@ -111,7 +111,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n"
 
 execute: Some(
@@ -119,7 +119,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: "0\n"
 
 execute: Some(
@@ -129,13 +129,13 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 10]
+stack: [<func main>, 1, 10]
 stdout: "0\n"
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n"
 
 execute: Some(
@@ -143,13 +143,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n"
 
 execute: Some(
@@ -157,13 +157,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: "0\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n"
 
 execute: Some(
@@ -171,7 +171,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: "0\n1\n"
 
 execute: Some(
@@ -181,13 +181,13 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 1]
+stack: [<func main>, 1, 1]
 stdout: "0\n1\n"
 
 execute: Some(
     Add,
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: "0\n1\n"
 
 execute: Some(
@@ -195,13 +195,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: "0\n1\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n"
 
 execute: Some(
@@ -209,7 +209,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n"
 
 execute: Some(
@@ -217,7 +217,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: "0\n1\n"
 
 execute: Some(
@@ -227,13 +227,13 @@ execute: Some(
         ),
     ),
 )
-stack: [2, 10]
+stack: [<func main>, 2, 10]
 stdout: "0\n1\n"
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n"
 
 execute: Some(
@@ -241,13 +241,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n"
 
 execute: Some(
@@ -255,13 +255,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: "0\n1\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n"
 
 execute: Some(
@@ -269,7 +269,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: "0\n1\n2\n"
 
 execute: Some(
@@ -279,13 +279,13 @@ execute: Some(
         ),
     ),
 )
-stack: [2, 1]
+stack: [<func main>, 2, 1]
 stdout: "0\n1\n2\n"
 
 execute: Some(
     Add,
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "0\n1\n2\n"
 
 execute: Some(
@@ -293,13 +293,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "0\n1\n2\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n"
 
 execute: Some(
@@ -307,7 +307,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n"
 
 execute: Some(
@@ -315,7 +315,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "0\n1\n2\n"
 
 execute: Some(
@@ -325,13 +325,13 @@ execute: Some(
         ),
     ),
 )
-stack: [3, 10]
+stack: [<func main>, 3, 10]
 stdout: "0\n1\n2\n"
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n"
 
 execute: Some(
@@ -339,13 +339,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n"
 
 execute: Some(
@@ -353,13 +353,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "0\n1\n2\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
@@ -367,7 +367,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
@@ -377,13 +377,13 @@ execute: Some(
         ),
     ),
 )
-stack: [3, 1]
+stack: [<func main>, 3, 1]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
     Add,
 )
-stack: [4]
+stack: [<func main>, 4]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
@@ -391,13 +391,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [4]
+stack: [<func main>, 4]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
@@ -405,7 +405,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
@@ -413,7 +413,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [4]
+stack: [<func main>, 4]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
@@ -423,13 +423,13 @@ execute: Some(
         ),
     ),
 )
-stack: [4, 10]
+stack: [<func main>, 4, 10]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
@@ -437,13 +437,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
@@ -451,13 +451,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [4]
+stack: [<func main>, 4]
 stdout: "0\n1\n2\n3\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
@@ -465,7 +465,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [4]
+stack: [<func main>, 4]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
@@ -475,13 +475,13 @@ execute: Some(
         ),
     ),
 )
-stack: [4, 1]
+stack: [<func main>, 4, 1]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
     Add,
 )
-stack: [5]
+stack: [<func main>, 5]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
@@ -489,13 +489,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [5]
+stack: [<func main>, 5]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
@@ -503,7 +503,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
@@ -511,7 +511,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [5]
+stack: [<func main>, 5]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
@@ -521,13 +521,13 @@ execute: Some(
         ),
     ),
 )
-stack: [5, 10]
+stack: [<func main>, 5, 10]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
@@ -535,13 +535,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
@@ -549,13 +549,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [5]
+stack: [<func main>, 5]
 stdout: "0\n1\n2\n3\n4\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
@@ -563,7 +563,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [5]
+stack: [<func main>, 5]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
@@ -573,13 +573,13 @@ execute: Some(
         ),
     ),
 )
-stack: [5, 1]
+stack: [<func main>, 5, 1]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
     Add,
 )
-stack: [6]
+stack: [<func main>, 6]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
@@ -587,13 +587,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [6]
+stack: [<func main>, 6]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
@@ -601,7 +601,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
@@ -609,7 +609,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [6]
+stack: [<func main>, 6]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
@@ -619,13 +619,13 @@ execute: Some(
         ),
     ),
 )
-stack: [6, 10]
+stack: [<func main>, 6, 10]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
@@ -633,13 +633,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
@@ -647,13 +647,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [6]
+stack: [<func main>, 6]
 stdout: "0\n1\n2\n3\n4\n5\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
@@ -661,7 +661,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [6]
+stack: [<func main>, 6]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
@@ -671,13 +671,13 @@ execute: Some(
         ),
     ),
 )
-stack: [6, 1]
+stack: [<func main>, 6, 1]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
     Add,
 )
-stack: [7]
+stack: [<func main>, 7]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
@@ -685,13 +685,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [7]
+stack: [<func main>, 7]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
@@ -699,7 +699,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
@@ -707,7 +707,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [7]
+stack: [<func main>, 7]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
@@ -717,13 +717,13 @@ execute: Some(
         ),
     ),
 )
-stack: [7, 10]
+stack: [<func main>, 7, 10]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
@@ -731,13 +731,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
@@ -745,13 +745,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [7]
+stack: [<func main>, 7]
 stdout: "0\n1\n2\n3\n4\n5\n6\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
@@ -759,7 +759,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [7]
+stack: [<func main>, 7]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
@@ -769,13 +769,13 @@ execute: Some(
         ),
     ),
 )
-stack: [7, 1]
+stack: [<func main>, 7, 1]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
     Add,
 )
-stack: [8]
+stack: [<func main>, 8]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
@@ -783,13 +783,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [8]
+stack: [<func main>, 8]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
@@ -797,7 +797,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
@@ -805,7 +805,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [8]
+stack: [<func main>, 8]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
@@ -815,13 +815,13 @@ execute: Some(
         ),
     ),
 )
-stack: [8, 10]
+stack: [<func main>, 8, 10]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
@@ -829,13 +829,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
@@ -843,13 +843,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [8]
+stack: [<func main>, 8]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
@@ -857,7 +857,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [8]
+stack: [<func main>, 8]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
@@ -867,13 +867,13 @@ execute: Some(
         ),
     ),
 )
-stack: [8, 1]
+stack: [<func main>, 8, 1]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
     Add,
 )
-stack: [9]
+stack: [<func main>, 9]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
@@ -881,13 +881,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [9]
+stack: [<func main>, 9]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
@@ -895,7 +895,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
@@ -903,7 +903,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [9]
+stack: [<func main>, 9]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
@@ -913,13 +913,13 @@ execute: Some(
         ),
     ),
 )
-stack: [9, 10]
+stack: [<func main>, 9, 10]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
@@ -927,13 +927,13 @@ execute: Some(
         15,
     ),
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
@@ -941,13 +941,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [9]
+stack: [<func main>, 9]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
@@ -955,7 +955,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [9]
+stack: [<func main>, 9]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
@@ -965,13 +965,13 @@ execute: Some(
         ),
     ),
 )
-stack: [9, 1]
+stack: [<func main>, 9, 1]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
     Add,
 )
-stack: [10]
+stack: [<func main>, 10]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
@@ -979,13 +979,13 @@ execute: Some(
         name: "i",
     },
 )
-stack: [10]
+stack: [<func main>, 10]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
@@ -993,7 +993,7 @@ execute: Some(
         2,
     ),
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
@@ -1001,7 +1001,7 @@ execute: Some(
         name: "i",
     },
 )
-stack: [10]
+stack: [<func main>, 10]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
@@ -1011,13 +1011,13 @@ execute: Some(
         ),
     ),
 )
-stack: [10, 10]
+stack: [<func main>, 10, 10]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
     Less,
 )
-stack: [false]
+stack: [<func main>, false]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
@@ -1025,13 +1025,13 @@ execute: Some(
         15,
     ),
 )
-stack: [false]
+stack: [<func main>, false]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
 
 execute: None

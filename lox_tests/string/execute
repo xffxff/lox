@@ -3,7 +3,7 @@ execute: Some(
         "hello",
     ),
 )
-stack: [hello]
+stack: [<func main>, hello]
 stdout: ""
 
 execute: Some(
@@ -11,19 +11,19 @@ execute: Some(
         " world",
     ),
 )
-stack: [hello,  world]
+stack: [<func main>, hello,  world]
 stdout: ""
 
 execute: Some(
     Add,
 )
-stack: [hello world]
+stack: [<func main>, hello world]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: None

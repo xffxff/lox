@@ -75,7 +75,7 @@ Function {
             },
             Constant(
                 F64(
-                    3.0,
+                    5.0,
                 ),
             ),
             Call {
