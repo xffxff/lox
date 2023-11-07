@@ -1,0 +1,45 @@
+FunctionDeclaration {
+    name: "fib",
+    param: "n",
+    body: Block {
+        stmt: If {
+            condition: BinaryOp {
+                left: Variable(n),
+                op: LessEqual,
+                right: NumberLiteral(1),
+            },
+            then_branch: Block {
+                stmt: Return {
+                    expr: Variable(n),
+                },
+            },
+        },
+        stmt: Return {
+            expr: BinaryOp {
+                left: Call {
+                    callee: Variable(fib),
+                    arg: BinaryOp {
+                        left: Variable(n),
+                        op: Minus,
+                        right: NumberLiteral(1),
+                    },
+                },
+                op: Plus,
+                right: Call {
+                    callee: Variable(fib),
+                    arg: BinaryOp {
+                        left: Variable(n),
+                        op: Minus,
+                        right: NumberLiteral(2),
+                    },
+                },
+            },
+        },
+    },
+}
+Print {
+    expr: Call {
+        callee: Variable(fib),
+        arg: NumberLiteral(3),
+    },
+}

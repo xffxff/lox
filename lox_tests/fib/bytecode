@@ -1,0 +1,87 @@
+Function {
+    name: "main",
+    arity: 0,
+    chunk: Chunk {
+        code: [
+            Closure {
+                function: Function {
+                    name: "fib",
+                    arity: 1,
+                    chunk: Chunk {
+                        code: [
+                            ReadLocalVariable {
+                                index_in_stack: 0,
+                            },
+                            Constant(
+                                F64(
+                                    1.0,
+                                ),
+                            ),
+                            LessEqual,
+                            JumpIfFalse(
+                                8,
+                            ),
+                            Pop,
+                            ReadLocalVariable {
+                                index_in_stack: 0,
+                            },
+                            Return,
+                            Jump(
+                                9,
+                            ),
+                            Pop,
+                            ReadGlobalVariable {
+                                name: "fib",
+                            },
+                            ReadLocalVariable {
+                                index_in_stack: 0,
+                            },
+                            Constant(
+                                F64(
+                                    1.0,
+                                ),
+                            ),
+                            Subtract,
+                            Call {
+                                arity: 1,
+                            },
+                            ReadGlobalVariable {
+                                name: "fib",
+                            },
+                            ReadLocalVariable {
+                                index_in_stack: 0,
+                            },
+                            Constant(
+                                F64(
+                                    2.0,
+                                ),
+                            ),
+                            Subtract,
+                            Call {
+                                arity: 1,
+                            },
+                            Add,
+                            Return,
+                        ],
+                    },
+                },
+                upvalues: [],
+            },
+            GlobalVarDeclaration {
+                name: "fib",
+            },
+            ReadGlobalVariable {
+                name: "fib",
+            },
+            Constant(
+                F64(
+                    3.0,
+                ),
+            ),
+            Call {
+                arity: 1,
+            },
+            Print,
+        ],
+    },
+}
