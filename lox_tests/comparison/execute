@@ -5,7 +5,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -15,19 +15,19 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2]
+stack: [<func main>, 1, 2]
 stdout: ""
 
 execute: Some(
     Less,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -37,7 +37,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -47,19 +47,19 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 1]
+stack: [<func main>, 1, 1]
 stdout: ""
 
 execute: Some(
     LessEqual,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -69,7 +69,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -79,19 +79,19 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2]
+stack: [<func main>, 1, 2]
 stdout: ""
 
 execute: Some(
     Greater,
 )
-stack: [false]
+stack: [<func main>, false]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -101,7 +101,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -111,19 +111,19 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 1]
+stack: [<func main>, 1, 1]
 stdout: ""
 
 execute: Some(
     GreaterEqual,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: None

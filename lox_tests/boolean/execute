@@ -1,61 +1,61 @@
 execute: Some(
     True,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
     False,
 )
-stack: [false]
+stack: [<func main>, false]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
     True,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: ""
 
 execute: Some(
     Not,
 )
-stack: [false]
+stack: [<func main>, false]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
     False,
 )
-stack: [false]
+stack: [<func main>, false]
 stdout: ""
 
 execute: Some(
     Not,
 )
-stack: [true]
+stack: [<func main>, true]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: None

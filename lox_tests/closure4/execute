@@ -69,7 +69,7 @@ execute: Some(
         upvalues: [],
     },
 )
-stack: [<func outer>]
+stack: [<func main>, <func outer>]
 stdout: ""
 
 execute: Some(
@@ -77,7 +77,7 @@ execute: Some(
         name: "outer",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -85,7 +85,7 @@ execute: Some(
         name: "outer",
     },
 )
-stack: [<func outer>]
+stack: [<func main>, <func outer>]
 stdout: ""
 
 execute: Some(
@@ -93,7 +93,7 @@ execute: Some(
         arity: 0,
     },
 )
-stack: [<func outer>]
+stack: [<func main>, <func outer>]
 stdout: ""
 
 execute: Some(
@@ -101,7 +101,7 @@ execute: Some(
         "value",
     ),
 )
-stack: [<func outer>, value]
+stack: [<func main>, <func outer>, value]
 stdout: ""
 
 execute: Some(
@@ -151,7 +151,7 @@ execute: Some(
         ],
     },
 )
-stack: [<func outer>, value, <func middle>]
+stack: [<func main>, <func outer>, value, <func middle>]
 stdout: ""
 
 execute: Some(
@@ -159,13 +159,13 @@ execute: Some(
         "return from outer",
     ),
 )
-stack: [<func outer>, value, <func middle>, return from outer]
+stack: [<func main>, <func outer>, value, <func middle>, return from outer]
 stdout: ""
 
 execute: Some(
     Print,
 )
-stack: [<func outer>, value, <func middle>]
+stack: [<func main>, <func outer>, value, <func middle>]
 stdout: "return from outer\n"
 
 execute: Some(
@@ -173,13 +173,13 @@ execute: Some(
         index_in_stack: 1,
     },
 )
-stack: [<func outer>, value, <func middle>, <func middle>]
+stack: [<func main>, <func outer>, value, <func middle>, <func middle>]
 stdout: "return from outer\n"
 
 execute: Some(
     Return,
 )
-stack: [<func outer>, <func middle>]
+stack: [<func main>, <func middle>]
 stdout: "return from outer\n"
 
 execute: Some(
@@ -187,7 +187,7 @@ execute: Some(
         name: "mid",
     },
 )
-stack: [<func outer>]
+stack: [<func main>]
 stdout: "return from outer\n"
 
 execute: Some(
@@ -195,7 +195,7 @@ execute: Some(
         name: "mid",
     },
 )
-stack: [<func outer>, <func middle>]
+stack: [<func main>, <func middle>]
 stdout: "return from outer\n"
 
 execute: Some(
@@ -203,7 +203,7 @@ execute: Some(
         arity: 0,
     },
 )
-stack: [<func outer>, <func middle>]
+stack: [<func main>, <func middle>]
 stdout: "return from outer\n"
 
 execute: Some(
@@ -228,7 +228,7 @@ execute: Some(
         ],
     },
 )
-stack: [<func outer>, <func middle>, <func inner>]
+stack: [<func main>, <func middle>, <func inner>]
 stdout: "return from outer\n"
 
 execute: Some(
@@ -236,13 +236,13 @@ execute: Some(
         "create inner closure",
     ),
 )
-stack: [<func outer>, <func middle>, <func inner>, create inner closure]
+stack: [<func main>, <func middle>, <func inner>, create inner closure]
 stdout: "return from outer\n"
 
 execute: Some(
     Print,
 )
-stack: [<func outer>, <func middle>, <func inner>]
+stack: [<func main>, <func middle>, <func inner>]
 stdout: "return from outer\ncreate inner closure\n"
 
 execute: Some(
@@ -250,13 +250,13 @@ execute: Some(
         index_in_stack: 0,
     },
 )
-stack: [<func outer>, <func middle>, <func inner>, <func inner>]
+stack: [<func main>, <func middle>, <func inner>, <func inner>]
 stdout: "return from outer\ncreate inner closure\n"
 
 execute: Some(
     Return,
 )
-stack: [<func outer>, <func middle>, <func inner>]
+stack: [<func main>, <func inner>]
 stdout: "return from outer\ncreate inner closure\n"
 
 execute: Some(
@@ -264,7 +264,7 @@ execute: Some(
         name: "in",
     },
 )
-stack: [<func outer>, <func middle>]
+stack: [<func main>]
 stdout: "return from outer\ncreate inner closure\n"
 
 execute: Some(
@@ -272,7 +272,7 @@ execute: Some(
         name: "in",
     },
 )
-stack: [<func outer>, <func middle>, <func inner>]
+stack: [<func main>, <func inner>]
 stdout: "return from outer\ncreate inner closure\n"
 
 execute: Some(
@@ -280,7 +280,7 @@ execute: Some(
         arity: 0,
     },
 )
-stack: [<func outer>, <func middle>, <func inner>]
+stack: [<func main>, <func inner>]
 stdout: "return from outer\ncreate inner closure\n"
 
 execute: Some(
@@ -288,23 +288,23 @@ execute: Some(
         index: 0,
     },
 )
-stack: [<func outer>, <func middle>, <func inner>, value]
+stack: [<func main>, <func inner>, value]
 stdout: "return from outer\ncreate inner closure\n"
 
 execute: Some(
     Print,
 )
-stack: [<func outer>, <func middle>, <func inner>]
+stack: [<func main>, <func inner>]
 stdout: "return from outer\ncreate inner closure\nvalue\n"
 
 execute: None
-stack: [<func outer>, <func middle>, <func inner>]
+stack: [<func main>]
 stdout: "return from outer\ncreate inner closure\nvalue\n"
 
 execute: Some(
     Pop,
 )
-stack: [<func outer>, <func middle>]
+stack: []
 stdout: "return from outer\ncreate inner closure\nvalue\n"
 
 execute: None

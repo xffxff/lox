@@ -164,6 +164,14 @@ impl CallFrame {
         self.ip += 1;
         byte
     }
+
+    fn local_variable(
+        &self,
+        stack: &[generational_arena::Index],
+        index: usize,
+    ) -> generational_arena::Index {
+        stack[self.fp + index + 1]
+    }
 }
 
 pub struct VM {
@@ -180,18 +188,29 @@ pub struct VM {
     pub output: String,
 }
 
-impl Default for VM {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 impl VM {
-    pub fn new() -> Self {
+    pub fn new(main: Function) -> Self {
+        let frame = CallFrame {
+            function: main,
+            ip: 0,
+            fp: 0,
+            upvalues: vec![],
+        };
+
+        let mut heap = generational_arena::Arena::new();
+        let index_of_main = heap.insert(Value::Closure {
+            function: frame.function.clone(),
+            upvalues: vec![],
+        });
+
+        // push the value of the main function to the stack to a call to the main function,
+        // making it is consistent with other function calls.
+        let stack = vec![index_of_main];
+
         Self {
-            frames: vec![],
-            heap: generational_arena::Arena::new(),
-            stack: Vec::new(),
+            frames: vec![frame],
+            heap,
+            stack,
             globals: HashMap::new(),
             output: String::new(),
         }
@@ -203,7 +222,20 @@ impl VM {
         let frame = CallFrame {
             function,
             ip: 0,
-            fp: self.stack.len() - arity,
+
+            // fp points to the first value introduced by the current frame in the stack
+            //
+            // For example, the stack may look like this:
+            //
+            //            fp        stack top
+            //             v            v
+            //   0    1    2    3   4   5   6   7
+            // |main| 4 | sum | 5 | 6 | 7 |   |   |
+            //          |<-  call frame ->|
+            //                | arity = 3 |
+            //
+            // the the fp is `6 - 3 - 1 = 2`, -1 for the function itself.
+            fp: self.stack.len() - arity - 1,
             upvalues,
         };
         tracing::debug!("pushing frame: {:?}", frame);
@@ -368,13 +400,13 @@ impl VM {
                 self.globals.insert(name, value.clone());
             }
             bytecode::Code::ReadLocalVariable { index_in_stack } => {
-                let value_idx = self.stack[frame.fp + index_in_stack];
+                let value_idx = frame.local_variable(&self.stack, index_in_stack);
                 let value = self.heap[value_idx].clone();
                 self.push(value);
             }
             bytecode::Code::WriteLocalVariable { index_in_stack } => {
                 let value = self.peek();
-                let value_idx = self.stack[frame.fp + index_in_stack];
+                let value_idx = frame.local_variable(&self.stack, index_in_stack);
                 self.heap[value_idx] = value.clone();
             }
             bytecode::Code::Pop => {
@@ -403,7 +435,7 @@ impl VM {
                     .into_iter()
                     .map(|upvalue| {
                         if upvalue.is_local {
-                            self.stack[frame.fp + upvalue.index]
+                            frame.local_variable(&self.stack, upvalue.index)
                         } else {
                             frame.upvalues[upvalue.index]
                         }

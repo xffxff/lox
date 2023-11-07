@@ -1,7 +1,7 @@
 execute: Some(
     False,
 )
-stack: [false]
+stack: [<func main>, false]
 stdout: ""
 
 execute: Some(
@@ -9,13 +9,13 @@ execute: Some(
         4,
     ),
 )
-stack: [false]
+stack: [<func main>, false]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: None

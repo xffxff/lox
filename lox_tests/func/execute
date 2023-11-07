@@ -15,7 +15,7 @@ execute: Some(
         upvalues: [],
     },
 )
-stack: [<func hello>]
+stack: [<func main>, <func hello>]
 stdout: ""
 
 execute: Some(
@@ -23,7 +23,7 @@ execute: Some(
         name: "hello",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -31,7 +31,7 @@ execute: Some(
         name: "hello",
     },
 )
-stack: [<func hello>]
+stack: [<func main>, <func hello>]
 stdout: ""
 
 execute: Some(
@@ -39,7 +39,7 @@ execute: Some(
         arity: 0,
     },
 )
-stack: [<func hello>]
+stack: [<func main>, <func hello>]
 stdout: ""
 
 execute: Some(
@@ -47,17 +47,17 @@ execute: Some(
         "hello",
     ),
 )
-stack: [<func hello>, hello]
+stack: [<func main>, <func hello>, hello]
 stdout: ""
 
 execute: Some(
     Print,
 )
-stack: [<func hello>]
+stack: [<func main>, <func hello>]
 stdout: "hello\n"
 
 execute: None
-stack: [<func hello>]
+stack: [<func main>]
 stdout: "hello\n"
 
 execute: Some(
@@ -173,7 +173,7 @@ stdout: "hello\nworld\n"
 execute: Some(
     Return,
 )
-stack: [<func add>, 3]
+stack: [3]
 stdout: "hello\nworld\n"
 
 execute: Some(
@@ -181,7 +181,7 @@ execute: Some(
         name: "c",
     },
 )
-stack: [<func add>]
+stack: []
 stdout: "hello\nworld\n"
 
 execute: Some(
@@ -189,13 +189,13 @@ execute: Some(
         name: "c",
     },
 )
-stack: [<func add>, 3]
+stack: [3]
 stdout: "hello\nworld\n"
 
 execute: Some(
     Print,
 )
-stack: [<func add>]
+stack: []
 stdout: "hello\nworld\n3\n"
 
 execute: None

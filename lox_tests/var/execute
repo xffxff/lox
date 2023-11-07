@@ -5,7 +5,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -13,13 +13,13 @@ execute: Some(
         name: "a",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
     Nil,
 )
-stack: [nil]
+stack: [<func main>, nil]
 stdout: ""
 
 execute: Some(
@@ -27,7 +27,7 @@ execute: Some(
         name: "b",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -35,13 +35,13 @@ execute: Some(
         name: "a",
     },
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "1\n"
 
 execute: Some(
@@ -49,7 +49,7 @@ execute: Some(
         "hello",
     ),
 )
-stack: [hello]
+stack: [<func main>, hello]
 stdout: "1\n"
 
 execute: Some(
@@ -57,7 +57,7 @@ execute: Some(
         name: "str1",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: "1\n"
 
 execute: Some(
@@ -65,7 +65,7 @@ execute: Some(
         "world",
     ),
 )
-stack: [world]
+stack: [<func main>, world]
 stdout: "1\n"
 
 execute: Some(
@@ -73,7 +73,7 @@ execute: Some(
         name: "str2",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: "1\n"
 
 execute: Some(
@@ -81,7 +81,7 @@ execute: Some(
         name: "str1",
     },
 )
-stack: [hello]
+stack: [<func main>, hello]
 stdout: "1\n"
 
 execute: Some(
@@ -89,19 +89,19 @@ execute: Some(
         name: "str2",
     },
 )
-stack: [hello, world]
+stack: [<func main>, hello, world]
 stdout: "1\n"
 
 execute: Some(
     Add,
 )
-stack: [helloworld]
+stack: [<func main>, helloworld]
 stdout: "1\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "1\nhelloworld\n"
 
 execute: None

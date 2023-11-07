@@ -3,7 +3,7 @@ execute: Some(
         "global",
     ),
 )
-stack: [global]
+stack: [<func main>, global]
 stdout: ""
 
 execute: Some(
@@ -11,7 +11,7 @@ execute: Some(
         name: "x",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -74,7 +74,7 @@ execute: Some(
         upvalues: [],
     },
 )
-stack: [<func outer>]
+stack: [<func main>, <func outer>]
 stdout: ""
 
 execute: Some(
@@ -82,7 +82,7 @@ execute: Some(
         name: "outer",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -90,7 +90,7 @@ execute: Some(
         name: "outer",
     },
 )
-stack: [<func outer>]
+stack: [<func main>, <func outer>]
 stdout: ""
 
 execute: Some(
@@ -98,7 +98,7 @@ execute: Some(
         arity: 0,
     },
 )
-stack: [<func outer>]
+stack: [<func main>, <func outer>]
 stdout: ""
 
 execute: Some(
@@ -106,7 +106,7 @@ execute: Some(
         "outer",
     ),
 )
-stack: [<func outer>, outer]
+stack: [<func main>, <func outer>, outer]
 stdout: ""
 
 execute: Some(
@@ -142,7 +142,7 @@ execute: Some(
         ],
     },
 )
-stack: [<func outer>, outer, <func inner>]
+stack: [<func main>, <func outer>, outer, <func inner>]
 stdout: ""
 
 execute: Some(
@@ -150,7 +150,7 @@ execute: Some(
         index_in_stack: 1,
     },
 )
-stack: [<func outer>, outer, <func inner>, <func inner>]
+stack: [<func main>, <func outer>, outer, <func inner>, <func inner>]
 stdout: ""
 
 execute: Some(
@@ -158,7 +158,7 @@ execute: Some(
         arity: 0,
     },
 )
-stack: [<func outer>, outer, <func inner>, <func inner>]
+stack: [<func main>, <func outer>, outer, <func inner>, <func inner>]
 stdout: ""
 
 execute: Some(
@@ -166,13 +166,13 @@ execute: Some(
         index: 0,
     },
 )
-stack: [<func outer>, outer, <func inner>, <func inner>, outer]
+stack: [<func main>, <func outer>, outer, <func inner>, <func inner>, outer]
 stdout: ""
 
 execute: Some(
     Print,
 )
-stack: [<func outer>, outer, <func inner>, <func inner>]
+stack: [<func main>, <func outer>, outer, <func inner>, <func inner>]
 stdout: "outer\n"
 
 execute: Some(
@@ -180,7 +180,7 @@ execute: Some(
         "inner",
     ),
 )
-stack: [<func outer>, outer, <func inner>, <func inner>, inner]
+stack: [<func main>, <func outer>, outer, <func inner>, <func inner>, inner]
 stdout: "outer\n"
 
 execute: Some(
@@ -188,23 +188,23 @@ execute: Some(
         index: 1,
     },
 )
-stack: [<func outer>, inner, <func inner>, <func inner>, inner]
+stack: [<func main>, <func outer>, inner, <func inner>, <func inner>, inner]
 stdout: "outer\n"
 
 execute: Some(
     Pop,
 )
-stack: [<func outer>, inner, <func inner>, <func inner>]
+stack: [<func main>, <func outer>, inner, <func inner>, <func inner>]
 stdout: "outer\n"
 
 execute: None
-stack: [<func outer>, inner, <func inner>, <func inner>]
+stack: [<func main>, <func outer>, inner, <func inner>]
 stdout: "outer\n"
 
 execute: Some(
     Pop,
 )
-stack: [<func outer>, inner, <func inner>]
+stack: [<func main>, <func outer>, inner]
 stdout: "outer\n"
 
 execute: Some(
@@ -212,29 +212,29 @@ execute: Some(
         index_in_stack: 0,
     },
 )
-stack: [<func outer>, inner, <func inner>, inner]
+stack: [<func main>, <func outer>, inner, inner]
 stdout: "outer\n"
 
 execute: Some(
     Print,
 )
-stack: [<func outer>, inner, <func inner>]
+stack: [<func main>, <func outer>, inner]
 stdout: "outer\ninner\n"
 
 execute: Some(
     Pop,
 )
-stack: [<func outer>, inner]
+stack: [<func main>, <func outer>]
 stdout: "outer\ninner\n"
 
 execute: Some(
     CloseUpvalue,
 )
-stack: [<func outer>]
+stack: [<func main>]
 stdout: "outer\ninner\n"
 
 execute: None
-stack: [<func outer>]
+stack: [<func main>]
 stdout: "outer\ninner\n"
 
 execute: Some(

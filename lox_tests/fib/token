@@ -1,0 +1,124 @@
+TokenTree {
+    source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+    tokens: [
+        Alphabetic(fun),
+        Whitespace(' '),
+        Alphabetic(fib),
+        Delimiter((),
+        Tree(
+            TokenTree {
+                source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                tokens: [
+                    Alphabetic(n),
+                ],
+            },
+        ),
+        Delimiter()),
+        Whitespace(' '),
+        Delimiter({),
+        Tree(
+            TokenTree {
+                source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                tokens: [
+                    Whitespace('\n'),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Alphabetic(if),
+                    Whitespace(' '),
+                    Delimiter((),
+                    Tree(
+                        TokenTree {
+                            source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                            tokens: [
+                                Alphabetic(n),
+                                Whitespace(' '),
+                                Op(<),
+                                Op(=),
+                                Whitespace(' '),
+                                Number(1),
+                            ],
+                        },
+                    ),
+                    Delimiter()),
+                    Whitespace(' '),
+                    Delimiter({),
+                    Tree(
+                        TokenTree {
+                            source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                            tokens: [
+                                Whitespace(' '),
+                                Alphabetic(return),
+                                Whitespace(' '),
+                                Alphabetic(n),
+                                Semicolon,
+                                Whitespace(' '),
+                            ],
+                        },
+                    ),
+                    Delimiter(}),
+                    Whitespace('\n'),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Alphabetic(return),
+                    Whitespace(' '),
+                    Alphabetic(fib),
+                    Delimiter((),
+                    Tree(
+                        TokenTree {
+                            source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                            tokens: [
+                                Alphabetic(n),
+                                Whitespace(' '),
+                                Op(-),
+                                Whitespace(' '),
+                                Number(1),
+                            ],
+                        },
+                    ),
+                    Delimiter()),
+                    Whitespace(' '),
+                    Op(+),
+                    Whitespace(' '),
+                    Alphabetic(fib),
+                    Delimiter((),
+                    Tree(
+                        TokenTree {
+                            source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                            tokens: [
+                                Alphabetic(n),
+                                Whitespace(' '),
+                                Op(-),
+                                Whitespace(' '),
+                                Number(2),
+                            ],
+                        },
+                    ),
+                    Delimiter()),
+                    Semicolon,
+                    Whitespace('\n'),
+                ],
+            },
+        ),
+        Delimiter(}),
+        Whitespace('\n'),
+        Whitespace('\n'),
+        Alphabetic(print),
+        Whitespace(' '),
+        Alphabetic(fib),
+        Delimiter((),
+        Tree(
+            TokenTree {
+                source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                tokens: [
+                    Number(5),
+                ],
+            },
+        ),
+        Delimiter()),
+        Semicolon,
+    ],
+}

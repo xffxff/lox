@@ -5,7 +5,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -13,7 +13,7 @@ execute: Some(
         name: "a",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -23,7 +23,7 @@ execute: Some(
         ),
     ),
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: ""
 
 execute: Some(
@@ -31,13 +31,13 @@ execute: Some(
         name: "a",
     },
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -45,13 +45,13 @@ execute: Some(
         name: "a",
     },
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: ""
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "2\n"
 
 execute: Some(
@@ -61,7 +61,7 @@ execute: Some(
         ),
     ),
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "2\n"
 
 execute: Some(
@@ -69,13 +69,13 @@ execute: Some(
         name: "a",
     },
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "2\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "2\n3\n"
 
 execute: Some(
@@ -83,7 +83,7 @@ execute: Some(
         name: "a",
     },
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "2\n3\n"
 
 execute: Some(
@@ -91,13 +91,13 @@ execute: Some(
         name: "b",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: "2\n3\n"
 
 execute: Some(
     Nil,
 )
-stack: [nil]
+stack: [<func main>, nil]
 stdout: "2\n3\n"
 
 execute: Some(
@@ -105,7 +105,7 @@ execute: Some(
         name: "c",
     },
 )
-stack: []
+stack: [<func main>]
 stdout: "2\n3\n"
 
 execute: Some(
@@ -113,7 +113,7 @@ execute: Some(
         name: "b",
     },
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "2\n3\n"
 
 execute: Some(
@@ -121,13 +121,13 @@ execute: Some(
         name: "c",
     },
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "2\n3\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "2\n3\n"
 
 execute: Some(
@@ -135,13 +135,13 @@ execute: Some(
         name: "c",
     },
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: "2\n3\n"
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "2\n3\n3\n"
 
 execute: None

@@ -5,7 +5,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -15,7 +15,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2]
+stack: [<func main>, 1, 2]
 stdout: ""
 
 execute: Some(
@@ -23,13 +23,13 @@ execute: Some(
         index_in_stack: 0,
     },
 )
-stack: [2, 2]
+stack: [<func main>, 2, 2]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: ""
 
 execute: Some(
@@ -37,13 +37,13 @@ execute: Some(
         index_in_stack: 0,
     },
 )
-stack: [2, 2]
+stack: [<func main>, 2, 2]
 stdout: ""
 
 execute: Some(
     Print,
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: "2\n"
 
 execute: Some(
@@ -51,19 +51,19 @@ execute: Some(
         index_in_stack: 0,
     },
 )
-stack: [2, 2]
+stack: [<func main>, 2, 2]
 stdout: "2\n"
 
 execute: Some(
     Print,
 )
-stack: [2]
+stack: [<func main>, 2]
 stdout: "2\n2\n"
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: "2\n2\n"
 
 execute: None

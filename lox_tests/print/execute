@@ -5,7 +5,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -15,19 +15,19 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2]
+stack: [<func main>, 1, 2]
 stdout: ""
 
 execute: Some(
     Add,
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: ""
 
 execute: Some(
     Print,
 )
-stack: []
+stack: [<func main>]
 stdout: "3\n"
 
 execute: None

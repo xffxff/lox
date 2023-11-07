@@ -5,7 +5,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -15,19 +15,19 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2]
+stack: [<func main>, 1, 2]
 stdout: ""
 
 execute: Some(
     Add,
 )
-stack: [3]
+stack: [<func main>, 3]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -37,7 +37,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -47,7 +47,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2]
+stack: [<func main>, 1, 2]
 stdout: ""
 
 execute: Some(
@@ -57,25 +57,25 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2, 3]
+stack: [<func main>, 1, 2, 3]
 stdout: ""
 
 execute: Some(
     Multiply,
 )
-stack: [1, 6]
+stack: [<func main>, 1, 6]
 stdout: ""
 
 execute: Some(
     Add,
 )
-stack: [7]
+stack: [<func main>, 7]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -85,7 +85,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -95,7 +95,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2]
+stack: [<func main>, 1, 2]
 stdout: ""
 
 execute: Some(
@@ -105,25 +105,25 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2, 3]
+stack: [<func main>, 1, 2, 3]
 stdout: ""
 
 execute: Some(
     Divide,
 )
-stack: [1, 0.6666666666666666]
+stack: [<func main>, 1, 0.6666666666666666]
 stdout: ""
 
 execute: Some(
     Subtract,
 )
-stack: [0.33333333333333337]
+stack: [<func main>, 0.33333333333333337]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: Some(
@@ -133,7 +133,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1]
+stack: [<func main>, 1]
 stdout: ""
 
 execute: Some(
@@ -143,7 +143,7 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2]
+stack: [<func main>, 1, 2]
 stdout: ""
 
 execute: Some(
@@ -153,31 +153,31 @@ execute: Some(
         ),
     ),
 )
-stack: [1, 2, 3]
+stack: [<func main>, 1, 2, 3]
 stdout: ""
 
 execute: Some(
     Negate,
 )
-stack: [1, 2, -3]
+stack: [<func main>, 1, 2, -3]
 stdout: ""
 
 execute: Some(
     Multiply,
 )
-stack: [1, -6]
+stack: [<func main>, 1, -6]
 stdout: ""
 
 execute: Some(
     Add,
 )
-stack: [-5]
+stack: [<func main>, -5]
 stdout: ""
 
 execute: Some(
     Pop,
 )
-stack: []
+stack: [<func main>]
 stdout: ""
 
 execute: None
