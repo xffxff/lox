@@ -8,6 +8,7 @@ use lox_ir::{
     token_tree::TokenTree,
 };
 
+
 use crate::{
     token_test::{AnyTree, Identifier, Number, StringLiteral, TokenTest},
     tokens::Tokens,
@@ -65,13 +66,9 @@ impl<'me> Parser<'me> {
             }
         }
         let body_tree = self.delimited('{')?.1;
-        let mut sub_parser = Parser::new(self.db, body_tree);
-        let body = sub_parser.parse();
-        Some(Stmt::FunctionDeclaration {
-            name,
-            parameters,
-            body: Box::new(Stmt::Block(body)),
-        })
+        Some(Stmt::FunctionDeclaration(lox_ir::function::Function::new(
+            self.db, name, parameters, body_tree,
+        )))
     }
 
     // "var" IDENTIFIER ( "=" expression )? ";" ;

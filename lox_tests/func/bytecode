@@ -3,21 +3,13 @@ Function {
     arity: 0,
     chunk: Chunk {
         code: [
-            Closure {
-                function: Function {
-                    name: "hello",
-                    arity: 0,
-                    chunk: Chunk {
-                        code: [
-                            String(
-                                "hello",
-                            ),
-                            Print,
-                        ],
+            Function(
+                Function(
+                    Id {
+                        value: 29,
                     },
-                },
-                upvalues: [],
-            },
+                ),
+            ),
             GlobalVarDeclaration {
                 name: "hello",
             },
@@ -32,25 +24,13 @@ Function {
                 "world",
             ),
             Print,
-            Closure {
-                function: Function {
-                    name: "add",
-                    arity: 2,
-                    chunk: Chunk {
-                        code: [
-                            ReadLocalVariable {
-                                index_in_stack: 0,
-                            },
-                            ReadLocalVariable {
-                                index_in_stack: 1,
-                            },
-                            Add,
-                            Return,
-                        ],
+            Function(
+                Function(
+                    Id {
+                        value: 30,
                     },
-                },
-                upvalues: [],
-            },
+                ),
+            ),
             GlobalVarDeclaration {
                 name: "add",
             },

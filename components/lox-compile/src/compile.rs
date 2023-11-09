@@ -1,10 +1,11 @@
 use std::{cell::RefCell, rc::Rc};
 
 use lox_ir::{
-    bytecode::{Chunk, Code, Function, Upvalue},
+    bytecode::{Chunk, Closure, Code, Function, Upvalue},
     input_file::InputFile,
     syntax,
 };
+use lox_parse::prelude::FunctionParseExt;
 
 #[salsa::tracked]
 pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Function {
@@ -19,6 +20,31 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Function {
         name: "main".to_string(),
         arity: 0,
         chunk,
+    }
+}
+
+#[salsa::tracked]
+pub fn compile(db: &dyn crate::Db, function: lox_ir::function::Function) -> Closure {
+    let stmts = function.parse(db);
+    let compiler = Rc::new(RefCell::new(Compiler::default()));
+    let mut chunk = Chunk::default();
+    for param in function.params(db) {
+        let local = Local::new(param.as_str(db), 0);
+        compiler.borrow_mut().locals.push(local);
+    }
+    for stmt in stmts {
+        compile_stmt(compiler.clone(), db, &stmt, &mut chunk);
+    }
+
+    let func = Function {
+        name: function.name(db).as_str(db).to_string(),
+        arity: function.params(db).len(),
+        chunk,
+    };
+    let upvalues = compiler.borrow().upvalues.clone();
+    Closure {
+        function: func,
+        upvalues,
     }
 }
 
@@ -53,15 +79,6 @@ struct Compiler {
 
     // The upvalues of a function are the variables in the enclosing scope that are used in the function.
     upvalues: Vec<Upvalue>,
-}
-
-impl Compiler {
-    fn new(enclosing: Rc<RefCell<Compiler>>) -> Self {
-        Self {
-            enclosing: Some(enclosing),
-            ..Default::default()
-        }
-    }
 }
 
 fn compile_stmt(
@@ -261,39 +278,16 @@ fn compile_stmt(
             // this for loop is over, so we pop the value of the condition expression
             chunk.emit_byte(Code::Pop);
         }
-        syntax::Stmt::FunctionDeclaration {
-            name,
-            parameters,
-            body,
-        } => {
-            let sub_compiler = Compiler::new(compiler.clone());
-            let sub_compiler = Rc::new(RefCell::new(sub_compiler));
-            let mut sub_chunk = Chunk::default();
-            for param in parameters {
-                let name_str = param.as_str(db);
-                let local = Local::new(name_str, compiler.borrow().scope_depth);
-                sub_compiler.borrow_mut().locals.push(local);
-            }
-            compile_stmt(sub_compiler.clone(), db, body, &mut sub_chunk);
-            let name_str = name.as_str(db);
-            let function = Function {
-                name: name_str.to_string(),
-                arity: parameters.len(),
-                chunk: sub_chunk,
-            };
-            let closure = Code::Closure {
-                function,
-                upvalues: sub_compiler.borrow().upvalues.clone(),
-            };
-            chunk.emit_byte(closure);
+        syntax::Stmt::FunctionDeclaration(function) => {
+            chunk.emit_byte(Code::Function(*function));
+
+            let name = function.name(db).as_str(db).to_string();
             // there are two types of variables: global and local, they are compiled differently
             // they are distinguished by the lexical scope depth
             if compiler.borrow().scope_depth == 0 {
-                chunk.emit_byte(Code::GlobalVarDeclaration {
-                    name: name_str.to_string(),
-                });
+                chunk.emit_byte(Code::GlobalVarDeclaration { name });
             } else {
-                let local = Local::new(name_str, compiler.borrow().scope_depth);
+                let local = Local::new(&name, compiler.borrow().scope_depth);
                 compiler.borrow_mut().locals.push(local)
             }
         }

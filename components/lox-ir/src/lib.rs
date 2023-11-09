@@ -1,5 +1,6 @@
 pub mod bytecode;
 pub mod diagnostic;
+pub mod function;
 pub mod input_file;
 pub mod kw;
 pub mod span;
@@ -16,6 +17,7 @@ pub struct Jar(
     diagnostic::Diagnostics,
     kw::Keywords,
     kw::keywords_map,
+    function::Function,
 );
 
 pub trait Db: salsa::DbWithJar<Jar> {}

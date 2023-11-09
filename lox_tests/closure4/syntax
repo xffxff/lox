@@ -1,38 +1,9 @@
 FunctionDeclaration {
-    name: "outer",
-    body: Block {
-        stmt: Var {
-            name: "x",
-            initializer: Some(
-                StringLiteral(value),
-            ),
+    function: Function(
+        Id {
+            value: 18,
         },
-        stmt: FunctionDeclaration {
-            name: "middle",
-            body: Block {
-                stmt: FunctionDeclaration {
-                    name: "inner",
-                    body: Block {
-                        stmt: Print {
-                            expr: Variable(x),
-                        },
-                    },
-                },
-                stmt: Print {
-                    expr: StringLiteral(create inner closure),
-                },
-                stmt: Return {
-                    expr: Variable(inner),
-                },
-            },
-        },
-        stmt: Print {
-            expr: StringLiteral(return from outer),
-        },
-        stmt: Return {
-            expr: Variable(middle),
-        },
-    },
+    ),
 }
 Var {
     name: "mid",

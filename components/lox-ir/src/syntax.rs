@@ -1,4 +1,4 @@
-use crate::word::Word;
+use crate::{word::Word};
 
 mod op;
 pub use op::Op;
@@ -142,11 +142,7 @@ pub enum Stmt {
     },
 
     // function declaration, like `fun foo() { 1 + 2; }`
-    FunctionDeclaration {
-        name: Word,
-        parameters: Vec<Word>,
-        body: Box<Stmt>,
-    },
+    FunctionDeclaration(crate::function::Function),
 
     // return statement, like `return 1 + 2;`
     Return(Option<Expr>),
@@ -218,24 +214,16 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
                 builder.field("body", &body.debug(db));
                 builder.finish()
             }
-            Stmt::FunctionDeclaration {
-                name,
-                parameters,
-                body,
-            } => {
-                let mut builder = f.debug_struct("FunctionDeclaration");
-                builder.field("name", &name.as_str(db));
-                for param in parameters {
-                    builder.field("param", &param.as_str(db));
-                }
-                builder.field("body", &body.debug(db));
-                builder.finish()
-            }
             Stmt::Return(expr) => {
                 let mut builder = f.debug_struct("Return");
                 if let Some(expr) = expr {
                     builder.field("expr", &expr.debug(db));
                 }
+                builder.finish()
+            }
+            Stmt::FunctionDeclaration(function) => {
+                let mut builder = f.debug_struct("FunctionDeclaration");
+                builder.field("function", function);
                 builder.finish()
             }
         }

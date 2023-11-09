@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
-use lox_ir::bytecode::{self, Function};
+use lox_compile::prelude::FunctionCompileExt;
+use lox_ir::bytecode::{self, Closure, Function};
 
 #[derive(Clone)]
 pub enum Value {
@@ -189,9 +190,9 @@ pub struct VM {
 }
 
 impl VM {
-    pub fn new(main: Function) -> Self {
+    pub fn new(main: Closure) -> Self {
         let frame = CallFrame {
-            function: main,
+            function: main.function,
             ip: 0,
             fp: 0,
             upvalues: vec![],
@@ -268,7 +269,7 @@ impl VM {
 
     // `step_inspect` is a callback that is called after each instruction is executed.
     //  It is useful for debugging.
-    pub(crate) fn step<F>(&mut self, mut step_inspect: Option<F>) -> ControlFlow
+    pub(crate) fn step<F>(&mut self, db: &dyn crate::Db, mut step_inspect: Option<F>) -> ControlFlow
     where
         F: FnMut(Option<bytecode::Code>, &VM),
     {
@@ -430,8 +431,10 @@ impl VM {
                     _ => panic!("Cannot call {:?}", closure),
                 }
             }
-            bytecode::Code::Closure { function, upvalues } => {
-                let upvalues = upvalues
+            bytecode::Code::Function(function) => {
+                let closure = function.compile(db);
+                let upvalues = closure
+                    .upvalues
                     .into_iter()
                     .map(|upvalue| {
                         if upvalue.is_local {
@@ -441,7 +444,10 @@ impl VM {
                         }
                     })
                     .collect();
-                let closure = Value::Closure { function, upvalues };
+                let closure = Value::Closure {
+                    function: closure.function,
+                    upvalues,
+                };
                 self.push(closure);
             }
             bytecode::Code::ReadUpvalue { index } => {

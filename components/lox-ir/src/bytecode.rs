@@ -49,10 +49,7 @@ pub enum Code {
     Pop,
     JumpIfFalse(usize),
     Jump(usize),
-    Closure {
-        function: Function,
-        upvalues: Vec<Upvalue>,
-    },
+    Function(crate::function::Function),
     Call {
         arity: usize,
     },
@@ -99,4 +96,10 @@ pub struct Function {
     pub name: String,
     pub arity: usize,
     pub chunk: Chunk,
+}
+
+#[derive(PartialEq, Eq, Debug, Clone, Default)]
+pub struct Closure {
+    pub function: Function,
+    pub upvalues: Vec<Upvalue>,
 }

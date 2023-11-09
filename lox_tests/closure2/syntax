@@ -1,36 +1,9 @@
 FunctionDeclaration {
-    name: "outer",
-    body: Block {
-        stmt: Var {
-            name: "x",
-            initializer: Some(
-                StringLiteral(value),
-            ),
+    function: Function(
+        Id {
+            value: 9,
         },
-        stmt: FunctionDeclaration {
-            name: "middle",
-            body: Block {
-                stmt: FunctionDeclaration {
-                    name: "inner",
-                    body: Block {
-                        stmt: Print {
-                            expr: Variable(x),
-                        },
-                    },
-                },
-                stmt: Expr {
-                    expr: Call {
-                        callee: Variable(inner),
-                    },
-                },
-            },
-        },
-        stmt: Expr {
-            expr: Call {
-                callee: Variable(middle),
-            },
-        },
-    },
+    ),
 }
 Expr {
     expr: Call {
