@@ -1,7 +1,7 @@
 FunctionDeclaration {
     function: Function(
         Id {
-            value: 29,
+            value: 11,
         },
     ),
 }
@@ -16,7 +16,7 @@ Print {
 FunctionDeclaration {
     function: Function(
         Id {
-            value: 30,
+            value: 12,
         },
     ),
 }

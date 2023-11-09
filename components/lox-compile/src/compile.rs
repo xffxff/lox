@@ -26,10 +26,23 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Function {
 #[salsa::tracked]
 pub fn compile(db: &dyn crate::Db, function: lox_ir::function::Function) -> Closure {
     let stmts = function.parse(db);
-    let compiler = Rc::new(RefCell::new(Compiler::default()));
+
+    // Whether the scope depth is 0 or not determines the variable type, global or local
+    // The "main" function is a fake function because there is no function named "main" in the source code,
+    // and all the code defined in the global scope is compiled into the "main" function.
+    let scope_depth = if function.name(db).as_str(db) == "main" {
+        0
+    } else {
+        1
+    };
+    let mut compiler = Compiler::default();
+    compiler.scope_depth = scope_depth;
+    let compiler = Rc::new(RefCell::new(compiler));
+
     let mut chunk = Chunk::default();
+
     for param in function.params(db) {
-        let local = Local::new(param.as_str(db), 0);
+        let local = Local::new(param.as_str(db), scope_depth);
         compiler.borrow_mut().locals.push(local);
     }
     for stmt in stmts {
