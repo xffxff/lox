@@ -35,8 +35,10 @@ pub fn compile(db: &dyn crate::Db, function: lox_ir::function::Function) -> Comp
     } else {
         1
     };
-    let mut compiler = Compiler::default();
-    compiler.scope_depth = scope_depth;
+    let compiler = Compiler {
+        scope_depth,
+        ..Default::default()
+    };
     let compiler = Rc::new(RefCell::new(compiler));
 
     let mut chunk = Chunk::default();

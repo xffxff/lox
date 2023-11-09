@@ -14,7 +14,7 @@ pub fn execute_file(
     input_file: InputFile,
     step_inspect: Option<impl FnMut(Option<bytecode::Code>, &VM) + Clone>,
 ) -> String {
-    let main = main_function(db, input_file.clone());
+    let main = main_function(db, input_file);
     let mut vm = VM::new(main, db);
 
     while let ControlFlow::Next = vm.step(db, step_inspect.clone()) {}

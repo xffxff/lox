@@ -8,7 +8,6 @@ use lox_ir::{
     token_tree::TokenTree,
 };
 
-
 use crate::{
     token_test::{AnyTree, Identifier, Number, StringLiteral, TokenTest},
     tokens::Tokens,

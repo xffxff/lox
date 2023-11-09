@@ -1,4 +1,4 @@
-use crate::{word::Word};
+use crate::word::Word;
 
 mod op;
 pub use op::Op;
