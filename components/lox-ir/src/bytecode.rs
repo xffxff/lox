@@ -1,16 +1,4 @@
 #[derive(Clone, PartialEq, Eq, Debug)]
-pub struct Upvalue {
-    pub index: usize,
-    pub is_local: bool,
-}
-
-impl Upvalue {
-    pub fn new(index: usize, is_local: bool) -> Self {
-        Self { index, is_local }
-    }
-}
-
-#[derive(Clone, PartialEq, Eq, Debug)]
 pub enum Code {
     Return,
     Constant(eq_float::F64),
@@ -53,12 +41,6 @@ pub enum Code {
     Call {
         arity: usize,
     },
-    ReadUpvalue {
-        index: usize,
-    },
-    WriteUpvalue {
-        index: usize,
-    },
     CloseUpvalue,
 }
 
@@ -92,14 +74,8 @@ impl Chunk {
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]
-pub struct Function {
+pub struct CompiledFunction {
     pub name: String,
     pub arity: usize,
     pub chunk: Chunk,
-}
-
-#[derive(PartialEq, Eq, Debug, Clone, Default)]
-pub struct Closure {
-    pub function: Function,
-    pub upvalues: Vec<Upvalue>,
 }

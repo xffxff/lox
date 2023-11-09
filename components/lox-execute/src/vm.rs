@@ -1,7 +1,10 @@
 use std::collections::HashMap;
 
 use lox_compile::prelude::FunctionCompileExt;
-use lox_ir::bytecode::{self, Closure, Function};
+use lox_ir::{
+    bytecode::{self, CompiledFunction},
+    function::Function,
+};
 
 #[derive(Clone)]
 pub enum Value {
@@ -9,10 +12,8 @@ pub enum Value {
     Boolean(bool),
     Nil,
     String(String),
-    Closure {
-        function: Function,
-        upvalues: Vec<generational_arena::Index>,
-    },
+    Function(Function),
+    CompiledFunction(CompiledFunction),
 }
 
 impl std::fmt::Display for Value {
@@ -22,7 +23,8 @@ impl std::fmt::Display for Value {
             Value::Boolean(b) => write!(f, "{}", b),
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
-            Value::Closure { function, .. } => write!(f, "<func {}>", function.name),
+            Value::Function(func) => write!(f, "<func {:?}>", func),
+            Value::CompiledFunction(func) => write!(f, "<compiled func {}>", &func.name),
         }
     }
 }
@@ -34,7 +36,8 @@ impl std::fmt::Debug for Value {
             Value::Boolean(b) => write!(f, "{}", b),
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
-            Value::Closure { function, .. } => write!(f, "<func {}>", function.name),
+            Value::Function(func) => write!(f, "<func {:?}>", func),
+            Value::CompiledFunction(func) => write!(f, "<compiled func {}>", &func.name),
         }
     }
 }
@@ -152,11 +155,9 @@ pub(crate) enum ControlFlow {
 
 #[derive(Debug, Clone)]
 struct CallFrame {
-    function: Function,
+    function: CompiledFunction,
     ip: usize,
     fp: usize,
-
-    upvalues: Vec<generational_arena::Index>,
 }
 
 impl CallFrame {
@@ -190,20 +191,15 @@ pub struct VM {
 }
 
 impl VM {
-    pub fn new(main: Closure) -> Self {
+    pub fn new(main: CompiledFunction) -> Self {
         let frame = CallFrame {
-            function: main.function,
+            function: main.clone(),
             ip: 0,
             fp: 0,
-            upvalues: vec![],
         };
 
         let mut heap = generational_arena::Arena::new();
-        let index_of_main = heap.insert(Value::Closure {
-            function: frame.function.clone(),
-            upvalues: vec![],
-        });
-
+        let index_of_main = heap.insert(Value::CompiledFunction(main));
         // push the value of the main function to the stack to a call to the main function,
         // making it is consistent with other function calls.
         let stack = vec![index_of_main];
@@ -217,7 +213,7 @@ impl VM {
         }
     }
 
-    pub fn push_frame(&mut self, function: Function, upvalues: Vec<generational_arena::Index>) {
+    pub fn push_frame(&mut self, function: CompiledFunction) {
         let arity = function.arity;
 
         let frame = CallFrame {
@@ -237,7 +233,6 @@ impl VM {
             //
             // the the fp is `6 - 3 - 1 = 2`, -1 for the function itself.
             fp: self.stack.len() - arity - 1,
-            upvalues,
         };
         tracing::debug!("pushing frame: {:?}", frame);
         self.frames.push(frame);
@@ -425,40 +420,15 @@ impl VM {
             bytecode::Code::Call { arity } => {
                 let closure = self.peek_n_from_top(arity);
                 match closure {
-                    Value::Closure { function, upvalues } => {
-                        self.push_frame(function.clone(), upvalues.clone());
+                    Value::Function(function) => {
+                        let compiled_function = function.compile(db);
+                        self.push_frame(compiled_function);
                     }
                     _ => panic!("Cannot call {:?}", closure),
                 }
             }
             bytecode::Code::Function(function) => {
-                let closure = function.compile(db);
-                let upvalues = closure
-                    .upvalues
-                    .into_iter()
-                    .map(|upvalue| {
-                        if upvalue.is_local {
-                            frame.local_variable(&self.stack, upvalue.index)
-                        } else {
-                            frame.upvalues[upvalue.index]
-                        }
-                    })
-                    .collect();
-                let closure = Value::Closure {
-                    function: closure.function,
-                    upvalues,
-                };
-                self.push(closure);
-            }
-            bytecode::Code::ReadUpvalue { index } => {
-                let upvalue_idx = frame.upvalues[index];
-                let upvalue = &self.heap[upvalue_idx];
-                self.push(upvalue.clone())
-            }
-            bytecode::Code::WriteUpvalue { index } => {
-                let upvalue = frame.upvalues[index];
-                let value = self.peek();
-                self.heap[upvalue] = value.clone();
+                self.push(Value::Function(function));
             }
             bytecode::Code::CloseUpvalue => {
                 // FIXME: As we don't remove the value in the heap created by a function frame,

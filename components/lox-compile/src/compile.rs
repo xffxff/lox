@@ -1,14 +1,14 @@
 use std::{cell::RefCell, rc::Rc};
 
 use lox_ir::{
-    bytecode::{Chunk, Closure, Code, Function, Upvalue},
+    bytecode::{Chunk, Code, CompiledFunction},
     input_file::InputFile,
     syntax,
 };
 use lox_parse::prelude::FunctionParseExt;
 
 #[salsa::tracked]
-pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Function {
+pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> CompiledFunction {
     let stmts = lox_parse::parse_file(db, input_file);
     let mut chunk = Chunk::default();
     let compiler = Compiler::default();
@@ -16,7 +16,7 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Function {
     for stmt in stmts {
         compile_stmt(compiler.clone().clone(), db, stmt, &mut chunk);
     }
-    Function {
+    CompiledFunction {
         name: "main".to_string(),
         arity: 0,
         chunk,
@@ -24,7 +24,7 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> Function {
 }
 
 #[salsa::tracked]
-pub fn compile(db: &dyn crate::Db, function: lox_ir::function::Function) -> Closure {
+pub fn compile(db: &dyn crate::Db, function: lox_ir::function::Function) -> CompiledFunction {
     let stmts = function.parse(db);
 
     // Whether the scope depth is 0 or not determines the variable type, global or local
@@ -49,15 +49,10 @@ pub fn compile(db: &dyn crate::Db, function: lox_ir::function::Function) -> Clos
         compile_stmt(compiler.clone(), db, &stmt, &mut chunk);
     }
 
-    let func = Function {
+    CompiledFunction {
         name: function.name(db).as_str(db).to_string(),
         arity: function.params(db).len(),
         chunk,
-    };
-    let upvalues = compiler.borrow().upvalues.clone();
-    Closure {
-        function: func,
-        upvalues,
     }
 }
 
@@ -83,15 +78,6 @@ impl Local {
 struct Compiler {
     locals: Vec<Local>,
     scope_depth: usize,
-
-    // An enclosing compiler is one level above the current compiler.
-    // Each function has its own compiler, and we need to pass the enclosing compiler
-    // to the function's compiler to enable access to the variables in the enclosing scope.
-    // Specifically, the enclosing scope is necessary to support closures
-    enclosing: Option<Rc<RefCell<Compiler>>>,
-
-    // The upvalues of a function are the variables in the enclosing scope that are used in the function.
-    upvalues: Vec<Upvalue>,
 }
 
 fn compile_stmt(
@@ -374,8 +360,6 @@ fn compile_expr(
                 chunk.emit_byte(Code::ReadLocalVariable {
                     index_in_stack: index,
                 })
-            } else if let Some(index) = resolve_upvalue(compiler, name) {
-                chunk.emit_byte(Code::ReadUpvalue { index })
             } else {
                 chunk.emit_byte(Code::ReadGlobalVariable {
                     name: name.to_string(),
@@ -389,8 +373,6 @@ fn compile_expr(
                 chunk.emit_byte(Code::WriteLocalVariable {
                     index_in_stack: index,
                 })
-            } else if let Some(index) = resolve_upvalue(compiler, name_str) {
-                chunk.emit_byte(Code::WriteUpvalue { index })
             } else {
                 chunk.emit_byte(Code::WriteGlobalVariable {
                     name: name_str.to_string(),
@@ -483,36 +465,6 @@ fn resolve_local(compiler: Rc<RefCell<Compiler>>, name: &str) -> Option<usize> {
             return Some(i);
         }
     }
-    None
-}
-
-fn resolve_upvalue(compiler: Rc<RefCell<Compiler>>, name: &str) -> Option<usize> {
-    let new_index = {
-        let compiler_borrow = compiler.borrow();
-        let enclosing = compiler_borrow.enclosing.clone();
-
-        let index = if let Some(enc) = enclosing.clone() {
-            if let Some(idx) = resolve_local(enc.clone(), name) {
-                let mut enc_mut = enc.borrow_mut();
-                enc_mut.locals[idx].is_captured = true;
-                Some((idx, true))
-            } else {
-                resolve_upvalue(enc, name).map(|idx| (idx, false))
-            }
-        } else {
-            None
-        };
-
-        index
-    };
-
-    if let Some((index, is_local)) = new_index {
-        let mut compiler_mut = compiler.borrow_mut();
-        let upvalue = Upvalue::new(index, is_local);
-        compiler_mut.upvalues.push(upvalue);
-        return Some(compiler_mut.upvalues.len() - 1);
-    }
-
     None
 }
 

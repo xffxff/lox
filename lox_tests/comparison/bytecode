@@ -1,4 +1,4 @@
-Function {
+CompiledFunction {
     name: "main",
     arity: 0,
     chunk: Chunk {
