@@ -5,37 +5,11 @@ Var {
     ),
 }
 FunctionDeclaration {
-    name: "outer",
-    body: Block {
-        stmt: Var {
-            name: "x",
-            initializer: Some(
-                StringLiteral(outer),
-            ),
+    function: Function(
+        Id {
+            value: 14,
         },
-        stmt: FunctionDeclaration {
-            name: "inner",
-            body: Block {
-                stmt: Print {
-                    expr: Variable(x),
-                },
-                stmt: Expr {
-                    expr: Assign {
-                        name: "x",
-                        value: StringLiteral(inner),
-                    },
-                },
-            },
-        },
-        stmt: Expr {
-            expr: Call {
-                callee: Variable(inner),
-            },
-        },
-        stmt: Print {
-            expr: Variable(x),
-        },
-    },
+    ),
 }
 Expr {
     expr: Call {

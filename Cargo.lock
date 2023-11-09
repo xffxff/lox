@@ -416,6 +416,7 @@ dependencies = [
  "generational-arena",
  "lox-compile",
  "lox-ir",
+ "lox-lex",
  "salsa",
  "tracing",
 ]

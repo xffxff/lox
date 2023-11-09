@@ -1,10 +1,9 @@
 FunctionDeclaration {
-    name: "hello",
-    body: Block {
-        stmt: Print {
-            expr: StringLiteral(hello),
+    function: Function(
+        Id {
+            value: 11,
         },
-    },
+    ),
 }
 Expr {
     expr: Call {
@@ -15,18 +14,11 @@ Print {
     expr: StringLiteral(world),
 }
 FunctionDeclaration {
-    name: "add",
-    param: "a",
-    param: "b",
-    body: Block {
-        stmt: Return {
-            expr: BinaryOp {
-                left: Variable(a),
-                op: Plus,
-                right: Variable(b),
-            },
+    function: Function(
+        Id {
+            value: 12,
         },
-    },
+    ),
 }
 Var {
     name: "c",
