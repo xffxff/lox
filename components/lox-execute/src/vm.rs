@@ -13,7 +13,6 @@ pub enum Value {
     Nil,
     String(String),
     Function(Function),
-    CompiledFunction(CompiledFunction),
 }
 
 impl std::fmt::Display for Value {
@@ -24,7 +23,6 @@ impl std::fmt::Display for Value {
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
             Value::Function(func) => write!(f, "<func {:?}>", func),
-            Value::CompiledFunction(func) => write!(f, "<compiled func {}>", &func.name),
         }
     }
 }
@@ -37,7 +35,6 @@ impl std::fmt::Debug for Value {
             Value::Nil => write!(f, "nil"),
             Value::String(s) => write!(f, "{}", s),
             Value::Function(func) => write!(f, "<func {:?}>", func),
-            Value::CompiledFunction(func) => write!(f, "<compiled func {}>", &func.name),
         }
     }
 }
@@ -191,15 +188,16 @@ pub struct VM {
 }
 
 impl VM {
-    pub fn new(main: CompiledFunction) -> Self {
+    pub fn new(main: Function, db: &dyn crate::Db) -> Self {
+        let function = main.compile(db);
         let frame = CallFrame {
-            function: main.clone(),
+            function,
             ip: 0,
             fp: 0,
         };
 
         let mut heap = generational_arena::Arena::new();
-        let index_of_main = heap.insert(Value::CompiledFunction(main));
+        let index_of_main = heap.insert(Value::Function(main));
         // push the value of the main function to the stack to a call to the main function,
         // making it is consistent with other function calls.
         let stack = vec![index_of_main];

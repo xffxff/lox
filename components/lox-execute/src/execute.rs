@@ -1,4 +1,3 @@
-use lox_compile::prelude::FunctionCompileExt;
 use lox_ir::{bytecode, input_file::InputFile};
 
 use crate::vm::{ControlFlow, VM};
@@ -16,8 +15,7 @@ pub fn execute_file(
     step_inspect: Option<impl FnMut(Option<bytecode::Code>, &VM) + Clone>,
 ) -> String {
     let main = main_function(db, input_file.clone());
-    let function = main.compile(db);
-    let mut vm = VM::new(function);
+    let mut vm = VM::new(main, db);
 
     while let ControlFlow::Next = vm.step(db, step_inspect.clone()) {}
 
