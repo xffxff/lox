@@ -431,11 +431,6 @@ impl VM {
             bytecode::Code::Function(function) => {
                 self.push(Value::Function(function));
             }
-            bytecode::Code::CloseUpvalue => {
-                // FIXME: As we don't remove the value in the heap created by a function frame,
-                // we don't need to do anything here for closing upvalues, but this is a memory leak.
-                self.pop();
-            }
         }
 
         inspect_step(Some(instruction), self);

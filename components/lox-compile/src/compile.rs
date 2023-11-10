@@ -57,9 +57,6 @@ pub fn compile(db: &dyn crate::Db, function: lox_ir::function::Function) -> Comp
 struct Local {
     name: String,
     depth: usize,
-    // whether this local variable is captured by a closure
-    // if it is captured, then it can't be freed when leaving the scope
-    is_captured: bool,
 }
 
 impl Local {
@@ -67,7 +64,6 @@ impl Local {
         Self {
             name: name.to_string(),
             depth,
-            is_captured: false,
         }
     }
 }
@@ -434,12 +430,8 @@ impl Compiler {
     fn after_scope(&mut self, chunk: &mut Chunk) {
         self.scope_depth -= 1;
         while !self.locals.is_empty() && self.locals.last().unwrap().depth > self.scope_depth {
-            let local = self.locals.pop().unwrap();
-            if local.is_captured {
-                chunk.emit_byte(Code::CloseUpvalue);
-            } else {
-                chunk.emit_byte(Code::Pop);
-            }
+            self.locals.pop().unwrap();
+            chunk.emit_byte(Code::Pop);
         }
     }
 

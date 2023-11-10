@@ -41,7 +41,6 @@ pub enum Code {
     Call {
         arity: usize,
     },
-    CloseUpvalue,
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Default)]
