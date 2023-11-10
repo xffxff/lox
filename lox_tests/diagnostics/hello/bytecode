@@ -6,25 +6,20 @@ CompiledFunction {
             Function(
                 Function(
                     Id {
-                        value: 10,
+                        value: 6,
                     },
                 ),
             ),
             GlobalVarDeclaration {
-                name: "fib",
+                name: "hello",
             },
             ReadGlobalVariable {
-                name: "fib",
+                name: "hello",
             },
-            Constant(
-                F64(
-                    5.0,
-                ),
-            ),
             Call {
-                arity: 1,
+                arity: 0,
             },
-            Print,
+            Pop,
         ],
     },
 }

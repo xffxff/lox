@@ -1,0 +1,47 @@
+TokenTree {
+    source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
+    tokens: [
+        Alphabetic(fun),
+        Whitespace(' '),
+        Alphabetic(hello),
+        Delimiter((),
+        Tree(
+            TokenTree {
+                source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
+                tokens: [],
+            },
+        ),
+        Delimiter()),
+        Whitespace(' '),
+        Delimiter({),
+        Tree(
+            TokenTree {
+                source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
+                tokens: [
+                    Whitespace('\n'),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Whitespace(' '),
+                    Alphabetic(print),
+                    Whitespace(' '),
+                    String(hello),
+                    Whitespace('\n'),
+                ],
+            },
+        ),
+        Delimiter(}),
+        Whitespace('\n'),
+        Whitespace('\n'),
+        Alphabetic(hello),
+        Delimiter((),
+        Tree(
+            TokenTree {
+                source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
+                tokens: [],
+            },
+        ),
+        Delimiter()),
+        Semicolon,
+    ],
+}

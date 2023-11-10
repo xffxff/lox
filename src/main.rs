@@ -11,6 +11,7 @@ use lox_execute::kernel::{BufferKernel, StdoutKernel};
 use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word};
 use salsa::DebugWithDb;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
+use walkdir::WalkDir;
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug)]
 struct TestCase {
@@ -62,11 +63,9 @@ impl TestCase {
         let dir = TestCase::absolute_path(dir);
 
         let mut res = Vec::new();
-        let read_dir = fs::read_dir(&dir)
-            .unwrap_or_else(|err| panic!("can't `read_dir` {}: {err}", &dir.display()));
-        for file in read_dir {
-            let file = file.unwrap();
-            let path = file.path();
+        for entry in WalkDir::new(&dir) {
+            let entry = entry.unwrap();
+            let path = entry.path();
             if path.extension().unwrap_or_default() == "lox" {
                 let lox = path;
                 res.push(TestCase::new(&lox));

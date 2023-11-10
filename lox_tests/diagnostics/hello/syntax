@@ -1,13 +1,12 @@
 FunctionDeclaration {
     function: Function(
         Id {
-            value: 10,
+            value: 6,
         },
     ),
 }
-Print {
+Expr {
     expr: Call {
-        callee: Variable(fib),
-        arg: NumberLiteral(5),
+        callee: Variable(hello),
     },
 }
