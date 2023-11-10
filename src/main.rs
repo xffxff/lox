@@ -7,6 +7,7 @@ use clap::{Parser, Subcommand};
 use expect_test::expect_file;
 use lox_db::Database;
 use lox_error_format::FormatOptions;
+use lox_execute::kernel::{BufferKernel, StdoutKernel};
 use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word};
 use salsa::DebugWithDb;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
@@ -144,8 +145,9 @@ impl TestCase {
         // expect_file![self.execute].assert_eq(&buf.lock().unwrap());
 
         // test stdout
-        let output = lox_execute::execute_file(db, input_file, None::<fn(_, &lox_execute::VM)>);
-        expect_file![self.stdout].assert_eq(&output);
+        let mut kernel = BufferKernel::new();
+        lox_execute::execute_file(db, input_file, &mut kernel, None::<fn(_, &lox_execute::VM)>);
+        expect_file![self.stdout].assert_eq(kernel.buffer());
 
         println!("ok");
     }
@@ -212,6 +214,7 @@ fn main() {
             lox_compile::compile_file(&db, input_file);
             let diagnostics =
                 lox_compile::compile_file::accumulated::<Diagnostics>(&db, input_file);
+            dbg!(&diagnostics);
             if !diagnostics.is_empty() {
                 for diagnostic in &diagnostics {
                     lox_error_format::print_diagnostic(&db, diagnostic).unwrap();
@@ -221,9 +224,12 @@ fn main() {
                     );
                 }
             } else {
-                let output =
-                    lox_execute::execute_file(&db, input_file, None::<fn(_, &lox_execute::VM)>);
-                println!("{}", output);
+                lox_execute::execute_file(
+                    &db,
+                    input_file,
+                    &mut StdoutKernel {},
+                    None::<fn(_, &lox_execute::VM)>,
+                );
             }
         }
     }

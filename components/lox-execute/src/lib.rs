@@ -1,6 +1,7 @@
 #![feature(trait_upcasting)]
 
 pub mod execute;
+pub mod kernel;
 pub mod vm;
 
 pub use execute::execute_file;

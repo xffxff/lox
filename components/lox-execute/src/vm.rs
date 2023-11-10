@@ -6,6 +6,8 @@ use lox_ir::{
     function::Function,
 };
 
+use crate::kernel::Kernel;
+
 #[derive(Clone)]
 pub enum Value {
     Number(f64),
@@ -182,9 +184,6 @@ pub struct VM {
 
     // global variables
     globals: HashMap<String, Value>,
-
-    // output buffer
-    pub output: String,
 }
 
 impl VM {
@@ -207,7 +206,6 @@ impl VM {
             heap,
             stack,
             globals: HashMap::new(),
-            output: String::new(),
         }
     }
 
@@ -262,7 +260,12 @@ impl VM {
 
     // `step_inspect` is a callback that is called after each instruction is executed.
     //  It is useful for debugging.
-    pub(crate) fn step<F>(&mut self, db: &dyn crate::Db, mut step_inspect: Option<F>) -> ControlFlow
+    pub(crate) fn step<F>(
+        &mut self,
+        db: &dyn crate::Db,
+        kernel: &mut impl Kernel,
+        mut step_inspect: Option<F>,
+    ) -> ControlFlow
     where
         F: FnMut(Option<bytecode::Code>, &VM),
     {
@@ -376,7 +379,7 @@ impl VM {
             }
             bytecode::Code::Print => {
                 let value = self.pop();
-                self.print(&format!("{}", value));
+                kernel.print(&format!("{}", value));
             }
             bytecode::Code::GlobalVarDeclaration { name } => {
                 let value = self.pop();
@@ -461,11 +464,6 @@ impl VM {
     {
         let index = self.heap.insert(value.into());
         self.stack.push(index);
-    }
-
-    fn print(&mut self, s: &str) {
-        self.output.push_str(s);
-        self.output.push('\n');
     }
 
     // Returns the values in the stack in the order they were pushed.

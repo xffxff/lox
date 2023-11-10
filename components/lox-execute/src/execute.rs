@@ -1,6 +1,9 @@
 use lox_ir::{bytecode, input_file::InputFile};
 
-use crate::vm::{ControlFlow, VM};
+use crate::{
+    kernel::Kernel,
+    vm::{ControlFlow, VM},
+};
 
 #[salsa::tracked]
 pub fn main_function(db: &dyn crate::Db, input_file: InputFile) -> lox_ir::function::Function {
@@ -12,12 +15,11 @@ pub fn main_function(db: &dyn crate::Db, input_file: InputFile) -> lox_ir::funct
 pub fn execute_file(
     db: &impl crate::Db,
     input_file: InputFile,
+    kernel: &mut impl Kernel,
     step_inspect: Option<impl FnMut(Option<bytecode::Code>, &VM) + Clone>,
-) -> String {
+) {
     let main = main_function(db, input_file);
     let mut vm = VM::new(main, db);
 
-    while let ControlFlow::Next = vm.step(db, step_inspect.clone()) {}
-
-    vm.output
+    while let ControlFlow::Next = vm.step(db, kernel, step_inspect.clone()) {}
 }
