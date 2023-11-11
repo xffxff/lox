@@ -416,6 +416,7 @@ version = "0.1.0"
 dependencies = [
  "generational-arena",
  "lox-compile",
+ "lox-error-format",
  "lox-ir",
  "lox-lex",
  "salsa",

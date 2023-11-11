@@ -213,14 +213,9 @@ fn main() {
             lox_compile::compile_file(&db, input_file);
             let diagnostics =
                 lox_compile::compile_file::accumulated::<Diagnostics>(&db, input_file);
-            dbg!(&diagnostics);
             if !diagnostics.is_empty() {
                 for diagnostic in &diagnostics {
                     lox_error_format::print_diagnostic(&db, diagnostic).unwrap();
-                    println!(
-                        "{}",
-                        lox_error_format::format_diagnostics(&db, &diagnostics).unwrap()
-                    );
                 }
             } else {
                 lox_execute::execute_file(

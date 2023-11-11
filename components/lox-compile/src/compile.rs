@@ -21,7 +21,7 @@ pub fn compile_file(db: &dyn crate::Db, input_file: InputFile) -> CompiledFuncti
 }
 
 #[salsa::tracked]
-pub fn compile(db: &dyn crate::Db, function: lox_ir::function::Function) -> CompiledFunction {
+pub fn compile_fn(db: &dyn crate::Db, function: lox_ir::function::Function) -> CompiledFunction {
     let stmts = function.parse(db);
 
     // Whether the scope depth is 0 or not determines the variable type, global or local

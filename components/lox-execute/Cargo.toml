@@ -10,5 +10,6 @@ salsa = { path="../salsa" }
 lox-ir = { path="../lox-ir" }
 lox-lex = { path="../lox-lex" }
 lox-compile = { path="../lox-compile" }
+lox-error-format = { path="../lox-error-format" }
 tracing = "0.1.37"
 generational-arena = "0.2.9"

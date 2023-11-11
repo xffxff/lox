@@ -1,0 +1,8 @@
+Error: expected `;`
+   ╭─[/home/zhoufan/workspace/rust/lox/lox_tests/diagnostics/error_in_function.lox:2:5]
+   │
+ 2 │     print "hello"
+   │     ┬  
+   │     ╰── here
+───╯
+

@@ -1,8 +1,9 @@
 use std::collections::HashMap;
 
-use lox_compile::prelude::FunctionCompileExt;
+use lox_compile::compile_fn;
 use lox_ir::{
     bytecode::{self, CompiledFunction},
+    diagnostic::Diagnostics,
     function::Function,
 };
 
@@ -188,7 +189,7 @@ pub struct VM {
 
 impl VM {
     pub fn new(main: Function, db: &dyn crate::Db) -> Self {
-        let function = main.compile(db);
+        let function = compile_fn(db, main);
         let frame = CallFrame {
             function,
             ip: 0,
@@ -422,8 +423,20 @@ impl VM {
                 let closure = self.peek_n_from_top(arity);
                 match closure {
                     Value::Function(function) => {
-                        let compiled_function = function.compile(db);
-                        self.push_frame(compiled_function);
+                        let compiled_function = compile_fn(db, function.clone());
+                        let diagnostics =
+                            compile_fn::accumulated::<Diagnostics>(db, function.clone());
+                        if diagnostics.is_empty() {
+                            self.push_frame(compiled_function);
+                        } else {
+                            let output = lox_error_format::format_diagnostics_with_options(
+                                db,
+                                &diagnostics,
+                                lox_error_format::FormatOptions::no_color(),
+                            )
+                            .unwrap();
+                            kernel.print(&output);
+                        }
                     }
                     _ => panic!("Cannot call {:?}", closure),
                 }
