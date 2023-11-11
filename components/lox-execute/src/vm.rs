@@ -424,17 +424,12 @@ impl VM {
                 match closure {
                     Value::Function(function) => {
                         let compiled_function = compile_fn(db, *function);
-                        let diagnostics =
-                            compile_fn::accumulated::<Diagnostics>(db, *function);
+                        let diagnostics = compile_fn::accumulated::<Diagnostics>(db, *function);
                         if diagnostics.is_empty() {
                             self.push_frame(compiled_function);
                         } else {
-                            let output = lox_error_format::format_diagnostics_with_options(
-                                db,
-                                &diagnostics,
-                                lox_error_format::FormatOptions::no_color(),
-                            )
-                            .unwrap();
+                            let output =
+                                lox_error_format::format_diagnostics(db, &diagnostics).unwrap();
                             kernel.print(&output);
                         }
                     }
