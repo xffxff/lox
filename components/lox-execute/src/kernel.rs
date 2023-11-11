@@ -7,6 +7,12 @@ pub struct BufferKernel {
     buffer: String,
 }
 
+impl Default for BufferKernel {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl BufferKernel {
     pub fn new() -> Self {
         Self {

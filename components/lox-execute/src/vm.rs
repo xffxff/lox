@@ -423,9 +423,9 @@ impl VM {
                 let closure = self.peek_n_from_top(arity);
                 match closure {
                     Value::Function(function) => {
-                        let compiled_function = compile_fn(db, function.clone());
+                        let compiled_function = compile_fn(db, *function);
                         let diagnostics =
-                            compile_fn::accumulated::<Diagnostics>(db, function.clone());
+                            compile_fn::accumulated::<Diagnostics>(db, *function);
                         if diagnostics.is_empty() {
                             self.push_frame(compiled_function);
                         } else {

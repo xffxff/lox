@@ -63,12 +63,12 @@ impl TestCase {
         let dir = TestCase::absolute_path(dir);
 
         let mut res = Vec::new();
-        for entry in WalkDir::new(&dir) {
+        for entry in WalkDir::new(dir) {
             let entry = entry.unwrap();
             let path = entry.path();
             if path.extension().unwrap_or_default() == "lox" {
                 let lox = path;
-                res.push(TestCase::new(&lox));
+                res.push(TestCase::new(lox));
             }
         }
         res.sort();
