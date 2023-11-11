@@ -10,7 +10,7 @@ use lox_error_format::FormatOptions;
 use lox_execute::kernel::{BufferKernel, StdoutKernel};
 use lox_ir::{diagnostic::Diagnostics, input_file::InputFile, word::Word};
 use salsa::DebugWithDb;
-use tracing_subscriber::{fmt, prelude::*, EnvFilter};
+use tracing_subscriber::{filter::LevelFilter, fmt, prelude::*, EnvFilter};
 use walkdir::WalkDir;
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug)]
@@ -181,7 +181,11 @@ enum Commands {
 fn main() {
     tracing_subscriber::registry()
         .with(fmt::layer())
-        .with(EnvFilter::from_default_env())
+        .with(
+            EnvFilter::builder()
+                .with_default_directive(LevelFilter::OFF.into())
+                .from_env_lossy(),
+        )
         .init();
 
     let cli = Cli::parse();
