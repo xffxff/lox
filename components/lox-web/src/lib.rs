@@ -1,4 +1,4 @@
-use lox_execute::kernel::{self, BufferKernel};
+use lox_execute::kernel::BufferKernel;
 use lox_ir::{diagnostic::Diagnostics, input_file::InputFile};
 use salsa::DebugWithDb;
 use wasm_bindgen::prelude::*;
