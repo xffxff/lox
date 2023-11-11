@@ -1,3 +1,4 @@
+use lox_execute::kernel::{self, BufferKernel};
 use lox_ir::{diagnostic::Diagnostics, input_file::InputFile};
 use salsa::DebugWithDb;
 use wasm_bindgen::prelude::*;
@@ -37,7 +38,14 @@ impl Compiler {
         if !diagnostics.is_empty() {
             lox_error_format::format_diagnostics(&self.db, &diagnostics).unwrap()
         } else {
-            lox_execute::execute_file(&self.db, self.input_file, None::<fn(_, &lox_execute::VM)>)
+            let mut kernel = BufferKernel::new();
+            lox_execute::execute_file(
+                &self.db,
+                self.input_file,
+                &mut kernel,
+                None::<fn(_, &lox_execute::VM)>,
+            );
+            kernel.take_buffer()
         }
     }
 

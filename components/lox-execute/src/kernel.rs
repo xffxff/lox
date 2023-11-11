@@ -17,6 +17,10 @@ impl BufferKernel {
     pub fn buffer(&self) -> &str {
         &self.buffer
     }
+
+    pub fn take_buffer(self) -> String {
+        self.buffer
+    }
 }
 
 impl Kernel for BufferKernel {
