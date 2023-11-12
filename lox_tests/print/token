@@ -1,5 +1,13 @@
 TokenTree {
     source text: "print 1 + 2;",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            11,
+        ),
+    },
     tokens: [
         Alphabetic(print),
         Whitespace(' '),

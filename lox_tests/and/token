@@ -1,5 +1,13 @@
 TokenTree {
     source text: "false and true;",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            14,
+        ),
+    },
     tokens: [
         Alphabetic(false),
         Whitespace(' '),

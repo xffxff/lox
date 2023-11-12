@@ -1,10 +1,26 @@
 TokenTree {
     source text: "{\n    var a = 1;\n    {\n        var a = 2;\n        print a;\n    }\n    print a;\n}",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            0,
+        ),
+    },
     tokens: [
         Delimiter({),
         Tree(
             TokenTree {
                 source text: "{\n    var a = 1;\n    {\n        var a = 2;\n        print a;\n    }\n    print a;\n}",
+                span: Span {
+                    start: Offset(
+                        1,
+                    ),
+                    end: Offset(
+                        78,
+                    ),
+                },
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -28,6 +44,14 @@ TokenTree {
                     Tree(
                         TokenTree {
                             source text: "{\n    var a = 1;\n    {\n        var a = 2;\n        print a;\n    }\n    print a;\n}",
+                            span: Span {
+                                start: Offset(
+                                    22,
+                                ),
+                                end: Offset(
+                                    63,
+                                ),
+                            },
                             tokens: [
                                 Whitespace('\n'),
                                 Whitespace(' '),

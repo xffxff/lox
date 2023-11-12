@@ -1,5 +1,13 @@
 TokenTree {
     source text: "var a = 0;\nwhile (a < 5) {\n    print \"hello\";\n    a = a + 1;\n}",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            25,
+        ),
+    },
     tokens: [
         Alphabetic(var),
         Whitespace(' '),
@@ -16,6 +24,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "var a = 0;\nwhile (a < 5) {\n    print \"hello\";\n    a = a + 1;\n}",
+                span: Span {
+                    start: Offset(
+                        18,
+                    ),
+                    end: Offset(
+                        23,
+                    ),
+                },
                 tokens: [
                     Alphabetic(a),
                     Whitespace(' '),
@@ -31,6 +47,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "var a = 0;\nwhile (a < 5) {\n    print \"hello\";\n    a = a + 1;\n}",
+                span: Span {
+                    start: Offset(
+                        26,
+                    ),
+                    end: Offset(
+                        61,
+                    ),
+                },
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),

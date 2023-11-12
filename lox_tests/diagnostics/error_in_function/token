@@ -18,7 +18,7 @@ TokenTree {
                 source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
                 span: Span {
                     start: Offset(
-                        0,
+                        10,
                     ),
                     end: Offset(
                         10,
@@ -35,7 +35,7 @@ TokenTree {
                 source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
                 span: Span {
                     start: Offset(
-                        0,
+                        13,
                     ),
                     end: Offset(
                         32,
@@ -64,7 +64,7 @@ TokenTree {
                 source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
                 span: Span {
                     start: Offset(
-                        0,
+                        41,
                     ),
                     end: Offset(
                         41,

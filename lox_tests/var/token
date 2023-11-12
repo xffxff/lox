@@ -1,5 +1,13 @@
 TokenTree {
     source text: "var a = 1;\nvar b;\nprint a;\nvar str1 = \"hello\";\nvar str2 = \"world\";\nprint str1 + str2;",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            84,
+        ),
+    },
     tokens: [
         Alphabetic(var),
         Whitespace(' '),
