@@ -22,6 +22,7 @@ impl<'db> DebugWithDb<dyn crate::Db + 'db> for TokenTree {
     ) -> std::fmt::Result {
         f.debug_struct("TokenTree")
             .field("source text", &self.input_file(db).source_text(db))
+            .field("span", &self.span(db))
             .field("tokens", &self.tokens(db).debug(db))
             .finish()
     }

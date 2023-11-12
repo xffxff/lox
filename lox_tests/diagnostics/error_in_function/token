@@ -1,5 +1,13 @@
 TokenTree {
     source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            42,
+        ),
+    },
     tokens: [
         Alphabetic(fun),
         Whitespace(' '),
@@ -8,6 +16,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
+                span: Span {
+                    start: Offset(
+                        0,
+                    ),
+                    end: Offset(
+                        10,
+                    ),
+                },
                 tokens: [],
             },
         ),
@@ -17,6 +33,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
+                span: Span {
+                    start: Offset(
+                        0,
+                    ),
+                    end: Offset(
+                        32,
+                    ),
+                },
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -38,6 +62,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun hello() {\n    print \"hello\"\n}\n\nhello();",
+                span: Span {
+                    start: Offset(
+                        0,
+                    ),
+                    end: Offset(
+                        41,
+                    ),
+                },
                 tokens: [],
             },
         ),

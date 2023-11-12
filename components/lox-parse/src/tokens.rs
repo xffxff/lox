@@ -1,4 +1,5 @@
 use lox_ir::{span::Span, token::Token, token_tree::TokenTree};
+use salsa::DebugWithDb;
 
 #[derive(Copy, Clone)]
 pub(crate) struct Tokens<'me> {
@@ -11,7 +12,7 @@ pub(crate) struct Tokens<'me> {
     last_not_skipped_span: Span,
 
     skipped: Skipped,
-    tokens: &'me [Token],
+    pub(crate) tokens: &'me [Token],
 }
 
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Debug)]
@@ -24,6 +25,7 @@ enum Skipped {
 impl<'me> Tokens<'me> {
     pub(crate) fn new(db: &'me dyn crate::Db, token_tree: TokenTree) -> Self {
         let start_span = token_tree.span(db).span_at_start();
+        tracing::info!("start_span={:?}", start_span);
         let tokens = token_tree.tokens(db);
         let mut this = Tokens {
             db,
@@ -84,12 +86,17 @@ impl<'me> Tokens<'me> {
     }
 
     /// Advance by one token and return the span + token just consumed (if any).
+    #[tracing::instrument(skip(self))]
     pub(crate) fn consume(&mut self) -> Option<Token> {
         let token = self.next_token(false)?;
 
         self.skip_tokens();
 
-        tracing::debug!("consumed {token:?}, lookahead={:?}", self.peek());
+        tracing::debug!(
+            "consumed {:?}, lookahead={:?}",
+            token.debug(self.db),
+            self.peek()
+        );
         Some(token)
     }
 
