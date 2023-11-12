@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use lox_compile::compile_fn;
+use lox_error_format::FormatOptions;
 use lox_ir::{
     bytecode::{self, CompiledFunction},
     diagnostic::Diagnostics,
@@ -183,12 +184,14 @@ pub struct VM {
 
     pub stack: Vec<generational_arena::Index>,
 
+    diagnostic_with_color: bool,
+
     // global variables
     globals: HashMap<String, Value>,
 }
 
 impl VM {
-    pub fn new(main: Function, db: &dyn crate::Db) -> Self {
+    pub fn new(db: &dyn crate::Db, main: Function, diagnostic_with_color: bool) -> Self {
         let function = compile_fn(db, main);
         let frame = CallFrame {
             function,
@@ -206,6 +209,7 @@ impl VM {
             frames: vec![frame],
             heap,
             stack,
+            diagnostic_with_color,
             globals: HashMap::new(),
         }
     }
@@ -428,8 +432,14 @@ impl VM {
                         if diagnostics.is_empty() {
                             self.push_frame(compiled_function);
                         } else {
-                            let output =
-                                lox_error_format::format_diagnostics(db, &diagnostics).unwrap();
+                            let output = lox_error_format::format_diagnostics_with_options(
+                                db,
+                                &diagnostics,
+                                FormatOptions {
+                                    with_color: self.diagnostic_with_color,
+                                },
+                            )
+                            .unwrap();
                             kernel.print(&output);
                         }
                     }
