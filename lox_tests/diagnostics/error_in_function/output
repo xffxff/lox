@@ -1,5 +1,5 @@
 Error: expected `;`
-   ╭─[/home/zhoufan/workspace/rust/lox/lox_tests/diagnostics/error_in_function.lox:2:18]
+   ╭─[lox_tests/diagnostics/error_in_function.lox:2:18]
    │
  2 │     print "hello"
    │                  ┬  
