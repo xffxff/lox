@@ -81,11 +81,18 @@ impl TestCase {
         }
     }
 
+    // relative path relative to crate root
+    fn relative_path(path: &Path) -> PathBuf {
+        let crate_root_dir = Path::new(env!("CARGO_MANIFEST_DIR"));
+        path.strip_prefix(crate_root_dir).unwrap().to_owned()
+    }
+
     fn test(self, db: &Database) {
         print!("test {} ... ", self.lox.display());
+        let relative_path = TestCase::relative_path(&self.lox);
         let input_file = InputFile::new(
             db,
-            Word::intern(db, self.lox.to_str().unwrap()),
+            Word::intern(db, relative_path.to_str().unwrap()),
             self.text.clone(),
         );
 
