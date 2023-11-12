@@ -1,5 +1,13 @@
 TokenTree {
     source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            94,
+        ),
+    },
     tokens: [
         Alphabetic(fun),
         Whitespace(' '),
@@ -8,6 +16,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                span: Span {
+                    start: Offset(
+                        8,
+                    ),
+                    end: Offset(
+                        9,
+                    ),
+                },
                 tokens: [
                     Alphabetic(n),
                 ],
@@ -19,6 +35,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                span: Span {
+                    start: Offset(
+                        12,
+                    ),
+                    end: Offset(
+                        79,
+                    ),
+                },
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -31,6 +55,14 @@ TokenTree {
                     Tree(
                         TokenTree {
                             source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                            span: Span {
+                                start: Offset(
+                                    21,
+                                ),
+                                end: Offset(
+                                    27,
+                                ),
+                            },
                             tokens: [
                                 Alphabetic(n),
                                 Whitespace(' '),
@@ -47,6 +79,14 @@ TokenTree {
                     Tree(
                         TokenTree {
                             source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                            span: Span {
+                                start: Offset(
+                                    30,
+                                ),
+                                end: Offset(
+                                    41,
+                                ),
+                            },
                             tokens: [
                                 Whitespace(' '),
                                 Alphabetic(return),
@@ -70,6 +110,14 @@ TokenTree {
                     Tree(
                         TokenTree {
                             source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                            span: Span {
+                                start: Offset(
+                                    58,
+                                ),
+                                end: Offset(
+                                    63,
+                                ),
+                            },
                             tokens: [
                                 Alphabetic(n),
                                 Whitespace(' '),
@@ -88,6 +136,14 @@ TokenTree {
                     Tree(
                         TokenTree {
                             source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                            span: Span {
+                                start: Offset(
+                                    71,
+                                ),
+                                end: Offset(
+                                    76,
+                                ),
+                            },
                             tokens: [
                                 Alphabetic(n),
                                 Whitespace(' '),
@@ -113,6 +169,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun fib(n) {\n    if (n <= 1) { return n; }\n    return fib(n - 1) + fib(n - 2);\n}\n\nprint fib(5);",
+                span: Span {
+                    start: Offset(
+                        92,
+                    ),
+                    end: Offset(
+                        93,
+                    ),
+                },
                 tokens: [
                     Number(5),
                 ],

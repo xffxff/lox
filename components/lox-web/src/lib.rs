@@ -43,6 +43,7 @@ impl Compiler {
                 &self.db,
                 self.input_file,
                 &mut kernel,
+                true,
                 None::<fn(_, &lox_execute::VM)>,
             );
             kernel.take_buffer()

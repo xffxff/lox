@@ -1,5 +1,13 @@
 TokenTree {
     source text: "for (var i = 0; i < 10; i = i + 1) print i;",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            42,
+        ),
+    },
     tokens: [
         Alphabetic(for),
         Whitespace(' '),
@@ -7,6 +15,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "for (var i = 0; i < 10; i = i + 1) print i;",
+                span: Span {
+                    start: Offset(
+                        5,
+                    ),
+                    end: Offset(
+                        33,
+                    ),
+                },
                 tokens: [
                     Alphabetic(var),
                     Whitespace(' '),

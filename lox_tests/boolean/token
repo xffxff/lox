@@ -1,5 +1,13 @@
 TokenTree {
     source text: "true;\nfalse;\n!true;\n!false;",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            26,
+        ),
+    },
     tokens: [
         Alphabetic(true),
         Semicolon,

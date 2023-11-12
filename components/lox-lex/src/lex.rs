@@ -46,8 +46,10 @@ where
         };
 
         let mut end_pos = 0;
+        let mut start_pos = self.input_file.source_text(self.db).len();
         while let Some((pos, ch)) = self.chars.peek().cloned() {
             end_pos = end_pos.max(pos);
+            start_pos = start_pos.min(pos);
 
             if Some(ch) == end_ch {
                 break;
@@ -104,7 +106,12 @@ where
             }
         }
 
-        TokenTree::new(self.db, self.input_file, Span::from(0u32, end_pos), tokens)
+        TokenTree::new(
+            self.db,
+            self.input_file,
+            Span::from(start_pos, end_pos),
+            tokens,
+        )
     }
 
     /// Accumulate `ch0` and following characters while `matches` returns true

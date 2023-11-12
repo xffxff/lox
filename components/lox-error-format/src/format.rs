@@ -8,7 +8,7 @@ use lox_ir::input_file::InputFile;
 pub struct FormatOptions {
     /// Whether or not errors should use rich formatting with colors. This is generally turned on,
     /// except in tests, where the escape codes obscure the error messages.
-    with_color: bool,
+    pub with_color: bool,
 }
 
 impl FormatOptions {

@@ -1,5 +1,13 @@
 TokenTree {
     source text: "if (true) {\n    print \"true\";\n} else {\n    print \"false\";\n}",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            37,
+        ),
+    },
     tokens: [
         Alphabetic(if),
         Whitespace(' '),
@@ -7,6 +15,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "if (true) {\n    print \"true\";\n} else {\n    print \"false\";\n}",
+                span: Span {
+                    start: Offset(
+                        4,
+                    ),
+                    end: Offset(
+                        8,
+                    ),
+                },
                 tokens: [
                     Alphabetic(true),
                 ],
@@ -18,6 +34,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "if (true) {\n    print \"true\";\n} else {\n    print \"false\";\n}",
+                span: Span {
+                    start: Offset(
+                        11,
+                    ),
+                    end: Offset(
+                        30,
+                    ),
+                },
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -40,6 +64,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "if (true) {\n    print \"true\";\n} else {\n    print \"false\";\n}",
+                span: Span {
+                    start: Offset(
+                        38,
+                    ),
+                    end: Offset(
+                        58,
+                    ),
+                },
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),

@@ -30,6 +30,7 @@ impl<'me> Parser<'me> {
     }
 
     pub(crate) fn parse(&mut self) -> Vec<Stmt> {
+        tracing::debug!("parsing {:?}", self.tokens.tokens);
         let mut stmts = vec![];
         while let Some(stmt) = self.declaration() {
             stmts.push(stmt);
@@ -42,6 +43,7 @@ impl<'me> Parser<'me> {
         stmts
     }
 
+    #[tracing::instrument(skip(self))]
     fn declaration(&mut self) -> Option<Stmt> {
         if self.eat(Keyword::Var).is_some() {
             self.var_declaration()
@@ -52,6 +54,7 @@ impl<'me> Parser<'me> {
         }
     }
 
+    #[tracing::instrument(skip(self))]
     fn func_declaration(&mut self) -> Option<Stmt> {
         let name = self.eat(Identifier)?.1;
         let parameters_tree = self.delimited('(')?.1;
@@ -71,6 +74,7 @@ impl<'me> Parser<'me> {
     }
 
     // "var" IDENTIFIER ( "=" expression )? ";" ;
+    #[tracing::instrument(skip(self))]
     fn var_declaration(&mut self) -> Option<Stmt> {
         if let Some((_, id)) = self.eat(Identifier) {
             let initializer = if self.eat_op(Op::Equal).is_some() {
@@ -90,6 +94,7 @@ impl<'me> Parser<'me> {
         }
     }
 
+    #[tracing::instrument(skip(self))]
     fn stmt(&mut self) -> Option<Stmt> {
         if self.eat(Keyword::Print).is_some() {
             return self.print_stmt();
@@ -110,6 +115,7 @@ impl<'me> Parser<'me> {
         self.expr_stmt()
     }
 
+    #[tracing::instrument(skip(self))]
     fn return_stmt(&mut self) -> Option<Stmt> {
         if self.eat(Token::Semicolon).is_some() {
             return Some(Stmt::Return(None));
@@ -123,6 +129,7 @@ impl<'me> Parser<'me> {
     // forStmt        → "for" "(" ( varDecl | exprStmt | ";" )
     //              expression? ";"
     //              expression? ")" statement ;
+    #[tracing::instrument(skip(self))]
     fn for_stmt(&mut self) -> Option<Stmt> {
         let (_, token_tree) = self.delimited('(')?;
         let mut sub_parser = Parser::new(self.db, token_tree);
@@ -162,6 +169,7 @@ impl<'me> Parser<'me> {
         })
     }
 
+    #[tracing::instrument(skip(self))]
     fn while_stmt(&mut self) -> Option<Stmt> {
         let (_, token_tree) = self.delimited('(')?;
         let condition = Parser::new(self.db, token_tree).parse_expr()?;
@@ -172,6 +180,7 @@ impl<'me> Parser<'me> {
         })
     }
 
+    #[tracing::instrument(skip(self))]
     fn if_stmt(&mut self) -> Option<Stmt> {
         let (_, token_tree) = self.delimited('(')?;
         let condition = Parser::new(self.db, token_tree).parse_expr()?;
@@ -189,6 +198,7 @@ impl<'me> Parser<'me> {
     }
 
     //  "print" expression ";" ;
+    #[tracing::instrument(skip(self))]
     fn print_stmt(&mut self) -> Option<Stmt> {
         let expr = self.parse_expr()?;
         self.eat(Token::Semicolon)
@@ -196,6 +206,7 @@ impl<'me> Parser<'me> {
         Some(Stmt::Print(expr))
     }
 
+    #[tracing::instrument(skip(self))]
     fn expr_stmt(&mut self) -> Option<Stmt> {
         let expr = self.parse_expr()?;
         self.eat(Token::Semicolon)
@@ -219,6 +230,7 @@ impl<'me> Parser<'me> {
 
     // assignment     -> IDENTIFIER "=" assignment | logic_or ;
     // assignment is not a statement, it is an expression
+    #[tracing::instrument(skip(self))]
     fn assignment(&mut self) -> Option<Expr> {
         let expr = self.logic_or()?;
         if self.eat_op(Op::Equal).is_some() {
@@ -238,6 +250,7 @@ impl<'me> Parser<'me> {
     }
 
     // logic_or       -> logic_and ( "or" logic_and )* ;
+    #[tracing::instrument(skip(self))]
     fn logic_or(&mut self) -> Option<Expr> {
         let mut left = self.logic_and()?;
 
@@ -253,6 +266,7 @@ impl<'me> Parser<'me> {
     }
 
     // logic_and       -> equality ( "and" equality )* ;
+    #[tracing::instrument(skip(self))]
     fn logic_and(&mut self) -> Option<Expr> {
         let mut left = self.equality()?;
 
@@ -267,6 +281,7 @@ impl<'me> Parser<'me> {
         Some(left)
     }
 
+    #[tracing::instrument(skip(self))]
     fn equality(&mut self) -> Option<Expr> {
         let mut left = self.comparison()?;
 
@@ -284,6 +299,7 @@ impl<'me> Parser<'me> {
         Some(left)
     }
 
+    #[tracing::instrument(skip(self))]
     fn comparison(&mut self) -> Option<Expr> {
         let mut left = self.term()?;
 
@@ -301,6 +317,7 @@ impl<'me> Parser<'me> {
         Some(left)
     }
 
+    #[tracing::instrument(skip(self))]
     fn term(&mut self) -> Option<Expr> {
         let mut left = self.factor()?;
 
@@ -316,6 +333,7 @@ impl<'me> Parser<'me> {
         Some(left)
     }
 
+    #[tracing::instrument(skip(self))]
     fn factor(&mut self) -> Option<Expr> {
         let mut left = self.unary()?;
 
@@ -347,6 +365,7 @@ impl<'me> Parser<'me> {
         None
     }
 
+    #[tracing::instrument(skip(self))]
     fn unary(&mut self) -> Option<Expr> {
         for op in &[Op::Minus, Op::Bang] {
             if self.eat_op(*op).is_some() {
@@ -357,6 +376,7 @@ impl<'me> Parser<'me> {
         self.call()
     }
 
+    #[tracing::instrument(skip(self))]
     fn call(&mut self) -> Option<Expr> {
         let mut expr = self.primary()?;
         loop {
@@ -382,6 +402,7 @@ impl<'me> Parser<'me> {
         Some(expr)
     }
 
+    #[tracing::instrument(skip(self))]
     fn primary(&mut self) -> Option<Expr> {
         if self.eat(Keyword::True).is_some() {
             Some(Expr::BooleanLiteral(true))
@@ -415,9 +436,11 @@ impl<'me> Parser<'me> {
     /// returns the span + narrowed view. Otherwise returns None
     /// and has no effect. Returns None if there is no pending token.
     fn eat<TT: TokenTest>(&mut self, test: TT) -> Option<(Span, TT::Narrow)> {
+        tracing::debug!("trying to eat {:?}", test);
         let span = self.tokens.peek_span();
         let narrow = self.peek(test)?;
         self.tokens.consume();
+        tracing::debug!("ate {:?}", narrow);
         Some((span, narrow))
     }
 
@@ -469,6 +492,7 @@ impl<'me> Parser<'me> {
 
     /// If the next tokens match the given operator, consume it and
     /// return.
+    #[tracing::instrument(skip(self))]
     fn eat_op(&mut self, op: Op) -> Option<Span> {
         let (span, tokens) = self.test_op(op)?;
         self.tokens = tokens;

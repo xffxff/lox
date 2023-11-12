@@ -1,5 +1,13 @@
 TokenTree {
     source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nvar c = add(1, 2);\nprint c;",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            124,
+        ),
+    },
     tokens: [
         Alphabetic(fun),
         Whitespace(' '),
@@ -8,6 +16,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nvar c = add(1, 2);\nprint c;",
+                span: Span {
+                    start: Offset(
+                        10,
+                    ),
+                    end: Offset(
+                        10,
+                    ),
+                },
                 tokens: [],
             },
         ),
@@ -17,6 +33,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nvar c = add(1, 2);\nprint c;",
+                span: Span {
+                    start: Offset(
+                        13,
+                    ),
+                    end: Offset(
+                        33,
+                    ),
+                },
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -39,6 +63,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nvar c = add(1, 2);\nprint c;",
+                span: Span {
+                    start: Offset(
+                        42,
+                    ),
+                    end: Offset(
+                        42,
+                    ),
+                },
                 tokens: [],
             },
         ),
@@ -58,6 +90,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nvar c = add(1, 2);\nprint c;",
+                span: Span {
+                    start: Offset(
+                        69,
+                    ),
+                    end: Offset(
+                        73,
+                    ),
+                },
                 tokens: [
                     Alphabetic(a),
                     Comma,
@@ -72,6 +112,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nvar c = add(1, 2);\nprint c;",
+                span: Span {
+                    start: Offset(
+                        76,
+                    ),
+                    end: Offset(
+                        95,
+                    ),
+                },
                 tokens: [
                     Whitespace('\n'),
                     Whitespace(' '),
@@ -104,6 +152,14 @@ TokenTree {
         Tree(
             TokenTree {
                 source text: "fun hello() {\n    print \"hello\";\n}\n\nhello();\nprint \"world\";\n\nfun add(a, b) {\n    return a + b;\n}\n\nvar c = add(1, 2);\nprint c;",
+                span: Span {
+                    start: Offset(
+                        110,
+                    ),
+                    end: Offset(
+                        114,
+                    ),
+                },
                 tokens: [
                     Number(1),
                     Comma,

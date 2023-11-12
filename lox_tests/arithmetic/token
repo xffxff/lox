@@ -1,5 +1,13 @@
 TokenTree {
     source text: "1 + 2;\n\n1 + 2 * 3;\n\n1 - 2 / 3;\n\n1 + 2 * -3;",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            42,
+        ),
+    },
     tokens: [
         Number(1),
         Whitespace(' '),

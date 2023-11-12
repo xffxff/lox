@@ -1,5 +1,13 @@
 TokenTree {
     source text: "\"hello\" + \" world\";",
+    span: Span {
+        start: Offset(
+            0,
+        ),
+        end: Offset(
+            18,
+        ),
+    },
     tokens: [
         String(hello),
         Whitespace(' '),
