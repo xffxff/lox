@@ -1,9 +1,5 @@
 FunctionDeclaration {
-    function: Function(
-        Id {
-            value: 10,
-        },
-    ),
+    function: fib(n),
 }
 Print {
     expr: Call {

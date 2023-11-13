@@ -1,9 +1,5 @@
 FunctionDeclaration {
-    function: Function(
-        Id {
-            value: 14,
-        },
-    ),
+    function: hello(),
 }
 Expr {
     expr: Call {
@@ -14,11 +10,7 @@ Print {
     expr: StringLiteral(world),
 }
 FunctionDeclaration {
-    function: Function(
-        Id {
-            value: 15,
-        },
-    ),
+    function: add(a, b),
 }
 Var {
     name: "c",

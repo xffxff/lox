@@ -54,14 +54,14 @@ impl Compiler {
         let exprs = lox_parse::parse_file(&self.db, self.input_file);
 
         let mut buf = String::new();
-        for expr in exprs.iter() {
-            buf.push_str(&format!("{:#?}\n", expr.debug(&self.db)));
+        for stmt in exprs.iter() {
+            buf.push_str(&format!("{:#?}\n", stmt.debug(&self.db)));
         }
         buf
     }
 
     pub fn bytecode(&mut self) -> String {
         let chunk = lox_compile::compile_file(&self.db, self.input_file);
-        format!("{:#?}", chunk)
+        format!("{:#?}", chunk.debug(&self.db))
     }
 }

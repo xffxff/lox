@@ -1,44 +1,19 @@
-CompiledFunction {
+Function {
     name: "main",
-    arity: 0,
-    chunk: Chunk {
-        code: [
-            Constant(
-                F64(
-                    1.0,
-                ),
-            ),
-            GlobalVarDeclaration {
-                name: "a",
-            },
-            Nil,
-            GlobalVarDeclaration {
-                name: "b",
-            },
-            ReadGlobalVariable {
-                name: "a",
-            },
-            Print,
-            String(
-                "hello",
-            ),
-            GlobalVarDeclaration {
-                name: "str1",
-            },
-            String(
-                "world",
-            ),
-            GlobalVarDeclaration {
-                name: "str2",
-            },
-            ReadGlobalVariable {
-                name: "str1",
-            },
-            ReadGlobalVariable {
-                name: "str2",
-            },
-            Add,
-            Print,
-        ],
-    },
+    chunk: [
+        constant(1),
+        global_var_declaration(a),
+        nil,
+        global_var_declaration(b),
+        read_global_variable(a),
+        print,
+        string("hello"),
+        global_var_declaration(str1),
+        string("world"),
+        global_var_declaration(str2),
+        read_global_variable(str1),
+        read_global_variable(str2),
+        add,
+        print,
+    ],
 }
