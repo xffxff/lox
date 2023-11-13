@@ -1,28 +1,13 @@
-CompiledFunction {
+Function {
     name: "main",
-    arity: 0,
-    chunk: Chunk {
-        code: [
-            Constant(
-                F64(
-                    1.0,
-                ),
-            ),
-            Constant(
-                F64(
-                    2.0,
-                ),
-            ),
-            ReadLocalVariable {
-                index_in_stack: 1,
-            },
-            Print,
-            Pop,
-            ReadLocalVariable {
-                index_in_stack: 0,
-            },
-            Print,
-            Pop,
-        ],
-    },
+    chunk: [
+        constant(1),
+        constant(2),
+        read_local_variable(1),
+        print,
+        pop,
+        read_local_variable(0),
+        print,
+        pop,
+    ],
 }

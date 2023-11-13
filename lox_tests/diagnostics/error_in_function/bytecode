@@ -1,25 +1,10 @@
-CompiledFunction {
+Function {
     name: "main",
-    arity: 0,
-    chunk: Chunk {
-        code: [
-            Function(
-                Function(
-                    Id {
-                        value: 6,
-                    },
-                ),
-            ),
-            GlobalVarDeclaration {
-                name: "hello",
-            },
-            ReadGlobalVariable {
-                name: "hello",
-            },
-            Call {
-                arity: 0,
-            },
-            Pop,
-        ],
-    },
+    chunk: [
+        function(hello()),
+        global_var_declaration(hello),
+        read_global_variable(hello),
+        call(0),
+        pop,
+    ],
 }

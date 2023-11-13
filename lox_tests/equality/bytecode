@@ -1,32 +1,13 @@
-CompiledFunction {
+Function {
     name: "main",
-    arity: 0,
-    chunk: Chunk {
-        code: [
-            Constant(
-                F64(
-                    1.0,
-                ),
-            ),
-            Constant(
-                F64(
-                    2.0,
-                ),
-            ),
-            Equal,
-            Pop,
-            Constant(
-                F64(
-                    1.0,
-                ),
-            ),
-            Constant(
-                F64(
-                    2.0,
-                ),
-            ),
-            NotEqual,
-            Pop,
-        ],
-    },
+    chunk: [
+        constant(1),
+        constant(2),
+        equal,
+        pop,
+        constant(1),
+        constant(2),
+        not_equal,
+        pop,
+    ],
 }

@@ -1,17 +1,10 @@
-CompiledFunction {
+Function {
     name: "main",
-    arity: 0,
-    chunk: Chunk {
-        code: [
-            True,
-            JumpIfFalse(
-                3,
-            ),
-            Jump(
-                4,
-            ),
-            False,
-            Pop,
-        ],
-    },
+    chunk: [
+        true,
+        jump_if_false(3),
+        jump(4),
+        false,
+        pop,
+    ],
 }

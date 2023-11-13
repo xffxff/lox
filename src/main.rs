@@ -120,8 +120,8 @@ impl TestCase {
         expect_file![self.syntax].assert_eq(&buf);
 
         // test bytecode
-        let chunk = lox_compile::compile_file(db, input_file);
-        expect_file![self.bytecode].assert_eq(&format!("{:#?}", chunk));
+        let compiled_function = lox_compile::compile_file(db, input_file);
+        expect_file![self.bytecode].assert_eq(&format!("{:#?}", compiled_function.debug(db)));
 
         // test execute
         // let buf = Arc::new(Mutex::new(String::new()));

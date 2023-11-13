@@ -1,50 +1,21 @@
-CompiledFunction {
+Function {
     name: "main",
-    arity: 0,
-    chunk: Chunk {
-        code: [
-            Constant(
-                F64(
-                    0.0,
-                ),
-            ),
-            GlobalVarDeclaration {
-                name: "a",
-            },
-            ReadGlobalVariable {
-                name: "a",
-            },
-            Constant(
-                F64(
-                    5.0,
-                ),
-            ),
-            Less,
-            JumpIfFalse(
-                15,
-            ),
-            Pop,
-            String(
-                "hello",
-            ),
-            Print,
-            ReadGlobalVariable {
-                name: "a",
-            },
-            Constant(
-                F64(
-                    1.0,
-                ),
-            ),
-            Add,
-            WriteGlobalVariable {
-                name: "a",
-            },
-            Pop,
-            Jump(
-                2,
-            ),
-            Pop,
-        ],
-    },
+    chunk: [
+        constant(0),
+        global_var_declaration(a),
+        read_global_variable(a),
+        constant(5),
+        less,
+        jump_if_false(15),
+        pop,
+        string("hello"),
+        print,
+        read_global_variable(a),
+        constant(1),
+        add,
+        write_global_variable(a),
+        pop,
+        jump(2),
+        pop,
+    ],
 }

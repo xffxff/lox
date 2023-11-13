@@ -1,18 +1,15 @@
-CompiledFunction {
+Function {
     name: "main",
-    arity: 0,
-    chunk: Chunk {
-        code: [
-            True,
-            Pop,
-            False,
-            Pop,
-            True,
-            Not,
-            Pop,
-            False,
-            Not,
-            Pop,
-        ],
-    },
+    chunk: [
+        true,
+        pop,
+        false,
+        pop,
+        true,
+        not,
+        pop,
+        false,
+        not,
+        pop,
+    ],
 }

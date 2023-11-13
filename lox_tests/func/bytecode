@@ -1,62 +1,21 @@
-CompiledFunction {
+Function {
     name: "main",
-    arity: 0,
-    chunk: Chunk {
-        code: [
-            Function(
-                Function(
-                    Id {
-                        value: 14,
-                    },
-                ),
-            ),
-            GlobalVarDeclaration {
-                name: "hello",
-            },
-            ReadGlobalVariable {
-                name: "hello",
-            },
-            Call {
-                arity: 0,
-            },
-            Pop,
-            String(
-                "world",
-            ),
-            Print,
-            Function(
-                Function(
-                    Id {
-                        value: 15,
-                    },
-                ),
-            ),
-            GlobalVarDeclaration {
-                name: "add",
-            },
-            ReadGlobalVariable {
-                name: "add",
-            },
-            Constant(
-                F64(
-                    1.0,
-                ),
-            ),
-            Constant(
-                F64(
-                    2.0,
-                ),
-            ),
-            Call {
-                arity: 2,
-            },
-            GlobalVarDeclaration {
-                name: "c",
-            },
-            ReadGlobalVariable {
-                name: "c",
-            },
-            Print,
-        ],
-    },
+    chunk: [
+        function(hello()),
+        global_var_declaration(hello),
+        read_global_variable(hello),
+        call(0),
+        pop,
+        string("world"),
+        print,
+        function(add(a, b)),
+        global_var_declaration(add),
+        read_global_variable(add),
+        constant(1),
+        constant(2),
+        call(2),
+        global_var_declaration(c),
+        read_global_variable(c),
+        print,
+    ],
 }
