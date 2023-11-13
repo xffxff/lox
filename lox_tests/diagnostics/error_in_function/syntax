@@ -1,9 +1,5 @@
 FunctionDeclaration {
-    function: Function(
-        Id {
-            value: 6,
-        },
-    ),
+    function: hello(),
 }
 Expr {
     expr: Call {

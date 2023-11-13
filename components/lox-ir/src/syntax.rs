@@ -223,7 +223,7 @@ impl<'db> salsa::DebugWithDb<dyn crate::Db + 'db> for Stmt {
             }
             Stmt::FunctionDeclaration(function) => {
                 let mut builder = f.debug_struct("FunctionDeclaration");
-                builder.field("function", function);
+                builder.field("function", &function.debug(db));
                 builder.finish()
             }
         }

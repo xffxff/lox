@@ -111,11 +111,11 @@ impl TestCase {
         expect_file![self.token].assert_eq(&format!("{:#?}", token_tree.debug(db)));
 
         // test syntax
-        let exprs = lox_parse::parse_file(db, input_file);
+        let stmts = lox_parse::parse_file(db, input_file);
 
         let mut buf = String::new();
-        for expr in exprs.iter() {
-            buf.push_str(&format!("{:#?}\n", expr.debug(db)));
+        for stmt in stmts.iter() {
+            buf.push_str(&format!("{:#?}\n", stmt.debug(db)));
         }
         expect_file![self.syntax].assert_eq(&buf);
 
